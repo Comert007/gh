@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ED2827</color>
+    <color name="colorPrimaryDark">#FF5453</color>
+    <color name="colorAccent">#FF4081</color>
+
+
+    <color name="color_title">#ffffff</color>
+    <color name="color_start_titleBar">#FF5453</color>
+    <color name="color_end_titleBar">#ED2827</color>
+</resources>
