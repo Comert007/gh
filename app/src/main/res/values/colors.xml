@@ -8,4 +8,9 @@
     <color name="color_title">#ffffff</color>
     <color name="color_start_titleBar">#FF5453</color>
     <color name="color_end_titleBar">#ED2827</color>
+    <color name="color_split">#dddddd</color>
+
+    <color name="color_white">#ffffff</color>
+    <color name="color_red">#ED2827</color>
+    <color name="color_black">#333333</color>
 </resources>

@@ -14,4 +14,88 @@
         app:titleLeftIco="@mipmap/ic_search"
         app:titleRightIco="@mipmap/ic_user"
         app:titleText="心联汇"/>
+
+    <FrameLayout
+        android:id="@+id/main_content"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="1"/>
+
+
+    <include layout="@layout/view_split_line"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottom_height"
+        android:background="@color/color_white">
+
+        <LinearLayout
+            android:id="@+id/tab_home_layout"
+            style="@style/TabLayout">
+            <ImageView
+                android:id="@+id/tab_home_image"
+                android:background="@drawable/tab_home_selector"
+                style="@style/TabImage"/>
+            <TextView
+                android:id="@+id/tab_home_text"
+                android:text="首页"
+                style="@style/TabText"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/tab_chat_layout"
+            style="@style/TabLayout">
+            <ImageView
+                android:id="@+id/tab_chat_image"
+                android:background="@drawable/tab_chat_selector"
+                style="@style/TabImage"/>
+            <TextView
+                android:id="@+id/tab_chat_text"
+                android:text="心交流"
+                style="@style/TabText"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/tab_news_layout"
+            style="@style/TabLayout">
+            <ImageView
+                android:id="@+id/tab_news_image"
+                android:background="@drawable/tab_news_selector"
+                style="@style/TabImage"/>
+            <TextView
+                android:id="@+id/tab_news_text"
+                android:text="新播报"
+                style="@style/TabText"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/tab_together_layout"
+            style="@style/TabLayout">
+            <ImageView
+                android:id="@+id/tab_together_image"
+                android:background="@drawable/tab_together_selector"
+                style="@style/TabImage"/>
+            <TextView
+                android:id="@+id/tab_together_text"
+                android:text="心同行"
+                style="@style/TabText"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/tab_stage_layout"
+            style="@style/TabLayout">
+            <ImageView
+                android:id="@+id/tab_stage_image"
+                android:background="@drawable/tab_stage_selector"
+                style="@style/TabImage"/>
+            <TextView
+                android:id="@+id/tab_stage_text"
+                android:text="心舞台"
+                style="@style/TabText"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
 </LinearLayout>

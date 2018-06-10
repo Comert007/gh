@@ -40,4 +40,25 @@
     </style>
 
 
+    <style name="TabLayout">
+        <item name="android:layout_width">0px</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="TabText">
+        <item name="android:textColor">@drawable/tab_name_selector</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/table_size</item>
+        <item name="android:layout_marginTop">@dimen/table_margins</item>
+    </style>
+    <style name="TabImage">
+        <item name="android:layout_width">@dimen/table_image</item>
+        <item name="android:layout_height">@dimen/table_image</item>
+
+    </style>
+
 </resources>
