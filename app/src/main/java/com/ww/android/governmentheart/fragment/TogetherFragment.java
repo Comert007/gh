@@ -9,9 +9,10 @@ import com.ww.android.governmentheart.mvp.vu.VoidView;
  * @Date 2018/6/10
  */
 public class TogetherFragment extends BaseFragment<VoidView,VoidModel> {
+
     @Override
     protected int getLayoutResId() {
-        return R.layout.fragment_together;
+        return R.layout.fragment_chat;
     }
 
     @Override

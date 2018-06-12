@@ -8,11 +8,10 @@ import com.ww.android.governmentheart.mvp.vu.VoidView;
  * @Author feng
  * @Date 2018/6/10
  */
-public class ChatFragment extends BaseFragment<VoidView,VoidModel> {
-
+public class WisdomFragment extends BaseFragment<VoidView,VoidModel> {
     @Override
     protected int getLayoutResId() {
-        return R.layout.fragment_chat;
+        return R.layout.fragment_together;
     }
 
     @Override

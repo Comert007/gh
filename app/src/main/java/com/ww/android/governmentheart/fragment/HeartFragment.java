@@ -19,7 +19,7 @@ import ww.com.core.Debug;
  * @Author feng
  * @Date 2018/6/10
  */
-public class HomeFragment extends BaseFragment<RefreshView,VoidModel> {
+public class HeartFragment extends BaseFragment<RefreshView,VoidModel> {
 
 
     private HomeAdapter adapter;

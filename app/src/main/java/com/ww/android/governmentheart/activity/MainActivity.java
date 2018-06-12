@@ -9,11 +9,11 @@ import android.widget.Toast;
 
 import com.ww.android.governmentheart.BaseApplication;
 import com.ww.android.governmentheart.R;
-import com.ww.android.governmentheart.fragment.ChatFragment;
-import com.ww.android.governmentheart.fragment.HomeFragment;
-import com.ww.android.governmentheart.fragment.NewsFragment;
-import com.ww.android.governmentheart.fragment.StageFragment;
 import com.ww.android.governmentheart.fragment.TogetherFragment;
+import com.ww.android.governmentheart.fragment.HeartFragment;
+import com.ww.android.governmentheart.fragment.StyleFragment;
+import com.ww.android.governmentheart.fragment.JoinFragment;
+import com.ww.android.governmentheart.fragment.WisdomFragment;
 import com.ww.android.governmentheart.mvp.model.VoidModel;
 import com.ww.android.governmentheart.mvp.vu.VoidView;
 
@@ -51,11 +51,11 @@ public class MainActivity extends BaseActivity<VoidView, VoidModel> {
     @Override
     protected void init() {
         fragments = new ArrayList<>();
-        fragments.add(new HomeFragment());
-        fragments.add(new ChatFragment());
-        fragments.add(new NewsFragment());
+        fragments.add(new HeartFragment());
         fragments.add(new TogetherFragment());
-        fragments.add(new StageFragment());
+        fragments.add(new StyleFragment());
+        fragments.add(new WisdomFragment());
+        fragments.add(new JoinFragment());
 
         adapter = new MenuTabAdapter(this, menus, fragments, R.id.main_content);
         adapter.setOnMenuClickListener(new MenuTabAdapter.OnMenuClickListener() {
