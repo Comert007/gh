@@ -7,7 +7,7 @@
     <dimen name="bottom_height">48dp</dimen>
 
     <dimen name="title_size">18sp</dimen>
-    <dimen name="table_size">14sp</dimen>
+    <dimen name="table_size">10sp</dimen>
 
     <dimen name="table_image">18dp</dimen>
     <dimen name="table_margins">3dp</dimen>

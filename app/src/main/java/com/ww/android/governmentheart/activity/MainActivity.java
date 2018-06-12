@@ -25,14 +25,14 @@ import ww.com.core.adapter.MenuTabAdapter;
 
 public class MainActivity extends BaseActivity<VoidView, VoidModel> {
 
-    @BindViews({R.id.tab_home_layout, R.id.tab_chat_layout, R.id.tab_news_layout, R.id
-            .tab_together_layout, R.id.tab_stage_layout})
+    @BindViews({R.id.tab_heart_layout, R.id.tab_together_layout, R.id.tab_style_layout, R.id
+            .tab_wisdom_layout, R.id.tab_join_layout})
     List<View> menus;
-    @BindViews({R.id.tab_home_image, R.id.tab_chat_image, R.id.tab_news_image, R.id
-            .tab_together_image, R.id.tab_stage_image})
+    @BindViews({R.id.tab_heart_image, R.id.tab_together_image, R.id.tab_style_image, R.id
+            .tab_wisdom_image, R.id.tab_join_image})
     List<View> images;
-    @BindViews({R.id.tab_home_text, R.id.tab_chat_text, R.id.tab_news_text, R.id.tab_together_text,
-             R.id.tab_stage_text})
+    @BindViews({R.id.tab_heart_text, R.id.tab_together_text, R.id.tab_style_text, R.id
+            .tab_wisdom_text, R.id.tab_join_text})
     List<View> texts;
 
     private MenuTabAdapter adapter;
@@ -67,19 +67,19 @@ public class MainActivity extends BaseActivity<VoidView, VoidModel> {
             @Override
             public void onClick(View v) {
                 switch (v.getId()) {
-                    case R.id.tab_home_layout:
+                    case R.id.tab_heart_layout:
                         changeStatus(0);
                         break;
-                    case R.id.tab_chat_layout:
+                    case R.id.tab_together_layout:
                         changeStatus(1);
                         break;
-                    case R.id.tab_news_layout:
+                    case R.id.tab_style_layout:
                         changeStatus(2);
                         break;
-                    case R.id.tab_together_layout:
+                    case R.id.tab_wisdom_layout:
                         changeStatus(3);
                         break;
-                    case R.id.tab_stage_layout:
+                    case R.id.tab_join_layout:
                         changeStatus(4);
                         break;
                 }
@@ -90,7 +90,7 @@ public class MainActivity extends BaseActivity<VoidView, VoidModel> {
         changeStatus(0);
     }
 
-    private void changeStatus(int index){
+    private void changeStatus(int index) {
         adapter.changeMenuStatus(index);
         changeMenuStatus(index);
         adapter.changeMenu(index);

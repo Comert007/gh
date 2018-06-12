@@ -30,45 +30,18 @@
         android:background="@color/color_white">
 
         <LinearLayout
-            android:id="@+id/tab_home_layout"
+            android:id="@+id/tab_heart_layout"
             style="@style/TabLayout">
             <ImageView
-                android:id="@+id/tab_home_image"
-                android:background="@drawable/tab_home_selector"
+                android:id="@+id/tab_heart_image"
+                android:background="@drawable/tab_heart_selector"
                 style="@style/TabImage"/>
             <TextView
-                android:id="@+id/tab_home_text"
-                android:text="首页"
+                android:id="@+id/tab_heart_text"
+                android:text="同心"
                 style="@style/TabText"/>
         </LinearLayout>
 
-
-        <LinearLayout
-            android:id="@+id/tab_chat_layout"
-            style="@style/TabLayout">
-            <ImageView
-                android:id="@+id/tab_chat_image"
-                android:background="@drawable/tab_chat_selector"
-                style="@style/TabImage"/>
-            <TextView
-                android:id="@+id/tab_chat_text"
-                android:text="心交流"
-                style="@style/TabText"/>
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/tab_news_layout"
-            style="@style/TabLayout">
-            <ImageView
-                android:id="@+id/tab_news_image"
-                android:background="@drawable/tab_news_selector"
-                style="@style/TabImage"/>
-            <TextView
-                android:id="@+id/tab_news_text"
-                android:text="新播报"
-                style="@style/TabText"/>
-        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/tab_together_layout"
@@ -79,20 +52,47 @@
                 style="@style/TabImage"/>
             <TextView
                 android:id="@+id/tab_together_text"
-                android:text="心同行"
+                android:text="同行"
+                style="@style/TabText"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/tab_style_layout"
+            style="@style/TabLayout">
+            <ImageView
+                android:id="@+id/tab_style_image"
+                android:background="@drawable/tab_style_selector"
+                style="@style/TabImage"/>
+            <TextView
+                android:id="@+id/tab_style_text"
+                android:text="风采"
                 style="@style/TabText"/>
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/tab_stage_layout"
+            android:id="@+id/tab_wisdom_layout"
             style="@style/TabLayout">
             <ImageView
-                android:id="@+id/tab_stage_image"
-                android:background="@drawable/tab_stage_selector"
+                android:id="@+id/tab_wisdom_image"
+                android:background="@drawable/tab_wisdom_selector"
                 style="@style/TabImage"/>
             <TextView
-                android:id="@+id/tab_stage_text"
-                android:text="心舞台"
+                android:id="@+id/tab_wisdom_text"
+                android:text="汇智"
+                style="@style/TabText"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/tab_join_layout"
+            style="@style/TabLayout">
+            <ImageView
+                android:id="@+id/tab_join_image"
+                android:background="@drawable/tab_join_selector"
+                style="@style/TabImage"/>
+            <TextView
+                android:id="@+id/tab_join_text"
+                android:text="加入我"
                 style="@style/TabText"/>
         </LinearLayout>
 
