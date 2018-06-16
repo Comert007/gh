@@ -3,7 +3,6 @@ package com.ww.android.governmentheart.mvp.vu;
 import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -11,6 +10,7 @@ import com.ww.android.governmentheart.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import ww.com.core.widget.CustomRecyclerView;
 
 /**
  * @Author feng
@@ -23,8 +23,8 @@ public class RefreshView implements IView {
     public SmartRefreshLayout srl;
 
     @Nullable
-    @BindView(R.id.rv)
-    public RecyclerView rv;
+    @BindView(R.id.crv)
+    public CustomRecyclerView crv;
 
 
     @Override

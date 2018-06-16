@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/linear_search"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/search_height"
+        android:layout_margin="@dimen/margin_10"
+        android:background="@drawable/shape_search_border"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/margin_5_right">
+
+        <ImageView
+            android:layout_width="@dimen/normal_width"
+            android:layout_height="@dimen/normal_height"
+            android:layout_marginRight="@dimen/margin_5_right"
+            android:src="@mipmap/ic_search_gray"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:hint="请输入要搜索的内容"
+            android:textColorHint="@color/color_hint"
+            android:textSize="@dimen/text_15"/>
+
+    </LinearLayout>
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        android:background="@mipmap/ic_banner_test"/>
+
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:paddingLeft="@dimen/margins"
+                  android:paddingRight="@dimen/margins"
+                  android:paddingTop="@dimen/margin_10"
+                  android:paddingBottom="@dimen/margin_10"
+                  android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="13dp"
+            android:layout_height="@dimen/normal_height"
+            android:layout_marginRight="@dimen/margin_5_right"
+            android:src="@mipmap/ic_news"/>
+
+        <TextView
+            android:text="最新新闻"
+            android:textColor="@color/color_tip_red"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textSize="@dimen/text_15"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:text="共34条"
+            android:textColor="@color/color_tip_gray"
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/text_12"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

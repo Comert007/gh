@@ -20,7 +20,12 @@ public class HomeAdapter extends RvAdapter<String> {
 
     @Override
     protected int getItemLayoutResId(int viewType) {
-        return R.layout.adapter_home;
+        return R.layout.adapter_heart_body;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return super.getItemViewType(position);
     }
 
     @Override

@@ -13,4 +13,9 @@
     <color name="color_white">#ffffff</color>
     <color name="color_red">#ED2827</color>
     <color name="color_black">#333333</color>
+    <color name="color_hint">#cccccc</color>
+
+    <color name="color_tip_red">#f53d3c</color>
+    <color name="color_tip_gray">#999999</color>
+    <color name="color_divider">#f5f5f5</color>
 </resources>
