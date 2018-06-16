@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_marginBottom="@dimen/margin_5_right"
+    android:layout_height="wrap_content">
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="180dp">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/ic_pic_default"/>
+
+
+        <include layout="@layout/layout_eyes"/>
+
+
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_alignParentBottom="true"
+                      android:layout_height="30dp">
+
+            <TextView android:layout_width="0dp"
+                      android:layout_weight="1"
+                      android:paddingLeft="@dimen/margins"
+                      android:paddingRight="@dimen/margins"
+                      android:ellipsize="end"
+                      android:gravity="center_vertical"
+                      android:textColor="@color/color_white"
+                      android:textSize="@dimen/text_12"
+                      android:text="崇州拥有全四川范围内面积最大的油菜花欣赏"
+                      android:background="@color/color_black_40"
+                      android:layout_height="match_parent"/>
+
+            <TextView android:layout_width="45dp"
+                      android:gravity="center"
+                      android:text="详情"
+                      android:textColor="@color/color_white"
+                      android:textSize="@dimen/text_12"
+                      android:background="@color/color_black_60"
+                      android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>

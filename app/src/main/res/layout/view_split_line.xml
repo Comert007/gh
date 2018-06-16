@@ -7,6 +7,6 @@
     <View
         android:background="@color/color_split"
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"/>
+        android:layout_height="1dp"/>
 
 </merge>

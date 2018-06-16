@@ -1,0 +1,27 @@
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="2dp"
+    android:paddingBottom="2dp"
+    android:gravity="center"
+    android:paddingLeft="6dp"
+    android:paddingRight="6dp"
+    android:layout_alignParentRight="true"
+    android:layout_marginTop="@dimen/margins"
+    android:layout_marginRight="@dimen/margins"
+    android:background="@drawable/shape_transparency_30_black"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginRight="@dimen/margin_5_right"
+        android:baselineAligned="false"
+        android:src="@mipmap/ic_eyes_white"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1234"
+        android:textColor="@color/color_white"/>
+
+</LinearLayout>

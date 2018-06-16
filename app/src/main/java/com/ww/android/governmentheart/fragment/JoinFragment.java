@@ -11,7 +11,7 @@ import com.ww.android.governmentheart.mvp.vu.VoidView;
 public class JoinFragment extends BaseFragment<VoidView,VoidModel> {
     @Override
     protected int getLayoutResId() {
-        return R.layout.fragment_stage;
+        return R.layout.fragment_join;
     }
 
     @Override

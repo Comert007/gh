@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="together_text">
+        <item>项目发布</item>
+        <item>活动信息</item>
+        <item>在线直播</item>
+    </string-array>
+
+    <!--崇州特色 农副产品 电商介绍 人物访谈-->
+    <string-array name="style_text">
+        <item>崇州特色</item>
+        <item>农副产品</item>
+        <item>电商介绍</item>
+        <item>人物访谈</item>
+    </string-array>
+</resources>

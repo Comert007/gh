@@ -40,4 +40,6 @@ dependencies {
     //    RxLifecycle
     implementation 'com.trello:rxlifecycle:1.0'
     implementation 'com.trello:rxlifecycle-components:1.0'
+    //    viewpager indicator
+    implementation 'com.github.hackware1993:MagicIndicator:1.5.0'
 }

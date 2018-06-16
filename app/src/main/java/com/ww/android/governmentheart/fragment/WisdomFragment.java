@@ -11,7 +11,7 @@ import com.ww.android.governmentheart.mvp.vu.VoidView;
 public class WisdomFragment extends BaseFragment<VoidView,VoidModel> {
     @Override
     protected int getLayoutResId() {
-        return R.layout.fragment_together;
+        return R.layout.fragment_wisdom;
     }
 
     @Override
