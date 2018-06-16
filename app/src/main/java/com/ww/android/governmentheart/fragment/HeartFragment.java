@@ -1,9 +1,6 @@
 package com.ww.android.governmentheart.fragment;
 
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +12,7 @@ import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.adapter.HomeAdapter;
 import com.ww.android.governmentheart.mvp.model.VoidModel;
 import com.ww.android.governmentheart.mvp.vu.RefreshView;
+import com.ww.android.governmentheart.utils.RecyclerHelper;
 
 import java.util.Arrays;
 
@@ -61,11 +59,15 @@ public class HeartFragment extends BaseFragment<RefreshView, VoidModel> {
             Debug.d("the rv is null~");
             return;
         }
-        LinearLayoutManager manager = new LinearLayoutManager(getContext());
-        v.crv.setLayoutManager(manager);
-        DividerItemDecoration decoration = new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL);
-        decoration.setDrawable(ContextCompat.getDrawable(getContext(),R.drawable.shape_divider_more));
-        v.crv.addItemDecoration(decoration);
+
+        initRecycler();
+
+        adapter.addList(Arrays.asList("1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1",
+                "1", "1", "1", "1", "1", "1", "1"));
+    }
+
+    private void initRecycler(){
+        v.initRecycler(RecyclerHelper.defaultManager(getContext()),RecyclerHelper.defalutMoreDecoration(getContext()));
 
         adapter = new HomeAdapter(getContext());
         v.crv.setAdapter(adapter);
@@ -74,9 +76,5 @@ public class HeartFragment extends BaseFragment<RefreshView, VoidModel> {
                 .MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         view.setLayoutParams(lp);
         v.crv.addHeadView(view);
-
-
-        adapter.addList(Arrays.asList("1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1",
-                "1", "1", "1", "1", "1", "1", "1"));
     }
 }
