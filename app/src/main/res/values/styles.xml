@@ -60,5 +60,26 @@
         <item name="android:layout_height">@dimen/table_image</item>
 
     </style>
+    <style name="ViewSplitStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_above">@id/tv_merchant</item>
+        <item name="android:layout_marginBottom">@dimen/margin_7</item>
+        <item name="android:background">@color/color_e9e9e9</item>
+    </style>
+    <style name="NormalTitleTextStyle">
+        <item name="android:maxLines">2</item>
+        <item name="android:textSize">@dimen/text_15</item>
+        <item name="android:textColor">@color/color_black</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="NormalTipTextStyle">
+        <item name="android:textSize">@dimen/text_12</item>
+        <item name="android:textColor">@color/color_tip_gray</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
 
 </resources>

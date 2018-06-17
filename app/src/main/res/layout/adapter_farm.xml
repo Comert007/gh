@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/color_white"
+    android:padding="@dimen/margins"
+    android:layout_height="wrap_content"
+>
+
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginRight="@dimen/margins"
+        android:src="@mipmap/ic_pic_default"/>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="3"
+            android:text="恒都澳洲牛腩块500g草饲牛肉"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/text_15"/>
+
+        <View style="@style/ViewSplitStyle"/>
+
+        <TextView
+            android:id="@+id/tv_merchant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/linear_farm"
+            android:text="供应商：蜀海"
+            android:textColor="@color/color_tip_gray"
+            android:textSize="12sp"
+        />
+
+        <LinearLayout
+            android:id="@+id/linear_farm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
+
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="￥"
+                      android:textColor="#ffff7f29"
+                      android:textSize="12sp"/>
+
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="98.00"
+                      android:textColor="#ffff7f29"
+                      android:textSize="15sp"/>
+
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="/斤"
+                      android:textColor="#ffff7f29"
+                      android:textSize="12sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_5_right"
+                android:text="月销：3213"
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/text_12"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>
