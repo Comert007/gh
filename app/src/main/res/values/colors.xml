@@ -24,4 +24,12 @@
     <color name="color_divider">#f5f5f5</color>
     <color name="color_indicator">#666666</color>
 
+    <color name="color_processing">#ffeeee</color>
+    <color name="color_unprocessed">#f5f5f5</color>
+    <color name="color_processed">#ebf5ff</color>
+
+    <color name="color_text_processing">#FF7373</color>
+    <color name="color_text_unprocessed">#999999</color>
+    <color name="color_text_processed">#5BADFC</color>
+
 </resources>

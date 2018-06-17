@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/layout_refresh"/>
+
+    <Button
+        android:background="@drawable/shape_blue_circle"
+        android:layout_width="60dp"
+        android:text="我要发布"
+        android:gravity="center"
+        android:textColor="@color/color_white"
+        android:textSize="@dimen/text_15"
+        android:padding="@dimen/margin_8"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/margin_20"
+        android:layout_marginRight="@dimen/margin_20"
+        android:layout_height="60dp"/>
+
+</RelativeLayout>

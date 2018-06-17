@@ -81,5 +81,13 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+    <style name="NormalProcessStyle">
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/shape_processing_13_rectangle</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">@dimen/text_12</item>
+        <item name="android:textColor">@color/color_text_processing</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
 
 </resources>
