@@ -92,7 +92,7 @@
         </LinearLayout>
 
         <View
-            android:translationX="-5dp"
+            android:id="@+id/vi_line"
             android:layout_marginTop="@dimen/margins"
             style="@style/ViewSplitStyle"/>
 

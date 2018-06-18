@@ -6,8 +6,8 @@ import android.support.v4.app.FragmentManager;
 import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.adapter.IndicatorPagerAdapter;
 import com.ww.android.governmentheart.fragment.together.ActivityFragment;
-import com.ww.android.governmentheart.fragment.together.OnlineFragment;
 import com.ww.android.governmentheart.fragment.wisdom.SuggestionFragment;
+import com.ww.android.governmentheart.fragment.wisdom.TransmissionFragment;
 import com.ww.android.governmentheart.mvp.model.VoidModel;
 import com.ww.android.governmentheart.mvp.vu.MagicIndicatorView;
 
@@ -58,6 +58,6 @@ public class WisdomFragment extends BaseFragment<MagicIndicatorView,VoidModel> {
         }
         fragments.add(new SuggestionFragment());
         fragments.add(new ActivityFragment());
-        fragments.add(new OnlineFragment());
+        fragments.add(new TransmissionFragment());
     }
 }

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:background="@color/color_white"
+    android:padding="@dimen/margins">
+
+
+    <ImageView
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:src="@mipmap/ic_img_transmission"/>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginLeft="@dimen/margin_10"
+        android:orientation="vertical"
+        android:layout_weight="1">
+
+        <TextView
+            style="@style/NormalTitleTextStyle"
+            android:text="崇州市旅游景区拆迁政策文件"/>
+
+        <TextView style="@style/NormalTipTextStyle"
+                  android:layout_alignParentBottom="true"
+        android:text="2018-05-10 12:21:30"/>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@mipmap/ic_right_gray"/>
+
+</LinearLayout>

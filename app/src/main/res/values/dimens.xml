@@ -4,7 +4,7 @@
     <dimen name="draw_padding">8dp</dimen>
     <dimen name="margins">15dp</dimen>
 
-    <dimen name="title_height">64dp</dimen>
+    <dimen name="title_height">47dp</dimen>
     <dimen name="bottom_height">48dp</dimen>
 
     <dimen name="title_size">18sp</dimen>

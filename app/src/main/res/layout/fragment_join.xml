@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.ww.android.governmentheart.widget.TitleView
+        android:id="@+id/title_view"
+        style="@style/TitleBar"
+        app:titleLeftIco="@mipmap/ic_back"
+        android:background="@color/color_white"
+        app:titleText="加入我"/>
 
     <TextView
         android:text="心舞台"
@@ -13,4 +22,4 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

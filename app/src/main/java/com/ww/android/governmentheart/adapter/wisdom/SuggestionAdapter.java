@@ -5,6 +5,7 @@ import android.view.View;
 
 import com.ww.android.governmentheart.R;
 
+import butterknife.BindView;
 import ww.com.core.adapter.RvAdapter;
 import ww.com.core.adapter.RvViewHolder;
 
@@ -29,9 +30,13 @@ public class SuggestionAdapter extends RvAdapter<String> {
     }
 
     class SuggestionViewHolder extends RvViewHolder<String> {
+        @BindView(R.id.vi_line)
+        View viLine;
+
 
         public SuggestionViewHolder(View itemView) {
             super(itemView);
+            viLine.setTranslationX(-5f);
         }
 
         @Override
