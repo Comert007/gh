@@ -3,7 +3,6 @@ package com.ww.android.governmentheart.fragment;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.gyf.barlibrary.ImmersionBar;
 import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.mvp.model.VoidModel;
 import com.ww.android.governmentheart.mvp.vu.VoidView;
@@ -31,13 +30,7 @@ public class JoinFragment extends BaseFragment<VoidView,VoidModel> {
 
     @Override
     protected void init() {
-        ImmersionBar.with(this).fitsSystemWindows(true)  //使用该属性,必须指定状态栏颜色
-                .statusBarColor(R.color.color_white).init();
-        initTitle();
+
     }
 
-    private void initTitle(){
-        btnTitleLeft.setTextColor(colorBlack);
-        tvTitle.setTextColor(colorBlack);
-    }
 }
