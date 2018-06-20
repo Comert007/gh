@@ -50,7 +50,7 @@ public abstract class PresenterActivity<V extends IView, M extends IModel> exten
 
         ButterKnife.bind(this);
 
-        init();
+
     }
 
     /**
@@ -127,10 +127,16 @@ public abstract class PresenterActivity<V extends IView, M extends IModel> exten
         return wwApp.getToken();
     }
 
+    @Override
+    public void finish() {
+        super.finish();
+        hideSoftKeyBoard();
+    }
+
     /**
      * 隐藏软键盘
      */
-    public void hideSoftKeyBord() {
+    public void hideSoftKeyBoard() {
         View v = getCurrentFocus();
         if (v == null){
             return;

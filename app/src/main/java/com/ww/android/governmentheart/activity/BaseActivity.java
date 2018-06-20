@@ -36,16 +36,21 @@ public abstract class BaseActivity<V extends IView, M extends IModel> extends
     @BindView(R.id.btn_title_left)
     public Button btnTitleLeft;
 
-    private ImmersionBar mImmersionBar;
+    protected ImmersionBar mImmersionBar;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         baseApp = BaseApplication.getInstance();
-        mImmersionBar = ImmersionBar.with(this);
-        mImmersionBar.fitsSystemWindows(true)  //使用该属性,必须指定状态栏颜色
-                .statusBarColor(R.color.colorPrimary).init();
+        if (isImmersionBarEnabled()){
+            if (isDefaultImmersionBar()){
+                initDefaultImmersionBar();
+            }else {
+                initImmersionBar();
+            }
+        }
+        init();
     }
 
     public void showToast(CharSequence text) {
@@ -98,8 +103,39 @@ public abstract class BaseActivity<V extends IView, M extends IModel> extends
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (mImmersionBar != null)
+        if (mImmersionBar != null) {
             mImmersionBar.destroy();
+        }
         //必须调用该方法，防止内存泄漏，不调用该方法，如果界面bar发生改变，在不关闭app的情况下，退出此界面再进入将记忆最后一次bar改变的状态
+    }
+
+    protected void initDefaultImmersionBar() {
+        //在BaseActivity里初始化
+        mImmersionBar = ImmersionBar.with(this);
+        mImmersionBar.fitsSystemWindows(true).statusBarColor(R.color.colorPrimary).init();
+    }
+
+    protected void initImmersionBar() {
+        //在BaseActivity里初始化
+        mImmersionBar = ImmersionBar.with(this);
+        mImmersionBar.init();
+    }
+
+    /**
+     * 是否可以使用沉浸式
+     * Is immersion bar enabled boolean.
+     *
+     * @return the boolean
+     */
+    protected boolean isImmersionBarEnabled() {
+        return true;
+    }
+
+    /**
+     * 是否使用默认沉浸式
+     * @return
+     */
+    protected boolean isDefaultImmersionBar(){
+        return true;
     }
 }

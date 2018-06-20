@@ -9,10 +9,10 @@ import android.widget.Toast;
 
 import com.ww.android.governmentheart.BaseApplication;
 import com.ww.android.governmentheart.R;
-import com.ww.android.governmentheart.fragment.TogetherFragment;
 import com.ww.android.governmentheart.fragment.HeartFragment;
-import com.ww.android.governmentheart.fragment.StyleFragment;
 import com.ww.android.governmentheart.fragment.JoinFragment;
+import com.ww.android.governmentheart.fragment.StyleFragment;
+import com.ww.android.governmentheart.fragment.TogetherFragment;
 import com.ww.android.governmentheart.fragment.WisdomFragment;
 import com.ww.android.governmentheart.mvp.model.VoidModel;
 import com.ww.android.governmentheart.mvp.vu.VoidView;
@@ -49,6 +49,17 @@ public class MainActivity extends BaseActivity<VoidView, VoidModel> {
     }
 
     @Override
+    protected void initImmersionBar() {
+        super.initImmersionBar();
+        mImmersionBar.keyboardEnable(true).init();
+    }
+
+    @Override
+    protected boolean isDefaultImmersionBar() {
+        return false;
+    }
+
+    @Override
     protected void init() {
         fragments = new ArrayList<>();
         fragments.add(new HeartFragment());
@@ -69,25 +80,30 @@ public class MainActivity extends BaseActivity<VoidView, VoidModel> {
                 switch (v.getId()) {
                     case R.id.tab_heart_layout:
                         changeStatus(0);
+                        mImmersionBar.fitsSystemWindows(true).statusBarColor(R.color.colorPrimary).init();
                         break;
                     case R.id.tab_together_layout:
                         changeStatus(1);
+                        mImmersionBar.fitsSystemWindows(true).statusBarColor(R.color.colorPrimary).init();
                         break;
                     case R.id.tab_style_layout:
                         changeStatus(2);
+                        mImmersionBar.fitsSystemWindows(true).statusBarColor(R.color.colorPrimary).init();
                         break;
                     case R.id.tab_wisdom_layout:
                         changeStatus(3);
+                        mImmersionBar.fitsSystemWindows(true).statusBarColor(R.color.colorPrimary).init();
                         break;
                     case R.id.tab_join_layout:
                         changeStatus(4);
+                        mImmersionBar.fitsSystemWindows(true).statusBarColor(R.color.colorPrimary).init();
                         break;
                 }
             }
         });
 
-
         changeStatus(0);
+        mImmersionBar.fitsSystemWindows(true).statusBarColor(R.color.colorPrimary).init();
     }
 
     private void changeStatus(int index) {

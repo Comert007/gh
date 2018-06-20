@@ -1,15 +1,13 @@
 package com.ww.android.governmentheart.fragment;
 
 import android.support.annotation.NonNull;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.adapter.HomeAdapter;
+import com.ww.android.governmentheart.mvp.bean.MultipleBean;
 import com.ww.android.governmentheart.mvp.model.VoidModel;
 import com.ww.android.governmentheart.mvp.vu.RefreshView;
 import com.ww.android.governmentheart.utils.RecyclerHelper;
@@ -38,8 +36,9 @@ public class HeartFragment extends BaseFragment<RefreshView, VoidModel> {
         }
         initRecycler();
 
-        adapter.addList(Arrays.asList("1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1",
-                "1", "1", "1", "1", "1", "1", "1"));
+        adapter.addList(Arrays.asList(new MultipleBean(MultipleBean.MULTIPLE_HEADER),
+                new MultipleBean(MultipleBean.MULTIPLE_BODY),
+        new MultipleBean(MultipleBean.MULTIPLE_BODY)));
     }
 
 
@@ -51,7 +50,6 @@ public class HeartFragment extends BaseFragment<RefreshView, VoidModel> {
         v.srl.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                adapter.addItem("1");
                 v.srl.finishRefresh(2000);
             }
         });
@@ -59,7 +57,6 @@ public class HeartFragment extends BaseFragment<RefreshView, VoidModel> {
         v.srl.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                adapter.addItem("1");
                 v.srl.finishLoadMore(2000);
             }
         });
@@ -70,10 +67,5 @@ public class HeartFragment extends BaseFragment<RefreshView, VoidModel> {
 
         adapter = new HomeAdapter(getContext());
         v.crv.setAdapter(adapter);
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.adapter_heart_header, null);
-        ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams
-                .MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        view.setLayoutParams(lp);
-        v.crv.addHeadView(view);
     }
 }

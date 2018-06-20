@@ -47,7 +47,7 @@ public abstract class PresenterFragment<V extends IView, M extends IModel> exten
         m.onAttach(getActivity());
 
         ButterKnife.bind(this, view);
-        init();
+
     }
 
     @Override
