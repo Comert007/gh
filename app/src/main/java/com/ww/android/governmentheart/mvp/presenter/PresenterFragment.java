@@ -43,7 +43,7 @@ public abstract class PresenterFragment<V extends IView, M extends IModel> exten
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        v.onAttach(getActivity(), view);
+        v.onAttach(getActivity(),this, view);
         m.onAttach(getActivity());
 
         ButterKnife.bind(this, view);

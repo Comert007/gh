@@ -9,6 +9,7 @@ import com.gyf.barlibrary.ImmersionBar;
 import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.mvp.model.IModel;
 import com.ww.android.governmentheart.mvp.presenter.PresenterFragment;
+import com.ww.android.governmentheart.mvp.utils.RefreshType;
 import com.ww.android.governmentheart.mvp.vu.IView;
 import com.ww.android.governmentheart.utils.ToastUtils;
 
@@ -167,4 +168,10 @@ public abstract class BaseFragment<V extends IView,M extends IModel> extends Pre
         if (!hidden && mImmersionBar != null)
             mImmersionBar.init();
     }
+
+
+    public int refreshType(){
+        return RefreshType.ENABLE;
+    }
+
 }
