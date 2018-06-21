@@ -19,6 +19,8 @@ public interface IView {
      */
     void onAttach(@NonNull Activity preActivity, @NonNull View contentView);
 
+//    void onAttach(@NonNull Fragment fragment, @NonNull View contentView);
+
     /**
      * 运行
      */

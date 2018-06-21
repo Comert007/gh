@@ -1,22 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    style="@style/LLayStyle"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/LLayStyle">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout android:layout_width="match_parent"
-                  android:padding="@dimen/margin_10"
+                  android:layout_height="wrap_content"
                   android:background="@color/color_white"
-                  android:orientation="horizontal"
                   android:gravity="center_vertical"
-                  android:layout_height="wrap_content">
+                  android:orientation="horizontal"
+                  android:padding="@dimen/margin_10">
         <include layout="@layout/layout_search"/>
 
         <TextView
             style="@style/NormalTitleTextStyle"
-            android:layout_marginLeft="@dimen/margin_10"
             android:layout_width="wrap_content"
+            android:layout_marginLeft="@dimen/margin_10"
             android:text="取消 "/>
     </LinearLayout>
+
+    <View style="@style/ViewLineStyle"/>
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:gravity="center_vertical"
+                  android:background="@color/color_white"
+                  style="@style/PaddingStyle">
+
+        <TextView style="@style/NormalTitleTextStyle"
+                 android:layout_weight="1"
+                 android:text="搜索历史"/>
+
+        <ImageView
+            android:src="@mipmap/ic_del"
+            android:layout_width="@dimen/length_13"
+            android:layout_height="@dimen/length_13"/>
+
+        <TextView style="@style/NormalTipTextStyle"
+                  android:textColor="@color/color_black"
+                  android:layout_marginLeft="@dimen/margin_5"
+                  android:text="清空"/>
+
+    </LinearLayout>
+
+    <View style="@style/ViewLineStyle"/>
+
+    <include layout="@layout/layout_refresh"/>
+
+    <TextView style="@style/NormalTitleTextStyle"
+              android:padding="@dimen/margin_15"
+              android:background="@color/color_white"
+              android:text="搜索历史"/>
+
+    <com.ww.android.governmentheart.widget.FluidLayout
+        android:id="@+id/layout_fluid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </com.ww.android.governmentheart.widget.FluidLayout>
 
 </LinearLayout>

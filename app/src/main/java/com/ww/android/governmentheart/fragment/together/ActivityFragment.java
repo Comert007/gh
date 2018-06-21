@@ -3,8 +3,7 @@ package com.ww.android.governmentheart.fragment.together;
 import android.support.annotation.NonNull;
 
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
-import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.adapter.together.ActivityAdapter;
 import com.ww.android.governmentheart.fragment.BaseFragment;
@@ -39,16 +38,14 @@ public class ActivityFragment extends BaseFragment<RefreshView,VoidModel> {
             return;
         }
 
-        v.srl.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                v.srl.finishRefresh();
-            }
-        });
-
-        v.srl.setOnLoadMoreListener(new OnLoadMoreListener() {
+        v.srl.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                v.srl.finishRefresh();
+            }
+
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                 v.srl.finishLoadMore();
             }
         });

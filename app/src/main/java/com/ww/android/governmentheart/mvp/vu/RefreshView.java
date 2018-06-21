@@ -10,9 +10,12 @@ import android.view.View;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.ww.android.governmentheart.R;
+import com.ww.android.governmentheart.activity.BaseActivity;
+import com.ww.android.governmentheart.mvp.utils.RefreshType;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import ww.com.core.Debug;
 import ww.com.core.widget.CustomRecyclerView;
 
 /**
@@ -45,8 +48,32 @@ public class RefreshView implements IView {
     public void onAttach(@NonNull Activity preActivity, @NonNull View contentView) {
         this.activity = preActivity;
         ButterKnife.bind(this, contentView);
+        if (preActivity instanceof BaseActivity){
+            setRefreshType(((BaseActivity) preActivity).refreshType());
+        }else {
+            setRefreshType(RefreshType.ENABLE);
+        }
     }
 
+    private void setRefreshType(int refreshType) {
+        if (srl ==null){
+            Debug.e("the srl is null");
+            return;
+        }
+        if (refreshType ==  RefreshType.ENABLE){
+            srl.setEnableRefresh(true);
+            srl.setEnableLoadMore(true);
+        }else if (refreshType == RefreshType.REFRESH){
+            srl.setEnableRefresh(true);
+            srl.setEnableLoadMore(false);
+        }else if (refreshType == RefreshType.LOAD_MORE){
+            srl.setEnableRefresh(false);
+            srl.setEnableLoadMore(true);
+        }else {
+            srl.setEnableRefresh(false);
+            srl.setEnableLoadMore(false);
+        }
+    }
 
     public void initRecycler(@NonNull RecyclerView.LayoutManager manager, @NonNull DividerItemDecoration
             decoration) {
