@@ -16,17 +16,7 @@
 
     <View style="@style/ViewSplitStyle"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/color_white"
-        android:padding="@dimen/margins"
-        android:text="民主党派"
-        android:textColor="@color/color_tip_gray"
-        android:textSize="@dimen/text_15"/>
 
-    <View style="@style/ViewLineStyle"/>
-
-
+    <include layout="@layout/layout_refresh"/>
 
 </LinearLayout>

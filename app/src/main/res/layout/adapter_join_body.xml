@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:paddingLeft="@dimen/length_20"
+    android:paddingRight="@dimen/length_20"
+    android:paddingTop="@dimen/margin_10"
+    android:paddingBottom="@dimen/margin_10"
+    android:gravity="center_vertical"
+    android:background="@color/color_white"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:src="@mipmap/ic_pic_default"
+        android:layout_width="25dp"
+        android:layout_height="25dp"/>
+
+    <TextView style="@style/NormalTitleTextStyle"
+              android:layout_weight="1"
+              android:layout_marginLeft="@dimen/margin_13"
+    android:text="工商联"/>
+
+    <TextView style="@style/NormalTipTextStyle"
+    android:text="24人"
+    />
+
+</LinearLayout>

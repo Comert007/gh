@@ -21,7 +21,7 @@ public class RecyclerHelper {
         return decoration;
     }
 
-    public static DividerItemDecoration defalutSingleDecoration(Context context){
+    public static DividerItemDecoration defaultSingleDecoration(Context context){
         DividerItemDecoration decoration = new DividerItemDecoration(context,DividerItemDecoration.VERTICAL);
         decoration.setDrawable(ContextCompat.getDrawable(context, R.drawable.shape_divider_single));
         return decoration;

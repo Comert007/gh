@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+    <TextView
+        android:text="民主党派"
+        style="@style/NormalSunTitleStyle"/>
+
+    <View style="@style/ViewLineStyle"/>
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:background="@color/color_white"
+                  android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="@dimen/length_20"
+            android:layout_height="80dp">
+
+            <ImageView
+                android:id="@+id/iv_peasant_party"
+                android:layout_width="@dimen/length_20"
+                android:layout_height="@dimen/length_20"
+                android:layout_marginRight="@dimen/margin_12"
+                android:src="@mipmap/ic_peasant_party_negative"/>
+
+            <TextView
+                android:id="@+id/tv_peasant_party"
+                style="@style/NormalTitleTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_toRightOf="@id/iv_peasant_party"
+                android:text="农工党"/>
+
+            <TextView
+                style="@style/NormalTipTextStyle"
+                android:layout_toRightOf="@id/tv_peasant_party"
+                android:text="(12人)"/>
+
+
+            <TextView
+                style="@style/NormalTipTextStyle"
+                android:layout_below="@id/tv_peasant_party"
+                android:layout_toRightOf="@id/iv_peasant_party"
+                android:text="中国农工民主党"/>
+
+        </RelativeLayout>
+        <View style="@style/ViewLineVerticalStyle"/>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="@dimen/length_20"
+            android:layout_height="80dp">
+
+            <ImageView
+                android:id="@+id/iv_democratic_party"
+                android:layout_width="@dimen/length_20"
+                android:layout_height="@dimen/length_20"
+                android:layout_marginRight="@dimen/margin_12"
+                android:src="@mipmap/ic_democratic_party_negative"/>
+
+            <TextView
+                android:id="@+id/tv_democratic_party"
+                style="@style/NormalTitleTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_toRightOf="@id/iv_democratic_party"
+                android:text="民建"/>
+
+            <TextView
+                style="@style/NormalTipTextStyle"
+                android:layout_toRightOf="@id/tv_democratic_party"
+                android:text="(12人)"/>
+
+
+            <TextView
+                style="@style/NormalTipTextStyle"
+                android:layout_below="@id/tv_democratic_party"
+                android:layout_toRightOf="@id/iv_democratic_party"
+                android:text="经济界人士组成"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+    <View style="@style/ViewLineStyle"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="@color/color_white"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="@dimen/length_20"
+            android:layout_height="80dp">
+
+            <ImageView
+                android:id="@+id/iv_china_leather"
+                android:layout_width="@dimen/length_20"
+                android:layout_height="@dimen/length_20"
+                android:layout_marginRight="@dimen/margin_12"
+                android:src="@mipmap/ic_china_leather_negative"/>
+
+            <TextView
+                android:id="@+id/tv_china_leather"
+                style="@style/NormalTitleTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_toRightOf="@id/iv_china_leather"
+                android:text="民革"/>
+
+            <TextView
+                style="@style/NormalTipTextStyle"
+                android:layout_toRightOf="@id/tv_china_leather"
+                android:text="(24人)"/>
+
+
+            <TextView
+                style="@style/NormalTipTextStyle"
+                android:layout_below="@id/tv_china_leather"
+                android:layout_toRightOf="@id/iv_china_leather"
+                android:text="中国国民党革命委员会"/>
+
+        </RelativeLayout>
+        <View style="@style/ViewLineVerticalStyle"/>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="@dimen/length_20"
+            android:layout_height="80dp">
+
+            <ImageView
+                android:id="@+id/iv_democratic_progress"
+                android:layout_width="@dimen/length_20"
+                android:layout_height="@dimen/length_20"
+                android:layout_marginRight="@dimen/margin_12"
+                android:src="@mipmap/ic_democratic_progress_negative"/>
+
+            <TextView
+                android:id="@+id/tv_democratic_progress"
+                style="@style/NormalTitleTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_toRightOf="@id/iv_democratic_progress"
+                android:text="民进"/>
+
+            <TextView
+                style="@style/NormalTipTextStyle"
+                android:layout_toRightOf="@id/tv_democratic_progress"
+                android:text="(12人)"/>
+
+
+            <TextView
+                style="@style/NormalTipTextStyle"
+                android:layout_below="@id/tv_democratic_progress"
+                android:layout_toRightOf="@id/iv_democratic_progress"
+                android:text="中国民主促进会"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <View style="@style/ViewSplitStyle"/>
+
+    <TextView
+        style="@style/NormalSunTitleStyle"
+        android:text="其他组织"/>
+
+</LinearLayout>
