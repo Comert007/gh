@@ -76,7 +76,7 @@ public class FeaturesAdapter extends RvAdapter<MultipleBean> {
         @Override
         public void onBindData(int position, MultipleBean bean) {
             FeaturesBodyAdapter adapter = new FeaturesBodyAdapter(getContext());
-            rv.setLayoutManager(RecyclerHelper.grideManager(getContext(),2));
+            rv.setLayoutManager(RecyclerHelper.gridManager(getContext(),2));
             rv.setAdapter(adapter);
 
             adapter.addList(Arrays.asList("1","2","3"));

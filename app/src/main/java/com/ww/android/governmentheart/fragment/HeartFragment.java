@@ -6,7 +6,7 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.ww.android.governmentheart.R;
-import com.ww.android.governmentheart.adapter.HomeAdapter;
+import com.ww.android.governmentheart.adapter.home.HomeAdapter;
 import com.ww.android.governmentheart.mvp.bean.MultipleBean;
 import com.ww.android.governmentheart.mvp.model.VoidModel;
 import com.ww.android.governmentheart.mvp.vu.RefreshView;

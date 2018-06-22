@@ -1,4 +1,4 @@
-package com.ww.android.governmentheart.adapter;
+package com.ww.android.governmentheart.adapter.home;
 
 import android.content.Context;
 import android.view.View;

@@ -55,7 +55,6 @@
     <com.ww.android.governmentheart.widget.FluidLayout
         android:id="@+id/layout_fluid"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </com.ww.android.governmentheart.widget.FluidLayout>
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

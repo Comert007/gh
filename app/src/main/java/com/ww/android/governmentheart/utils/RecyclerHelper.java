@@ -38,7 +38,7 @@ public class RecyclerHelper {
         return new LinearLayoutManager(context);
     }
 
-    public static RecyclerView.LayoutManager grideManager(Context context,int spanCount){
+    public static RecyclerView.LayoutManager gridManager(Context context,int spanCount){
         return new GridLayoutManager(context,spanCount);
     }
 

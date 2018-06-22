@@ -45,7 +45,7 @@ public abstract class PresenterActivity<V extends IView, M extends IModel> exten
         }
 
         View contentView = findViewById(android.R.id.content);
-        v.onAttach(this, null,contentView);
+        v.onAttach(this,contentView);
         m.onAttach(this);
 
         ButterKnife.bind(this);

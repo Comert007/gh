@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/color_white"
+    style="@style/PaddingStyle"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/iv_time"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:src="@mipmap/ic_time"/>
+
+    <TextView style="@style/NormalTipTextStyle"
+              android:textColor="@color/color_black"
+              android:text="街子古镇群众沟通会"
+              app:layout_constraintTop_toTopOf="parent"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintLeft_toRightOf="@id/iv_time"
+              android:layout_marginLeft="@dimen/margin_15"
+    />
+
+</android.support.constraint.ConstraintLayout>
