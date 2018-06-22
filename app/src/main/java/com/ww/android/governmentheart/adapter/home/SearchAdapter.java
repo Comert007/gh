@@ -2,9 +2,11 @@ package com.ww.android.governmentheart.adapter.home;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.TextView;
 
 import com.ww.android.governmentheart.R;
 
+import butterknife.BindView;
 import ww.com.core.adapter.RvAdapter;
 import ww.com.core.adapter.RvViewHolder;
 
@@ -29,6 +31,8 @@ public class SearchAdapter extends RvAdapter<String>{
     }
 
     class SearchViewHolder extends RvViewHolder<String>{
+        @BindView(R.id.tv_search_title)
+        TextView tvSearchTitle;
 
         public SearchViewHolder(View itemView) {
             super(itemView);
@@ -36,7 +40,7 @@ public class SearchAdapter extends RvAdapter<String>{
 
         @Override
         public void onBindData(int position, String bean) {
-
+            tvSearchTitle.setText(bean);
         }
     }
 }

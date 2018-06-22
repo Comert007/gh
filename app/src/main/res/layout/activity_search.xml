@@ -23,40 +23,43 @@
 
     <View style="@style/ViewLineStyle"/>
 
-    <LinearLayout style="@style/PaddingStyle"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:background="@color/color_white"
-                  android:gravity="center_vertical">
-
-        <TextView style="@style/NormalTitleTextStyle"
-                  android:layout_weight="1"
-                  android:text="搜索历史"/>
-
-        <LinearLayout
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="@dimen/length_13"
-                android:layout_height="@dimen/length_13"
-                android:src="@mipmap/ic_del"/>
-
-            <TextView style="@style/NormalTipTextStyle"
-                      android:layout_marginLeft="@dimen/margin_5"
-                      android:text="清空"
-                      android:textColor="@color/color_black"/>
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <View style="@style/ViewLineStyle"/>
     <ScrollView android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none">
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:orientation="vertical">
+
+            <LinearLayout style="@style/PaddingStyle"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:background="@color/color_white"
+                          android:gravity="center_vertical">
+
+                <TextView style="@style/NormalTitleTextStyle"
+                          android:layout_weight="1"
+                          android:text="搜索历史"/>
+
+                <LinearLayout
+                    android:id="@+id/linear_clear"
+                    android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_width="@dimen/length_13"
+                        android:layout_height="@dimen/length_13"
+                        android:src="@mipmap/ic_del"/>
+
+                    <TextView style="@style/NormalTipTextStyle"
+                              android:layout_marginLeft="@dimen/margin_5"
+                              android:text="清空"
+                              android:textColor="@color/color_black"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View style="@style/ViewLineStyle"/>
+
             <include layout="@layout/layout_refresh"/>
 
             <TextView style="@style/NormalTitleTextStyle"

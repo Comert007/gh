@@ -20,6 +20,7 @@
             android:src="@mipmap/ic_search_gray"/>
 
         <com.ww.android.governmentheart.widget.ClearEditText
+            android:id="@+id/et_search"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
@@ -27,6 +28,8 @@
             app:delIcon="@mipmap/ic_close"
             app:delIconWidth="@dimen/length_16"
             app:delIconHeight="@dimen/length_16"
+            android:singleLine="true"
+            android:imeOptions="actionSearch"
             android:textColorHint="@color/color_hint"
             android:textSize="@dimen/text_15"/>
 

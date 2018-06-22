@@ -15,7 +15,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:src="@mipmap/ic_time"/>
 
-    <TextView style="@style/NormalTipTextStyle"
+    <TextView
+        android:id="@+id/tv_search_title"
+        style="@style/NormalTipTextStyle"
               android:textColor="@color/color_black"
               android:text="街子古镇群众沟通会"
               app:layout_constraintTop_toTopOf="parent"

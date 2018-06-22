@@ -2,7 +2,9 @@ package com.ww.android.governmentheart.activity.heart;
 
 import android.content.Context;
 import android.content.Intent;
+import android.view.KeyEvent;
 import android.view.View;
+import android.widget.TextView;
 
 import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.activity.BaseActivity;
@@ -11,9 +13,12 @@ import com.ww.android.governmentheart.mvp.model.VoidModel;
 import com.ww.android.governmentheart.mvp.utils.RefreshType;
 import com.ww.android.governmentheart.mvp.vu.home.SearchView;
 import com.ww.android.governmentheart.utils.RecyclerHelper;
+import com.ww.android.governmentheart.utils.ToastUtils;
+import com.ww.android.governmentheart.widget.ClearEditText;
 
 import java.util.Arrays;
 
+import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -21,6 +26,9 @@ import butterknife.OnClick;
  * @Date 2018/6/20
  */
 public class SearchActivity extends BaseActivity<SearchView, VoidModel> {
+
+    @BindView(R.id.et_search)
+    ClearEditText etSearch;
 
     private SearchAdapter adapter;
 
@@ -47,6 +55,18 @@ public class SearchActivity extends BaseActivity<SearchView, VoidModel> {
             return;
         }
         v.setRefreshType(RefreshType.NOT_ENABLE);
+        etSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (event.getAction() == KeyEvent.KEYCODE_SEARCH){
+                    ToastUtils.showToast("进行搜索");
+                    return true;
+                }else {
+                    return false;
+                }
+
+            }
+        });
     }
 
     private void initRecycler() {
@@ -55,18 +75,21 @@ public class SearchActivity extends BaseActivity<SearchView, VoidModel> {
 
         adapter = new SearchAdapter(this);
         v.crv.setAdapter(adapter);
-        adapter.addList(Arrays.asList("1", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3",
-                "3"));
     }
 
-    @OnClick({R.id.tv_cancel})
+    @OnClick({R.id.tv_cancel,R.id.linear_clear})
     public void onClick(View view){
         switch ( view.getId()){
             case R.id.tv_cancel:
                 finish();
                 break;
+            case R.id.linear_clear:
+                adapter.getList().clear();
+                adapter.notifyDataSetChanged();
+                break;
         }
     }
+
 
 
     @Override
