@@ -46,8 +46,8 @@ public class SearchActivity extends BaseActivity<SearchView, VoidModel> {
     protected void init() {
         initListener();
         initRecycler();
-        v.initFluid(Arrays.asList("统战","民主人士","新路子","统一战线","统战信息化","创新","见面会",
-                "平安崇州","党代会","乡村"));
+        v.initFluid(Arrays.asList("统战", "民主人士", "新路子", "统一战线", "统战信息化", "创新", "见面会",
+                "平安崇州", "党代会", "乡村"));
     }
 
     private void initListener() {
@@ -58,10 +58,10 @@ public class SearchActivity extends BaseActivity<SearchView, VoidModel> {
         etSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (event.getAction() == KeyEvent.KEYCODE_SEARCH){
+                if (event.getAction() == KeyEvent.KEYCODE_SEARCH) {
                     ToastUtils.showToast("进行搜索");
                     return true;
-                }else {
+                } else {
                     return false;
                 }
 
@@ -77,9 +77,9 @@ public class SearchActivity extends BaseActivity<SearchView, VoidModel> {
         v.crv.setAdapter(adapter);
     }
 
-    @OnClick({R.id.tv_cancel,R.id.linear_clear})
-    public void onClick(View view){
-        switch ( view.getId()){
+    @OnClick({R.id.tv_cancel, R.id.linear_clear})
+    public void onClick(View view) {
+        switch (view.getId()) {
             case R.id.tv_cancel:
                 finish();
                 break;
@@ -91,7 +91,6 @@ public class SearchActivity extends BaseActivity<SearchView, VoidModel> {
     }
 
 
-
     @Override
     protected boolean isDefaultImmersionBar() {
         return false;
@@ -100,7 +99,8 @@ public class SearchActivity extends BaseActivity<SearchView, VoidModel> {
     @Override
     protected void initImmersionBar() {
         super.initImmersionBar();
-        mImmersionBar.fitsSystemWindows(true).statusBarColor(R.color.color_white).init();
+        mImmersionBar.fitsSystemWindows(true).statusBarColor(R.color.color_white).statusBarDarkFont
+                (true, 0.2f).init();
     }
 
 }
