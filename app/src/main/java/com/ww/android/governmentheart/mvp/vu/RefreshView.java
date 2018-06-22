@@ -23,7 +23,7 @@ import ww.com.core.widget.CustomRecyclerView;
  */
 public class RefreshView implements IView {
 
-    private Activity activity;
+    public Activity activity;
 
     /**
      * RecyclerView 的列表展示模式
@@ -51,6 +51,7 @@ public class RefreshView implements IView {
 
     /**
      * 设置刷新模式
+     *
      * @param refreshType RefreshType类型
      */
     public void setRefreshType(int refreshType) {
@@ -58,17 +59,24 @@ public class RefreshView implements IView {
             Debug.e("the srl is null");
             return;
         }
-        if (refreshType == RefreshType.ENABLE) {
-            srl.setEnableRefresh(true);
-            srl.setEnableLoadMore(true);
-        } else if (refreshType == RefreshType.REFRESH) {
-            srl.setEnableRefresh(true);
-            srl.setEnableLoadMore(false);
-        } else if (refreshType == RefreshType.LOAD_MORE) {
-            srl.setEnableRefresh(false);
-            srl.setEnableLoadMore(true);
-        } else {
-            srl.setEnablePureScrollMode(true);
+
+        switch (refreshType) {
+            case RefreshType.ENABLE:
+                srl.setEnableRefresh(true);
+                srl.setEnableLoadMore(true);
+                break;
+            case RefreshType.REFRESH:
+                srl.setEnableRefresh(true);
+                srl.setEnableLoadMore(false);
+                break;
+            case RefreshType.LOAD_MORE:
+                srl.setEnableRefresh(false);
+                srl.setEnableLoadMore(true);
+                break;
+            case RefreshType.NOT_ENABLE:
+                srl.setEnableRefresh(false);
+                srl.setEnableLoadMore(false);
+                break;
         }
     }
 
@@ -83,7 +91,7 @@ public class RefreshView implements IView {
 
     public void initDefaultRecycler(boolean isDecoration) {
         initDefaultManager();
-        if (isDecoration){
+        if (isDecoration) {
             initDefaultDecoration();
         }
     }

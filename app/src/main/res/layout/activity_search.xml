@@ -4,6 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:background="@color/color_white"
@@ -13,6 +14,7 @@
         <include layout="@layout/layout_search"/>
 
         <TextView
+            android:id="@+id/tv_cancel"
             style="@style/NormalTitleTextStyle"
             android:layout_width="wrap_content"
             android:layout_marginLeft="@dimen/margin_10"
@@ -21,40 +23,55 @@
 
     <View style="@style/ViewLineStyle"/>
 
-    <LinearLayout android:layout_width="match_parent"
+    <LinearLayout style="@style/PaddingStyle"
+                  android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:gravity="center_vertical"
                   android:background="@color/color_white"
-                  style="@style/PaddingStyle">
+                  android:gravity="center_vertical">
 
         <TextView style="@style/NormalTitleTextStyle"
-                 android:layout_weight="1"
-                 android:text="搜索历史"/>
+                  android:layout_weight="1"
+                  android:text="搜索历史"/>
 
-        <ImageView
-            android:src="@mipmap/ic_del"
-            android:layout_width="@dimen/length_13"
-            android:layout_height="@dimen/length_13"/>
+        <LinearLayout
 
-        <TextView style="@style/NormalTipTextStyle"
-                  android:textColor="@color/color_black"
-                  android:layout_marginLeft="@dimen/margin_5"
-                  android:text="清空"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="@dimen/length_13"
+                android:layout_height="@dimen/length_13"
+                android:src="@mipmap/ic_del"/>
+
+            <TextView style="@style/NormalTipTextStyle"
+                      android:layout_marginLeft="@dimen/margin_5"
+                      android:text="清空"
+                      android:textColor="@color/color_black"/>
+        </LinearLayout>
 
     </LinearLayout>
 
     <View style="@style/ViewLineStyle"/>
+    <ScrollView android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="vertical">
+            <include layout="@layout/layout_refresh"/>
 
-    <include layout="@layout/layout_refresh"/>
+            <TextView style="@style/NormalTitleTextStyle"
+                      android:background="@color/color_white"
+                      android:padding="@dimen/margin_15"
+                      android:text="热门搜索"/>
 
-    <TextView style="@style/NormalTitleTextStyle"
-              android:padding="@dimen/margin_15"
-              android:background="@color/color_white"
-              android:text="搜索历史"/>
+            <com.ww.android.governmentheart.widget.FluidLayout
+                android:id="@+id/layout_fluid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_white"
+                android:paddingLeft="@dimen/margin_6"
+                android:paddingRight="@dimen/margin_6"/>
 
-    <com.ww.android.governmentheart.widget.FluidLayout
-        android:id="@+id/layout_fluid"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

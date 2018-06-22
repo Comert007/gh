@@ -22,19 +22,28 @@
             android:layout_marginRight="@dimen/margin_5_right"
             android:src="@mipmap/ic_search_gray"/>
 
-        <com.ww.android.governmentheart.widget.ClearEditText
+        <TextView
             android:id="@+id/et_clear"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/transparent"
             android:hint="请输入要搜索的内容"
-            app:delIcon="@mipmap/ic_close"
-            app:delIconWidth="16dp"
-            android:imeOptions="actionSearch"
             android:singleLine="true"
-            app:delIconHeight="16dp"
             android:textColorHint="@color/color_hint"
             android:textSize="@dimen/text_15"/>
+
+        <!--<com.ww.android.governmentheart.widget.ClearEditText-->
+            <!--android:id="@+id/et_clear"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="@android:color/transparent"-->
+            <!--android:hint="请输入要搜索的内容"-->
+            <!--app:delIcon="@mipmap/ic_close"-->
+            <!--app:delIconWidth="16dp"-->
+            <!--android:imeOptions="actionSearch"-->
+            <!--android:singleLine="true"-->
+            <!--app:delIconHeight="16dp"-->
+            <!--android:textColorHint="@color/color_hint"-->
+            <!--android:textSize="@dimen/text_15"/>-->
 
     </LinearLayout>
 

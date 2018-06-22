@@ -15,31 +15,57 @@ import com.ww.android.governmentheart.R;
  */
 public class RecyclerHelper {
 
-    public static DividerItemDecoration defaultMoreDecoration(Context context){
-        DividerItemDecoration decoration = new DividerItemDecoration(context,DividerItemDecoration.VERTICAL);
+    public static DividerItemDecoration defaultMoreDecoration(Context context) {
+        DividerItemDecoration decoration = new DividerItemDecoration(context,
+                DividerItemDecoration.VERTICAL);
         decoration.setDrawable(ContextCompat.getDrawable(context, R.drawable.shape_divider_more));
         return decoration;
     }
 
-    public static DividerItemDecoration defaultSingleDecoration(Context context){
-        DividerItemDecoration decoration = new DividerItemDecoration(context,DividerItemDecoration.VERTICAL);
+    public static DividerItemDecoration defaultSingleDecoration(Context context) {
+        DividerItemDecoration decoration = new DividerItemDecoration(context,
+                DividerItemDecoration.VERTICAL);
         decoration.setDrawable(ContextCompat.getDrawable(context, R.drawable.shape_divider_single));
         return decoration;
     }
 
-    public static DividerItemDecoration verticalMoreDecoration(Context context){
-        DividerItemDecoration decoration = new DividerItemDecoration(context,DividerItemDecoration.HORIZONTAL);
-        decoration.setDrawable(ContextCompat.getDrawable(context, R.drawable.shape_divider_vertical_more));
+    public static DividerItemDecoration verticalMoreDecoration(Context context) {
+        DividerItemDecoration decoration = new DividerItemDecoration(context,
+                DividerItemDecoration.HORIZONTAL);
+        decoration.setDrawable(ContextCompat.getDrawable(context, R.drawable
+                .shape_divider_vertical_more));
         return decoration;
     }
 
 
-    public static RecyclerView.LayoutManager defaultManager(Context context){
+    public static RecyclerView.LayoutManager defaultManager(Context context) {
         return new LinearLayoutManager(context);
     }
 
-    public static RecyclerView.LayoutManager gridManager(Context context,int spanCount){
-        return new GridLayoutManager(context,spanCount);
+    public static RecyclerView.LayoutManager gridManager(Context context, int spanCount) {
+        return new GridLayoutManager(context, spanCount);
+    }
+
+    public static RecyclerView.LayoutManager defaultVerticalNotScrollManager(Context context) {
+        LinearLayoutManager manager = new LinearLayoutManager(context) {
+
+            @Override
+            public boolean canScrollVertically() {
+                return false;
+            }
+        };
+        return manager;
+    }
+
+    public static RecyclerView.LayoutManager defaultHorizentalNotScrollManager(Context context) {
+        LinearLayoutManager manager = new LinearLayoutManager(context) {
+
+            @Override
+            public boolean canScrollHorizontally() {
+                return false;
+            }
+        };
+        return manager;
     }
 
 }

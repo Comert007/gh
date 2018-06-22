@@ -2,10 +2,13 @@ package com.ww.android.governmentheart.adapter.home;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.TextView;
 
 import com.ww.android.governmentheart.R;
+import com.ww.android.governmentheart.activity.heart.SearchActivity;
 import com.ww.android.governmentheart.mvp.bean.MultipleBean;
 
+import butterknife.BindView;
 import ww.com.core.adapter.RvAdapter;
 import ww.com.core.adapter.RvViewHolder;
 
@@ -49,6 +52,8 @@ public class HomeAdapter extends RvAdapter<MultipleBean> {
     }
 
     class HeaderViewHolder extends RvViewHolder<MultipleBean> {
+        @BindView(R.id.et_clear)
+        TextView tvClear;
 
         public HeaderViewHolder(View itemView) {
             super(itemView);
@@ -56,7 +61,7 @@ public class HomeAdapter extends RvAdapter<MultipleBean> {
 
         @Override
         public void onBindData(int position, MultipleBean bean) {
-
+            tvClear.setOnClickListener(v -> SearchActivity.start(getContext()));
         }
     }
 
