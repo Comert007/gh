@@ -31,6 +31,10 @@
         <activity android:name=".activity.wisdom.AdviceActivity"
                   android:screenOrientation="portrait"/>
 
+        <!--评论-->
+        <activity android:name=".activity.heart.CommentsActivity"
+                  android:screenOrientation="portrait"/>
+
         <!--7.0权限适配-->
         <provider
             android:name="android.support.v4.content.FileProvider"

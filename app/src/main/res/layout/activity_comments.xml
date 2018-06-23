@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    style="@style/LLayStyle"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.ww.android.governmentheart.widget.TitleView
+        android:id="@+id/title_view"
+        style="@style/TitleBar"
+        android:background="@color/color_white"
+        app:titleLeftIco="@mipmap/ic_back"
+        app:titleRightText="共24条"
+        app:titleRightTextColor="@color/color_hint"
+        app:titleText="评论列表"
+        app:titleTextColor="@color/color_black"/>
+
+    <View style="@style/ViewLineStyle"/>
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical">
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/srl"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:srlEnableLoadMoreWhenContentNotFull="false">
+
+            <ww.com.core.widget.CustomRecyclerView
+                android:id="@+id/crv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="48dp"
+                      android:background="@color/color_white"
+                      android:padding="@dimen/margin_10">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/margin_15"
+                android:hint="写评论"
+                android:gravity="center_vertical"
+                android:textColorHint="@color/color_hint"
+                android:drawableLeft="@mipmap/ic_pen"
+                android:drawablePadding="@dimen/margin_5"
+                android:background="@drawable/shape_gray_round_corner_24">
+
+            </TextView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>
