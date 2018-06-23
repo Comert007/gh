@@ -23,8 +23,25 @@
             </intent-filter>
         </activity>
 
+        <!--搜索-->
         <activity android:name=".activity.heart.SearchActivity"
                   android:screenOrientation="portrait"/>
+
+        <!--建言-->
+        <activity android:name=".activity.wisdom.AdviceActivity"
+                  android:screenOrientation="portrait"/>
+
+        <!--7.0权限适配-->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"/>
+        </provider>
+
     </application>
 
 </manifest>

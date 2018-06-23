@@ -80,6 +80,13 @@ public class RefreshView implements IView {
         }
     }
 
+    public void initRecycler(@NonNull RecyclerView.LayoutManager manager) {
+        if (crv != null) {
+            crv.setLayoutManager(manager);
+        }
+    }
+
+
     public void initRecycler(@NonNull RecyclerView.LayoutManager manager, @NonNull
             DividerItemDecoration
             decoration) {

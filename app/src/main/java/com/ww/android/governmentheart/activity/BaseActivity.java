@@ -74,6 +74,7 @@ public abstract class BaseActivity<V extends IView, M extends IModel> extends
     }
 
     public void onTitleLeft() {
+        finish();
     }
 
     public void onTitleRight() {

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="70dp"
+    android:layout_margin="@dimen/margin_5"
+    android:layout_height="70dp">
+    <LinearLayout
+        android:id="@+id/linear_default"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/shape_search_border">
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_margin="@dimen/length_18"
+            android:src="@mipmap/ic_add"/>
+    </LinearLayout>
+</RelativeLayout>

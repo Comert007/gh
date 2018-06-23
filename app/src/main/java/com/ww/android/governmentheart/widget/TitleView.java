@@ -14,6 +14,7 @@ import com.scwang.smartrefresh.layout.util.DensityUtil;
 import com.ww.android.governmentheart.R;
 
 import butterknife.ButterKnife;
+import ww.com.core.Debug;
 import ww.com.core.ScreenUtil;
 
 /**
@@ -32,6 +33,12 @@ public class TitleView extends RelativeLayout {
     private CharSequence titleRightText;
     private CharSequence titleLeftText;
     private CharSequence titleText;
+
+    private int titleColor;
+    private int titleLeftColor;
+    private int titleRightColor;
+
+    private int colorWhite;
 
     public TitleView(Context context) {
         super(context);
@@ -75,16 +82,28 @@ public class TitleView extends RelativeLayout {
         btnTitleRight.setCompoundDrawables(null, null, drawable, null);
     }
 
-    public void setTitleRightClick(OnClickListener listener){
+    public void setTitleRightClick(OnClickListener listener) {
         btnTitleRight.setOnClickListener(listener);
     }
 
-    public void setTitleLeftClick(OnClickListener listener){
+    public void setTitleLeftClick(OnClickListener listener) {
         btnTitleLeft.setOnClickListener(listener);
     }
 
+    public void setTitleColor(int titleColor) {
+        tvTitle.setTextColor(titleColor);
+    }
+
+    public void setTitleLeftColor(int titleLeftColor) {
+        btnTitleLeft.setTextColor(titleLeftColor);
+    }
+
+    public void setTitleRightColor(int titleRightColor) {
+        btnTitleRight.setTextColor(titleRightColor);
+    }
 
     private void init(Context context, AttributeSet attrs) {
+        colorWhite = context.getResources().getColor(R.color.color_white);
         TypedArray typedArray = context.obtainStyledAttributes(
                 attrs, R.styleable.TitleView);
         if (typedArray != null) {
@@ -93,8 +112,14 @@ public class TitleView extends RelativeLayout {
             titleText = typedArray.getText(R.styleable.TitleView_titleText);
             titleLeftText = typedArray.getText(R.styleable.TitleView_titleLeftText);
             titleRightText = typedArray.getText(R.styleable.TitleView_titleRightText);
+            titleColor = typedArray.getColor(R.styleable.TitleView_titleTextColor, colorWhite);
+            titleLeftColor = typedArray.getColor(R.styleable.TitleView_titleLeftTextColor,
+                    colorWhite);
+            titleRightColor = typedArray.getColor(R.styleable.TitleView_titleRightTextColor,
+                    colorWhite);
             typedArray.recycle();
         }
+
 
         inflate(getContext(), R.layout.view_title, this);
         btnTitleRight = ButterKnife.findById(this, R.id.btn_title_right);
@@ -102,18 +127,23 @@ public class TitleView extends RelativeLayout {
         tvTitle = ButterKnife.findById(this, R.id.tv_title);
 
         if (titleLeftIco != null) {
-            titleLeftIco.setBounds(0, 0, DensityUtil.dp2px(18),DensityUtil.dp2px(18));
+            titleLeftIco.setBounds(0, 0, DensityUtil.dp2px(18), DensityUtil.dp2px(18));
             btnTitleLeft.setCompoundDrawables(titleLeftIco,
                     null, null, null);
         }
 
         if (titleRightIco != null) {
-            titleRightIco.setBounds(0,0,DensityUtil.dp2px(18),DensityUtil.dp2px(18));
+            titleRightIco.setBounds(0, 0, DensityUtil.dp2px(18), DensityUtil.dp2px(18));
             btnTitleRight.setCompoundDrawables(null, null, titleRightIco, null);
         }
+
+        Debug.d("titleColor:"+titleColor);
 
         setTitle(titleText);
         setTitleLeftText(titleLeftText);
         setTitleRightText(titleRightText);
+        setTitleColor(titleColor);
+        setTitleLeftColor(titleLeftColor);
+        setTitleRightColor(titleRightColor);
     }
 }

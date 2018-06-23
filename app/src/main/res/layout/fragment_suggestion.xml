@@ -6,6 +6,7 @@
     <include layout="@layout/layout_refresh"/>
 
     <Button
+        android:id="@+id/btn_suggestion"
         android:background="@drawable/shape_blue_circle"
         android:layout_width="60dp"
         android:text="我要发布"

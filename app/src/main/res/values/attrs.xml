@@ -6,6 +6,9 @@
         <attr name="titleRightIco" format="reference" />
         <attr name="titleRightText" format="reference|string" />
         <attr name="titleText" format="reference|string" />
+        <attr name="titleTextColor" format="color"/>
+        <attr name="titleRightTextColor" format="color"/>
+        <attr name="titleLeftTextColor" format="color"/>
     </declare-styleable>
 
     <declare-styleable name="ClearEditText">

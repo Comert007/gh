@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">心联汇</string>
+    <string name="permission_msg">使用当前功能需要用户同意此权限</string>
 </resources>
