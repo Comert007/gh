@@ -75,6 +75,8 @@ public class SearchActivity extends BaseActivity<SearchView, VoidModel> {
 
         adapter = new SearchAdapter(this);
         v.crv.setAdapter(adapter);
+        adapter.addList(Arrays.asList("统战", "民主人士", "新路子", "统一战线", "统战信息化", "创新", "见面会",
+                "平安崇州", "党代会", "乡村"));
     }
 
     @OnClick({R.id.tv_cancel, R.id.linear_clear})
