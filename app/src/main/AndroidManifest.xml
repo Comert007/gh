@@ -35,6 +35,14 @@
         <activity android:name=".activity.heart.CommentsActivity"
                   android:screenOrientation="portrait"/>
 
+        <!--登录-->
+        <activity android:name=".activity.home.LoginActivity"
+                  android:screenOrientation="portrait"/>
+
+        <!--提交成功-->
+        <activity android:name=".activity.home.CommitSuccessActivity"
+                  android:screenOrientation="portrait"/>
+
         <!--7.0权限适配-->
         <provider
             android:name="android.support.v4.content.FileProvider"

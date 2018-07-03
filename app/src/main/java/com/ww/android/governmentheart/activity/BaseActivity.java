@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.gyf.barlibrary.ImmersionBar;
 import com.ww.android.governmentheart.BaseApplication;
 import com.ww.android.governmentheart.R;
+import com.ww.android.governmentheart.config.ImmersionType;
 import com.ww.android.governmentheart.mvp.model.IModel;
 import com.ww.android.governmentheart.mvp.presenter.PresenterActivity;
 import com.ww.android.governmentheart.mvp.vu.IView;
@@ -43,10 +44,10 @@ public abstract class BaseActivity<V extends IView, M extends IModel> extends
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         baseApp = BaseApplication.getInstance();
-        if (isImmersionBarEnabled()){
-            if (isDefaultImmersionBar()){
-                initDefaultImmersionBar();
-            }else {
+        if (isImmersionBarEnabled()) {
+            if (isDefaultImmersionBar()) {
+                initDefaultImmersionBar(initDefaultImmersionType());
+            } else {
                 initImmersionBar();
             }
         }
@@ -110,16 +111,23 @@ public abstract class BaseActivity<V extends IView, M extends IModel> extends
         //必须调用该方法，防止内存泄漏，不调用该方法，如果界面bar发生改变，在不关闭app的情况下，退出此界面再进入将记忆最后一次bar改变的状态
     }
 
-    protected void initDefaultImmersionBar() {
-        //在BaseActivity里初始化
-        mImmersionBar = ImmersionBar.with(this);
-        mImmersionBar.fitsSystemWindows(true).statusBarColor(R.color.colorPrimary).init();
-    }
-
-    protected void initImmersionBar() {
+    protected void initDefaultImmersionBar(int type) {
         //在BaseActivity里初始化
         mImmersionBar = ImmersionBar.with(this);
         mImmersionBar.init();
+        if (ImmersionType.RED == type) {
+            mImmersionBar.fitsSystemWindows(true).statusBarColor(R.color.colorPrimary).init();
+        } else if (ImmersionType.WHITE == type) {
+            mImmersionBar.fitsSystemWindows(true).statusBarColor(R.color.color_white)
+                    .statusBarDarkFont
+                    (true, 0.2f).init();
+        }
+
+    }
+
+
+    protected void initImmersionBar() {
+        //在BaseActivity里初始化
     }
 
     /**
@@ -134,9 +142,14 @@ public abstract class BaseActivity<V extends IView, M extends IModel> extends
 
     /**
      * 是否使用默认沉浸式
+     *
      * @return
      */
-    protected boolean isDefaultImmersionBar(){
+    protected boolean isDefaultImmersionBar() {
         return true;
+    }
+
+    protected int initDefaultImmersionType() {
+        return ImmersionType.RED;
     }
 }

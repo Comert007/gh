@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.activity.BaseActivity;
 import com.ww.android.governmentheart.adapter.home.SearchAdapter;
+import com.ww.android.governmentheart.config.ImmersionType;
 import com.ww.android.governmentheart.mvp.model.VoidModel;
 import com.ww.android.governmentheart.mvp.utils.RefreshType;
 import com.ww.android.governmentheart.mvp.vu.home.SearchView;
@@ -92,17 +93,9 @@ public class SearchActivity extends BaseActivity<SearchView, VoidModel> {
         }
     }
 
-
     @Override
-    protected boolean isDefaultImmersionBar() {
-        return false;
-    }
-
-    @Override
-    protected void initImmersionBar() {
-        super.initImmersionBar();
-        mImmersionBar.fitsSystemWindows(true).statusBarColor(R.color.color_white).statusBarDarkFont
-                (true, 0.2f).init();
+    protected int initDefaultImmersionType() {
+        return ImmersionType.WHITE;
     }
 
 }

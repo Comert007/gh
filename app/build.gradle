@@ -15,6 +15,13 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField('String','BASE_URL','http://39.104.181.207:8081/a/openapi/')
+        }
+
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField('String','BASE_URL','"http://39.104.181.207:8081/a/openapi/"')
         }
     }
 
