@@ -20,13 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.MainActivity"
-                  android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
+                  android:screenOrientation="portrait"/>
 
         <!--搜索-->
         <activity android:name=".activity.heart.SearchActivity"
@@ -42,7 +36,13 @@
 
         <!--登录-->
         <activity android:name=".activity.home.LoginActivity"
-                  android:screenOrientation="portrait"/>
+                  android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
 
         <!--提交成功-->
         <activity android:name=".activity.home.CommitSuccessActivity"
