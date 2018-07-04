@@ -3,11 +3,11 @@ package com.ww.android.governmentheart.mvp.presenter;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.trello.rxlifecycle2.components.support.RxFragment;
 import com.ww.android.governmentheart.mvp.WWApplication;
 import com.ww.android.governmentheart.mvp.manager.IUserInfo;
 import com.ww.android.governmentheart.mvp.manager.IUserInfoManager;
@@ -20,7 +20,7 @@ import butterknife.ButterKnife;
  * @author feng
  * @Date 2017/12/21.
  */
-public abstract class PresenterFragment<V extends IView, M extends IModel> extends Fragment
+public abstract class PresenterFragment<V extends IView, M extends IModel> extends RxFragment
         implements IPresenter, IUserInfoManager {
 
     protected V v;

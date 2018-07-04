@@ -7,7 +7,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
-import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 import com.ww.android.governmentheart.mvp.WWApplication;
 import com.ww.android.governmentheart.mvp.manager.IUserInfo;
 import com.ww.android.governmentheart.mvp.manager.IUserInfoManager;
