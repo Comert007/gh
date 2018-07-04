@@ -1,6 +1,7 @@
 package com.ww.android.governmentheart.network.api;
 
 import com.ww.android.governmentheart.mvp.bean.ResponseBean;
+import com.ww.android.governmentheart.mvp.bean.login.NewsTypeBean;
 import com.ww.android.governmentheart.mvp.bean.login.PassBean;
 import com.ww.android.governmentheart.mvp.bean.login.UserBean;
 
@@ -36,5 +37,12 @@ public interface LoginApi {
     Observable<ResponseBean<UserBean>> login(@Field("username") String username,
                                              @Field("pass") String pass);
 
+    /**
+     * 新闻分类
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("login")
+    Observable<ResponseBean<NewsTypeBean>> newsType();
 
 }

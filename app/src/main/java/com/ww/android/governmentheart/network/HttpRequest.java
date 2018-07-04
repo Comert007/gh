@@ -69,7 +69,9 @@ public class HttpRequest {
     }
 
     public static WisdomApi wisdomApi(){
-
+        if (!IS_LOGGING_ENABLED){
+            okHttpClient = getDefaultBuilder().build();
+        }
         if (wisdomApi == null){
             Retrofit retrofit = new Retrofit.Builder()
                     .client(okHttpClient)
@@ -85,6 +87,9 @@ public class HttpRequest {
 
 
     public static TogetherApi togetherApi(){
+        if (!IS_LOGGING_ENABLED){
+            okHttpClient = getDefaultBuilder().build();
+        }
         if (togetherApi == null){
             Retrofit retrofit = new Retrofit.Builder()
                     .client(okHttpClient)
@@ -100,6 +105,9 @@ public class HttpRequest {
 
 
     public static StyleApi styleApi(){
+        if (!IS_LOGGING_ENABLED){
+            okHttpClient = getDefaultBuilder().build();
+        }
         if (styleApi == null){
             Retrofit retrofit = new Retrofit.Builder()
                     .client(okHttpClient)
@@ -114,6 +122,9 @@ public class HttpRequest {
     }
 
     public static JoinApi joinApi(){
+        if (!IS_LOGGING_ENABLED){
+            okHttpClient = getDefaultBuilder().build();
+        }
         if (joinApi == null){
             Retrofit retrofit = new Retrofit.Builder()
                     .client(okHttpClient)
@@ -129,6 +140,9 @@ public class HttpRequest {
 
 
     public static HeartApi heartApi() {
+        if (!IS_LOGGING_ENABLED){
+            okHttpClient = getDefaultBuilder().build();
+        }
         if (heartApi == null) {
             Retrofit retrofit = new Retrofit.Builder()
                     .client(okHttpClient)
@@ -143,6 +157,9 @@ public class HttpRequest {
 
 
     public static LoginApi loginApi() {
+        if (!IS_LOGGING_ENABLED){
+            okHttpClient = getDefaultBuilder().build();
+        }
         if (loginApi == null) {
             Retrofit retrofit = new Retrofit.Builder()
                     .client(okHttpClient)
@@ -154,7 +171,6 @@ public class HttpRequest {
         }
         return loginApi;
     }
-
 
 
     public static OkHttpClient getDefaultClient() {
@@ -184,4 +200,7 @@ public class HttpRequest {
     }
 
 
+    public static boolean setLogging(boolean isLogging) {
+        return IS_LOGGING_ENABLED = isLogging;
+    }
 }
