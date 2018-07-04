@@ -1,8 +1,9 @@
 package com.ww.android.governmentheart.mvp.bean;
 
+import android.support.annotation.Nullable;
+
 import java.util.List;
 
-import javax.annotation.Nullable;
 
 public class ResponseBean<T> {
 

@@ -41,7 +41,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     //    核心库
-    implementation 'com.oc.http:wwhttp:1.0.1'
     implementation 'com.oc.core:wwcore:1.0.1'
     //    绑定
     implementation 'com.jakewharton:butterknife:8.8.1'
@@ -51,12 +50,19 @@ dependencies {
     //    4.4以上沉浸式
     implementation 'com.gyf.barlibrary:barlibrary:2.3.0'
     //    RxLifecycle
-    implementation 'com.trello:rxlifecycle:1.0'
-    implementation 'com.trello:rxlifecycle-components:1.0'
+    implementation 'com.trello.rxlifecycle2:rxlifecycle:2.2.1'
+    implementation 'com.trello.rxlifecycle2:rxlifecycle-components:2.2.1'
     //    viewpager indicator
     implementation 'com.github.hackware1993:MagicIndicator:1.5.0'
     //    图片选择器
     implementation 'com.lzy.widget:imagepicker:0.6.1'
     //    权限判定
     implementation 'me.weyye.hipermission:library:1.0.7'
+    //    网络请求
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.16'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
 }
