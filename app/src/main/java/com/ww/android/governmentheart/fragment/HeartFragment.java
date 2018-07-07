@@ -1,27 +1,38 @@
 package com.ww.android.governmentheart.fragment;
 
-import android.support.annotation.NonNull;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
-import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.ww.android.governmentheart.R;
-import com.ww.android.governmentheart.adapter.home.HomeAdapter;
-import com.ww.android.governmentheart.mvp.bean.MultipleBean;
+import com.ww.android.governmentheart.adapter.IndicatorPagerAdapter;
+import com.ww.android.governmentheart.fragment.heart.HeartCoreFragment;
+import com.ww.android.governmentheart.mvp.bean.login.NewsTypeBean;
 import com.ww.android.governmentheart.mvp.model.VoidModel;
-import com.ww.android.governmentheart.mvp.vu.RefreshView;
-import com.ww.android.governmentheart.utils.RecyclerHelper;
+import com.ww.android.governmentheart.mvp.vu.MagicIndicatorView;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @Author feng
  * @Date 2018/6/10
  */
-public class HeartFragment extends BaseFragment<RefreshView, VoidModel> {
+public class HeartFragment extends BaseFragment<MagicIndicatorView, VoidModel> {
 
+    private IndicatorPagerAdapter pagerAdapter;
+    private List<Fragment> fragments;
+    private FragmentManager fragmentManager;
+    public ArrayList<NewsTypeBean> mTypeBeans;
 
-    private HomeAdapter adapter;
+    public static HeartFragment newInstance(ArrayList<NewsTypeBean> typeBeans){
+        HeartFragment heartFragment = new HeartFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("types",typeBeans);
+        heartFragment.setArguments(bundle);
+        return heartFragment;
+    }
 
     @Override
     protected int getLayoutResId() {
@@ -30,42 +41,34 @@ public class HeartFragment extends BaseFragment<RefreshView, VoidModel> {
 
     @Override
     protected void init() {
-        initListener();
-        if (v.crv == null) {
-            return;
-        }
-        initRecycler();
-
-        adapter.addList(Arrays.asList(new MultipleBean(MultipleBean.MULTIPLE_HEADER),
-                new MultipleBean(MultipleBean.MULTIPLE_BODY),
-        new MultipleBean(MultipleBean.MULTIPLE_BODY)));
+        mTypeBeans = (ArrayList<NewsTypeBean>) getArguments().getSerializable("types");
+        initViewPager();
+        v.setTitles(Arrays.asList(getResources().getStringArray(R.array.together_text)));
+        v.initMagicIndicator(true);
     }
 
 
-    private void initListener(){
-        if (v.srl == null) {
-            return;
-        }
-
-        v.srl.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                v.srl.finishRefresh(2000);
-            }
-        });
-
-        v.srl.setOnLoadMoreListener(new OnLoadMoreListener() {
-            @Override
-            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                v.srl.finishLoadMore(2000);
-            }
-        });
+    /**
+     * init viewpager
+     */
+    private void initViewPager(){
+        fragmentManager = getChildFragmentManager();
+        addFragment();
+        pagerAdapter = new IndicatorPagerAdapter(fragmentManager, fragments);
+        v.viewPager.setAdapter(pagerAdapter);
+        v.viewPager.setOffscreenPageLimit(3);
     }
 
-    private void initRecycler(){
-        v.initRecycler(RecyclerHelper.defaultManager(getContext()),RecyclerHelper.defaultMoreDecoration(getContext()));
-
-        adapter = new HomeAdapter(getContext());
-        v.crv.setAdapter(adapter);
+    /**
+     * 添加fragment
+     */
+    private void addFragment(){
+        if (fragments==null){
+            fragments = new ArrayList<>();
+        }
+        fragments.add(HeartCoreFragment.newInstance(1));
+        fragments.add(HeartCoreFragment.newInstance(2));
+        fragments.add(HeartCoreFragment.newInstance(3));
+        fragments.add(HeartCoreFragment.newInstance(4));
     }
 }

@@ -72,7 +72,7 @@
             android:background="@android:color/transparent"
             android:layout_width="match_parent"
             android:layout_toRightOf="@id/iv_phone"
-            android:inputType="number"
+            android:inputType="text"
             android:maxLength="11"
             android:singleLine="true"
             android:layout_toLeftOf="@id/tv_gain_pass"
@@ -126,6 +126,7 @@
             android:hint="请输入密码"
             android:maxLength="16"
             android:singleLine="true"
+            android:inputType="textPassword"
             android:textColor="@color/color_black"
             android:textColorHint="@color/color_hint"
             android:textSize="@dimen/text_15"
@@ -154,6 +155,7 @@
 
 
     <Button
+        android:id="@+id/btn_login"
         android:layout_margin="@dimen/margin_20"
         android:layout_width="match_parent"
         android:textColor="@color/color_white"

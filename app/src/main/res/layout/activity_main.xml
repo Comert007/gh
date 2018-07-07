@@ -25,6 +25,19 @@
         android:background="@color/color_white">
 
         <LinearLayout
+            android:id="@+id/tab_home_layout"
+            style="@style/TabLayout">
+            <ImageView
+                android:id="@+id/tab_home_image"
+                android:background="@drawable/tab_home_selector"
+                style="@style/TabImage"/>
+            <TextView
+                android:id="@+id/tab_home_text"
+                android:text="首页"
+                style="@style/TabText"/>
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/tab_heart_layout"
             style="@style/TabLayout">
             <ImageView
@@ -78,18 +91,18 @@
                 style="@style/TabText"/>
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/tab_join_layout"
-            style="@style/TabLayout">
-            <ImageView
-                android:id="@+id/tab_join_image"
-                android:background="@drawable/tab_join_selector"
-                style="@style/TabImage"/>
-            <TextView
-                android:id="@+id/tab_join_text"
-                android:text="加入我"
-                style="@style/TabText"/>
-        </LinearLayout>
+        <!--<LinearLayout-->
+            <!--android:id="@+id/tab_join_layout"-->
+            <!--style="@style/TabLayout">-->
+            <!--<ImageView-->
+                <!--android:id="@+id/tab_join_image"-->
+                <!--android:background="@drawable/tab_join_selector"-->
+                <!--style="@style/TabImage"/>-->
+            <!--<TextView-->
+                <!--android:id="@+id/tab_join_text"-->
+                <!--android:text="加入我"-->
+                <!--style="@style/TabText"/>-->
+        <!--</LinearLayout>-->
 
     </LinearLayout>
 

@@ -59,6 +59,7 @@ public abstract class BaseObserver<T> implements Observer<ResponseBean<T>> {
         if (e instanceof ApiException) {
             String status = ((ApiException) e).getStatus();
             if (Constant.TOKEN_INVALID.equals(status)) {
+                BaseApplication.getInstance().clearUserInfo();
                 BaseApplication.getInstance().clearTopTask((Activity) context);
                 LoginActivity.launch(context);
                 ((Activity) context).finish();
@@ -88,7 +89,7 @@ public abstract class BaseObserver<T> implements Observer<ResponseBean<T>> {
     }
 
     private void resultSuccess(ResponseBean<T> responseBean) {
-        onSuccess(responseBean.getData(),responseBean.getList(),responseBean.getPage());
+        onSuccess(responseBean.getDatas(),responseBean.getList(),responseBean.getPage());
     }
 
 

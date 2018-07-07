@@ -5,7 +5,7 @@ import com.ww.android.governmentheart.mvp.model.IModel;
 import com.ww.android.governmentheart.mvp.model.VoidModel;
 import com.ww.android.governmentheart.mvp.utils.ClassUtil;
 import com.ww.android.governmentheart.mvp.vu.IView;
-import com.ww.android.governmentheart.mvp.vu.VoidView;
+import com.ww.android.governmentheart.mvp.vu.base.VoidView;
 
 /**
  * @author feng

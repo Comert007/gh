@@ -9,9 +9,12 @@ public class ResponseBean<T> {
 
     private String status;
     private String msg;
-
     @Nullable
-    private T data;
+    private int totalNum;
+    @Nullable
+    private int totalPage;
+    @Nullable
+    private T datas;
     @Nullable
     private PageBean<T> page;
     @Nullable
@@ -35,12 +38,12 @@ public class ResponseBean<T> {
     }
 
     @Nullable
-    public T getData() {
-        return data;
+    public T getDatas() {
+        return datas;
     }
 
-    public void setData(@Nullable T data) {
-        this.data = data;
+    public void setDatas(@Nullable T datas) {
+        this.datas = datas;
     }
 
     @Nullable

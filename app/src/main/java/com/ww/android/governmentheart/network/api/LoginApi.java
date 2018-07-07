@@ -5,9 +5,11 @@ import com.ww.android.governmentheart.mvp.bean.login.NewsTypeBean;
 import com.ww.android.governmentheart.mvp.bean.login.PassBean;
 import com.ww.android.governmentheart.mvp.bean.login.UserBean;
 
+import java.util.List;
+
 import io.reactivex.Observable;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
+import okhttp3.RequestBody;
+import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 public interface LoginApi {
@@ -21,28 +23,22 @@ public interface LoginApi {
      * 电话号码 获取短信验证码
      * @return
      */
-    @FormUrlEncoded
     @POST("initpass")
-    Observable<ResponseBean<PassBean>> initPass(@Field("phone") String phone);
+    Observable<ResponseBean<PassBean>> initPass(@Body RequestBody body);
 
     /**
      * 登录
      *
-     * @param username 用户名
-     * @param pass     密码
      * @return
      */
-    @FormUrlEncoded
     @POST("login")
-    Observable<ResponseBean<UserBean>> login(@Field("username") String username,
-                                             @Field("pass") String pass);
+    Observable<ResponseBean<UserBean>> login(@Body  RequestBody body);
 
     /**
      * 新闻分类
      * @return
      */
-    @FormUrlEncoded
-    @POST("login")
-    Observable<ResponseBean<NewsTypeBean>> newsType();
+    @POST("openapi/news_category")
+    Observable<ResponseBean<List<NewsTypeBean>>> newsCategory();
 
 }

@@ -2,6 +2,7 @@ package com.ww.android.governmentheart.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.KeyEvent;
 import android.view.View;
@@ -10,12 +11,15 @@ import android.widget.Toast;
 import com.ww.android.governmentheart.BaseApplication;
 import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.fragment.HeartFragment;
-import com.ww.android.governmentheart.fragment.JoinFragment;
+import com.ww.android.governmentheart.fragment.HomeFragment;
 import com.ww.android.governmentheart.fragment.StyleFragment;
 import com.ww.android.governmentheart.fragment.TogetherFragment;
 import com.ww.android.governmentheart.fragment.WisdomFragment;
-import com.ww.android.governmentheart.mvp.model.VoidModel;
-import com.ww.android.governmentheart.mvp.vu.VoidView;
+import com.ww.android.governmentheart.mvp.bean.PageBean;
+import com.ww.android.governmentheart.mvp.bean.login.NewsTypeBean;
+import com.ww.android.governmentheart.mvp.model.base.MainModel;
+import com.ww.android.governmentheart.mvp.vu.base.VoidView;
+import com.ww.android.governmentheart.network.BaseObserver;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,16 +27,16 @@ import java.util.List;
 import butterknife.BindViews;
 import ww.com.core.adapter.MenuTabAdapter;
 
-public class MainActivity extends BaseActivity<VoidView, VoidModel> {
+public class MainActivity extends BaseActivity<VoidView, MainModel> {
 
-    @BindViews({R.id.tab_heart_layout, R.id.tab_together_layout, R.id.tab_style_layout, R.id
-            .tab_wisdom_layout, R.id.tab_join_layout})
+    @BindViews({ R.id.tab_home_layout,R.id.tab_heart_layout, R.id.tab_together_layout, R.id.tab_style_layout, R.id
+            .tab_wisdom_layout})
     List<View> menus;
-    @BindViews({R.id.tab_heart_image, R.id.tab_together_image, R.id.tab_style_image, R.id
-            .tab_wisdom_image, R.id.tab_join_image})
+    @BindViews({ R.id.tab_home_image,R.id.tab_heart_image, R.id.tab_together_image, R.id.tab_style_image, R.id
+            .tab_wisdom_image})
     List<View> images;
-    @BindViews({R.id.tab_heart_text, R.id.tab_together_text, R.id.tab_style_text, R.id
-            .tab_wisdom_text, R.id.tab_join_text})
+    @BindViews({R.id.tab_home_text,R.id.tab_heart_text, R.id.tab_together_text, R.id.tab_style_text, R.id
+            .tab_wisdom_text })
     List<View> texts;
 
     private MenuTabAdapter adapter;
@@ -61,12 +65,14 @@ public class MainActivity extends BaseActivity<VoidView, VoidModel> {
 
     @Override
     protected void init() {
+        newsCategory();
         fragments = new ArrayList<>();
+        fragments.add(new HomeFragment());
         fragments.add(new HeartFragment());
         fragments.add(new TogetherFragment());
         fragments.add(new StyleFragment());
         fragments.add(new WisdomFragment());
-        fragments.add(new JoinFragment());
+//        fragments.add(new JoinFragment());
 
         adapter = new MenuTabAdapter(this, menus, fragments, R.id.main_content);
         adapter.setOnMenuClickListener(new MenuTabAdapter.OnMenuClickListener() {
@@ -78,23 +84,23 @@ public class MainActivity extends BaseActivity<VoidView, VoidModel> {
             @Override
             public void onClick(View v) {
                 switch (v.getId()) {
-                    case R.id.tab_heart_layout:
+                    case R.id.tab_home_layout:
                         changeStatus(0);
                         mImmersionBar.fitsSystemWindows(true).statusBarColor(R.color.colorPrimary).init();
                         break;
-                    case R.id.tab_together_layout:
+                    case R.id.tab_heart_layout:
                         changeStatus(1);
                         mImmersionBar.fitsSystemWindows(true).statusBarColor(R.color.colorPrimary).init();
                         break;
-                    case R.id.tab_style_layout:
+                    case R.id.tab_together_layout:
                         changeStatus(2);
                         mImmersionBar.fitsSystemWindows(true).statusBarColor(R.color.colorPrimary).init();
                         break;
-                    case R.id.tab_wisdom_layout:
+                    case R.id.tab_style_layout:
                         changeStatus(3);
                         mImmersionBar.fitsSystemWindows(true).statusBarColor(R.color.colorPrimary).init();
                         break;
-                    case R.id.tab_join_layout:
+                    case R.id.tab_wisdom_layout:
                         changeStatus(4);
                         mImmersionBar.fitsSystemWindows(true).statusBarColor(R.color.colorPrimary).init();
                         break;
@@ -143,6 +149,19 @@ public class MainActivity extends BaseActivity<VoidView, VoidModel> {
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+
+    private void newsCategory(){
+        m.newsCategory(new BaseObserver<List<NewsTypeBean>>(this,bindToLifecycle()) {
+            @Override
+            protected void onSuccess(@Nullable List<NewsTypeBean> newsTypeBeans, @Nullable
+                    List<List<NewsTypeBean>> list, @Nullable PageBean<List<NewsTypeBean>> page) {
+                if (newsTypeBeans!=null){
+
+                }
+            }
+        });
     }
 
 }

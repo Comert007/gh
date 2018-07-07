@@ -22,7 +22,6 @@ import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.ww.android.governmentheart.mvp.WWApplication;
-import com.ww.android.governmentheart.network.HttpRequest;
 
 import ww.com.core.Debug;
 
@@ -69,7 +68,6 @@ public class BaseApplication extends WWApplication {
         Debug.setDebug(debug);
         Debug.setTag("Govern");
         initImageLoader(getApplicationContext());
-        HttpRequest.setLogging(debug);
     }
 
 

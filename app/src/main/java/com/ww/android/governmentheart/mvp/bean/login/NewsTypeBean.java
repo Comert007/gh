@@ -1,10 +1,12 @@
 package com.ww.android.governmentheart.mvp.bean.login;
 
+import java.io.Serializable;
+
 /**
  * @author feng
  * @Date 2018/7/4.
  */
-public class NewsTypeBean {
+public class NewsTypeBean implements Serializable{
 
 
     /*

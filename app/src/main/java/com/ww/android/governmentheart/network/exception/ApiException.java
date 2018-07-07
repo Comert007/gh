@@ -15,6 +15,7 @@ public class ApiException extends RuntimeException {
     private String message;
 
     public ApiException(String status, String message) {
+        super(message);
         this.status = status;
         this.message = message;
     }
@@ -35,5 +36,4 @@ public class ApiException extends RuntimeException {
     public void setMessage(String message) {
         this.message = message;
     }
-
 }
