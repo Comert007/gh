@@ -13,6 +13,7 @@
         app:titleLeftIco="@mipmap/ic_map"
         app:titleRightIco="@mipmap/ic_user"
         app:titleText="心联汇"/>
+
     <include layout="@layout/layout_indicator"/>
 
 

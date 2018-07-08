@@ -1,11 +1,10 @@
 package com.ww.android.governmentheart.network.api;
 
+import com.ww.android.governmentheart.mvp.PageListBean;
 import com.ww.android.governmentheart.mvp.bean.ResponseBean;
 import com.ww.android.governmentheart.mvp.bean.login.NewsTypeBean;
 import com.ww.android.governmentheart.mvp.bean.login.PassBean;
 import com.ww.android.governmentheart.mvp.bean.login.UserBean;
-
-import java.util.List;
 
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
@@ -38,7 +37,11 @@ public interface LoginApi {
      * 新闻分类
      * @return
      */
-    @POST("openapi/news_category")
-    Observable<ResponseBean<List<NewsTypeBean>>> newsCategory();
+    @POST("news_category")
+    Observable<ResponseBean<PageListBean<NewsTypeBean>>> newsCategory();
+
+
+    @POST("news_category_child")
+    Observable<ResponseBean<PageListBean<NewsTypeBean>>> newsCategoryChild(@Body  RequestBody body);
 
 }

@@ -21,7 +21,7 @@ public class LoginModel extends BaseModel {
     public void initPass(String phone, BaseObserver<PassBean> observer) {
         Map map = new HashMap();
         map.put("phone",phone);
-        HttpRequest.loginApi().initPass(JsonParse.crateMapForm(map))
+        HttpRequest.loginApi().initPass(JsonParse.createArgs(map))
                 .compose(RxSchedulers.cutObservableMain())
                 .compose(observer.getTransformer())
                 .subscribe(observer);
@@ -38,7 +38,7 @@ public class LoginModel extends BaseModel {
         Map map = new HashMap();
         map.put("username",username);
         map.put("pass",pass);
-        HttpRequest.loginApi().login(JsonParse.crateMapForm(map))
+        HttpRequest.loginApi().login(JsonParse.createArgs(map))
                 .compose(RxSchedulers.cutObservableMain())
                 .compose(observer.getTransformer())
                 .subscribe(observer);

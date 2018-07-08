@@ -1,9 +1,8 @@
 package com.ww.android.governmentheart.network.api;
 
+import com.ww.android.governmentheart.mvp.PageListBean;
 import com.ww.android.governmentheart.mvp.bean.ResponseBean;
 import com.ww.android.governmentheart.mvp.bean.heart.NewsBean;
-
-import java.util.List;
 
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
@@ -17,5 +16,5 @@ import retrofit2.http.POST;
 public interface HeartApi {
 
     @POST("news")
-    Observable<ResponseBean<List<NewsBean>>> news(@Body RequestBody body);
+    Observable<ResponseBean<PageListBean<NewsBean>>> news(@Body RequestBody body);
 }

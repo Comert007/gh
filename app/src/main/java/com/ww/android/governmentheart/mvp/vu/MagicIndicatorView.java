@@ -16,7 +16,8 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNav
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerIndicator;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTitleView;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.LinePagerIndicator;
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.ColorTransitionPagerTitleView;
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles
+        .ColorTransitionPagerTitleView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,7 @@ import java.util.List;
 import butterknife.BindColor;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import ww.com.core.Debug;
 
 /**
  * @Author feng
@@ -62,6 +64,10 @@ public class MagicIndicatorView implements IView {
     }
 
     public void initMagicIndicator(boolean adjustMode){
+        if (activity == null){
+            Debug.d("the activity is null");
+            return;
+        }
         commonNavigator = new CommonNavigator(activity);
         commonNavigator.setAdjustMode(adjustMode);
         navigatorAdapter = new CommonNavigatorAdapter() {

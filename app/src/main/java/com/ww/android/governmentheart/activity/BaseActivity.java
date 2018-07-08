@@ -128,6 +128,8 @@ public abstract class BaseActivity<V extends IView, M extends IModel> extends
 
     protected void initImmersionBar() {
         //在BaseActivity里初始化
+        mImmersionBar = ImmersionBar.with(this);
+        mImmersionBar.init();
     }
 
     /**

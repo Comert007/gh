@@ -12,8 +12,14 @@ public class ImagePickBean extends MultipleBean {
 
     public String path;       //图片的路径
 
+    private String fileId;
+    private String suffix;
+    private String name;
+
     public ImagePickBean(int itemType) {
         super(itemType);
     }
+
+
 
 }

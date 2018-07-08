@@ -52,7 +52,7 @@ public class HeartAdapter extends RvAdapter<NewsBean> {
 
         @Override
         public void onBindData(int position, NewsBean bean) {
-            ImageLoader.getInstance().displayImage(bean.getImageUrl(), iv, BaseApplication
+            ImageLoader.getInstance().displayImage(bean.getImage(), iv, BaseApplication
                     .getDisplayImageOptions(R.mipmap.ic_pic_default));
             tvTitleName.setText(bean.getTitle());
             tvEyes.setText(bean.getViewNum());

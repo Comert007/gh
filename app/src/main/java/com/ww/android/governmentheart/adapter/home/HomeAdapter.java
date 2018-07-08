@@ -2,8 +2,12 @@ package com.ww.android.governmentheart.adapter.home;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.ww.android.governmentheart.BaseApplication;
 import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.activity.heart.SearchActivity;
 import com.ww.android.governmentheart.mvp.bean.MultipleBean;
@@ -28,12 +32,9 @@ public class HomeAdapter extends RvAdapter<NewsBean> {
     protected int getItemLayoutResId(int viewType) {
         if (MultipleBean.MULTIPLE_HEADER == viewType) {
             return R.layout.adapter_heart_header;
-        } else if (MultipleBean.MULTIPLE_BODY == viewType) {
+        } else  {
             return R.layout.adapter_heart_body;
-        } else {
-            return R.layout.layout_empty;
         }
-
     }
 
     @Override
@@ -45,16 +46,16 @@ public class HomeAdapter extends RvAdapter<NewsBean> {
     protected RvViewHolder<NewsBean> getViewHolder(int viewType, View view) {
         if (MultipleBean.MULTIPLE_HEADER == viewType) {
             return new HeaderViewHolder(view);
-        } else if (MultipleBean.MULTIPLE_BODY == viewType) {
+        } else  {
             return new HomeViewHolder(view);
-        } else {
-            return new EmptyViewHolder(view);
         }
     }
 
     class HeaderViewHolder extends RvViewHolder<NewsBean> {
         @BindView(R.id.et_clear)
         TextView tvClear;
+        @BindView(R.id.tv_num)
+        TextView tvNum;
 
         public HeaderViewHolder(View itemView) {
             super(itemView);
@@ -63,11 +64,24 @@ public class HomeAdapter extends RvAdapter<NewsBean> {
         @Override
         public void onBindData(int position, NewsBean bean) {
             tvClear.setOnClickListener(v -> SearchActivity.start(getContext()));
+            tvNum.setText("共"+bean.totalNum+"条");
         }
     }
 
 
     class HomeViewHolder extends RvViewHolder<NewsBean> {
+        @BindView(R.id.iv)
+        ImageView iv;
+        @BindView(R.id.tv_title_name)
+        TextView tvTitleName;
+        @BindView(R.id.tv_eyes)
+        TextView tvEyes;
+        @BindView(R.id.tv_comment)
+        TextView tvComment;
+        @BindView(R.id.tv_time)
+        TextView tvTime;
+        @BindView(R.id.comment_container)
+        LinearLayout commentContainer;
 
         public HomeViewHolder(View itemView) {
             super(itemView);
@@ -75,7 +89,12 @@ public class HomeAdapter extends RvAdapter<NewsBean> {
 
         @Override
         public void onBindData(int position, NewsBean bean) {
-
+            ImageLoader.getInstance().displayImage(bean.getImage(), iv, BaseApplication
+                    .getDisplayImageOptions(R.mipmap.ic_pic_default));
+            tvTitleName.setText(bean.getTitle());
+            tvEyes.setText(bean.getViewNum());
+            tvComment.setText(bean.getCommentNum());
+            tvTime.setText(bean.getDate());
         }
     }
 

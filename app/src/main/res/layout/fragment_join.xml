@@ -7,14 +7,14 @@
     android:background="@color/color_divider"
     android:orientation="vertical">
 
-    <com.ww.android.governmentheart.widget.TitleView
-        android:id="@+id/title_view"
-        style="@style/TitleBar"
-        app:titleLeftIco="@mipmap/ic_map"
-        app:titleRightIco="@mipmap/ic_user"
-        app:titleText="加入我"/>
+    <!--<com.ww.android.governmentheart.widget.TitleView-->
+        <!--android:id="@+id/title_view"-->
+        <!--style="@style/TitleBar"-->
+        <!--app:titleLeftIco="@mipmap/ic_map"-->
+        <!--app:titleRightIco="@mipmap/ic_user"-->
+        <!--app:titleText="加入我"/>-->
 
-    <View style="@style/ViewSplitStyle"/>
+    <!--<View style="@style/ViewSplitStyle"/>-->
 
 
     <include layout="@layout/layout_refresh"/>

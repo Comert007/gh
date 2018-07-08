@@ -154,7 +154,7 @@ public class HttpRequest {
 
                String token = BaseApplication.getInstance().getToken();
                if (!TextUtils.isEmpty(token)){
-                   requestBuilder.addHeader("token",token);
+                   requestBuilder.addHeader("token",encodeHeadInfo(token));
                }
 
                request = requestBuilder.build();
@@ -171,6 +171,19 @@ public class HttpRequest {
 
        return builder.build();
 
+    }
+
+    private static String encodeHeadInfo( String headInfo ) {
+        StringBuffer stringBuffer = new StringBuffer();
+        for (int i = 0, length = headInfo.length(); i < length; i++) {
+            char c = headInfo.charAt(i);
+            if (c <= '\u001f' || c >= '\u007f') {
+                stringBuffer.append( String.format ("\\u%04x", (int)c) );
+            } else {
+                stringBuffer.append(c);
+            }
+        }
+        return stringBuffer.toString();
     }
 
 }

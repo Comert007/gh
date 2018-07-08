@@ -36,9 +36,9 @@
                   android:paddingRight="@dimen/margins">
 
         <TextView
+            android:id="@+id/tv_title"
             style="@style/NormalTitleTextStyle"
-            android:paddingLeft="@dimen/margin_20"
-            android:text="关于街子古镇旅游景区拆迁"/>
+            android:paddingLeft="@dimen/margin_20"/>
 
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="wrap_content"
@@ -46,13 +46,15 @@
                       android:layout_marginBottom="@dimen/margin_5"
                       android:layout_marginTop="@dimen/margin_5">
 
-            <TextView style="@style/NormalTipTextStyle"
-                      android:layout_weight="1"
-                      android:text="2018-05-10 12:21:30"/>
+            <TextView
+                android:id="@+id/tv_time"
+                style="@style/NormalTipTextStyle"
+                      android:layout_weight="1"/>
 
             <TextView
+                android:id="@+id/tv_deal_sign"
                 style="@style/NormalProcessStyle"
-                android:text="已处理"/>
+                android:text=""/>
 
 
         </LinearLayout>
@@ -67,9 +69,9 @@
                 android:text="经办人员： "/>
 
             <TextView
+                android:id="@+id/tv_username"
                 style="@style/NormalTipTextStyle"
-                android:textColor="@color/color_black"
-                android:text="李忠金"/>
+                android:textColor="@color/color_black"/>
 
         </LinearLayout>
 
@@ -85,9 +87,9 @@
                 android:text="处理时间： "/>
 
             <TextView
+                android:id="@+id/tv_deal_time"
                 style="@style/NormalTipTextStyle"
-                android:textColor="@color/color_black"
-                android:text="2018-5-11 14:22:22"/>
+                android:textColor="@color/color_black"/>
 
         </LinearLayout>
 
@@ -97,7 +99,9 @@
             style="@style/ViewSplitStyle"/>
 
 
-        <LinearLayout android:layout_width="match_parent"
+        <LinearLayout
+            android:id="@+id/container_detail"
+            android:layout_width="match_parent"
                       android:gravity="center_vertical"
                       android:paddingLeft="@dimen/margin_20"
                       android:paddingTop="@dimen/margin_12"
@@ -109,7 +113,8 @@
                        android:layout_height="@dimen/length_10"/>
 
             <TextView
-                android:text="1765"
+                android:id="@+id/tv_view_num"
+                android:text="0"
                 android:layout_marginLeft="@dimen/margin_5"
                 style="@style/NormalTipTextStyle"/>
 
@@ -119,7 +124,8 @@
                        android:layout_height="@dimen/length_10"/>
 
             <TextView
-                android:text="1765"
+                android:id="@+id/tv_comment_num"
+                android:text="0"
                 android:layout_weight="1"
                 android:layout_marginLeft="@dimen/margin_5"
                 style="@style/NormalTipTextStyle"/>

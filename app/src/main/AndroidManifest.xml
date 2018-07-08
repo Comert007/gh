@@ -38,15 +38,30 @@
         <!--登录-->
         <activity android:name=".activity.home.LoginActivity"
                   android:screenOrientation="portrait">
+
+        </activity>
+
+        <!--提交成功-->
+        <activity android:name=".activity.home.CommitSuccessActivity"
+                  android:screenOrientation="portrait"/>
+
+        <!--launcher-->
+        <activity android:name=".activity.LauncherActivity"
+                  android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+
         </activity>
 
-        <!--提交成功-->
-        <activity android:name=".activity.home.CommitSuccessActivity"
+        <!--显示建言-->
+        <activity android:name=".activity.wisdom.ShowAdviceActivity"
+                  android:screenOrientation="portrait"/>
+
+        <!--资料发送详情-->
+        <activity android:name=".activity.wisdom.ShowTransmissionActivity"
                   android:screenOrientation="portrait"/>
 
         <!--7.0权限适配-->

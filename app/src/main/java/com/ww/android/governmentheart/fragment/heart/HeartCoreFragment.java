@@ -6,7 +6,9 @@ import android.support.annotation.Nullable;
 import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.adapter.heart.HeartAdapter;
 import com.ww.android.governmentheart.fragment.BaseFragment;
+import com.ww.android.governmentheart.mvp.PageListBean;
 import com.ww.android.governmentheart.mvp.bean.PageBean;
+import com.ww.android.governmentheart.mvp.bean.PagingBean;
 import com.ww.android.governmentheart.mvp.bean.heart.NewsBean;
 import com.ww.android.governmentheart.mvp.model.CommonModel;
 import com.ww.android.governmentheart.mvp.vu.RefreshView;
@@ -22,14 +24,14 @@ import ww.com.core.utils.TimeUtils;
 
 public class HeartCoreFragment extends BaseFragment<RefreshView,CommonModel> {
 
-    private int code; // code:1 方针，2 统战知识，3 权威解读， 4 政策库 5 崇州特色 6 农副产品 7 电商介绍 8 人物访谈 9加入我（加入组织）
+    private String code; // code:1 方针，2 统战知识，3 权威解读， 4 政策库 5 崇州特色 6 农副产品 7 电商介绍 8 人物访谈 9加入我（加入组织）
     private int page;
     private HeartAdapter adapter;
 
-    public static HeartCoreFragment newInstance(int code){
+    public static HeartCoreFragment newInstance(String code){
         HeartCoreFragment heartCoreFragment = new HeartCoreFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt("code",code);
+        bundle.putString("code",code);
         heartCoreFragment.setArguments(bundle);
         return heartCoreFragment;
     }
@@ -47,10 +49,11 @@ public class HeartCoreFragment extends BaseFragment<RefreshView,CommonModel> {
             return;
         }
         initRecycler();
+        v.srl.autoRefresh();
     }
 
     private void initData(){
-        code = getArguments().getInt("code",0);
+        code = getArguments().getString("code","0");
     }
 
     private void initListener(){
@@ -83,22 +86,33 @@ public class HeartCoreFragment extends BaseFragment<RefreshView,CommonModel> {
         if (v.srl == null){
             return;
         }
-        m.news(map, new BaseObserver<List<NewsBean>>(getContext(),bindToLifecycle()) {
+        m.news(map, new BaseObserver<PageListBean<NewsBean>>(getContext(), bindToLifecycle()) {
             @Override
-            protected void onSuccess(@Nullable List<NewsBean> newsBeans, @Nullable
-                    List<List<NewsBean>> list, @Nullable PageBean<List<NewsBean>> pageBean) {
-                if (page == 0){
-                    adapter.addList(newsBeans);
-                    v.srl.finishRefresh();
-                    page++;
-                }else {
-                    if (newsBeans==null || newsBeans.size() == 0){
-                        v.srl.setNoMoreData(false);
-                    }else {
-                        adapter.appendList(newsBeans);
-                        v.srl.setNoMoreData(true);
+            protected void onSuccess(@Nullable PageListBean<NewsBean> newsBeanPageListBean,
+                                     @Nullable List<PageListBean<NewsBean>> list, @Nullable
+                                             PageBean<PageListBean<NewsBean>> pageBean) {
+
+                if (newsBeanPageListBean != null && newsBeanPageListBean.getList() != null) {
+                    List<NewsBean> newsBeans = newsBeanPageListBean.getList();
+                    PagingBean pagingBean = newsBeanPageListBean.getPage();
+                    int totalPage = pagingBean.getTotalPage();
+                    if (page == 0) {
+                        v.srl.finishRefresh();
+                        if (newsBeans != null && newsBeans.size() > 0) {
+                            adapter.addList(newsBeans);
+                            page++;
+                        } else {
+                            v.srl.setNoMoreData(true);
+                        }
+                    } else {
                         v.srl.finishLoadMore();
-                        page++;
+                        if (page < totalPage) {
+                            adapter.appendList(newsBeans);
+                            v.srl.setNoMoreData(false);
+                            page++;
+                        } else {
+                            v.srl.setNoMoreData(true);
+                        }
                     }
                 }
             }

@@ -2,7 +2,6 @@ package com.ww.android.governmentheart.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.KeyEvent;
 import android.view.View;
@@ -15,11 +14,8 @@ import com.ww.android.governmentheart.fragment.HomeFragment;
 import com.ww.android.governmentheart.fragment.StyleFragment;
 import com.ww.android.governmentheart.fragment.TogetherFragment;
 import com.ww.android.governmentheart.fragment.WisdomFragment;
-import com.ww.android.governmentheart.mvp.bean.PageBean;
-import com.ww.android.governmentheart.mvp.bean.login.NewsTypeBean;
 import com.ww.android.governmentheart.mvp.model.base.MainModel;
 import com.ww.android.governmentheart.mvp.vu.base.VoidView;
-import com.ww.android.governmentheart.network.BaseObserver;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,18 +25,22 @@ import ww.com.core.adapter.MenuTabAdapter;
 
 public class MainActivity extends BaseActivity<VoidView, MainModel> {
 
-    @BindViews({ R.id.tab_home_layout,R.id.tab_heart_layout, R.id.tab_together_layout, R.id.tab_style_layout, R.id
+    @BindViews({R.id.tab_home_layout, R.id.tab_heart_layout, R.id.tab_together_layout, R.id
+            .tab_style_layout, R.id
             .tab_wisdom_layout})
     List<View> menus;
-    @BindViews({ R.id.tab_home_image,R.id.tab_heart_image, R.id.tab_together_image, R.id.tab_style_image, R.id
+    @BindViews({R.id.tab_home_image, R.id.tab_heart_image, R.id.tab_together_image, R.id
+            .tab_style_image, R.id
             .tab_wisdom_image})
     List<View> images;
-    @BindViews({R.id.tab_home_text,R.id.tab_heart_text, R.id.tab_together_text, R.id.tab_style_text, R.id
-            .tab_wisdom_text })
+    @BindViews({R.id.tab_home_text, R.id.tab_heart_text, R.id.tab_together_text, R.id
+            .tab_style_text, R.id
+            .tab_wisdom_text})
     List<View> texts;
 
     private MenuTabAdapter adapter;
     private List<Fragment> fragments;
+    private HeartFragment mHeartFragment;
 
     public static void start(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
@@ -53,27 +53,24 @@ public class MainActivity extends BaseActivity<VoidView, MainModel> {
     }
 
     @Override
-    protected void initImmersionBar() {
-        super.initImmersionBar();
-        mImmersionBar.keyboardEnable(true).init();
-    }
-
-    @Override
-    protected boolean isDefaultImmersionBar() {
-        return false;
-    }
-
-    @Override
     protected void init() {
-        newsCategory();
+        addFragments();
+    }
+
+    private void addFragments() {
         fragments = new ArrayList<>();
         fragments.add(new HomeFragment());
         fragments.add(new HeartFragment());
         fragments.add(new TogetherFragment());
         fragments.add(new StyleFragment());
         fragments.add(new WisdomFragment());
-//        fragments.add(new JoinFragment());
+        addCheck();
 
+        changeStatus(0);
+        mImmersionBar.fitsSystemWindows(true).statusBarColor(R.color.colorPrimary).init();
+    }
+
+    private void addCheck() {
         adapter = new MenuTabAdapter(this, menus, fragments, R.id.main_content);
         adapter.setOnMenuClickListener(new MenuTabAdapter.OnMenuClickListener() {
             @Override
@@ -86,30 +83,45 @@ public class MainActivity extends BaseActivity<VoidView, MainModel> {
                 switch (v.getId()) {
                     case R.id.tab_home_layout:
                         changeStatus(0);
-                        mImmersionBar.fitsSystemWindows(true).statusBarColor(R.color.colorPrimary).init();
+                        mImmersionBar.fitsSystemWindows(true).statusBarColor(R.color
+                                .colorPrimary).init();
                         break;
                     case R.id.tab_heart_layout:
                         changeStatus(1);
-                        mImmersionBar.fitsSystemWindows(true).statusBarColor(R.color.colorPrimary).init();
+                        mImmersionBar.fitsSystemWindows(true).statusBarColor(R.color
+                                .colorPrimary).init();
                         break;
                     case R.id.tab_together_layout:
                         changeStatus(2);
-                        mImmersionBar.fitsSystemWindows(true).statusBarColor(R.color.colorPrimary).init();
+                        mImmersionBar.fitsSystemWindows(true).statusBarColor(R.color
+                                .colorPrimary).init();
                         break;
                     case R.id.tab_style_layout:
                         changeStatus(3);
-                        mImmersionBar.fitsSystemWindows(true).statusBarColor(R.color.colorPrimary).init();
+                        mImmersionBar.fitsSystemWindows(true).statusBarColor(R.color
+                                .colorPrimary).init();
                         break;
                     case R.id.tab_wisdom_layout:
                         changeStatus(4);
-                        mImmersionBar.fitsSystemWindows(true).statusBarColor(R.color.colorPrimary).init();
+                        mImmersionBar.fitsSystemWindows(true).statusBarColor(R.color
+                                .colorPrimary).init();
                         break;
                 }
             }
         });
 
-        changeStatus(0);
-        mImmersionBar.fitsSystemWindows(true).statusBarColor(R.color.colorPrimary).init();
+    }
+
+
+    @Override
+    protected void initImmersionBar() {
+        super.initImmersionBar();
+        mImmersionBar.keyboardEnable(true).init();
+    }
+
+    @Override
+    protected boolean isDefaultImmersionBar() {
+        return false;
     }
 
     private void changeStatus(int index) {
@@ -152,16 +164,6 @@ public class MainActivity extends BaseActivity<VoidView, MainModel> {
     }
 
 
-    private void newsCategory(){
-        m.newsCategory(new BaseObserver<List<NewsTypeBean>>(this,bindToLifecycle()) {
-            @Override
-            protected void onSuccess(@Nullable List<NewsTypeBean> newsTypeBeans, @Nullable
-                    List<List<NewsTypeBean>> list, @Nullable PageBean<List<NewsTypeBean>> page) {
-                if (newsTypeBeans!=null){
 
-                }
-            }
-        });
-    }
 
 }

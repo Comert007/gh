@@ -1,8 +1,6 @@
 package com.ww.android.governmentheart.fragment;
 
 import android.support.annotation.NonNull;
-import android.widget.Button;
-import android.widget.TextView;
 
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -16,17 +14,12 @@ import com.ww.android.governmentheart.utils.RecyclerHelper;
 import java.util.Arrays;
 
 import butterknife.BindColor;
-import butterknife.BindView;
 
 /**
  * @Author feng
  * @Date 2018/6/10
  */
 public class JoinFragment extends BaseFragment<RefreshView,VoidModel> {
-    @BindView(R.id.btn_title_left)
-    Button btnTitleLeft;
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
     @BindColor(R.color.color_black)
     int colorBlack;
 

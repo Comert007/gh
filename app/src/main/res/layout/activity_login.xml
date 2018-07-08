@@ -4,6 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:gravity="center_horizontal"
+    android:background="@color/color_white"
     android:layout_height="match_parent">
 
     <RelativeLayout android:layout_width="match_parent"
@@ -72,7 +73,7 @@
             android:background="@android:color/transparent"
             android:layout_width="match_parent"
             android:layout_toRightOf="@id/iv_phone"
-            android:inputType="text"
+            android:inputType="number"
             android:maxLength="11"
             android:singleLine="true"
             android:layout_toLeftOf="@id/tv_gain_pass"

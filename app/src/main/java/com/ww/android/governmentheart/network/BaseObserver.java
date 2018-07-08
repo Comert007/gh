@@ -77,15 +77,24 @@ public abstract class BaseObserver<T> implements Observer<ResponseBean<T>> {
             if (responseBean.getStatus().equals(Constant.STATUS_OK)) {
                 resultSuccess(responseBean);
             } else {
-                throw new ApiException(responseBean.getStatus(), responseBean.getMsg());
+                try {
+                    throw new ApiException(responseBean.getStatus(), responseBean.getMsg());
+                } catch (ApiException e) {
+                    e.printStackTrace();
+                }
             }
         } else {
-            throw new ApiException(ApiException.UNKNOWN_HOST_CODE, UNKNOWN_HOST_EXCEPTION);
+            try {
+                throw new ApiException(ApiException.UNKNOWN_HOST_CODE, UNKNOWN_HOST_EXCEPTION);
+            } catch (ApiException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     private void resultError(Throwable e) {
         ToastUtils.showToast(e.getMessage());
+        onFailure();
     }
 
     private void resultSuccess(ResponseBean<T> responseBean) {
@@ -98,5 +107,9 @@ public abstract class BaseObserver<T> implements Observer<ResponseBean<T>> {
 
     public LifecycleTransformer<ResponseBean<T>> getTransformer() {
         return transformer;
+    }
+
+    protected void onFailure(){
+
     }
 }

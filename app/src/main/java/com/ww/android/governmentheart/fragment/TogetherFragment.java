@@ -5,9 +5,7 @@ import android.support.v4.app.FragmentManager;
 
 import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.adapter.IndicatorPagerAdapter;
-import com.ww.android.governmentheart.fragment.together.ActivityFragment;
-import com.ww.android.governmentheart.fragment.together.OnlineFragment;
-import com.ww.android.governmentheart.fragment.together.PublishFragment;
+import com.ww.android.governmentheart.fragment.together.ActFragment;
 import com.ww.android.governmentheart.mvp.model.VoidModel;
 import com.ww.android.governmentheart.mvp.vu.MagicIndicatorView;
 
@@ -55,8 +53,8 @@ public class TogetherFragment extends BaseFragment<MagicIndicatorView,VoidModel>
         if (fragments==null){
             fragments = new ArrayList<>();
         }
-        fragments.add(new PublishFragment());
-        fragments.add(new ActivityFragment());
-        fragments.add(new OnlineFragment());
+        fragments.add(new JoinFragment());
+        fragments.add(new ActFragment());
+        fragments.add(new Fragment());
     }
 }

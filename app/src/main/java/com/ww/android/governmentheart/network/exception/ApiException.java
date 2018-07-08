@@ -1,6 +1,6 @@
 package com.ww.android.governmentheart.network.exception;
 
-public class ApiException extends RuntimeException {
+public class ApiException extends Exception {
 
 
     public static final String SOCKET_TIMEOUT_CODE = "101";

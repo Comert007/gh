@@ -1,5 +1,6 @@
 package com.ww.android.governmentheart.fragment.style;
 
+import android.os.Bundle;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -19,6 +20,14 @@ public class IntroduceFragment extends BaseFragment<WebKitView,VoidModel> {
     @Override
     protected int getLayoutResId() {
         return R.layout.fragment_introduce;
+    }
+
+    public static IntroduceFragment newInstance(String code) {
+        IntroduceFragment fragment = new IntroduceFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("code", code);
+        fragment.setArguments(bundle);
+        return fragment;
     }
 
     @Override

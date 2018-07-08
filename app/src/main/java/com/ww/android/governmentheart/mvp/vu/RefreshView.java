@@ -12,9 +12,12 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.mvp.utils.RefreshType;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ww.com.core.Debug;
+import ww.com.core.adapter.RvAdapter;
 import ww.com.core.widget.CustomRecyclerView;
 
 /**
@@ -128,6 +131,35 @@ public class RefreshView implements IView {
 
     @Override
     public void onDestroy() {
+
+    }
+
+    public int createSuccess(int page, List list, RvAdapter adapter) {
+        if (page == 0) {
+            srl.finishRefresh();
+            if (list != null && list.size() > 0) {
+                adapter.addList(list);
+                page++;
+            } else {
+                srl.setNoMoreData(false);
+            }
+        } else {
+            srl.finishLoadMore();
+            if (list == null || list.size() == 0) {
+                srl.setNoMoreData(false);
+            } else {
+                adapter.appendList(list);
+                srl.setNoMoreData(true);
+                page++;
+            }
+        }
+        return page;
+    }
+
+    public void onRefresh(int page, List list, RvAdapter adapter) {
+    }
+
+    public void onLoadMore() {
 
     }
 }

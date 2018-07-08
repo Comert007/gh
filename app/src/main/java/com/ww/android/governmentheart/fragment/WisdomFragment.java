@@ -5,7 +5,6 @@ import android.support.v4.app.FragmentManager;
 
 import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.adapter.IndicatorPagerAdapter;
-import com.ww.android.governmentheart.fragment.together.ActivityFragment;
 import com.ww.android.governmentheart.fragment.wisdom.SuggestionFragment;
 import com.ww.android.governmentheart.fragment.wisdom.TransmissionFragment;
 import com.ww.android.governmentheart.mvp.model.VoidModel;
@@ -32,6 +31,7 @@ public class WisdomFragment extends BaseFragment<MagicIndicatorView,VoidModel> {
 
     @Override
     protected void init() {
+        addFragment();
         initViewPager();
         v.setTitles(Arrays.asList(getResources().getStringArray(R.array.wisdom_text)));
         v.initMagicIndicator(true);
@@ -43,7 +43,6 @@ public class WisdomFragment extends BaseFragment<MagicIndicatorView,VoidModel> {
      */
     private void initViewPager(){
         fragmentManager = getChildFragmentManager();
-        addFragment();
         pagerAdapter = new IndicatorPagerAdapter(fragmentManager, fragments);
         v.viewPager.setAdapter(pagerAdapter);
         v.viewPager.setOffscreenPageLimit(3);
@@ -57,7 +56,7 @@ public class WisdomFragment extends BaseFragment<MagicIndicatorView,VoidModel> {
             fragments = new ArrayList<>();
         }
         fragments.add(new SuggestionFragment());
-        fragments.add(new ActivityFragment());
+        fragments.add(new Fragment());
         fragments.add(new TransmissionFragment());
     }
 }

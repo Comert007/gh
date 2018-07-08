@@ -1,12 +1,18 @@
 package com.ww.android.governmentheart.mvp.bean.login;
 
+import android.support.annotation.Nullable;
+
+import com.ww.android.governmentheart.mvp.bean.MultipleBean;
+import com.ww.android.governmentheart.mvp.bean.heart.NewsBean;
+
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author feng
  * @Date 2018/7/4.
  */
-public class NewsTypeBean implements Serializable{
+public class NewsTypeBean extends MultipleBean implements Serializable{
 
 
     /*
@@ -19,6 +25,12 @@ public class NewsTypeBean implements Serializable{
     private String name;
     private String code;
     private int ac;
+    @Nullable
+    private List<NewsBean> news;
+
+    public NewsTypeBean(int itemType) {
+        super(itemType);
+    }
 
     public String getId() {
         return id;
@@ -50,5 +62,14 @@ public class NewsTypeBean implements Serializable{
 
     public void setAc(int ac) {
         this.ac = ac;
+    }
+
+    @Nullable
+    public List<NewsBean> getNews() {
+        return news;
+    }
+
+    public void setNews(@Nullable List<NewsBean> news) {
+        this.news = news;
     }
 }

@@ -8,6 +8,7 @@
     android:padding="@dimen/margins">
 
     <ww.com.core.widget.RoundImageView
+        android:id="@+id/riv"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:src="@mipmap/ic_pic_default"
@@ -15,13 +16,13 @@
         app:type="type_round"/>
 
     <TextView
-        style="@style/NormalTitleTextStyle"
-        android:text="崇州市市委书记某某某访谈"/>
+        android:id="@+id/tv_title"
+        style="@style/NormalTitleTextStyle"/>
 
     <TextView
+        android:id="@+id/tv_des"
         style="@style/NormalTipTextStyle"
-        android:layout_marginTop="@dimen/margin_5"
-        android:text="书记为我们讲故事"/>
+        android:layout_marginTop="@dimen/margin_5"/>
 
     <View
         style="@style/ViewSplitStyle"
@@ -38,9 +39,10 @@
             android:src="@mipmap/ic_time"/>
 
         <TextView
+            android:id="@+id/tv_time"
             style="@style/NormalTipTextStyle"
             android:layout_marginLeft="@dimen/margin_5"
-            android:text="时间：2018-08-18 9:00 地点：崇州市委"/>
+            android:text="时间："/>
     </LinearLayout>
 
     <LinearLayout android:layout_width="match_parent"
@@ -56,9 +58,10 @@
         <RelativeLayout android:layout_width="match_parent"
                       android:layout_height="wrap_content">
             <TextView
+                android:id="@+id/tv_address"
                 style="@style/NormalTipTextStyle"
                 android:layout_marginLeft="@dimen/margin_5"
-                android:text="地点：崇州市委"/>
+                android:text="地点："/>
 
             <TextView
                 android:id="@+id/tv_more"

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    style="@style/LLayStyle"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/color_white">
+    <LinearLayout
+        style="@style/LLayStyle"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@color/color_white">
+
+        <com.ww.android.governmentheart.widget.TitleView
+            android:id="@+id/title_view"
+            style="@style/TitleBar"
+            app:titleLeftIco="@mipmap/ic_back"
+            android:background="@color/color_white"
+            app:titleText="建言献策"
+            app:titleTextColor="@color/color_black"/>
+
+        <View style="@style/ViewLineStyle"/>
+
+        <TextView
+            style="@style/NormalTitleTextStyle"
+            android:padding="@dimen/margin_15"
+            android:text="标题"/>
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/ClearEditTextStyle"
+            android:layout_marginLeft="@dimen/margin_15"
+            android:layout_marginRight="@dimen/margin_15"
+            android:hint="标题"
+           />
+        <TextView
+            style="@style/NormalTitleTextStyle"
+            android:background="@color/color_white"
+            android:padding="@dimen/margin_15"
+            android:text="内容"/>
+
+        <TextView
+            android:id="@+id/tv_content"
+            style="@style/ClearEditTextStyle"
+            android:layout_height="130dp"
+            android:layout_marginLeft="@dimen/margin_15"
+            android:layout_marginRight="@dimen/margin_15"
+            android:gravity="start"
+            android:hint="观点"/>
+
+
+        <TextView
+            style="@style/NormalTitleTextStyle"
+            android:paddingLeft="@dimen/margin_15"
+            android:paddingRight="@dimen/margin_15"
+            android:paddingTop="@dimen/margin_15"
+            android:text="附件"/>
+
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/srl"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/margin_10"
+            android:paddingRight="@dimen/margin_10"
+            app:srlEnableLoadMoreWhenContentNotFull="false">
+
+            <ww.com.core.widget.CustomRecyclerView
+                android:id="@+id/crv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+    </LinearLayout>
+
+
+    <Button
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:textColor="@color/color_white"
+        android:text="提交"
+        android:textSize="@dimen/text_15"
+        android:background="@drawable/shape_blue_round_corner_2"
+        android:layout_margin="@dimen/margin_15"
+        android:layout_height="45dp"/>
+
+</RelativeLayout>
