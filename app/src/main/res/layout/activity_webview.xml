@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <com.ww.android.governmentheart.widget.TitleView
+        android:id="@+id/title_view"
+        style="@style/TitleBar"
+        app:titleLeftIco="@mipmap/ic_back"
+        app:titleText="详情"
+        android:background="@color/color_white"
+        app:titleTextColor="@color/color_black"/>
+
+    <View style="@style/ViewLineStyle"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="1dp"/>
+
+    <WebView
+        android:id="@+id/web_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <View style="@style/ViewLineStyle"/>
+
+    <LinearLayout
+        android:background="@color/color_white"
+        android:layout_width="match_parent"
+        android:padding="@dimen/length_10"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/ll_container"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/length_10"
+            android:paddingRight="@dimen/length_10"
+            android:background="@drawable/shape_gray_round_corner_24"
+            android:layout_height="35dp">
+            <ImageView
+                android:src="@mipmap/ic_pen"
+                android:layout_width="@dimen/length_12"
+                android:layout_marginRight="@dimen/length_10"
+                android:layout_height="@dimen/length_12"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:textColorHint="@color/color_hint"
+                android:textSize="@dimen/text_15"
+                android:hint="写评论"
+                android:textColor="@color/color_black"
+                android:background="@android:color/transparent"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_comment"
+            android:layout_width="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="@dimen/margin_10"
+            android:layout_height="match_parent">
+
+            <com.ww.android.governmentheart.widget.IconFontTextView
+                android:layout_width="wrap_content"
+                android:textColor="@color/color_start_titleBar"
+                android:text="\ue6b2"
+                android:textSize="@dimen/text_15"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                style="@style/NormalTipTextStyle"
+                android:layout_marginLeft="@dimen/margin_10"
+                android:textColor="@color/color_start_titleBar"
+                android:text="0"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

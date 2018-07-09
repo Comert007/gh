@@ -54,6 +54,11 @@ public class FeaturesFragment extends BaseFragment<RefreshView, CommonModel> {
     }
 
     @Override
+    protected boolean isLazyLoad() {
+        return true;
+    }
+
+    @Override
     protected void init() {
         mTypeBean = (NewsTypeBean) getArguments().getSerializable("type");
         if (mTypeBean != null) {

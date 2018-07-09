@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
 import com.ww.android.governmentheart.R;
+import com.ww.android.governmentheart.activity.home.UserLocationActivity;
 import com.ww.android.governmentheart.adapter.IndicatorPagerAdapter;
 import com.ww.android.governmentheart.fragment.style.FarmFragment;
 import com.ww.android.governmentheart.fragment.style.FeaturesFragment;
@@ -19,6 +20,8 @@ import com.ww.android.governmentheart.network.BaseObserver;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.OnClick;
 
 /**
  * @Author feng
@@ -55,6 +58,11 @@ public class StyleFragment extends BaseFragment<MagicIndicatorView, MainModel> {
             v.setTitles(titles);
             v.initMagicIndicator(true);
         }
+    }
+
+    @OnClick({R.id.btn_title_left})
+    public void onClick(){
+        UserLocationActivity.launch(getContext());
     }
 
     /**

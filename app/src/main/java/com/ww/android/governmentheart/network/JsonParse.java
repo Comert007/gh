@@ -36,6 +36,7 @@ public class JsonParse {
     public static RequestBody createArgs(@NonNull Map<String, Object> map) {
         Gson gson = new GsonBuilder().enableComplexMapKeySerialization().create();
         String jsonString = "args=" + gson.toJson(map);
+//        Debug.d("str:"+jsonString);
         return RequestBody.create(MediaType.parse(MEDIA_FORM_TYPE), jsonString);
     }
 

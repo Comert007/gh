@@ -3,6 +3,7 @@ package com.ww.android.governmentheart.network.api;
 import com.ww.android.governmentheart.mvp.PageListBean;
 import com.ww.android.governmentheart.mvp.bean.ResponseBean;
 import com.ww.android.governmentheart.mvp.bean.together.ActBean;
+import com.ww.android.governmentheart.mvp.bean.together.OrganizationTypeBean;
 
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
@@ -26,11 +27,10 @@ public interface TogetherApi {
 
     /**
      *
-     * @param body
      * @return
      */
     @POST("tztype")
-    Observable<ResponseBean<PageListBean<ActBean>>> organizationType(@Body RequestBody body);
+    Observable<ResponseBean<PageListBean<OrganizationTypeBean>>> organizationType();
 
 
 }

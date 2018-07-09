@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
 import com.ww.android.governmentheart.R;
+import com.ww.android.governmentheart.activity.home.UserLocationActivity;
 import com.ww.android.governmentheart.adapter.IndicatorPagerAdapter;
 import com.ww.android.governmentheart.fragment.heart.HeartCoreFragment;
 import com.ww.android.governmentheart.fragment.heart.PolicyCoreFragment;
@@ -18,6 +19,7 @@ import com.ww.android.governmentheart.network.BaseObserver;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.OnClick;
 import ww.com.core.Debug;
 
 /**
@@ -109,5 +111,10 @@ public class HeartFragment extends BaseFragment<MagicIndicatorView, MainModel> {
                 }
             }
         });
+    }
+
+    @OnClick({R.id.btn_title_left})
+    public void onClick(){
+        UserLocationActivity.launch(getContext());
     }
 }

@@ -37,6 +37,11 @@ public class HeartCoreFragment extends BaseFragment<RefreshView,CommonModel> {
     }
 
     @Override
+    protected boolean isLazyLoad() {
+        return true;
+    }
+
+    @Override
     protected int getLayoutResId() {
         return R.layout.fragment_heart_core;
     }
@@ -113,6 +118,12 @@ public class HeartCoreFragment extends BaseFragment<RefreshView,CommonModel> {
                         } else {
                             v.srl.setNoMoreData(true);
                         }
+                    }
+                }else {
+                    if (page == 0) {
+                        v.srl.finishRefresh();
+                    }else {
+                        v.srl.finishLoadMore();
                     }
                 }
             }

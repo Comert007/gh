@@ -5,6 +5,7 @@ import android.view.View;
 
 import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.mvp.bean.MultipleBean;
+import com.ww.android.governmentheart.mvp.bean.heart.NewsBean;
 
 import ww.com.core.adapter.RvAdapter;
 import ww.com.core.adapter.RvViewHolder;
@@ -13,7 +14,7 @@ import ww.com.core.adapter.RvViewHolder;
  * @author feng
  * @Date 2018/6/21.
  */
-public class JoinAdapter extends RvAdapter<MultipleBean>{
+public class JoinAdapter extends RvAdapter<NewsBean>{
 
     public JoinAdapter(Context context) {
         super(context);
@@ -26,60 +27,56 @@ public class JoinAdapter extends RvAdapter<MultipleBean>{
 
     @Override
     protected int getItemLayoutResId(int viewType) {
-        if (MultipleBean.MULTIPLE_HEADER == viewType){
+        if (NewsBean.MULTIPLE_HEADER == viewType){
             return R.layout.layout_join_header;
-        }else if (MultipleBean.MULTIPLE_BODY == viewType){
-            return R.layout.adapter_join_body;
         }else {
-            return R.layout.layout_empty;
+            return R.layout.adapter_join_body;
         }
     }
 
     @Override
-    protected RvViewHolder<MultipleBean> getViewHolder(int viewType, View view) {
+    protected RvViewHolder<NewsBean> getViewHolder(int viewType, View view) {
         if (MultipleBean.MULTIPLE_HEADER == viewType){
             return new JoinHeaderViewHolder(view);
-        }else if (MultipleBean.MULTIPLE_BODY == viewType){
-            return new JoinBodyViewHolder(view);
         }else {
-            return new EmptyViewHolder(view);
+            return new JoinBodyViewHolder(view);
         }
     }
 
-    class JoinHeaderViewHolder extends RvViewHolder<MultipleBean>{
+    class JoinHeaderViewHolder extends RvViewHolder<NewsBean>{
 
         public JoinHeaderViewHolder(View itemView) {
             super(itemView);
         }
 
         @Override
-        public void onBindData(int position, MultipleBean bean) {
+        public void onBindData(int position, NewsBean bean) {
 
         }
     }
 
 
-    class JoinBodyViewHolder extends RvViewHolder<MultipleBean>{
+    class JoinBodyViewHolder extends RvViewHolder<NewsBean> {
 
         public JoinBodyViewHolder(View itemView) {
             super(itemView);
         }
 
         @Override
-        public void onBindData(int position, MultipleBean bean) {
+        public void onBindData(int position, NewsBean bean) {
 
         }
     }
 
 
-    class EmptyViewHolder extends RvViewHolder<MultipleBean>{
+    class EmptyViewHolder extends RvViewHolder<NewsBean>{
 
         public EmptyViewHolder(View itemView) {
             super(itemView);
         }
 
         @Override
-        public void onBindData(int position, MultipleBean bean) {
+        public void onBindData(int position, NewsBean bean) {
 
         }
     }

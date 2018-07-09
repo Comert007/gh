@@ -42,6 +42,9 @@ public abstract class BaseFragment<V extends IView,M extends IModel> extends Pre
      * 当执行完onViewCreated方法后即为true
      */
     protected boolean mIsImmersion;
+
+
+
     public void showToast(CharSequence text) {
         ToastUtils.showToast(text);
     }
@@ -72,6 +75,7 @@ public abstract class BaseFragment<V extends IView,M extends IModel> extends Pre
                 break;
         }
     }
+
 
     /**
      * 是否懒加载

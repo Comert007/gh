@@ -40,7 +40,6 @@ public class MainActivity extends BaseActivity<VoidView, MainModel> {
 
     private MenuTabAdapter adapter;
     private List<Fragment> fragments;
-    private HeartFragment mHeartFragment;
 
     public static void start(Context context) {
         Intent intent = new Intent(context, MainActivity.class);

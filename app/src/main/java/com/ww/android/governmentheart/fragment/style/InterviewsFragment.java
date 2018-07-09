@@ -52,6 +52,11 @@ public class InterviewsFragment extends BaseFragment<RefreshView,CommonModel> {
     }
 
     @Override
+    protected boolean isLazyLoad() {
+        return true;
+    }
+
+    @Override
     protected void init() {
         code = getArguments().getString("code","0");
         initListener();

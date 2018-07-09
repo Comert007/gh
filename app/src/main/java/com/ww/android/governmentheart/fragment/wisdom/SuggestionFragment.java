@@ -46,6 +46,11 @@ public class SuggestionFragment extends BaseFragment<RefreshView, WisdomModel> {
     }
 
     @Override
+    protected boolean isLazyLoad() {
+        return true;
+    }
+
+    @Override
     protected void init() {
         initListener();
         initRecycler();

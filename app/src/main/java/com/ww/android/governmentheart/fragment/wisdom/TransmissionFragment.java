@@ -37,6 +37,11 @@ public class TransmissionFragment extends BaseFragment<RefreshView, WisdomModel>
     private int page;
 
     @Override
+    protected boolean isLazyLoad() {
+        return true;
+    }
+
+    @Override
     protected int getLayoutResId() {
         return R.layout.fragment_transmission;
     }
@@ -117,6 +122,12 @@ public class TransmissionFragment extends BaseFragment<RefreshView, WisdomModel>
                         } else {
                             v.srl.setNoMoreData(true);
                         }
+                    }
+                }else {
+                    if (page == 0) {
+                        v.srl.finishRefresh();
+                    }else {
+                        v.srl.finishLoadMore();
                     }
                 }
             }

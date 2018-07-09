@@ -47,6 +47,11 @@ public class PolicyCoreFragment extends BaseFragment<RefreshView,CommonModel> {
     }
 
     @Override
+    protected boolean isLazyLoad() {
+        return true;
+    }
+
+    @Override
     protected void init() {
         initData();
         initListener();
@@ -119,6 +124,21 @@ public class PolicyCoreFragment extends BaseFragment<RefreshView,CommonModel> {
                             v.srl.setNoMoreData(true);
                         }
                     }
+                }else {
+                    if (page == 0) {
+                        v.srl.finishRefresh();
+                    }else {
+                        v.srl.finishLoadMore();
+                    }
+                }
+            }
+
+            @Override
+            protected void onFailure() {
+                if (page == 0) {
+                    v.srl.finishRefresh();
+                }else {
+                    v.srl.finishLoadMore();
                 }
             }
         });

@@ -35,9 +35,9 @@ public abstract class PresenterActivity<V extends IView, M extends IModel> exten
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        beforeOnCreate();
         wwApp = (WWApplication) getApplication();
         wwApp.addRunActivity(this);
-
         try {
             setContentView(getLayoutResId());
         }catch (Exception e){
@@ -50,8 +50,17 @@ public abstract class PresenterActivity<V extends IView, M extends IModel> exten
 
         ButterKnife.bind(this);
 
+        afterOnCreate();
+    }
+
+    protected void beforeOnCreate(){
 
     }
+
+    protected void afterOnCreate(){
+
+    }
+
 
     /**
      * 获取 layout 资源id

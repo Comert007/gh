@@ -31,6 +31,11 @@ public class IntroduceFragment extends BaseFragment<WebKitView,VoidModel> {
     }
 
     @Override
+    protected boolean isLazyLoad() {
+        return true;
+    }
+
+    @Override
     protected void init() {
         v.webView.loadUrl(url);
         v.webView.setWebViewClient(new WebViewClient(){

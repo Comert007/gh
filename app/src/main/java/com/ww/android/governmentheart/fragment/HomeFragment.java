@@ -7,6 +7,7 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.ww.android.governmentheart.R;
+import com.ww.android.governmentheart.activity.home.UserLocationActivity;
 import com.ww.android.governmentheart.adapter.home.HomeAdapter;
 import com.ww.android.governmentheart.mvp.PageListBean;
 import com.ww.android.governmentheart.mvp.bean.PageBean;
@@ -22,6 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import butterknife.OnClick;
 import ww.com.core.utils.TimeUtils;
 
 /**
@@ -80,6 +82,11 @@ public class HomeFragment extends BaseFragment<RefreshView, CommonModel> {
         v.crv.setAdapter(adapter);
     }
 
+    @OnClick({R.id.btn_title_left})
+    public void onClick(){
+        UserLocationActivity.launch(getContext());
+    }
+
     private void news() {
         Map map = new HashMap();
         map.put("code", code);
@@ -128,9 +135,9 @@ public class HomeFragment extends BaseFragment<RefreshView, CommonModel> {
             protected void onFailure() {
                 super.onFailure();
                 if (page == 0){
-                    v.srl.finishRefresh();
+                    v.srl.finishRefresh(false);
                 }else {
-                    v.srl.finishLoadMore();
+                    v.srl.finishLoadMore(false);
                 }
             }
         });

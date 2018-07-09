@@ -11,19 +11,38 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
+
+    signingConfigs {
+        releaseConfig {
+            storeFile file('../keystore/heart.jks')
+            storePassword "heart2018"
+            keyAlias "heart"
+            keyPassword "heart2018"
+        }
+        debugConfig {
+            storeFile file('../keystore/heart.jks')
+            storePassword "heart2018"
+            keyAlias "heart"
+            keyPassword "heart2018"
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField('String','BASE_URL','http://39.104.181.207:8081/openapi/')
+            buildConfigField('String','BASE_URL','"http://39.104.181.207:8081/openapi/"')
             buildConfigField "boolean", "LOGGER", "false"
+            signingConfig signingConfigs.releaseConfig
         }
 
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField('String','BASE_URL','"http://192.168.0.110:8081/openapi/"')
+            buildConfigField('String','BASE_URL','"http://39.104.181.207:8081/openapi/"')
+            //http://192.168.0.110:8081/openapi/
             buildConfigField "boolean", "LOGGER", "true"
+            signingConfig signingConfigs.debugConfig
         }
     }
 
@@ -31,6 +50,13 @@ android {
         //使用JAVA8语法解析
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    sourceSets{
+        main{
+            jniLibs.srcDir 'libs'
+            //说明so的路径为该libs路径，关联所有地图SDK的so文件
+        }
     }
 }
 
@@ -67,4 +93,5 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxjava:2.1.16'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+    implementation files('libs/BaiduLBS_Android.jar')
 }

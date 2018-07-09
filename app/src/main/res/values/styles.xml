@@ -145,6 +145,15 @@
         <item name="PermissionBackround">@drawable/shape_btn_red</item>
     </style>
 
+    <style name="PermissionRedStyle">
+        <item name="PermissionTitleColor">@color/colorPrimary</item>
+        <item name="PermissionMsgColor">@color/colorPrimary</item>
+        <item name="PermissionItemTextColor">@color/colorPrimary</item>
+        <item name="PermissionButtonBackground">@drawable/shape_btn_red</item>
+        <item name="PermissionBackround">@drawable/shape_bg_white</item>
+        <item name="PermissionButtonTextColor">@android:color/white</item>
+    </style>
+
     <style name="ButtonGrayStyle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:textColor">@color/color_indicator</item>
@@ -156,6 +165,20 @@
         <item name="android:layout_marginTop">40dp</item>
         <item name="android:background">@drawable/shape_gray_border_round_corner_3</item>
         <item name="android:layout_height">wrap_content</item>
+    </style>
+
+
+    <style name="BottomDialog" parent="@style/AppTheme">
+        <item name="android:windowTitleStyle">@null</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowAnimationStyle">@style/BottomDialog.AnimationStyle</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+    </style>
+
+    <style name="BottomDialog.AnimationStyle" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/slide_in_from_bottom</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_to_bottom</item>
     </style>
 
 </resources>

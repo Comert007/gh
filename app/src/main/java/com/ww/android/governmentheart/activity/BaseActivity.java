@@ -58,7 +58,6 @@ public abstract class BaseActivity<V extends IView, M extends IModel> extends
         ToastUtils.showToast(text);
     }
 
-
     @Optional
     @OnClick({R.id.btn_title_left, R.id.btn_title_right})
     public void onTitleClick(View v) {

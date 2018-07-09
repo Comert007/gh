@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.ww.android.governmentheart.BaseApplication;
 import com.ww.android.governmentheart.R;
+import com.ww.android.governmentheart.activity.base.WebViewActivity;
 import com.ww.android.governmentheart.activity.heart.SearchActivity;
 import com.ww.android.governmentheart.mvp.bean.MultipleBean;
 import com.ww.android.governmentheart.mvp.bean.heart.NewsBean;
@@ -82,6 +83,8 @@ public class HomeAdapter extends RvAdapter<NewsBean> {
         TextView tvTime;
         @BindView(R.id.comment_container)
         LinearLayout commentContainer;
+        @BindView(R.id.container)
+        LinearLayout container;
 
         public HomeViewHolder(View itemView) {
             super(itemView);
@@ -95,6 +98,12 @@ public class HomeAdapter extends RvAdapter<NewsBean> {
             tvEyes.setText(bean.getViewNum());
             tvComment.setText(bean.getCommentNum());
             tvTime.setText(bean.getDate());
+            container.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    WebViewActivity.launch(getContext(),bean.getTitle(),bean.getLink());
+                }
+            });
         }
     }
 

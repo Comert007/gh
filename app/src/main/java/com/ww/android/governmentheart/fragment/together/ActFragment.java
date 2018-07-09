@@ -37,6 +37,11 @@ public class ActFragment extends BaseFragment<VoidView,VoidModel> {
     }
 
     @Override
+    protected boolean isLazyLoad() {
+        return true;
+    }
+
+    @Override
     protected void init() {
         leftAdapter = new ActLeftAdapter(getContext());
         rv.setLayoutManager(RecyclerHelper.defaultManager(getContext()));

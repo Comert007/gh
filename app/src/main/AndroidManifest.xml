@@ -6,10 +6,18 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
 
     <application
         android:name=".BaseApplication"
@@ -19,6 +27,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="zEGpisoeHWXlzcTuwwbcFlnUYWws4Cdb" />
+
+        <service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote"> </service>
+
         <activity android:name=".activity.MainActivity"
                   android:screenOrientation="portrait">
         </activity>
@@ -64,6 +79,11 @@
         <activity android:name=".activity.wisdom.ShowTransmissionActivity"
                   android:screenOrientation="portrait"/>
 
+        <!--用户位置-->
+        <activity android:name=".activity.home.UserLocationActivity"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".activity.base.WebViewActivity"/>
+
         <!--7.0权限适配-->
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -74,6 +94,8 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths"/>
         </provider>
+
+
 
     </application>
 

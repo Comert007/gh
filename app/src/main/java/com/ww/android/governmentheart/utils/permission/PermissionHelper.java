@@ -31,6 +31,7 @@ public class PermissionHelper {
                 .title("权限申请")
                 .permissions(permissions)
                 .msg(context.getResources().getString(R.string.permission_msg))
+                .style(R.style.PermissionRedStyle)
                 .filterColor(ResourcesCompat.getColor(context.getResources(), R.color
                         .colorPrimary, context.getTheme()))//permission icon color
                 .checkMutiPermission(permissionCallback);
