@@ -2,28 +2,46 @@ package com.ww.android.governmentheart.activity.heart;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.Nullable;
 
 import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.activity.BaseActivity;
 import com.ww.android.governmentheart.adapter.home.CommentsAdapter;
-import com.ww.android.governmentheart.config.ImmersionType;
-import com.ww.android.governmentheart.mvp.model.VoidModel;
-import com.ww.android.governmentheart.mvp.utils.RefreshType;
+import com.ww.android.governmentheart.config.type.ImmersionType;
+import com.ww.android.governmentheart.mvp.PageListBean;
+import com.ww.android.governmentheart.mvp.bean.PageBean;
+import com.ww.android.governmentheart.mvp.bean.PagingBean;
+import com.ww.android.governmentheart.mvp.bean.home.CommentBean;
+import com.ww.android.governmentheart.mvp.bean.home.EasyRequestBean;
+import com.ww.android.governmentheart.mvp.model.CommonModel;
 import com.ww.android.governmentheart.mvp.vu.RefreshView;
+import com.ww.android.governmentheart.network.BaseObserver;
 import com.ww.android.governmentheart.utils.RecyclerHelper;
 
-import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import ww.com.core.utils.TimeUtils;
 
 /**
  * @author feng
  * @Date 2018/6/23.
  */
-public class CommentsActivity extends BaseActivity<RefreshView,VoidModel> {
+public class CommentsActivity extends BaseActivity<RefreshView, CommonModel> {
 
     private CommentsAdapter adapter;
+    private int page;
+    private EasyRequestBean mEasyRequestBean;
+    // 需动态修改参数 列表获取id
+    private String id;
+    // type：1新闻类，2 参政议政，3 知识交流，4 活动，5 直播
+    private String type;
 
-    public static void start(Context context) {
+    public static void start(Context context,EasyRequestBean easyRequestBean) {
         Intent intent = new Intent(context, CommentsActivity.class);
+        intent.putExtra("easyRequestBean",easyRequestBean);
         context.startActivity(intent);
     }
 
@@ -34,6 +52,10 @@ public class CommentsActivity extends BaseActivity<RefreshView,VoidModel> {
 
     @Override
     protected void init() {
+        if (btnTitleLeft != null) {
+            btnTitleLeft.setTextSize(12);
+        }
+        initData();
         initListener();
         initRecycler();
     }
@@ -43,22 +65,94 @@ public class CommentsActivity extends BaseActivity<RefreshView,VoidModel> {
         super.onTitleLeft();
     }
 
+    private void initData(){
+        mEasyRequestBean = (EasyRequestBean) getIntent().getSerializableExtra("easyRequestBean");
+        id = mEasyRequestBean.id;
+        type = mEasyRequestBean.type;
+    }
+
     private void initListener() {
         if (v.srl == null) {
             return;
         }
-        v.setRefreshType(RefreshType.NOT_ENABLE);
+
+        v.srl.setOnRefreshListener(refreshLayout -> {
+            page =0;
+            comments();
+        });
+
+        v.srl.setOnLoadMoreListener(refreshLayout -> comments());
     }
 
     private void initRecycler() {
-        v.initRecycler(RecyclerHelper.gridManager(this,4));
+        v.initRecycler(RecyclerHelper.defaultManager(this), RecyclerHelper
+                .defaultSingleDecoration(this));
         adapter = new CommentsAdapter(this);
         v.crv.setAdapter(adapter);
-        adapter.addList(Arrays.asList("1","2","3","1","2","3","1","2","3"));
     }
 
     @Override
     protected int initDefaultImmersionType() {
         return ImmersionType.WHITE;
+    }
+
+    private void comments(){
+        Map map = new HashMap();
+        map.put("id",id);
+        map.put("pageNo",page);
+        map.put("t",type);
+        if (page == 0){
+            map.put("date", TimeUtils.date2String(new Date()));
+        }
+
+        if (v.srl == null){
+            return;
+        }
+        m.comments(map, new BaseObserver<PageListBean<CommentBean>>(this, bindToLifecycle()) {
+            @Override
+            protected void onSuccess(@Nullable PageListBean<CommentBean> commentBeanPageListBean,
+                                     @Nullable List<PageListBean<CommentBean>> list, @Nullable
+                                             PageBean<PageListBean<CommentBean>> pageBean) {
+
+                if (commentBeanPageListBean != null && commentBeanPageListBean.getList() != null) {
+                    List<CommentBean> commentBeans = commentBeanPageListBean.getList();
+                    PagingBean pagingBean = commentBeanPageListBean.getPage();
+                    int totalPage = pagingBean.getTotalPage();
+                    if (page == 0) {
+                        v.srl.finishRefresh();
+                        if (commentBeans != null && commentBeans.size() > 0) {
+                            adapter.addList(commentBeans);
+                            page++;
+                        } else {
+                            v.srl.setNoMoreData(true);
+                        }
+                    } else {
+                        v.srl.finishLoadMore();
+                        if (page < totalPage) {
+                            adapter.appendList(commentBeans);
+                            v.srl.setNoMoreData(false);
+                            page++;
+                        } else {
+                            v.srl.setNoMoreData(true);
+                        }
+                    }
+                }else {
+                    if (page == 0) {
+                        v.srl.finishRefresh();
+                    }else {
+                        v.srl.finishLoadMore();
+                    }
+                }
+            }
+
+            @Override
+            protected void onFailure() {
+                if (page == 0) {
+                    v.srl.finishRefresh();
+                }else {
+                    v.srl.finishLoadMore();
+                }
+            }
+        });
     }
 }

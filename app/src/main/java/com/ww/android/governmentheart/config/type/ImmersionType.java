@@ -1,4 +1,4 @@
-package com.ww.android.governmentheart.config;
+package com.ww.android.governmentheart.config.type;
 
 public interface ImmersionType {
     int WHITE = 0;

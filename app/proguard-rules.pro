@@ -19,3 +19,21 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-keep class com.baidu.** {*;}
+-keep class mapsdkvi.com.** {*;}
+-dontwarn com.baidu.**
+-dontwarn javax.annotation.**
+-dontwarn okhttp3.internal.platform.*
+-dontwarn okio.**
+-dontwarn com.squareup.picasso.**
+-dontwarn retrofit2.Platform$Java8
+##### -- Picasso --
+# -dontwarn com.squareup.picasso.**
+#
+# #### -- OkHttp --
+#
+# -dontwarn com.squareup.okhttp.internal.**
+#
+# #### -- Apache Commons --
+#
+# -dontwarn org.apache.commons.logging.**

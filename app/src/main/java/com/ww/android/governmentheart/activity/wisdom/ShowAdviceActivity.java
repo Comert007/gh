@@ -7,7 +7,7 @@ import android.support.annotation.Nullable;
 import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.activity.BaseActivity;
 import com.ww.android.governmentheart.adapter.wisdom.ShowImageAdapter;
-import com.ww.android.governmentheart.config.ImmersionType;
+import com.ww.android.governmentheart.config.type.ImmersionType;
 import com.ww.android.governmentheart.mvp.bean.PageBean;
 import com.ww.android.governmentheart.mvp.bean.wisdom.SuggestDetailBean;
 import com.ww.android.governmentheart.mvp.model.wisdom.WisdomModel;

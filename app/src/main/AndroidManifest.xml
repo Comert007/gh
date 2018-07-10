@@ -82,7 +82,15 @@
         <!--用户位置-->
         <activity android:name=".activity.home.UserLocationActivity"
                   android:screenOrientation="portrait"/>
-        <activity android:name=".activity.base.WebViewActivity"/>
+        <!--内容详情-->
+        <activity android:name=".activity.base.ContentDetailActivity"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustPan"
+            />
+
+        <!--web-->
+        <activity android:name=".activity.base.WebViewActivity"
+                  android:screenOrientation="portrait"/>
 
         <!--7.0权限适配-->
         <provider

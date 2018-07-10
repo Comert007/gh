@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.gyf.barlibrary.ImmersionBar;
 import com.ww.android.governmentheart.BaseApplication;
 import com.ww.android.governmentheart.R;
-import com.ww.android.governmentheart.config.ImmersionType;
+import com.ww.android.governmentheart.config.type.ImmersionType;
 import com.ww.android.governmentheart.mvp.model.IModel;
 import com.ww.android.governmentheart.mvp.presenter.PresenterActivity;
 import com.ww.android.governmentheart.mvp.vu.IView;

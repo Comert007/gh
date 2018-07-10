@@ -2,6 +2,7 @@ package com.ww.android.governmentheart.network.api;
 
 import com.ww.android.governmentheart.mvp.PageListBean;
 import com.ww.android.governmentheart.mvp.bean.ResponseBean;
+import com.ww.android.governmentheart.mvp.bean.home.CommentBean;
 import com.ww.android.governmentheart.mvp.bean.login.NewsTypeBean;
 import com.ww.android.governmentheart.mvp.bean.login.PassBean;
 import com.ww.android.governmentheart.mvp.bean.login.UserBean;
@@ -43,5 +44,16 @@ public interface LoginApi {
 
     @POST("news_category_child")
     Observable<ResponseBean<PageListBean<NewsTypeBean>>> newsCategoryChild(@Body  RequestBody body);
+
+    /**
+     * 评论列表
+     * @param body
+     * @return
+     */
+    @POST("commentList")
+    Observable<ResponseBean<PageListBean<CommentBean>>> comments(@Body  RequestBody body);
+
+    @POST("commentSave")
+    Observable<ResponseBean<String>> saveComment(@Body  RequestBody body);
 
 }

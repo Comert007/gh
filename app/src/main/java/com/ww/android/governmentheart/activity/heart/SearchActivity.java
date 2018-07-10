@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.activity.BaseActivity;
 import com.ww.android.governmentheart.adapter.home.SearchAdapter;
-import com.ww.android.governmentheart.config.ImmersionType;
+import com.ww.android.governmentheart.config.type.ImmersionType;
 import com.ww.android.governmentheart.mvp.model.VoidModel;
 import com.ww.android.governmentheart.mvp.utils.RefreshType;
 import com.ww.android.governmentheart.mvp.vu.home.SearchView;

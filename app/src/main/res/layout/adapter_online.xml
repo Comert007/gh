@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/margins"
+    android:background="@color/color_white"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="100dp"
+        android:layout_height="80dp">
+        <ImageView
+            android:id="@+id/iv"
+            android:src="@mipmap/ic_pic_default"
+            android:layout_width="100dp"
+            android:layout_marginRight="@dimen/margin_15"
+            android:layout_height="80dp"/>
+
+        <com.ww.android.governmentheart.widget.IconFontTextView
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/text_18"
+            android:text="\ue641"
+            android:layout_centerInParent="true"
+            android:textColor="@color/color_white"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="vertical"
+                  android:layout_height="80dp">
+
+        <TextView
+            android:id="@+id/tv_title_name"
+            android:layout_width="match_parent"
+            android:textSize="@dimen/text_15"
+            android:textColor="@color/color_black"
+            android:text="高度评价马克思的一生深刻影响 人类发展进程高度评价马克思的一生深刻影响 人类发展进程"
+            android:lineSpacingExtra="3dp"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:layout_height="wrap_content"/>
+
+        <View
+            android:layout_marginTop="10dp"
+            style="@style/ViewLineStyle"/>
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:gravity="bottom|center_vertical"
+                      android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:src="@mipmap/ic_eyes"
+                    android:layout_width="16dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_height="10dp"/>
+
+                <TextView
+                    android:id="@+id/tv_eyes"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/color_hint"
+                    android:textSize="@dimen/text_12"
+                    android:text="1234"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/comment_container"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:src="@mipmap/ic_comment"
+                    android:layout_width="16dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_height="10dp"/>
+
+                <TextView
+                    android:id="@+id/tv_comment"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.5"
+                    android:textColor="@color/color_hint"
+                    android:textSize="@dimen/text_12"
+                    android:text="1234"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:textColor="@color/color_hint"
+                android:textSize="@dimen/text_12"
+                android:text="2018-05-30"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

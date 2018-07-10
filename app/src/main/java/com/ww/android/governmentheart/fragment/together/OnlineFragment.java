@@ -17,7 +17,7 @@ import java.util.Arrays;
 /**
  * @Author feng
  * @Date 2018/6/16
- * 活动信息
+ * 在线直播
  */
 public class OnlineFragment extends BaseFragment<RefreshView,VoidModel> {
 
@@ -35,7 +35,7 @@ public class OnlineFragment extends BaseFragment<RefreshView,VoidModel> {
     }
 
     private void initListener(){
-        if (v.srl!=null){
+        if (v.srl==null){
             return;
         }
 

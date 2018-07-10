@@ -33,6 +33,7 @@ public abstract class BaseObserver<T> implements Observer<ResponseBean<T>> {
 
     private Context context;
     private LifecycleTransformer<ResponseBean<T>> transformer;
+    private ResponseBean<T> responseBean;
 
     public BaseObserver(Context context) {
         this.context = context;
@@ -73,6 +74,7 @@ public abstract class BaseObserver<T> implements Observer<ResponseBean<T>> {
 
     @Override
     public void onNext(ResponseBean<T> responseBean) {
+        this.responseBean = responseBean;
         if (responseBean != null) {
             if (responseBean.getStatus().equals(Constant.STATUS_OK)) {
                 resultSuccess(responseBean);
@@ -101,8 +103,11 @@ public abstract class BaseObserver<T> implements Observer<ResponseBean<T>> {
         onSuccess(responseBean.getDatas(),responseBean.getList(),responseBean.getPage());
     }
 
+    public ResponseBean<T> getResponseBean() {
+        return responseBean;
+    }
 
-    protected abstract void onSuccess(@Nullable T t,@Nullable  List<T> list,@Nullable  PageBean<T> page);
+    protected abstract void onSuccess(@Nullable T t, @Nullable  List<T> list, @Nullable  PageBean<T> page);
 
 
     public LifecycleTransformer<ResponseBean<T>> getTransformer() {

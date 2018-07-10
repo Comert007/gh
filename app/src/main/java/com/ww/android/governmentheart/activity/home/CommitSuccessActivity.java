@@ -2,7 +2,7 @@ package com.ww.android.governmentheart.activity.home;
 
 import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.activity.BaseActivity;
-import com.ww.android.governmentheart.config.ImmersionType;
+import com.ww.android.governmentheart.config.type.ImmersionType;
 import com.ww.android.governmentheart.mvp.model.VoidModel;
 import com.ww.android.governmentheart.mvp.vu.base.VoidView;
 

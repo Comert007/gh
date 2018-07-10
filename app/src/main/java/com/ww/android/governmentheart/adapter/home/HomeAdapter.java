@@ -9,10 +9,12 @@ import android.widget.TextView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.ww.android.governmentheart.BaseApplication;
 import com.ww.android.governmentheart.R;
-import com.ww.android.governmentheart.activity.base.WebViewActivity;
+import com.ww.android.governmentheart.activity.base.ContentDetailActivity;
 import com.ww.android.governmentheart.activity.heart.SearchActivity;
+import com.ww.android.governmentheart.config.type.CommentType;
 import com.ww.android.governmentheart.mvp.bean.MultipleBean;
 import com.ww.android.governmentheart.mvp.bean.heart.NewsBean;
+import com.ww.android.governmentheart.mvp.bean.home.EasyRequestBean;
 
 import butterknife.BindView;
 import ww.com.core.adapter.RvAdapter;
@@ -33,7 +35,7 @@ public class HomeAdapter extends RvAdapter<NewsBean> {
     protected int getItemLayoutResId(int viewType) {
         if (MultipleBean.MULTIPLE_HEADER == viewType) {
             return R.layout.adapter_heart_header;
-        } else  {
+        } else {
             return R.layout.adapter_heart_body;
         }
     }
@@ -47,7 +49,7 @@ public class HomeAdapter extends RvAdapter<NewsBean> {
     protected RvViewHolder<NewsBean> getViewHolder(int viewType, View view) {
         if (MultipleBean.MULTIPLE_HEADER == viewType) {
             return new HeaderViewHolder(view);
-        } else  {
+        } else {
             return new HomeViewHolder(view);
         }
     }
@@ -65,7 +67,7 @@ public class HomeAdapter extends RvAdapter<NewsBean> {
         @Override
         public void onBindData(int position, NewsBean bean) {
             tvClear.setOnClickListener(v -> SearchActivity.start(getContext()));
-            tvNum.setText("共"+bean.totalNum+"条");
+            tvNum.setText("共" + bean.totalNum + "条");
         }
     }
 
@@ -98,12 +100,13 @@ public class HomeAdapter extends RvAdapter<NewsBean> {
             tvEyes.setText(bean.getViewNum());
             tvComment.setText(bean.getCommentNum());
             tvTime.setText(bean.getDate());
-            container.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    WebViewActivity.launch(getContext(),bean.getTitle(),bean.getLink());
-                }
-            });
+            EasyRequestBean easyRequestBean = new EasyRequestBean.Builder()
+                    .setId(bean.getId())
+                    .setName(bean.getTitle())
+                    .setUrl(bean.getLink())
+                    .setType(CommentType.TYPE_NEWS)
+                    .build();
+            container.setOnClickListener(v -> ContentDetailActivity.start(getContext(),easyRequestBean));
         }
     }
 

@@ -74,4 +74,9 @@ public class DensityUtil {
     public float px2dip(int pxValue) {
         return (pxValue / density);
     }
+
+
+    public static int width (){
+        return Resources.getSystem().getDisplayMetrics().widthPixels;
+    }
 }  

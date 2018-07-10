@@ -8,6 +8,7 @@ import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.activity.home.UserLocationActivity;
 import com.ww.android.governmentheart.adapter.IndicatorPagerAdapter;
 import com.ww.android.governmentheart.fragment.together.ActFragment;
+import com.ww.android.governmentheart.fragment.together.OnlineFragment;
 import com.ww.android.governmentheart.mvp.PageListBean;
 import com.ww.android.governmentheart.mvp.bean.PageBean;
 import com.ww.android.governmentheart.mvp.bean.login.NewsTypeBean;
@@ -78,7 +79,7 @@ public class TogetherFragment extends BaseFragment<MagicIndicatorView, MainModel
         }
         fragments.add(JoinFragment.newInstance(this.mTypeBeans.get(0)));
         fragments.add(new ActFragment());
-        fragments.add(new Fragment());
+        fragments.add(new OnlineFragment());
     }
 
     private void newsCategory() {

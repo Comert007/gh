@@ -20,7 +20,7 @@ public class OnlineAdapter extends RvAdapter<String> {
 
     @Override
     protected int getItemLayoutResId(int viewType) {
-        return R.layout.adapter_default;
+        return R.layout.adapter_online;
     }
 
     @Override
