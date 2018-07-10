@@ -85,6 +85,7 @@ public class LoginActivity extends BaseActivity<LoginView, LoginModel> {
         }
 
         if (v.checkParams(phone,pass)){
+            showLoading();
             m.login(phone, pass, new BaseObserver<UserBean>(this,bindToLifecycle()) {
                 @Override
                 protected void onSuccess(@Nullable UserBean userBean, @Nullable List<UserBean> list, @Nullable PageBean<UserBean> page) {
@@ -92,6 +93,7 @@ public class LoginActivity extends BaseActivity<LoginView, LoginModel> {
 
                       BaseApplication.getInstance().saveUserInfo(userBean);
                       MainActivity.start(LoginActivity.this);
+                      cancelLoading();
                   }
                 }
             });

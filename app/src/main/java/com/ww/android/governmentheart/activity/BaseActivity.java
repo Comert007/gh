@@ -14,6 +14,7 @@ import com.ww.android.governmentheart.mvp.model.IModel;
 import com.ww.android.governmentheart.mvp.presenter.PresenterActivity;
 import com.ww.android.governmentheart.mvp.vu.IView;
 import com.ww.android.governmentheart.utils.ToastUtils;
+import com.ww.android.governmentheart.widget.dialog.LoadingDialog;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -38,6 +39,7 @@ public abstract class BaseActivity<V extends IView, M extends IModel> extends
     public Button btnTitleLeft;
 
     protected ImmersionBar mImmersionBar;
+    protected LoadingDialog mLoadingDialog;
 
 
     @Override
@@ -100,6 +102,19 @@ public abstract class BaseActivity<V extends IView, M extends IModel> extends
         }
     }
 
+
+    protected void showLoading(){
+        if (mLoadingDialog == null){
+            mLoadingDialog = new LoadingDialog(this);
+        }
+        mLoadingDialog.show();
+    }
+
+    protected void cancelLoading(){
+        if (mLoadingDialog!=null){
+            mLoadingDialog.dismiss();
+        }
+    }
 
     @Override
     protected void onDestroy() {
