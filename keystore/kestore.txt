@@ -1,0 +1,30 @@
+密钥库类型: JKS
+密钥库提供方: SUN
+
+您的密钥库包含 1 个条目
+
+别名: heart
+创建日期: 2018-7-9
+条目类型: PrivateKeyEntry
+证书链长度: 1
+证书[1]:
+所有者: C=CN
+发布者: C=CN
+序列号: 4a5244b2
+有效期开始日期: Mon Jul 09 11:19:55 CST 2018, 截止日期: Fri Jul 03 11:19:55 CST 2043
+证书指纹:
+         MD5: 26:38:14:DF:49:CD:99:45:AD:71:94:DA:B0:82:61:71
+         SHA1: 93:CE:41:D0:36:B3:DE:91:34:78:A0:23:D1:D9:81:B4:60:03:72:A6
+         SHA256: 56:39:95:D3:64:60:24:38:9B:A5:B9:48:DA:C9:22:4D:70:CC:68:39:C4:AF:18:C0:3E:A7:72:51:77:AA:EC:3E
+         签名算法名称: SHA256withRSA
+         版本: 3
+
+扩展:
+
+#1: ObjectId: 2.5.29.14 Criticality=false
+SubjectKeyIdentifier [
+KeyIdentifier [
+0000: 45 F0 9C 8C E2 06 9D 74   CC 01 89 B0 63 E4 0B B0  E......t....c...
+0010: 05 77 B6 0F                                        .w..
+]
+]
