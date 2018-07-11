@@ -9,7 +9,10 @@ import android.widget.TextView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.ww.android.governmentheart.BaseApplication;
 import com.ww.android.governmentheart.R;
+import com.ww.android.governmentheart.activity.base.ContentDetailActivity;
+import com.ww.android.governmentheart.config.type.CommentType;
 import com.ww.android.governmentheart.mvp.bean.heart.NewsBean;
+import com.ww.android.governmentheart.mvp.bean.home.EasyRequestBean;
 
 import butterknife.BindView;
 import ww.com.core.adapter.RvAdapter;
@@ -44,6 +47,8 @@ public class HeartAdapter extends RvAdapter<NewsBean> {
         TextView tvTime;
         @BindView(R.id.comment_container)
         LinearLayout commentContainer;
+        @BindView(R.id.container)
+        LinearLayout container;
 
 
         public HeartViewHolder(View itemView) {
@@ -59,6 +64,14 @@ public class HeartAdapter extends RvAdapter<NewsBean> {
             tvComment.setText(bean.getCommentNum());
             tvTime.setText(bean.getDate());
 
+
+            EasyRequestBean easyRequestBean = new EasyRequestBean.Builder()
+                    .setId(bean.getId())
+                    .setName(bean.getTitle())
+                    .setUrl(bean.getLink())
+                    .setType(CommentType.TYPE_NEWS)
+                    .build();
+            container.setOnClickListener(v -> ContentDetailActivity.start(getContext(),easyRequestBean));
         }
     }
 }

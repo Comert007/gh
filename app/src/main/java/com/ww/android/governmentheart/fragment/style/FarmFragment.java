@@ -18,6 +18,7 @@ import com.ww.android.governmentheart.mvp.model.CommonModel;
 import com.ww.android.governmentheart.mvp.vu.RefreshView;
 import com.ww.android.governmentheart.network.BaseObserver;
 import com.ww.android.governmentheart.utils.RecyclerHelper;
+import com.ww.android.governmentheart.widget.EmptyLayout;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -30,7 +31,7 @@ import ww.com.core.utils.TimeUtils;
  * @Author feng
  * @Date 2018/6/17
  */
-public class FarmFragment extends BaseFragment<RefreshView,CommonModel> {
+public class FarmFragment extends BaseFragment<RefreshView, CommonModel> {
 
     private FarmAdapter adapter;
     private int page;
@@ -57,7 +58,7 @@ public class FarmFragment extends BaseFragment<RefreshView,CommonModel> {
 
     @Override
     protected void init() {
-        code = getArguments().getString("code","0");
+        code = getArguments().getString("code", "0");
         initListener();
         initRecycler();
         v.srl.autoRefresh();
@@ -71,8 +72,8 @@ public class FarmFragment extends BaseFragment<RefreshView,CommonModel> {
         v.srl.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-               page = 0;
-               news();
+                page = 0;
+                news();
             }
         });
 
@@ -85,19 +86,20 @@ public class FarmFragment extends BaseFragment<RefreshView,CommonModel> {
     }
 
     private void initRecycler() {
-        v.initRecycler(RecyclerHelper.defaultManager(getContext()),RecyclerHelper.defaultMoreDecoration(getContext()));
+        v.initRecycler(RecyclerHelper.defaultManager(getContext()), RecyclerHelper
+                .defaultMoreDecoration(getContext()));
         adapter = new FarmAdapter(getContext());
         v.crv.setAdapter(adapter);
     }
 
-    private void news(){
+    private void news() {
         Map map = new HashMap();
-        map.put("code",code);
-        map.put("pageNo",page);
-        if (page == 0){
+        map.put("code", code);
+        map.put("pageNo", page);
+        if (page == 0) {
             map.put("date", TimeUtils.date2String(new Date()));
         }
-        if (v.srl == null){
+        if (v.srl == null) {
             return;
         }
         m.news(map, new BaseObserver<PageListBean<NewsBean>>(getContext(), bindToLifecycle()) {
@@ -106,7 +108,9 @@ public class FarmFragment extends BaseFragment<RefreshView,CommonModel> {
                                      @Nullable List<PageListBean<NewsBean>> list, @Nullable
                                              PageBean<PageListBean<NewsBean>> pageBean) {
 
-                if (newsBeanPageListBean != null && newsBeanPageListBean.getList() != null) {
+                if (newsBeanPageListBean != null && newsBeanPageListBean.getList() != null &&
+                        newsBeanPageListBean.getList().size() > 0) {
+                    v.loadStatus(EmptyLayout.STATUS_HIDE);
                     List<NewsBean> newsBeans = newsBeanPageListBean.getList();
                     PagingBean pagingBean = newsBeanPageListBean.getPage();
                     int totalPage = pagingBean.getTotalPage();
@@ -128,8 +132,36 @@ public class FarmFragment extends BaseFragment<RefreshView,CommonModel> {
                             v.srl.setNoMoreData(true);
                         }
                     }
+                }else {
+                    reload(EmptyLayout.STATUS_NO_DATA);
                 }
+            }
+
+            @Override
+            protected void onFailure() {
+                super.onFailure();
+                reload(EmptyLayout.STATUS_NO_NET);
             }
         });
     }
+
+    private void reload(int type) {
+        if (type == EmptyLayout.STATUS_NO_NET) {
+            v.loadStatus(EmptyLayout.STATUS_NO_NET);
+        } else {
+            v.loadStatus(EmptyLayout.STATUS_NO_DATA);
+        }
+        v.mEmptyLayout.setRetryListener(new EmptyLayout.OnRetryListener() {
+            @Override
+            public void onRetry() {
+                news();
+            }
+        });
+        if (page == 0) {
+            v.srl.finishRefresh();
+        } else {
+            v.srl.finishLoadMore();
+        }
+    }
+
 }

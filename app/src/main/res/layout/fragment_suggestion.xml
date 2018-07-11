@@ -5,22 +5,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.scwang.smartrefresh.layout.SmartRefreshLayout
-        android:id="@+id/srl"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:srlEnableLoadMoreWhenContentNotFull="false">
+        android:layout_height="match_parent">
 
-        <ww.com.core.widget.CustomRecyclerView
-            android:id="@+id/crv"
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/srl"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+            android:layout_height="wrap_content"
+            app:srlEnableLoadMoreWhenContentNotFull="false">
+
+            <ww.com.core.widget.CustomRecyclerView
+                android:id="@+id/crv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+        <com.ww.android.governmentheart.widget.EmptyLayout
+            android:id="@+id/ev"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:background_color="@color/color_divider"/>
+    </FrameLayout>
+
+
 
     <Button
         android:id="@+id/btn_suggestion"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="@dimen/margin_20"

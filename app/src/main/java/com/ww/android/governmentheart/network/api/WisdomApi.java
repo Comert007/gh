@@ -8,10 +8,19 @@ import com.ww.android.governmentheart.mvp.bean.wisdom.TransmissionBean;
 import com.ww.android.governmentheart.mvp.bean.wisdom.TransmissionDetailBean;
 import com.ww.android.governmentheart.mvp.bean.wisdom.UploadBean;
 
+import java.util.List;
+
 import io.reactivex.Observable;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
+import retrofit2.http.Query;
 
 /**
  * @author feng
@@ -38,7 +47,28 @@ public interface WisdomApi {
      * @return
      */
     @POST("upload")
-    Observable<ResponseBean<PageListBean<UploadBean>>> upload(@Body RequestBody body);
+    Observable<ResponseBean<UploadBean>> upload(@Body RequestBody body);
+
+
+    /**
+     * 2.15.	上传附件
+     * @return
+     */
+    @POST("uploadFiles")
+    Observable<ResponseBean<PageListBean<UploadBean>>> uploadFiles(@Body MultipartBody body);
+
+
+    /**
+     * 2.15.	上传附件
+     * @return
+     */
+    @Multipart
+    @POST("uploadFiles")
+    Observable<ResponseBean<PageListBean<UploadBean>>> uploadFiles(@Part() List<MultipartBody.Part> parts);
+
+
+    @GET("download")
+    Call<ResponseBody> download(@Query("fileId") String fileId);
 
 
     /**

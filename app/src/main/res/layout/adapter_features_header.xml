@@ -2,11 +2,16 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_marginBottom="@dimen/margin_5_right"
-    android:layout_height="wrap_content">
-    <RelativeLayout android:layout_width="match_parent"
-                    android:layout_height="180dp">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/margin_5_right">
+
+    <RelativeLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="180dp">
+
         <ImageView
+            android:id="@+id/iv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@mipmap/ic_pic_default"/>
@@ -15,30 +20,34 @@
         <include layout="@layout/layout_eyes"/>
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true">
 
-        <LinearLayout android:layout_width="match_parent"
-                      android:layout_alignParentBottom="true"
-                      android:layout_height="30dp">
+            <TextView
+                android:id="@+id/tv_des"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/color_black_40"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/margins"
+                android:paddingRight="@dimen/margins"
+                android:singleLine="true"
+                android:text="崇州拥有全四川范围内面积最大的油菜花欣赏"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/text_12"/>
 
-            <TextView android:layout_width="0dp"
-                      android:layout_weight="1"
-                      android:paddingLeft="@dimen/margins"
-                      android:paddingRight="@dimen/margins"
-                      android:ellipsize="end"
-                      android:gravity="center_vertical"
-                      android:textColor="@color/color_white"
-                      android:textSize="@dimen/text_12"
-                      android:text="崇州拥有全四川范围内面积最大的油菜花欣赏"
-                      android:background="@color/color_black_40"
-                      android:layout_height="match_parent"/>
-
-            <TextView android:layout_width="45dp"
-                      android:gravity="center"
-                      android:text="详情"
-                      android:textColor="@color/color_white"
-                      android:textSize="@dimen/text_12"
-                      android:background="@color/color_black_60"
-                      android:layout_height="match_parent"/>
+            <TextView
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:background="@color/color_black_60"
+                android:gravity="center"
+                android:text="详情"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/text_12"/>
 
         </LinearLayout>
 

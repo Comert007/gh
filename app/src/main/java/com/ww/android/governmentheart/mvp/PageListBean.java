@@ -32,4 +32,5 @@ public class PageListBean<T> {
     public void setPage(PagingBean page) {
         this.page = page;
     }
+
 }

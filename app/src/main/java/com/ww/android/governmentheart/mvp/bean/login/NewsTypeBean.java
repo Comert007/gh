@@ -25,6 +25,11 @@ public class NewsTypeBean extends MultipleBean implements Serializable{
     private String name;
     private String code;
     private int ac;
+
+    //custom param
+    @Nullable
+    private String image;
+
     @Nullable
     private List<NewsBean> news;
 
@@ -62,6 +67,14 @@ public class NewsTypeBean extends MultipleBean implements Serializable{
 
     public void setAc(int ac) {
         this.ac = ac;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     @Nullable

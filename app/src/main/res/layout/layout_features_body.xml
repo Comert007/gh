@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:id="@+id/container"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
@@ -27,6 +28,8 @@
         android:singleLine="true"
         android:text="白塔湖特色鲶鱼"
         android:textColor="@color/color_black"
+        android:paddingLeft="@dimen/margin_15"
+        android:paddingBottom="@dimen/margin_5"
         android:textSize="@dimen/text_15"
         android:layout_marginTop="5dp"
         android:layout_width="wrap_content"

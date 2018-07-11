@@ -2,6 +2,7 @@ package com.ww.android.governmentheart.network.api;
 
 import com.ww.android.governmentheart.mvp.PageListBean;
 import com.ww.android.governmentheart.mvp.bean.ResponseBean;
+import com.ww.android.governmentheart.mvp.bean.heart.NewsBean;
 import com.ww.android.governmentheart.mvp.bean.home.CommentBean;
 import com.ww.android.governmentheart.mvp.bean.login.NewsTypeBean;
 import com.ww.android.governmentheart.mvp.bean.login.PassBean;
@@ -21,6 +22,7 @@ public interface LoginApi {
 
     /**
      * 电话号码 获取短信验证码
+     *
      * @return
      */
     @POST("initpass")
@@ -32,10 +34,11 @@ public interface LoginApi {
      * @return
      */
     @POST("login")
-    Observable<ResponseBean<UserBean>> login(@Body  RequestBody body);
+    Observable<ResponseBean<UserBean>> login(@Body RequestBody body);
 
     /**
      * 新闻分类
+     *
      * @return
      */
     @POST("news_category")
@@ -43,17 +46,26 @@ public interface LoginApi {
 
 
     @POST("news_category_child")
-    Observable<ResponseBean<PageListBean<NewsTypeBean>>> newsCategoryChild(@Body  RequestBody body);
+    Observable<ResponseBean<PageListBean<NewsTypeBean>>> newsCategoryChild(@Body RequestBody body);
 
     /**
      * 评论列表
+     *
      * @param body
      * @return
      */
     @POST("commentList")
-    Observable<ResponseBean<PageListBean<CommentBean>>> comments(@Body  RequestBody body);
+    Observable<ResponseBean<PageListBean<CommentBean>>> comments(@Body RequestBody body);
 
     @POST("commentSave")
-    Observable<ResponseBean<String>> saveComment(@Body  RequestBody body);
+    Observable<ResponseBean<String>> saveComment(@Body RequestBody body);
+
+    /**
+     * 根据分类获取推荐位
+     * @param body
+     * @return
+     */
+    @POST("getRecommend")
+    Observable<ResponseBean<PageListBean<NewsBean>>> recommend(@Body RequestBody body);
 
 }

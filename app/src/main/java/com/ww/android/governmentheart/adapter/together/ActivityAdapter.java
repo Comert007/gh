@@ -3,11 +3,16 @@ package com.ww.android.governmentheart.adapter.together;
 import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.ww.android.governmentheart.BaseApplication;
 import com.ww.android.governmentheart.R;
+import com.ww.android.governmentheart.activity.base.ContentDetailActivity;
+import com.ww.android.governmentheart.config.listener.OnActionListener;
+import com.ww.android.governmentheart.config.type.CommentType;
+import com.ww.android.governmentheart.mvp.bean.home.EasyRequestBean;
 import com.ww.android.governmentheart.mvp.bean.together.ActBean;
 
 import butterknife.BindView;
@@ -20,8 +25,14 @@ import ww.com.core.adapter.RvViewHolder;
  */
 public class ActivityAdapter extends RvAdapter<ActBean> {
 
+    private OnActionListener mOnActionListener;
+
     public ActivityAdapter(Context context) {
         super(context);
+    }
+
+    public void setOnActionListener(OnActionListener onActionListener) {
+        mOnActionListener = onActionListener;
     }
 
     @Override
@@ -45,6 +56,10 @@ public class ActivityAdapter extends RvAdapter<ActBean> {
         TextView tvTime;
         @BindView(R.id.tv_origin_name)
         TextView tvOriginName;
+        @BindView(R.id.tv_join)
+        TextView tvJoin;
+        @BindView(R.id.container)
+        LinearLayout container;
 
         public PublishViewHolder(View itemView) {
             super(itemView);
@@ -59,6 +74,20 @@ public class ActivityAdapter extends RvAdapter<ActBean> {
 //            tvTimeDelay.setText("还有"+bean.getDate()+"天开始");
             tvTime.setText("时间："+bean.getDate());
 //            tvOriginName.setText(bean.get);
+
+            tvJoin.setOnClickListener(v -> {
+                if (mOnActionListener!=null){
+                    mOnActionListener.onAction(tvJoin,getAdapterPosition());
+                }
+            });
+
+            EasyRequestBean easyRequestBean = new EasyRequestBean.Builder()
+                    .setId(bean.getId())
+                    .setName(bean.getTitle())
+                    .setUrl(bean.getUrl())
+                    .setType(CommentType.TYPE_ACT)
+                    .build();
+            container.setOnClickListener(v -> ContentDetailActivity.start(getContext(),easyRequestBean));
         }
     }
 }

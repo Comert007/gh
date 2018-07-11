@@ -39,6 +39,7 @@ public class FeaturesFragment extends BaseFragment<RefreshView, CommonModel> {
     private String code; // code:1 方针，2 统战知识，3 权威解读， 4 政策库 5 崇州特色 6 农副产品 7 电商介绍 8 人物访谈 9加入我（加入组织）
     private int page;
     private NewsTypeBean mTypeBean;
+    private List<NewsBean> headerNews;
 
     @Override
     protected int getLayoutResId() {
@@ -67,7 +68,7 @@ public class FeaturesFragment extends BaseFragment<RefreshView, CommonModel> {
         v.setRefreshType(RefreshType.REFRESH);
         initListener();
         initRecycler();
-        v.srl.autoRefresh();
+        recommend();
     }
 
     private void initListener() {
@@ -78,7 +79,7 @@ public class FeaturesFragment extends BaseFragment<RefreshView, CommonModel> {
         v.srl.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                page =0;
+                page = 0;
                 news();
             }
         });
@@ -100,15 +101,15 @@ public class FeaturesFragment extends BaseFragment<RefreshView, CommonModel> {
     }
 
 
-//
+    //
     private void news() {
         Map map = new HashMap();
-        map.put("code",code);
-        map.put("pageNo",page);
-        if (page == 0){
+        map.put("code", code);
+        map.put("pageNo", page);
+        if (page == 0) {
             map.put("date", TimeUtils.date2String(new Date()));
         }
-        if (v.srl == null){
+        if (v.srl == null) {
             return;
         }
         m.news(map, new BaseObserver<PageListBean<NewsBean>>(getContext(), bindToLifecycle()) {
@@ -127,6 +128,7 @@ public class FeaturesFragment extends BaseFragment<RefreshView, CommonModel> {
                         if (newsBeans != null && newsBeans.size() > 0) {
                             List<NewsTypeBean> newsTypeBeans = new ArrayList<>();
                             NewsTypeBean header = new NewsTypeBean(NewsTypeBean.MULTIPLE_HEADER);
+                            header.setNews(headerNews);
                             NewsTypeBean body = new NewsTypeBean(NewsTypeBean.MULTIPLE_BODY);
                             newsBeans = setType(newsBeans);
                             body.setNews(newsBeans);
@@ -149,6 +151,25 @@ public class FeaturesFragment extends BaseFragment<RefreshView, CommonModel> {
 //                        }
 //                    }
                 }
+            }
+        });
+    }
+
+    /**
+     * 获取推荐位
+     */
+    private void recommend() {
+        Map map = new HashMap();
+        map.put("code", code);
+        m.recommend(map, new BaseObserver<PageListBean<NewsBean>>(getContext(), bindToLifecycle()) {
+            @Override
+            protected void onSuccess(@Nullable PageListBean<NewsBean> newsBeanPageListBean,
+                                     @Nullable List<PageListBean<NewsBean>> list, @Nullable
+                                             PageBean<PageListBean<NewsBean>> page) {
+                if (newsBeanPageListBean != null) {
+                    headerNews = newsBeanPageListBean.getList();
+                }
+                news();
             }
         });
     }

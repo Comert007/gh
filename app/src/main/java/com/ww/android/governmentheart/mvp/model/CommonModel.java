@@ -15,10 +15,11 @@ public class CommonModel extends BaseModel {
 
     /**
      * 新闻列表
+     *
      * @param map
      * @param observer
      */
-    public void news(Map map, BaseObserver<PageListBean<NewsBean>> observer){
+    public void news(Map map, BaseObserver<PageListBean<NewsBean>> observer) {
         HttpRequest.heartApi().news(JsonParse.createArgs(map))
                 .compose(RxSchedulers.cutObservableMain())
                 .compose(observer.getTransformer())
@@ -29,10 +30,11 @@ public class CommonModel extends BaseModel {
 
     /**
      * 评论列表
+     *
      * @param map
      * @param observer
      */
-    public void comments(Map map, BaseObserver<PageListBean<CommentBean>> observer){
+    public void comments(Map map, BaseObserver<PageListBean<CommentBean>> observer) {
         HttpRequest.loginApi().comments(JsonParse.createArgs(map))
                 .compose(RxSchedulers.cutObservableMain())
                 .compose(observer.getTransformer())
@@ -41,11 +43,23 @@ public class CommonModel extends BaseModel {
 
     /**
      * 保存评论
+     *
      * @param map
      * @param observer
      */
-    public void saveComment(Map map, BaseObserver<String> observer){
+    public void saveComment(Map map, BaseObserver<String> observer) {
         HttpRequest.loginApi().saveComment(JsonParse.createArgs(map))
+                .compose(RxSchedulers.cutObservableMain())
+                .compose(observer.getTransformer())
+                .subscribe(observer);
+    }
+
+
+    /**
+     * openapi/getRecommend?args={"code":"5"} 按分类码获取 推荐位
+     */
+    public void recommend(Map map,BaseObserver<PageListBean<NewsBean>> observer) {
+        HttpRequest.loginApi().recommend(JsonParse.createArgs(map))
                 .compose(RxSchedulers.cutObservableMain())
                 .compose(observer.getTransformer())
                 .subscribe(observer);

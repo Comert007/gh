@@ -61,7 +61,7 @@ public class ActFragment extends BaseFragment<VoidView,VoidModel> {
             fragments.add(ActivityFragment.newInstance((i+1)+""));
         }
 
-        menuAdapter = new PartMenuAdapter(getActivity(),fragments,R.id.main_content);
+        menuAdapter = new PartMenuAdapter(this,fragments,R.id.main_content);
         leftAdapter.setOnMenuChangeListener(new ActLeftAdapter.OnMenuChangeListener() {
             @Override
             public void onMenuChange(int position) {

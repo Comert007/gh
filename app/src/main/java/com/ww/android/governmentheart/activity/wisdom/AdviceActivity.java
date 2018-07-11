@@ -120,12 +120,11 @@ public class AdviceActivity extends BaseActivity<AdviceView, WisdomModel> {
             return;
         }
 
-        Map map = new HashMap();
+        List<File> files = new ArrayList<>();
         for (String path : paths) {
-            map.put("file", new File(path));
+            files.add(new File(path));
         }
-
-        m.upload(map, new BaseObserver<PageListBean<UploadBean>>(this, bindToLifecycle()) {
+        m.uploadFiles(files, new BaseObserver<PageListBean<UploadBean>>(this, bindToLifecycle()) {
             @Override
             protected void onSuccess(@Nullable PageListBean<UploadBean> uploadBeanPageListBean,
                                      @Nullable List<PageListBean<UploadBean>> list, @Nullable
@@ -153,6 +152,7 @@ public class AdviceActivity extends BaseActivity<AdviceView, WisdomModel> {
                     PageBean<String> page) {
                 showToast(TextUtils.isEmpty(getResponseBean().getMsg()) ? "创建成功" :
                         getResponseBean().getMsg());
+                finish();
             }
         });
     }

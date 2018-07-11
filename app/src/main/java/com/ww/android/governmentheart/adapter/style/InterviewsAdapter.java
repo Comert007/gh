@@ -2,12 +2,16 @@ package com.ww.android.governmentheart.adapter.style;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.ww.android.governmentheart.BaseApplication;
 import com.ww.android.governmentheart.R;
+import com.ww.android.governmentheart.activity.base.ContentDetailActivity;
+import com.ww.android.governmentheart.config.type.CommentType;
 import com.ww.android.governmentheart.mvp.bean.heart.NewsBean;
+import com.ww.android.governmentheart.mvp.bean.home.EasyRequestBean;
 
 import butterknife.BindView;
 import ww.com.core.adapter.RvAdapter;
@@ -45,6 +49,8 @@ public class InterviewsAdapter extends RvAdapter<NewsBean> {
         TextView tvTime;
         @BindView(R.id.tv_address)
         TextView tvAddress;
+        @BindView(R.id.container)
+        LinearLayout container;
 
         public InterviewsViewHolder(View itemView) {
             super(itemView);
@@ -58,6 +64,14 @@ public class InterviewsAdapter extends RvAdapter<NewsBean> {
             tvDes.setText(bean.getDescription());
             tvTime.setText("时间：");
             tvAddress.setText("地点：");
+
+            EasyRequestBean easyRequestBean = new EasyRequestBean.Builder()
+                    .setId(bean.getId())
+                    .setName(bean.getTitle())
+                    .setUrl(bean.getLink())
+                    .setType(CommentType.TYPE_NEWS)
+                    .build();
+            container.setOnClickListener(v -> ContentDetailActivity.start(getContext(),easyRequestBean));
         }
     }
 }

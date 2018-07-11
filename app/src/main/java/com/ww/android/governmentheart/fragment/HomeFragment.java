@@ -17,6 +17,7 @@ import com.ww.android.governmentheart.mvp.model.CommonModel;
 import com.ww.android.governmentheart.mvp.vu.RefreshView;
 import com.ww.android.governmentheart.network.BaseObserver;
 import com.ww.android.governmentheart.utils.RecyclerHelper;
+import com.ww.android.governmentheart.widget.EmptyLayout;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -103,7 +104,9 @@ public class HomeFragment extends BaseFragment<RefreshView, CommonModel> {
                                      @Nullable List<PageListBean<NewsBean>> list, @Nullable
                                              PageBean<PageListBean<NewsBean>> pageBean) {
 
-                if (newsBeanPageListBean != null && newsBeanPageListBean.getList() != null) {
+                if (newsBeanPageListBean != null && newsBeanPageListBean.getList() != null
+                        && newsBeanPageListBean.getList().size()>0) {
+                    v.loadStatus(EmptyLayout.STATUS_HIDE);
                     List<NewsBean> newsBeans = setType(newsBeanPageListBean.getList());
                     PagingBean pagingBean = newsBeanPageListBean.getPage();
                     int totalPage = pagingBean.getTotalPage();
@@ -128,17 +131,15 @@ public class HomeFragment extends BaseFragment<RefreshView, CommonModel> {
                             v.srl.setNoMoreData(true);
                         }
                     }
+                }else {
+                    reload(EmptyLayout.STATUS_NO_DATA);
                 }
             }
 
             @Override
             protected void onFailure() {
                 super.onFailure();
-                if (page == 0){
-                    v.srl.finishRefresh(false);
-                }else {
-                    v.srl.finishLoadMore(false);
-                }
+                reload(EmptyLayout.STATUS_NO_NET);
             }
         });
     }
@@ -148,5 +149,24 @@ public class HomeFragment extends BaseFragment<RefreshView, CommonModel> {
             newsBean.setItemType(NewsBean.MULTIPLE_BODY);
         }
         return newsBeans;
+    }
+
+    private void reload(int type){
+        if (type == EmptyLayout.STATUS_NO_NET){
+            v.loadStatus(EmptyLayout.STATUS_NO_NET);
+        }else {
+            v.loadStatus(EmptyLayout.STATUS_NO_DATA);
+        }
+        v.mEmptyLayout.setRetryListener(new EmptyLayout.OnRetryListener() {
+            @Override
+            public void onRetry() {
+                news();
+            }
+        });
+        if (page == 0) {
+            v.srl.finishRefresh();
+        } else {
+            v.srl.finishLoadMore();
+        }
     }
 }

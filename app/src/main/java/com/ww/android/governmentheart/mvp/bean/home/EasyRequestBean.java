@@ -12,6 +12,7 @@ public class EasyRequestBean implements Serializable {
     public String type;
     public String name;
     public String url;
+    public int num;
 
 
     public static class Builder {
@@ -20,6 +21,7 @@ public class EasyRequestBean implements Serializable {
         private String type;
         private String name;
         private String url;
+        private int num;
 
         public Builder setId(String id) {
             this.id = id;
@@ -41,12 +43,18 @@ public class EasyRequestBean implements Serializable {
             return this;
         }
 
+        public Builder setNum(int num) {
+            this.num = num;
+            return this;
+        }
+
         public EasyRequestBean build() {
             EasyRequestBean easyRequestBean = new EasyRequestBean();
             easyRequestBean.id = id;
             easyRequestBean.name = name;
             easyRequestBean.type = type;
             easyRequestBean.url = url;
+            easyRequestBean.num = num;
             return easyRequestBean;
         }
     }

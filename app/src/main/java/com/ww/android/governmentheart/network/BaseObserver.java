@@ -79,18 +79,10 @@ public abstract class BaseObserver<T> implements Observer<ResponseBean<T>> {
             if (responseBean.getStatus().equals(Constant.STATUS_OK)) {
                 resultSuccess(responseBean);
             } else {
-                try {
-                    throw new ApiException(responseBean.getStatus(), responseBean.getMsg());
-                } catch (ApiException e) {
-                    e.printStackTrace();
-                }
+                onError(new ApiException(responseBean.getStatus(), responseBean.getMsg()));
             }
         } else {
-            try {
-                throw new ApiException(ApiException.UNKNOWN_HOST_CODE, UNKNOWN_HOST_EXCEPTION);
-            } catch (ApiException e) {
-                e.printStackTrace();
-            }
+            onError(new ApiException(ApiException.UNKNOWN_HOST_CODE, UNKNOWN_HOST_EXCEPTION));
         }
     }
 

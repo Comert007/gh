@@ -15,6 +15,7 @@ public class PartMenuAdapter {
 
     private List<Fragment> mMenuFragment;
     private FragmentActivity mFragmentActivity;
+    private Fragment mFragment;
     private int mFragmentContentId;
     private int mCurrentMenu = -1;
     private boolean mAnimationFlag = false;
@@ -28,6 +29,14 @@ public class PartMenuAdapter {
                            List<Fragment> list, int fragmentContentId) {
         this.mMenuFragment = list;
         this.mFragmentActivity = activity;
+        this.mFragmentContentId = fragmentContentId;
+    }
+
+
+    public PartMenuAdapter(Fragment fragment,
+                           List<Fragment> list, int fragmentContentId) {
+        this.mMenuFragment = list;
+        this.mFragment = fragment;
         this.mFragmentContentId = fragmentContentId;
     }
 
@@ -104,8 +113,12 @@ public class PartMenuAdapter {
      * @return object of FragmentTransaction
      */
     private FragmentTransaction obtainFragmentTransaction(int index) {
-        FragmentTransaction ft = this.mFragmentActivity
-                .getSupportFragmentManager().beginTransaction();
+        FragmentTransaction ft =null;
+        if (mFragmentActivity !=null){
+            ft = this.mFragmentActivity.getSupportFragmentManager().beginTransaction();
+        }else {
+            ft = this.mFragment.getChildFragmentManager().beginTransaction();
+        }
         if (this.mAnimationFlag) {
             // set animation
             if (index > mCurrentMenu) {

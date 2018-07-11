@@ -13,6 +13,19 @@
         app:titleRightIco="@mipmap/ic_user"
         app:titleText="心联汇"/>
 
-    <include layout="@layout/layout_refresh"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/layout_refresh"/>
+
+        <com.ww.android.governmentheart.widget.EmptyLayout
+            android:id="@+id/ev"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:background_color="@color/color_divider"/>
+    </FrameLayout>
+
+
 
 </LinearLayout>

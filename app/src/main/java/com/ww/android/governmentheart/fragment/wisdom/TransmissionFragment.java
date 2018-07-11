@@ -18,6 +18,7 @@ import com.ww.android.governmentheart.mvp.bean.wisdom.TransmissionBean;
 import com.ww.android.governmentheart.mvp.model.wisdom.WisdomModel;
 import com.ww.android.governmentheart.mvp.vu.RefreshView;
 import com.ww.android.governmentheart.network.BaseObserver;
+import com.ww.android.governmentheart.widget.EmptyLayout;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -101,8 +102,10 @@ public class TransmissionFragment extends BaseFragment<RefreshView, WisdomModel>
                                              List<PageListBean<TransmissionBean>> list, @Nullable
                                              PageBean<PageListBean<TransmissionBean>> pageBean) {
 
-                if (transmissionBeanPageListBean != null && transmissionBeanPageListBean.getList() != null) {
-                    List<TransmissionBean> transmissionBeans = transmissionBeanPageListBean.getList();
+                if (transmissionBeanPageListBean != null && transmissionBeanPageListBean.getList
+                        () != null && transmissionBeanPageListBean.getList().size() > 0) {
+                    List<TransmissionBean> transmissionBeans = transmissionBeanPageListBean
+                            .getList();
                     PagingBean pagingBean = transmissionBeanPageListBean.getPage();
                     int totalPage = pagingBean.getTotalPage();
                     if (page == 0) {
@@ -123,12 +126,36 @@ public class TransmissionFragment extends BaseFragment<RefreshView, WisdomModel>
                             v.srl.setNoMoreData(true);
                         }
                     }
-                }else {
+                } else {
+                    v.loadStatus(EmptyLayout.STATUS_NO_DATA);
+                    v.mEmptyLayout.setRetryListener(new EmptyLayout.OnRetryListener() {
+                        @Override
+                        public void onRetry() {
+                            material();
+                        }
+                    });
                     if (page == 0) {
                         v.srl.finishRefresh();
-                    }else {
+                    } else {
                         v.srl.finishLoadMore();
                     }
+                }
+            }
+
+            @Override
+            protected void onFailure() {
+                super.onFailure();
+                v.loadStatus(EmptyLayout.STATUS_NO_NET);
+                v.mEmptyLayout.setRetryListener(new EmptyLayout.OnRetryListener() {
+                    @Override
+                    public void onRetry() {
+                        material();
+                    }
+                });
+                if (page == 0) {
+                    v.srl.finishRefresh();
+                } else {
+                    v.srl.finishLoadMore();
                 }
             }
         });

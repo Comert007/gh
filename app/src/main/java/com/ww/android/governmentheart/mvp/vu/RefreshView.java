@@ -11,6 +11,7 @@ import android.view.View;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.mvp.utils.RefreshType;
+import com.ww.android.governmentheart.widget.EmptyLayout;
 
 import java.util.List;
 
@@ -45,11 +46,18 @@ public class RefreshView implements IView {
     @BindView(R.id.crv)
     public CustomRecyclerView crv;
 
+    @Nullable
+    @BindView(R.id.ev)
+    public EmptyLayout mEmptyLayout;
+
 
     @Override
     public void onAttach(@NonNull Activity preActivity, @NonNull View contentView) {
         this.activity = preActivity;
         ButterKnife.bind(this, contentView);
+        if (mEmptyLayout != null) {
+            mEmptyLayout.setEmptyStatus(EmptyLayout.STATUS_LOADING);
+        }
     }
 
     /**
@@ -157,9 +165,16 @@ public class RefreshView implements IView {
     }
 
     public void onRefresh(int page, List list, RvAdapter adapter) {
+
     }
 
     public void onLoadMore() {
 
+    }
+
+    public void loadStatus(int status) {
+        if (mEmptyLayout != null) {
+            mEmptyLayout.setEmptyStatus(status);
+        }
     }
 }

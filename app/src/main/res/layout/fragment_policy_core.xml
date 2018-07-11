@@ -5,15 +5,17 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.scwang.smartrefresh.layout.SmartRefreshLayout
-        android:id="@+id/srl"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:srlEnableLoadMoreWhenContentNotFull="false">
+        android:layout_height="match_parent">
 
-        <ww.com.core.widget.CustomRecyclerView
-            android:id="@+id/crv"
+        <include layout="@layout/layout_refresh"/>
+
+        <com.ww.android.governmentheart.widget.EmptyLayout
+            android:id="@+id/ev"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+            android:layout_height="match_parent"
+            app:background_color="@color/color_divider"/>
+    </FrameLayout>
+
 </android.support.constraint.ConstraintLayout>

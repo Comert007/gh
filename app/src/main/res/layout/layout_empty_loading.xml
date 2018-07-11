@@ -1,0 +1,85 @@
+<FrameLayout android:id="@+id/empty_layout"
+             xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/rl_empty_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_divider"
+        android:paddingBottom="40dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <com.ww.android.governmentheart.widget.IconFontTextView
+            android:id="@+id/tv_net_error_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="160dp"
+            android:gravity="center"
+            android:textColor="@color/color_d9d9d9"
+            android:text="图标"
+            android:textSize="64dp"/>
+
+        <TextView
+            android:id="@+id/tv_net_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="10dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:textColor="@color/color_8c8c8c"
+            android:text="网络连接超时"
+            android:textSize="@dimen/text_14"/>
+
+
+        <TextView
+            android:id="@+id/tv_net_reload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="10dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:gravity="center"
+            android:textColor="@color/color_8c8c8c"
+            android:background="@drawable/shape_bg_network_error"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:text="重新加载"
+            android:textSize="@dimen/text_14"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/empty_loading"
+        android:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:paddingBottom="60dp"
+        >
+        <ImageView
+            android:id="@+id/tv_xuanzhuan"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@mipmap/ic_empty_loading"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_14"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/color_8c8c8c"
+            android:text=" 加载中..."
+            />
+
+    </LinearLayout>
+</FrameLayout>

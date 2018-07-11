@@ -32,4 +32,9 @@
             <flag name="center" value="0x11" />
         </attr>
     </declare-styleable>
+
+    <declare-styleable name="EmptyLayout">
+        <attr name="background_color" format="color"/>
+    </declare-styleable>
+
 </resources>

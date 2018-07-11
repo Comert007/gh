@@ -45,6 +45,8 @@ public class ContentDetailActivity extends BaseActivity<VoidView, CommonModel> {
     LinearLayout llContainer;
     @BindView(R.id.tv_content)
     TextView tvContent;
+    @BindView(R.id.tv_comment_num)
+    TextView tvCommentNum;
 
     private EditDialog mEditDialog;
     private EasyRequestBean mEasyRequestBean;
@@ -101,6 +103,7 @@ public class ContentDetailActivity extends BaseActivity<VoidView, CommonModel> {
         mEasyRequestBean = (EasyRequestBean) getIntent().getSerializableExtra("easyRequestBean");
         name = mEasyRequestBean.name;
         url = mEasyRequestBean.url;
+        tvCommentNum.setText(String.format("%d", mEasyRequestBean.num));
         setTitleText(name);
     }
 
@@ -139,13 +142,14 @@ public class ContentDetailActivity extends BaseActivity<VoidView, CommonModel> {
         map.put("cont", content);
         map.put("t", mEasyRequestBean.type);
         //需确认这个评论 open id .
-        map.put("openid", content);
+//        map.put("openid", content);
         m.saveComment(map, new BaseObserver<String>(this, bindToLifecycle()) {
             @Override
             protected void onSuccess(@Nullable String s, @Nullable List<String> list, @Nullable
                     PageBean<String> page) {
                 ResponseBean<String> responseBean = getResponseBean();
-                showToast(TextUtils.isEmpty(responseBean.getMsg())?"保存成功":responseBean.getMsg());
+                showToast(TextUtils.isEmpty(responseBean.getMsg())?"评论成功":responseBean.getMsg());
+                tvCommentNum.setText((mEasyRequestBean.num+1)+"");
             }
         });
     }

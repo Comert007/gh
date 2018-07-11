@@ -9,11 +9,20 @@ public class UploadBean {
      * fileid：‘xxx’,name:’文件名’,suffix：‘后缀’，path:’路径’,size’大小’
      */
 
+    private String id;
     private String fileid;
     private String name;
     private String suffix;
     private String path;
     private String size;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getFileid() {
         return fileid;

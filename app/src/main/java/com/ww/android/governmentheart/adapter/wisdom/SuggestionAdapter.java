@@ -54,6 +54,8 @@ public class SuggestionAdapter extends RvAdapter<SuggestBean> {
         TextView tvCommentNum;
         @BindView(R.id.container_detail)
         LinearLayout containerDetail;
+        @BindView(R.id.container)
+        LinearLayout container;
 
         @BindColor(R.color.color_text_unprocessed)
         int colorUnProcessed;

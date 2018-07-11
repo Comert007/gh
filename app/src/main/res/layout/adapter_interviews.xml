@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:id="@+id/container"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/color_white"
     android:orientation="vertical"
@@ -28,10 +30,11 @@
         style="@style/ViewSplitStyle"
         android:layout_marginTop="@dimen/margins"/>
 
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_marginTop="@dimen/margin_10"
-                  android:gravity="center_vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_10"
+        android:gravity="center_vertical">
 
         <ImageView
             android:layout_width="10dp"
@@ -45,18 +48,21 @@
             android:text="时间："/>
     </LinearLayout>
 
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_marginTop="@dimen/margin_10"
-                  android:gravity="center_vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_10"
+        android:gravity="center_vertical">
 
         <ImageView
             android:layout_width="9dp"
             android:layout_height="11dp"
             android:src="@mipmap/ic_location"/>
 
-        <RelativeLayout android:layout_width="match_parent"
-                      android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
             <TextView
                 android:id="@+id/tv_address"
                 style="@style/NormalTipTextStyle"
@@ -66,20 +72,20 @@
             <TextView
                 android:id="@+id/tv_more"
                 android:layout_width="wrap_content"
-                android:text="查看详情"
-                android:layout_toLeftOf="@id/iv_more"
-                android:textSize="@dimen/text_15"
-                android:textColor="@color/color_blue"
+                android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/margin_10"
-                android:layout_height="wrap_content"/>
-            
+                android:layout_toLeftOf="@id/iv_more"
+                android:text="查看详情"
+                android:textColor="@color/color_blue"
+                android:textSize="@dimen/text_15"/>
+
             <ImageView
                 android:id="@+id/iv_more"
-                android:src="@mipmap/ic_right_gray"
+                android:layout_width="@dimen/length_15"
+                android:layout_height="@dimen/length_15"
                 android:layout_alignParentRight="true"
                 android:layout_centerInParent="true"
-                android:layout_width="@dimen/length_15"
-                android:layout_height="@dimen/length_15"/>
+                android:src="@mipmap/ic_right_gray"/>
         </RelativeLayout>
 
     </LinearLayout>
