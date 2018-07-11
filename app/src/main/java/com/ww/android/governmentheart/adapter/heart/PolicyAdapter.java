@@ -1,6 +1,7 @@
 package com.ww.android.governmentheart.adapter.heart;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -56,7 +57,7 @@ public class PolicyAdapter extends RvAdapter<NewsBean> {
             tvNum.setText("1");
 
             tvTitle.setText(bean.getTitle());
-            tvDes.setText(bean.getDescription());
+            tvDes.setText(TextUtils.isEmpty(bean.getDescription())?"暂无介绍":bean.getDescription());
         }
     }
 }

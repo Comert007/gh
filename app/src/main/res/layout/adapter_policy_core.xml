@@ -9,8 +9,8 @@
     android:padding="@dimen/length_15">
 
     <RelativeLayout
-        android:layout_width="55dp"
-        android:layout_height="55dp">
+        android:layout_width="50dp"
+        android:layout_height="50dp">
 
         <ImageView
             android:id="@+id/iv"
@@ -24,6 +24,7 @@
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:layout_alignParentRight="true"
+            android:gravity="center"
             android:background="@drawable/shape_yellow_circle"
             android:textColor="@color/color_white"
             android:textSize="10sp"/>

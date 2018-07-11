@@ -12,7 +12,7 @@ public class NewsBean extends MultipleBean {
     private String date;
     private String code;
     private String id;
-    public int totalNum;
+
 
     private boolean isNewRecord;
     private String createDate;
@@ -31,6 +31,8 @@ public class NewsBean extends MultipleBean {
     private NewsUserBean user;
     private String imageSrc;
 
+    //自定义字段
+    public int totalNum;
 
     public NewsBean(int itemType) {
         super(itemType);

@@ -50,4 +50,6 @@ public class CommonModel extends BaseModel {
                 .compose(observer.getTransformer())
                 .subscribe(observer);
     }
+
+
 }

@@ -9,7 +9,6 @@
         style="@style/TitleBar"
         android:background="@color/color_white"
         app:titleLeftIco="@mipmap/ic_back"
-        app:titleRightText="共24条"
         app:titleRightTextColor="@color/color_hint"
         app:titleText="评论列表"
         app:titleTextColor="@color/color_black"/>

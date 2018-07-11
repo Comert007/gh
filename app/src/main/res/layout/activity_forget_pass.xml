@@ -42,22 +42,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="您好，请登录"
+            android:text="忘记密码"
             android:textColor="@color/color_black"
             android:textSize="@dimen/text_18"/>
 
-        <TextView
-            style="@style/NormalTipTextStyle"
-            android:layout_marginTop="3dp"
-            android:text="第一次登录请输入手机号码后用短信接收密码"
-            android:textColor="@color/color_hint"/>
     </LinearLayout>
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:gravity="center_vertical"
         android:paddingLeft="30dp"
         android:paddingRight="30dp">
@@ -85,13 +80,68 @@
             android:textColorHint="@color/color_hint"
             android:textSize="@dimen/text_15"/>
 
+    </RelativeLayout>
+
+
+    <View
+        style="@style/ViewLineStyle"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp">
+
+        <ImageView
+            android:id="@+id/iv_verify_code"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@mipmap/ic_verify_gray"/>
+
+        <EditText
+            android:id="@+id/et_verify_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/tv_gain_pass"
+            android:layout_toRightOf="@id/iv_verify_code"
+            android:background="@android:color/transparent"
+            android:hint="验证码"
+            android:inputType="number"
+            android:maxLength="6"
+            android:paddingLeft="@dimen/margin_10"
+            android:paddingRight="@dimen/margin_10"
+            android:singleLine="true"
+            android:textColor="@color/color_black"
+            android:textColorHint="@color/color_hint"
+            android:textSize="@dimen/text_15"/>
+
+
+        <ImageView
+            android:id="@+id/iv_verify_blue"
+            android:layout_width="20dp"
+            android:src="@mipmap/ic_verify_blue"
+            android:layout_centerHorizontal="true"
+            android:layout_height="20dp"/>
+
+        <ImageView
+            android:id="@+id/iv_verify_red"
+            android:layout_width="20dp"
+            android:src="@mipmap/ic_verify_red"
+            android:layout_toRightOf="@id/iv_verify_blue"
+            android:layout_marginLeft="@dimen/margin_5"
+            android:layout_height="20dp"/>
 
         <TextView
-            android:id="@+id/tv_gain_pass"
+            android:id="@+id/tv_verify_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="接收密码"
+            android:text="发送验证码"
             android:textColor="@color/color_blue"
             android:textSize="@dimen/text_15"/>
 
@@ -108,7 +158,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="25dp"
         android:paddingLeft="30dp"
         android:paddingRight="30dp">
 
@@ -125,7 +175,7 @@
             android:layout_toLeftOf="@id/iv_see_pass"
             android:layout_toRightOf="@id/iv_pass"
             android:background="@android:color/transparent"
-            android:hint="请输入密码"
+            android:hint="请输入新密码"
             android:inputType="textPassword"
             android:maxLength="16"
             android:paddingLeft="@dimen/margin_10"
@@ -156,45 +206,62 @@
         android:layout_marginTop="10dp"/>
 
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp">
+
+        <ImageView
+            android:id="@+id/iv_again_pass"
+            android:layout_width="19dp"
+            android:layout_height="20dp"
+            android:src="@mipmap/ic_password"/>
+
+        <EditText
+            android:id="@+id/et_again_pass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/iv_again_pass"
+            android:background="@android:color/transparent"
+            android:hint="确认密码"
+            android:inputType="textPassword"
+            android:maxLength="16"
+            android:paddingLeft="@dimen/margin_10"
+            android:paddingRight="@dimen/margin_10"
+            android:singleLine="true"
+            android:textColor="@color/color_black"
+            android:textColorHint="@color/color_hint"
+            android:textSize="@dimen/text_15"/>
+
+    </RelativeLayout>
+    <View
+        style="@style/ViewLineStyle"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"/>
     <Button
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_margin="@dimen/margin_20"
         android:background="@drawable/shape_red_grandient"
-        android:text="登录"
+        android:text="确认"
         android:textColor="@color/color_white"
         android:textSize="@dimen/text_18"/>
 
-    <TextView
-        style="@style/NormalTitleTextStyle"
-        android:gravity="center"
-        android:text="点击“登录”即代表您同意服务条款"
-        android:textColor="@color/color_hint"
-        android:textSize="@dimen/text_15"/>
-
 
     <TextView
-        android:id="@+id/tv_forget_pass"
+        android:id="@+id/tv_back_login"
         style="@style/NormalTitleTextStyle"
         android:layout_width="wrap_content"
         android:layout_marginTop="@dimen/length_10"
-        android:drawableLeft="@mipmap/ic_any_question"
+        android:drawableLeft="@mipmap/ic_arrow_left"
         android:drawablePadding="@dimen/margin_5"
-        android:text="忘记密码"
+        android:text="返回登录"
         android:textColor="@color/color_blue"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal|bottom"
-        android:paddingBottom="@dimen/margin_20">
-
-        <TextView
-            style="@style/NormalTipTextStyle"
-            android:text="心联汇v1.0.0"
-            android:textColor="@color/color_hint"/>
-    </LinearLayout>
 
 
 </LinearLayout>

@@ -5,6 +5,7 @@ import com.ww.android.governmentheart.mvp.bean.wisdom.SuggestBean;
 import com.ww.android.governmentheart.mvp.bean.wisdom.SuggestDetailBean;
 import com.ww.android.governmentheart.mvp.bean.wisdom.TransmissionBean;
 import com.ww.android.governmentheart.mvp.bean.wisdom.TransmissionDetailBean;
+import com.ww.android.governmentheart.mvp.bean.wisdom.UploadBean;
 import com.ww.android.governmentheart.mvp.model.base.BaseModel;
 import com.ww.android.governmentheart.network.BaseObserver;
 import com.ww.android.governmentheart.network.HttpRequest;
@@ -30,6 +31,23 @@ public class WisdomModel extends BaseModel {
     //2.7.	参政议政详情
     public void suggestDetail(Map map, BaseObserver<SuggestDetailBean> observer){
         HttpRequest.wisdomApi().suggestDetail(JsonParse.createArgs(map))
+                .compose(RxSchedulers.cutObservableMain())
+                .compose(observer.getTransformer())
+                .subscribe(observer);
+    }
+
+    //2.8   上传附件
+    public void upload(Map map, BaseObserver<PageListBean<UploadBean>> observer){
+        HttpRequest.wisdomApi().upload(JsonParse.createArgs(map))
+                .compose(RxSchedulers.cutObservableMain())
+                .compose(observer.getTransformer())
+                .subscribe(observer);
+    }
+
+
+    //2.8   保存参政议政
+    public void saveSuggest(Map map, BaseObserver<String> observer){
+        HttpRequest.wisdomApi().saveSuggest(JsonParse.createArgs(map))
                 .compose(RxSchedulers.cutObservableMain())
                 .compose(observer.getTransformer())
                 .subscribe(observer);

@@ -6,6 +6,7 @@ import com.ww.android.governmentheart.mvp.bean.wisdom.SuggestBean;
 import com.ww.android.governmentheart.mvp.bean.wisdom.SuggestDetailBean;
 import com.ww.android.governmentheart.mvp.bean.wisdom.TransmissionBean;
 import com.ww.android.governmentheart.mvp.bean.wisdom.TransmissionDetailBean;
+import com.ww.android.governmentheart.mvp.bean.wisdom.UploadBean;
 
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
@@ -30,6 +31,23 @@ public interface WisdomApi {
     @POST("suggestDetail")
     Observable<ResponseBean<SuggestDetailBean>> suggestDetail(@Body RequestBody body);
 
+
+    /**
+     * 2.15.	上传附件
+     * @param body
+     * @return
+     */
+    @POST("upload")
+    Observable<ResponseBean<PageListBean<UploadBean>>> upload(@Body RequestBody body);
+
+
+    /**
+     * 2.8.	参政议政保存
+     * @param body
+     * @return
+     */
+    @POST("suggestSave")
+    Observable<ResponseBean<String>> saveSuggest(@Body RequestBody body);
 
     /**
      * 资料发送

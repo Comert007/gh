@@ -52,12 +52,13 @@ public class CommentsActivity extends BaseActivity<RefreshView, CommonModel> {
 
     @Override
     protected void init() {
-        if (btnTitleLeft != null) {
-            btnTitleLeft.setTextSize(12);
+        if (btnTitleRight != null) {
+            btnTitleRight.setTextSize(12);
         }
         initData();
         initListener();
         initRecycler();
+        v.srl.autoRefresh();
     }
 
     @Override
@@ -117,6 +118,7 @@ public class CommentsActivity extends BaseActivity<RefreshView, CommonModel> {
                 if (commentBeanPageListBean != null && commentBeanPageListBean.getList() != null) {
                     List<CommentBean> commentBeans = commentBeanPageListBean.getList();
                     PagingBean pagingBean = commentBeanPageListBean.getPage();
+                    btnTitleRight.setText("共"+pagingBean.getTotalNum()+"条");
                     int totalPage = pagingBean.getTotalPage();
                     if (page == 0) {
                         v.srl.finishRefresh();

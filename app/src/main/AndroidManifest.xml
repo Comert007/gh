@@ -92,6 +92,10 @@
         <activity android:name=".activity.base.WebViewActivity"
                   android:screenOrientation="portrait"/>
 
+        <!--忘记密码-->
+        <activity android:name=".activity.home.ChangePassActivity"
+                  android:screenOrientation="portrait"/>
+
         <!--7.0权限适配-->
         <provider
             android:name="android.support.v4.content.FileProvider"

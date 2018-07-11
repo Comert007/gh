@@ -2,24 +2,38 @@ package com.ww.android.governmentheart.activity.wisdom;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.Nullable;
+import android.text.TextUtils;
+import android.view.View;
 
 import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.activity.BaseActivity;
 import com.ww.android.governmentheart.adapter.wisdom.ImagePickAdapter;
 import com.ww.android.governmentheart.config.type.ImmersionType;
+import com.ww.android.governmentheart.mvp.PageListBean;
+import com.ww.android.governmentheart.mvp.bean.PageBean;
 import com.ww.android.governmentheart.mvp.bean.wisdom.ImagePickBean;
-import com.ww.android.governmentheart.mvp.model.VoidModel;
+import com.ww.android.governmentheart.mvp.bean.wisdom.UploadBean;
+import com.ww.android.governmentheart.mvp.model.wisdom.WisdomModel;
 import com.ww.android.governmentheart.mvp.utils.RefreshType;
 import com.ww.android.governmentheart.mvp.vu.wisdom.AdviceView;
+import com.ww.android.governmentheart.network.BaseObserver;
 import com.ww.android.governmentheart.utils.RecyclerHelper;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import butterknife.OnClick;
 
 /**
  * @author feng
  * @Date 2018/6/23.
  */
-public class AdviceActivity extends BaseActivity<AdviceView, VoidModel> {
+public class AdviceActivity extends BaseActivity<AdviceView, WisdomModel> {
 
     private ImagePickAdapter adapter;
 
@@ -52,7 +66,7 @@ public class AdviceActivity extends BaseActivity<AdviceView, VoidModel> {
     }
 
     private void initRecycler() {
-        v.initRecycler(RecyclerHelper.gridManager(this,4));
+        v.initRecycler(RecyclerHelper.gridManager(this, 4));
         adapter = new ImagePickAdapter(this);
         v.crv.setAdapter(adapter);
         adapter.addList(Arrays.asList(new ImagePickBean(ImagePickBean.MULTIPLE_DEFAULT_IMAGE)));
@@ -63,10 +77,83 @@ public class AdviceActivity extends BaseActivity<AdviceView, VoidModel> {
         return ImmersionType.WHITE;
     }
 
+    @OnClick({R.id.btn_commit})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btn_commit:
+                upLoad(createPaths());
+                break;
+        }
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         adapter.onActivityResult(requestCode, requestCode, data);
     }
 
+
+    private List<String> createPaths() {
+        List<String> paths = new ArrayList<>();
+        List<ImagePickBean> imagePickBeans = adapter.getList();
+        for (ImagePickBean imagePickBean : imagePickBeans) {
+            if (imagePickBean.getItemType() == ImagePickBean.MULTIPLE_ACTUAL_IMAGE) {
+                paths.add(imagePickBean.path);
+            }
+        }
+        return paths;
+    }
+
+    private void upLoad(List<String> paths) {
+        if (TextUtils.isEmpty(v.getTitle())) {
+            showToast("请输入标题");
+            return;
+        }
+
+        if (TextUtils.isEmpty(v.getContent())) {
+            showToast("请输入内容");
+            return;
+        }
+
+        if (paths == null || paths.size() == 0) {
+            saveSuggest(null);
+            return;
+        }
+
+        Map map = new HashMap();
+        for (String path : paths) {
+            map.put("file", new File(path));
+        }
+
+        m.upload(map, new BaseObserver<PageListBean<UploadBean>>(this, bindToLifecycle()) {
+            @Override
+            protected void onSuccess(@Nullable PageListBean<UploadBean> uploadBeanPageListBean,
+                                     @Nullable List<PageListBean<UploadBean>> list, @Nullable
+                                             PageBean<PageListBean<UploadBean>> page) {
+
+                if (uploadBeanPageListBean !=null && uploadBeanPageListBean.getList()!=null){
+                    saveSuggest(uploadBeanPageListBean.getList());
+                }
+
+            }
+        });
+    }
+
+    private void saveSuggest(@Nullable List<UploadBean> imgs) {
+        Map map = new HashMap();
+
+        map.put("title", v.getContent());
+        map.put("cont", v.getContent());
+        if (imgs !=null){
+            map.put("imgs", imgs);
+        }
+        m.saveSuggest(map, new BaseObserver<String>(this, bindToLifecycle()) {
+            @Override
+            protected void onSuccess(@Nullable String s, @Nullable List<String> list, @Nullable
+                    PageBean<String> page) {
+                showToast(TextUtils.isEmpty(getResponseBean().getMsg()) ? "创建成功" :
+                        getResponseBean().getMsg());
+            }
+        });
+    }
 }

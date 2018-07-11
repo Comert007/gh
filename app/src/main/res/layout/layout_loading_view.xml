@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
              android:layout_width="match_parent"
              android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="@dimen/margin_10">
+        android:background="@drawable/bg_dialog_progress_shape"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="20dp">
 
-        <com.wang.avi.AVLoadingIndicatorView
-            android:id="@+id/loading_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:indicatorColor="@color/color_start_titleBar"
-            app:indicatorName="BallPulseIndicator"
-            />
+        <ProgressBar
+            android:id="@+id/progressBar1"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:indeterminate="true"
+            android:indeterminateBehavior="repeat"
+            android:indeterminateDrawable="@drawable/anim_loading" />
 
         <TextView
             android:id="@+id/tv_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:text="正在加载"
             android:visibility="gone"
-            android:textColor="@color/color_start_titleBar"/>
+            android:textColor="@color/color_white" />
 
     </LinearLayout>
 

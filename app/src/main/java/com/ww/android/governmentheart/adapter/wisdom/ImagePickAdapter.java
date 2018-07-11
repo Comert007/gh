@@ -22,9 +22,11 @@ import com.ww.android.governmentheart.utils.permission.OwnerImageLoader;
 import com.ww.android.governmentheart.utils.permission.PermissionHelper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import me.weyye.hipermission.PermissionItem;
+import ww.com.core.Debug;
 import ww.com.core.adapter.RvAdapter;
 import ww.com.core.adapter.RvViewHolder;
 
@@ -94,10 +96,12 @@ public class ImagePickAdapter extends RvAdapter<ImagePickBean> {
                 @Override
                 public void onClick(View v) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        PermissionHelper.startSinglePermission(getContext(), new PermissionItem
-                                        (Manifest.permission.CAMERA, "相机", R.drawable
-                                                .permission_ic_camera),
-                                new CustomPermissionCallback() {
+                        List<PermissionItem> permissions = new ArrayList<>();
+                        permissions.add(new PermissionItem(Manifest.permission.CAMERA, "相机", R
+                                .drawable.permission_ic_camera));
+                        permissions.add(new PermissionItem(Manifest.permission.WRITE_EXTERNAL_STORAGE, "存储", R
+                                .drawable.permission_ic_storage));
+                        PermissionHelper.startMultiPermission(getContext(),permissions,new CustomPermissionCallback() {
                                     @Override
                                     public void onFinish() {
                                         super.onFinish();
@@ -125,12 +129,14 @@ public class ImagePickAdapter extends RvAdapter<ImagePickBean> {
 
         @Override
         public void onBindData(int position, ImagePickBean bean) {
+            Debug.d("path:" + bean.path);
             ImageLoader.getInstance()
-                    .displayImage(ImageDownloader.Scheme.FILE.wrap(bean.path) ,iv, BaseApplication
+                    .displayImage(ImageDownloader.Scheme.FILE.wrap(bean.path), iv, BaseApplication
                             .getDisplayImageOptions(R.mipmap.ic_pic_default));
             close.setOnClickListener(v -> {
                 int total = getList().size();
-                if (total == 5 && (getList().get(total-1)).getItemType()!=ImagePickBean.MULTIPLE_DEFAULT_IMAGE) {
+                if (total == 5 && (getList().get(total - 1)).getItemType() != ImagePickBean
+                        .MULTIPLE_DEFAULT_IMAGE) {
                     getList().add(new ImagePickBean(ImagePickBean.MULTIPLE_DEFAULT_IMAGE));
                 }
                 getList().remove(position);

@@ -6,6 +6,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ww.android.governmentheart.R;
+import com.ww.android.governmentheart.activity.wisdom.ShowAdviceActivity;
 import com.ww.android.governmentheart.mvp.bean.wisdom.SuggestBean;
 
 import butterknife.BindColor;
@@ -84,7 +85,7 @@ public class SuggestionAdapter extends RvAdapter<SuggestBean> {
             containerDetail.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    ShowAdviceActivity.start(getContext());
+                    ShowAdviceActivity.start(getContext(),bean.getId());
                 }
             });
         }

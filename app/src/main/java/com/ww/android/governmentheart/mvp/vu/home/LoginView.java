@@ -2,6 +2,7 @@ package com.ww.android.governmentheart.mvp.vu.home;
 
 import android.text.TextUtils;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.mvp.vu.base.BaseView;
@@ -14,6 +15,8 @@ public class LoginView extends BaseView {
     EditText etPhone;
     @BindView(R.id.et_pass)
     EditText etPass;
+    @BindView(R.id.tv_forget_pass)
+    TextView tvForgetPass;
 
     @Override
     public void onAttach() {

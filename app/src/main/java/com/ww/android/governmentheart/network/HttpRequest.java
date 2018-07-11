@@ -36,7 +36,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class HttpRequest {
 
     private static Converter.Factory gsonConverterFactory = GsonConverterFactory.create();
-    private static CallAdapter.Factory rxJavaCallAdapterFactory = RxJava2CallAdapterFactory.create();
+    private static CallAdapter.Factory rxJavaCallAdapterFactory = RxJava2CallAdapterFactory
+            .create();
     private static OkHttpClient okHttpClient = getDefaultClient();
     private static Retrofit retrofit = getRetrofit();
 
@@ -46,7 +47,7 @@ public class HttpRequest {
     public static TogetherApi togetherApi;
     public static StyleApi styleApi;
     public static WisdomApi wisdomApi;
-
+    public static boolean isLogging = true;
 
 
     private HttpRequest() {
@@ -120,7 +121,7 @@ public class HttpRequest {
 
 
     private static Retrofit getRetrofit() {
-        return  new Retrofit.Builder()
+        return new Retrofit.Builder()
                 .client(okHttpClient)
                 .baseUrl(BuildConfig.BASE_URL)
                 .addConverterFactory(gsonConverterFactory)
@@ -146,18 +147,18 @@ public class HttpRequest {
             @Override
             public Response intercept(Chain chain) throws IOException {
                 Request request = chain.request();
-                Request.Builder requestBuilder =  request.newBuilder();
+                Request.Builder requestBuilder = request.newBuilder();
                 requestBuilder
                         .addHeader("Accept-Charset", "utf-8")
                         .addHeader("Content-Type", "application/x-www-form-urlencoded")
                         .addHeader("client", "android");
 
-               String token = BaseApplication.getInstance().getToken();
-               if (!TextUtils.isEmpty(token)){
-                   requestBuilder.addHeader("token",encodeHeadInfo(token));
-               }
+                String token = BaseApplication.getInstance().getToken();
+                if (!TextUtils.isEmpty(token)) {
+                    requestBuilder.addHeader("token", encodeHeadInfo(token));
+                }
 
-               request = requestBuilder.build();
+                request = requestBuilder.build();
                 return chain.proceed(request);
             }
         };
@@ -169,16 +170,16 @@ public class HttpRequest {
                 .readTimeout(60, TimeUnit.SECONDS);
 
 
-       return builder.build();
+        return builder.build();
 
     }
 
-    private static String encodeHeadInfo( String headInfo ) {
+    private static String encodeHeadInfo(String headInfo) {
         StringBuffer stringBuffer = new StringBuffer();
         for (int i = 0, length = headInfo.length(); i < length; i++) {
             char c = headInfo.charAt(i);
             if (c <= '\u001f' || c >= '\u007f') {
-                stringBuffer.append( String.format ("\\u%04x", (int)c) );
+                stringBuffer.append(String.format("\\u%04x", (int) c));
             } else {
                 stringBuffer.append(c);
             }
