@@ -59,6 +59,8 @@ public class HomeAdapter extends RvAdapter<NewsBean> {
         TextView tvClear;
         @BindView(R.id.tv_num)
         TextView tvNum;
+        @BindView(R.id.iv)
+        ImageView iv;
 
         public HeaderViewHolder(View itemView) {
             super(itemView);
@@ -66,6 +68,8 @@ public class HomeAdapter extends RvAdapter<NewsBean> {
 
         @Override
         public void onBindData(int position, NewsBean bean) {
+            ImageLoader.getInstance().displayImage(bean.mainpic, iv, BaseApplication
+                    .getDisplayImageOptions(R.mipmap.ic_pic_default));
             tvClear.setOnClickListener(v -> SearchActivity.start(getContext()));
             tvNum.setText("共" + bean.totalNum + "条");
         }
@@ -103,10 +107,11 @@ public class HomeAdapter extends RvAdapter<NewsBean> {
             EasyRequestBean easyRequestBean = new EasyRequestBean.Builder()
                     .setId(bean.getId())
                     .setName(bean.getTitle())
-                    .setUrl(bean.getLink())
+                    .setUrl(bean.getUrl())
                     .setType(CommentType.TYPE_NEWS)
                     .build();
-            container.setOnClickListener(v -> ContentDetailActivity.start(getContext(),easyRequestBean));
+            container.setOnClickListener(v -> ContentDetailActivity.start(getContext(),
+                    easyRequestBean));
         }
     }
 

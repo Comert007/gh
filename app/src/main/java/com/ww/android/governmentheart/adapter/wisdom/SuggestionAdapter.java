@@ -1,6 +1,7 @@
 package com.ww.android.governmentheart.adapter.wisdom;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -73,11 +74,11 @@ public class SuggestionAdapter extends RvAdapter<SuggestBean> {
         @Override
         public void onBindData(int position, SuggestBean bean) {
             tvTitle.setText(bean.getTitle());
-            tvTime.setText(TimeUtils.milliseconds2String(bean.getAcceptDate()));
-            if (!bean.getStatus().equals("0")){
-                tvUserName.setText(bean.getUserAgent());
+            tvTime.setText(bean.getCreateDate());
+            if ("0".equals(bean.getStatus())) {
+                tvUserName.setText(bean.getProposalUserName());
                 tvDealTime.setText(TimeUtils.milliseconds2String(bean.getProposalDate()));
-            }else {
+            } else {
                 tvUserName.setText("");
                 tvDealTime.setText("");
             }
@@ -87,32 +88,36 @@ public class SuggestionAdapter extends RvAdapter<SuggestBean> {
             containerDetail.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ShowAdviceActivity.start(getContext(),bean.getId());
+                    ShowAdviceActivity.start(getContext(), bean.getId());
                 }
             });
         }
 
 
         //0(未办理) 1（办理中） 2（已回复） ,3 已关闭
-        private void showStatus(SuggestBean bean){
-           switch (bean.getStatus()){
-               case "0":
-                   tvDealSign.setTextColor(colorUnProcessed);
-                   tvDealSign.setText("未办理");
-                   break;
-               case "1":
-                   tvDealSign.setTextColor(colorProcessing);
-                   tvDealSign.setText("办理中");
-                   break;
-               case "2":
-                   tvDealSign.setTextColor(colorProcessed);
-                   tvDealSign.setText("已回复");
-                   break;
-               case "3":
-                   tvDealSign.setTextColor(colorUnProcessed);
-                   tvDealSign.setText("已关闭");
-                   break;
-           }
+        private void showStatus(SuggestBean bean) {
+           String status = bean.getStatus();
+            if (TextUtils.isEmpty(status)){
+                status = "0";
+            }
+            switch (status) {
+                case "0":
+                    tvDealSign.setTextColor(colorUnProcessed);
+                    tvDealSign.setText("未办理");
+                    break;
+                case "1":
+                    tvDealSign.setTextColor(colorProcessing);
+                    tvDealSign.setText("办理中");
+                    break;
+                case "2":
+                    tvDealSign.setTextColor(colorProcessed);
+                    tvDealSign.setText("已回复");
+                    break;
+                case "3":
+                    tvDealSign.setTextColor(colorUnProcessed);
+                    tvDealSign.setText("已关闭");
+                    break;
+            }
         }
     }
 

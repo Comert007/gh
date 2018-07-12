@@ -8,6 +8,7 @@ import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.activity.BaseActivity;
 import com.ww.android.governmentheart.adapter.wisdom.ShowImageAdapter;
 import com.ww.android.governmentheart.config.type.ImmersionType;
+import com.ww.android.governmentheart.mvp.PageListBean;
 import com.ww.android.governmentheart.mvp.bean.PageBean;
 import com.ww.android.governmentheart.mvp.bean.wisdom.SuggestDetailBean;
 import com.ww.android.governmentheart.mvp.model.wisdom.WisdomModel;
@@ -77,16 +78,19 @@ public class ShowAdviceActivity extends BaseActivity<ShowAdviceView, WisdomModel
     private void suggestDetail() {
         Map map = new HashMap();
         map.put("id", id);
-        m.suggestDetail(map, new BaseObserver<SuggestDetailBean>(this,bindToLifecycle()) {
+        m.suggestDetail(map, new BaseObserver<PageListBean<SuggestDetailBean>>(this,
+                bindToLifecycle()) {
             @Override
-            protected void onSuccess(@Nullable SuggestDetailBean suggestDetailBean, @Nullable
-                    List<SuggestDetailBean> list, @Nullable PageBean<SuggestDetailBean> page) {
-                if (suggestDetailBean!=null){
-//                    v.setTitle(suggestDetailBean.getTitle());
-//                    v.setContent(suggestDetailBean.getCont());
-//
-//                    adapter.addList(suggestDetailBean.getImgs());
-                }
+            protected void onSuccess(@Nullable PageListBean<SuggestDetailBean>
+                                             suggestDetailBeanPageListBean, @Nullable
+                                             List<PageListBean<SuggestDetailBean>> list,
+                                     @Nullable PageBean<PageListBean<SuggestDetailBean>> pageBean) {
+               SuggestDetailBean detailBean = suggestDetailBeanPageListBean.getData();
+               if (detailBean!=null){
+                   v.setTitle(detailBean.getTitle());
+                   v.setContent(detailBean.getCont());
+                   adapter.addList(detailBean.getImgs());
+               }
             }
         });
     }

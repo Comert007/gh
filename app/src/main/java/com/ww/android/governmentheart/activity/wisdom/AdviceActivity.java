@@ -13,14 +13,15 @@ import com.ww.android.governmentheart.config.type.ImmersionType;
 import com.ww.android.governmentheart.mvp.PageListBean;
 import com.ww.android.governmentheart.mvp.bean.PageBean;
 import com.ww.android.governmentheart.mvp.bean.wisdom.ImagePickBean;
+import com.ww.android.governmentheart.mvp.bean.wisdom.RequestFileBean;
 import com.ww.android.governmentheart.mvp.bean.wisdom.UploadBean;
 import com.ww.android.governmentheart.mvp.model.wisdom.WisdomModel;
 import com.ww.android.governmentheart.mvp.utils.RefreshType;
 import com.ww.android.governmentheart.mvp.vu.wisdom.AdviceView;
 import com.ww.android.governmentheart.network.BaseObserver;
+import com.ww.android.governmentheart.network.JsonParse;
 import com.ww.android.governmentheart.utils.RecyclerHelper;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -81,7 +82,7 @@ public class AdviceActivity extends BaseActivity<AdviceView, WisdomModel> {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_commit:
-                upLoad(createPaths());
+                upLoad(createRequestFiles());
                 break;
         }
     }
@@ -93,18 +94,21 @@ public class AdviceActivity extends BaseActivity<AdviceView, WisdomModel> {
     }
 
 
-    private List<String> createPaths() {
-        List<String> paths = new ArrayList<>();
+    private List<RequestFileBean> createRequestFiles() {
+        List<RequestFileBean> requestFiles = new ArrayList<>();
         List<ImagePickBean> imagePickBeans = adapter.getList();
-        for (ImagePickBean imagePickBean : imagePickBeans) {
-            if (imagePickBean.getItemType() == ImagePickBean.MULTIPLE_ACTUAL_IMAGE) {
-                paths.add(imagePickBean.path);
+        if (imagePickBeans != null && imagePickBeans.size() > 0) {
+            for (ImagePickBean imagePickBean : imagePickBeans) {
+                if (imagePickBean.getItemType() == ImagePickBean.MULTIPLE_ACTUAL_IMAGE) {
+                    requestFiles.add(new RequestFileBean(imagePickBean.path, JsonParse.MEDIA_IMAGE_TYPE));
+                }
             }
         }
-        return paths;
+        return requestFiles;
     }
 
-    private void upLoad(List<String> paths) {
+
+    private void upLoad(List<RequestFileBean> files) {
         if (TextUtils.isEmpty(v.getTitle())) {
             showToast("请输入标题");
             return;
@@ -115,22 +119,18 @@ public class AdviceActivity extends BaseActivity<AdviceView, WisdomModel> {
             return;
         }
 
-        if (paths == null || paths.size() == 0) {
+        if (files == null || files.size() == 0) {
             saveSuggest(null);
             return;
         }
 
-        List<File> files = new ArrayList<>();
-        for (String path : paths) {
-            files.add(new File(path));
-        }
         m.uploadFiles(files, new BaseObserver<PageListBean<UploadBean>>(this, bindToLifecycle()) {
             @Override
             protected void onSuccess(@Nullable PageListBean<UploadBean> uploadBeanPageListBean,
                                      @Nullable List<PageListBean<UploadBean>> list, @Nullable
                                              PageBean<PageListBean<UploadBean>> page) {
 
-                if (uploadBeanPageListBean !=null && uploadBeanPageListBean.getList()!=null){
+                if (uploadBeanPageListBean != null && uploadBeanPageListBean.getList() != null) {
                     saveSuggest(uploadBeanPageListBean.getList());
                 }
 
@@ -143,15 +143,14 @@ public class AdviceActivity extends BaseActivity<AdviceView, WisdomModel> {
 
         map.put("title", v.getContent());
         map.put("cont", v.getContent());
-        if (imgs !=null){
+        if (imgs != null) {
             map.put("imgs", imgs);
         }
         m.saveSuggest(map, new BaseObserver<String>(this, bindToLifecycle()) {
             @Override
             protected void onSuccess(@Nullable String s, @Nullable List<String> list, @Nullable
                     PageBean<String> page) {
-                showToast(TextUtils.isEmpty(getResponseBean().getMsg()) ? "创建成功" :
-                        getResponseBean().getMsg());
+                CommitSuccessActivity.start(AdviceActivity.this);
                 finish();
             }
         });

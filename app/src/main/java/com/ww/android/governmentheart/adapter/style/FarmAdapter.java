@@ -60,7 +60,7 @@ public class FarmAdapter extends RvAdapter<NewsBean> {
             EasyRequestBean easyRequestBean = new EasyRequestBean.Builder()
                     .setId(bean.getId())
                     .setName(bean.getTitle())
-                    .setUrl(bean.getLink())
+                    .setUrl(bean.getUrl())
                     .setType(CommentType.TYPE_NEWS)
                     .build();
             container.setOnClickListener(v -> ContentDetailActivity.start(getContext(),easyRequestBean));

@@ -13,10 +13,5 @@ import com.ww.android.governmentheart.network.utils.RxSchedulers;
  */
 public class TogetherModel extends BaseModel {
 
-    public void organizationType(BaseObserver<PageListBean<OrganizationTypeBean>> observer){
-        HttpRequest.togetherApi().organizationType()
-                .compose(RxSchedulers.cutObservableMain())
-                .compose(observer.getTransformer())
-                .subscribe(observer);
-    }
+
 }

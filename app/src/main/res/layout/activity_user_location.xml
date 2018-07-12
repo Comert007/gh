@@ -2,42 +2,73 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@color/color_divider"
-    android:layout_height="match_parent">
-
+    android:layout_height="match_parent"
+    android:background="@color/color_divider">
 
 
     <com.baidu.mapapi.map.MapView
         android:id="@+id/mmap"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:clickable="true"/>
 
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_marginTop="@dimen/margin_10"
-                  android:background="@drawable/shape_white_round_2"
-                  android:gravity="center_vertical"
-                  android:focusable="true"
-                  android:focusableInTouchMode="true"
-                  android:layout_marginLeft="@dimen/margin_10"
-                  android:layout_marginRight="@dimen/margin_10"
-                  android:paddingLeft="@dimen/margin_15"
-                  android:paddingRight="@dimen/margin_15"
-                  android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_10"
+        android:layout_marginRight="@dimen/margin_10"
+        android:layout_marginTop="@dimen/margin_10"
+        android:background="@drawable/shape_white_round_2"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/margin_15"
+        android:paddingRight="@dimen/margin_15">
 
         <ImageView
             android:id="@+id/iv_back"
             android:layout_width="20dp"
-                   android:src="@mipmap/ic_back"
-                   android:layout_height="20dp"/>
+            android:layout_height="20dp"
+            android:src="@mipmap/ic_back"/>
 
-        <EditText android:layout_width="match_parent"
-                  android:layout_height="40dp"
-                  android:text="搜索成员"
-                  android:layout_marginLeft="5dp"
-                  android:textSize="@dimen/text_14"
-                  android:textColor="@color/color_hint"
-                  android:background="@android:color/transparent"
-        />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:background="@android:color/transparent"
+            android:text="搜索成员"
+            android:textColor="@color/color_hint"
+            android:textSize="@dimen/text_14"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/container_members"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/margin_10"
+        android:background="@drawable/shape_white_round_2"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/margin_15"
+        android:paddingRight="@dimen/margin_15">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@mipmap/ic_members"/>
+
+        <TextView
+            style="@style/NormalTitleTextStyle"
+            android:layout_width="0dp"
+            android:layout_marginLeft="@dimen/margin_10"
+            android:layout_weight="1"
+            android:text="查看统战成员"/>
+
+        <TextView
+            style="@style/NormalTipTextStyle"
+            android:text=""/>
+
     </LinearLayout>
 
 </RelativeLayout>

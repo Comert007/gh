@@ -76,7 +76,7 @@ public class ContentDetailActivity extends BaseActivity<VoidView, CommonModel> {
             case R.id.ll_container:
                 llContainer.clearFocus();
                 mEditDialog = new EditDialog(this, 7)
-                        .setParms(tvContent, "在这里输入您的观点");
+                        .setParms(tvContent, "在这里输入您的观点（最少5个字）");
                 mEditDialog.setNums(false, 200);
                 mEditDialog.setEdiClickInterface(new EditDialog.EditDialogClickInterface() {
                     @Override

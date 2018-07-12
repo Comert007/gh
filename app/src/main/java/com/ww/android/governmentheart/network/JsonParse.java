@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.ww.android.governmentheart.mvp.bean.wisdom.RequestFileBean;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -46,11 +47,12 @@ public class JsonParse {
     }
 
 
-    public static MultipartBody createMultipartBody(List<File> files) {
+    public static MultipartBody createMultipartBody(List<RequestFileBean> files) {
         MultipartBody.Builder builder = new MultipartBody.Builder();
 
-        for (File file : files) {
-            RequestBody requestBody = RequestBody.create(MediaType.parse(MEDIA_IMAGE_TYPE), file);
+        for (RequestFileBean fileBean : files) {
+            File file = new File(fileBean.path);
+            RequestBody requestBody = RequestBody.create(MediaType.parse(fileBean.mimeType), file);
             builder.addFormDataPart("files", file.getName(), requestBody);
         }
         builder.setType(MultipartBody.FORM);
@@ -59,11 +61,14 @@ public class JsonParse {
     }
 
 
-    public static List<MultipartBody.Part> createMultipart(List<File> files) {
+    public static List<MultipartBody.Part> createMultipart(List<RequestFileBean> files) {
+
         List<MultipartBody.Part> parts = new ArrayList<>(files.size());
-        for (File file : files) {
-            RequestBody requestBody = RequestBody.create(MediaType.parse(MEDIA_IMAGE_TYPE), file);
-            MultipartBody.Part part = MultipartBody.Part.createFormData("files", file.getName(), requestBody);
+        for (RequestFileBean fileBean : files) {
+            File file = new File(fileBean.path);
+            RequestBody requestBody = RequestBody.create(MediaType.parse(fileBean.mimeType), file);
+            MultipartBody.Part part = MultipartBody.Part.createFormData("files", file.getName(),
+                    requestBody);
             parts.add(part);
         }
         return parts;

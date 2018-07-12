@@ -5,35 +5,34 @@ package com.ww.android.governmentheart.mvp.bean.wisdom;
  * @Date 2018/7/8
  */
 public class SuggestBean {
+
+
     /**
-     * id : 3611fa7e448d4f3d86825674d6b63574
-     * title : 问题
-     * content : 2343242343243
-     * proposalDate : 1530771202000
-     * proposalUserId : 1
-     * status : 3
-     * acceptUserId : 12
-     * acceptDate : 1529908802000
-     * userAgent : 2343242343243
-     * isOpen : 1
+     * id : bbcdb23ab18d44e5a163c3a46c0d5777
+     * isNewRecord : false
+     * createDate : 2018-07-12 10:05:34
+     * updateDate : 2018-07-12 10:05:34
+     * title : 手机壳
+     * proposalDate : 1531365413000
+     * proposalUserId : 361
+     * status : 1
      * viewNum : 0
-     * commentNum : 12
-     * goodNum : 12
+     * commentNum : 0
+     * goodNum : 0
      */
 
     private String id;
+    private boolean isNewRecord;
+    private String createDate;
+    private String updateDate;
     private String title;
-    private String content;
     private long proposalDate;
     private String proposalUserId;
     private String status;
-    private String acceptUserId;
-    private long acceptDate;
-    private String userAgent;
-    private String isOpen;
     private String viewNum;
     private String commentNum;
     private String goodNum;
+    private String proposalUserName;
 
     public String getId() {
         return id;
@@ -43,20 +42,36 @@ public class SuggestBean {
         this.id = id;
     }
 
+    public boolean isIsNewRecord() {
+        return isNewRecord;
+    }
+
+    public void setIsNewRecord(boolean isNewRecord) {
+        this.isNewRecord = isNewRecord;
+    }
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
+    }
+
+    public String getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(String updateDate) {
+        this.updateDate = updateDate;
+    }
+
     public String getTitle() {
         return title;
     }
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
     }
 
     public long getProposalDate() {
@@ -83,38 +98,6 @@ public class SuggestBean {
         this.status = status;
     }
 
-    public String getAcceptUserId() {
-        return acceptUserId;
-    }
-
-    public void setAcceptUserId(String acceptUserId) {
-        this.acceptUserId = acceptUserId;
-    }
-
-    public long getAcceptDate() {
-        return acceptDate;
-    }
-
-    public void setAcceptDate(long acceptDate) {
-        this.acceptDate = acceptDate;
-    }
-
-    public String getUserAgent() {
-        return userAgent;
-    }
-
-    public void setUserAgent(String userAgent) {
-        this.userAgent = userAgent;
-    }
-
-    public String getIsOpen() {
-        return isOpen;
-    }
-
-    public void setIsOpen(String isOpen) {
-        this.isOpen = isOpen;
-    }
-
     public String getViewNum() {
         return viewNum;
     }
@@ -139,16 +122,19 @@ public class SuggestBean {
         this.goodNum = goodNum;
     }
 
-    /**
-     * title : ””
-     * status : ””
-     * statusName : ””
-     * viewNum : ””
-     * commentNum : ””
-     * date : ””
-     * dealName : ””
-     * dealDate : ””，id：“”
-     */
+    public boolean isNewRecord() {
+        return isNewRecord;
+    }
 
+    public void setNewRecord(boolean newRecord) {
+        isNewRecord = newRecord;
+    }
 
+    public String getProposalUserName() {
+        return proposalUserName;
+    }
+
+    public void setProposalUserName(String proposalUserName) {
+        this.proposalUserName = proposalUserName;
+    }
 }

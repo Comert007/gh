@@ -2,11 +2,16 @@ package com.ww.android.governmentheart.adapter.join;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.ww.android.governmentheart.BaseApplication;
 import com.ww.android.governmentheart.R;
-import com.ww.android.governmentheart.mvp.bean.MultipleBean;
+import com.ww.android.governmentheart.config.listener.OnAdapterItemListener;
 import com.ww.android.governmentheart.mvp.bean.heart.NewsBean;
 
+import butterknife.BindView;
 import ww.com.core.adapter.RvAdapter;
 import ww.com.core.adapter.RvViewHolder;
 
@@ -14,10 +19,16 @@ import ww.com.core.adapter.RvViewHolder;
  * @author feng
  * @Date 2018/6/21.
  */
-public class JoinAdapter extends RvAdapter<NewsBean>{
+public class JoinAdapter extends RvAdapter<NewsBean> {
+
+    private OnAdapterItemListener mOnAdapterItemListener;
 
     public JoinAdapter(Context context) {
         super(context);
+    }
+
+    public void setOnAdapterItemListener(OnAdapterItemListener onAdapterItemListener) {
+        mOnAdapterItemListener = onAdapterItemListener;
     }
 
     @Override
@@ -27,36 +38,22 @@ public class JoinAdapter extends RvAdapter<NewsBean>{
 
     @Override
     protected int getItemLayoutResId(int viewType) {
-        if (NewsBean.MULTIPLE_HEADER == viewType){
-            return R.layout.layout_join_header;
-        }else {
-            return R.layout.adapter_join_body;
-        }
+        return R.layout.adapter_join;
     }
 
     @Override
     protected RvViewHolder<NewsBean> getViewHolder(int viewType, View view) {
-        if (MultipleBean.MULTIPLE_HEADER == viewType){
-            return new JoinHeaderViewHolder(view);
-        }else {
-            return new JoinBodyViewHolder(view);
-        }
-    }
-
-    class JoinHeaderViewHolder extends RvViewHolder<NewsBean>{
-
-        public JoinHeaderViewHolder(View itemView) {
-            super(itemView);
-        }
-
-        @Override
-        public void onBindData(int position, NewsBean bean) {
-
-        }
+        return new JoinBodyViewHolder(view);
     }
 
 
     class JoinBodyViewHolder extends RvViewHolder<NewsBean> {
+        @BindView(R.id.it_left)
+        ImageView itLeft;
+        @BindView(R.id.iv)
+        ImageView iv;
+        @BindView(R.id.container)
+        RelativeLayout container;
 
         public JoinBodyViewHolder(View itemView) {
             super(itemView);
@@ -64,20 +61,31 @@ public class JoinAdapter extends RvAdapter<NewsBean>{
 
         @Override
         public void onBindData(int position, NewsBean bean) {
+            ImageLoader.getInstance().displayImage(bean.isVisible ? bean.getImage() : bean
+                    .getUnImage(), iv, BaseApplication.getDisplayImageOptions(R.mipmap.ic_header_default));
 
+            itLeft.setVisibility(bean.isVisible ? View.VISIBLE : View.GONE);
+
+            container.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    selected(position);
+                    if (mOnAdapterItemListener != null) {
+                        mOnAdapterItemListener.onAdapterItem(container, position);
+                    }
+                }
+            });
         }
+
     }
 
-
-    class EmptyViewHolder extends RvViewHolder<NewsBean>{
-
-        public EmptyViewHolder(View itemView) {
-            super(itemView);
+    public void selected(int position) {
+        for (NewsBean newsBean : getList()) {
+            newsBean.isVisible = false;
         }
 
-        @Override
-        public void onBindData(int position, NewsBean bean) {
-
-        }
+        getItem(position).isVisible = true;
+        notifyDataSetChanged();
     }
+
 }

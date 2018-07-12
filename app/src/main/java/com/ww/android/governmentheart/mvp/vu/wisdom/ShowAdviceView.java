@@ -13,7 +13,7 @@ import butterknife.BindView;
  */
 public class ShowAdviceView extends RefreshView {
 
-    @BindView(R.id.tv_title)
+    @BindView(R.id.tv_title_name)
     TextView tvTitle;
     @BindView(R.id.tv_content)
     TextView tvContent;

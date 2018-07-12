@@ -17,6 +17,7 @@ import com.ww.android.governmentheart.mvp.model.CommonModel;
 import com.ww.android.governmentheart.mvp.vu.RefreshView;
 import com.ww.android.governmentheart.network.BaseObserver;
 import com.ww.android.governmentheart.utils.RecyclerHelper;
+import com.ww.android.governmentheart.widget.EmptyLayout;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -39,9 +40,9 @@ public class CommentsActivity extends BaseActivity<RefreshView, CommonModel> {
     // type：1新闻类，2 参政议政，3 知识交流，4 活动，5 直播
     private String type;
 
-    public static void start(Context context,EasyRequestBean easyRequestBean) {
+    public static void start(Context context, EasyRequestBean easyRequestBean) {
         Intent intent = new Intent(context, CommentsActivity.class);
-        intent.putExtra("easyRequestBean",easyRequestBean);
+        intent.putExtra("easyRequestBean", easyRequestBean);
         context.startActivity(intent);
     }
 
@@ -66,7 +67,7 @@ public class CommentsActivity extends BaseActivity<RefreshView, CommonModel> {
         super.onTitleLeft();
     }
 
-    private void initData(){
+    private void initData() {
         mEasyRequestBean = (EasyRequestBean) getIntent().getSerializableExtra("easyRequestBean");
         id = mEasyRequestBean.id;
         type = mEasyRequestBean.type;
@@ -78,7 +79,7 @@ public class CommentsActivity extends BaseActivity<RefreshView, CommonModel> {
         }
 
         v.srl.setOnRefreshListener(refreshLayout -> {
-            page =0;
+            page = 0;
             comments();
         });
 
@@ -97,16 +98,16 @@ public class CommentsActivity extends BaseActivity<RefreshView, CommonModel> {
         return ImmersionType.WHITE;
     }
 
-    private void comments(){
+    private void comments() {
         Map map = new HashMap();
-        map.put("id",id);
-        map.put("pageNo",page);
-        map.put("t",type);
-        if (page == 0){
+        map.put("id", id);
+        map.put("pageNo", page);
+        map.put("t", type);
+        if (page == 0) {
             map.put("date", TimeUtils.date2String(new Date()));
         }
 
-        if (v.srl == null){
+        if (v.srl == null) {
             return;
         }
         m.comments(map, new BaseObserver<PageListBean<CommentBean>>(this, bindToLifecycle()) {
@@ -115,10 +116,12 @@ public class CommentsActivity extends BaseActivity<RefreshView, CommonModel> {
                                      @Nullable List<PageListBean<CommentBean>> list, @Nullable
                                              PageBean<PageListBean<CommentBean>> pageBean) {
 
-                if (commentBeanPageListBean != null && commentBeanPageListBean.getList() != null) {
+                if (commentBeanPageListBean != null && commentBeanPageListBean.getList() != null
+                        && commentBeanPageListBean.getList().size() >0) {
+                    v.loadStatus(EmptyLayout.STATUS_HIDE);
                     List<CommentBean> commentBeans = commentBeanPageListBean.getList();
                     PagingBean pagingBean = commentBeanPageListBean.getPage();
-                    btnTitleRight.setText("共"+pagingBean.getTotalNum()+"条");
+                    btnTitleRight.setText("共" + pagingBean.getTotalNum() + "条");
                     int totalPage = pagingBean.getTotalPage();
                     if (page == 0) {
                         v.srl.finishRefresh();
@@ -138,23 +141,34 @@ public class CommentsActivity extends BaseActivity<RefreshView, CommonModel> {
                             v.srl.setNoMoreData(true);
                         }
                     }
-                }else {
-                    if (page == 0) {
-                        v.srl.finishRefresh();
-                    }else {
-                        v.srl.finishLoadMore();
-                    }
+                } else {
+                    reload(EmptyLayout.STATUS_NO_NET);
                 }
             }
 
             @Override
             protected void onFailure() {
-                if (page == 0) {
-                    v.srl.finishRefresh();
-                }else {
-                    v.srl.finishLoadMore();
-                }
+                reload(EmptyLayout.STATUS_NO_NET);
             }
         });
+    }
+
+    private void reload(int type) {
+        if (type == EmptyLayout.STATUS_NO_NET) {
+            v.loadStatus(EmptyLayout.STATUS_NO_NET);
+        } else {
+            v.loadStatus(EmptyLayout.STATUS_NO_DATA);
+        }
+        v.mEmptyLayout.setRetryListener(new EmptyLayout.OnRetryListener() {
+            @Override
+            public void onRetry() {
+                comments();
+            }
+        });
+        if (page == 0) {
+            v.srl.finishRefresh();
+        } else {
+            v.srl.finishLoadMore();
+        }
     }
 }

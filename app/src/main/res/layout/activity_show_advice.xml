@@ -27,7 +27,7 @@
             android:text="标题"/>
 
         <TextView
-            android:id="@+id/tv_title"
+            android:id="@+id/tv_title_name"
             style="@style/ClearEditTextStyle"
             android:layout_marginLeft="@dimen/margin_15"
             android:layout_marginRight="@dimen/margin_15"
@@ -80,6 +80,7 @@
         android:layout_width="match_parent"
         android:textColor="@color/color_white"
         android:text="提交"
+        android:visibility="gone"
         android:textSize="@dimen/text_15"
         android:background="@drawable/shape_blue_round_corner_2"
         android:layout_margin="@dimen/margin_15"

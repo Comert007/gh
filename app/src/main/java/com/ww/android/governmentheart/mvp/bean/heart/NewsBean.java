@@ -21,6 +21,7 @@ public class NewsBean extends MultipleBean {
     private String link;
     private String color;
     private String image;
+    private String unImage;
     private String keywords;
     private String description;
     private int weight;
@@ -33,6 +34,8 @@ public class NewsBean extends MultipleBean {
 
     //自定义字段
     public int totalNum;
+    public String mainpic;
+    public boolean isVisible;
 
     public NewsBean(int itemType) {
         super(itemType);
@@ -159,6 +162,14 @@ public class NewsBean extends MultipleBean {
         this.image = image;
     }
 
+    public String getUnImage() {
+        return unImage;
+    }
+
+    public void setUnImage(String unImage) {
+        this.unImage = unImage;
+    }
+
     public String getKeywords() {
         return keywords;
     }
@@ -230,6 +241,8 @@ public class NewsBean extends MultipleBean {
     public void setImageSrc(String imageSrc) {
         this.imageSrc = imageSrc;
     }
+
+
 
 
 }

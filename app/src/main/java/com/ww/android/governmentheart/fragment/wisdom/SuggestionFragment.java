@@ -55,7 +55,6 @@ public class SuggestionFragment extends BaseFragment<RefreshView, WisdomModel> {
     protected void init() {
         initListener();
         initRecycler();
-        v.srl.autoRefresh();
     }
 
     private void initListener() {
@@ -177,5 +176,11 @@ public class SuggestionFragment extends BaseFragment<RefreshView, WisdomModel> {
                 }
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        v.srl.autoRefresh();
     }
 }

@@ -58,8 +58,20 @@ public class CommonModel extends BaseModel {
     /**
      * openapi/getRecommend?args={"code":"5"} 按分类码获取 推荐位
      */
-    public void recommend(Map map,BaseObserver<PageListBean<NewsBean>> observer) {
+    public void recommend(Map map, BaseObserver<PageListBean<NewsBean>> observer) {
         HttpRequest.loginApi().recommend(JsonParse.createArgs(map))
+                .compose(RxSchedulers.cutObservableMain())
+                .compose(observer.getTransformer())
+                .subscribe(observer);
+    }
+
+
+    /**
+     * 首页顶部首图
+     * @param observer
+     */
+    public void mainPic(BaseObserver<String> observer) {
+        HttpRequest.loginApi().mainpic()
                 .compose(RxSchedulers.cutObservableMain())
                 .compose(observer.getTransformer())
                 .subscribe(observer);

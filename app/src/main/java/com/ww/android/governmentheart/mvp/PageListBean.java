@@ -16,6 +16,8 @@ public class PageListBean<T> {
     private List<T> list;
     @Nullable
     private PagingBean page;
+    @Nullable
+    private T data;
 
     public List<T> getList() {
         return list;
@@ -33,4 +35,12 @@ public class PageListBean<T> {
         this.page = page;
     }
 
+    @Nullable
+    public T getData() {
+        return data;
+    }
+
+    public void setData(@Nullable T data) {
+        this.data = data;
+    }
 }

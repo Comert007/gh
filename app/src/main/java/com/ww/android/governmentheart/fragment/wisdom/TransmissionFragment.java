@@ -8,6 +8,7 @@ import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.ww.android.governmentheart.BaseApplication;
 import com.ww.android.governmentheart.R;
+import com.ww.android.governmentheart.activity.wisdom.TransmissionActivity;
 import com.ww.android.governmentheart.adapter.wisdom.TransmissionAdapter;
 import com.ww.android.governmentheart.fragment.BaseFragment;
 import com.ww.android.governmentheart.mvp.PageListBean;
@@ -18,6 +19,7 @@ import com.ww.android.governmentheart.mvp.bean.wisdom.TransmissionBean;
 import com.ww.android.governmentheart.mvp.model.wisdom.WisdomModel;
 import com.ww.android.governmentheart.mvp.vu.RefreshView;
 import com.ww.android.governmentheart.network.BaseObserver;
+import com.ww.android.governmentheart.utils.RecyclerHelper;
 import com.ww.android.governmentheart.widget.EmptyLayout;
 
 import java.util.Date;
@@ -25,6 +27,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import butterknife.OnClick;
+import ww.com.core.Debug;
 import ww.com.core.utils.TimeUtils;
 
 /**
@@ -51,14 +55,13 @@ public class TransmissionFragment extends BaseFragment<RefreshView, WisdomModel>
     protected void init() {
         initRecycler();
         initListener();
-        v.srl.autoRefresh();
+        material();
     }
 
     private void initListener() {
         if (v.srl == null) {
             return;
         }
-
         v.srl.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
@@ -76,13 +79,25 @@ public class TransmissionFragment extends BaseFragment<RefreshView, WisdomModel>
     }
 
     private void initRecycler() {
-        v.initDefaultDecoration();
+        v.initRecycler(RecyclerHelper.defaultManager(getContext()), RecyclerHelper
+                .defaultSingleDecoration(getContext()));
         adapter = new TransmissionAdapter(getContext());
         v.crv.setAdapter(adapter);
     }
 
+
+    @OnClick(R.id.btn_publish)
+    public void onClick(){
+        TransmissionActivity.start(getContext());
+    }
+
     private void material() {
         UserBean userBean = (UserBean) BaseApplication.getInstance().getUserInfo();
+        Debug.d("userBean==null?" + (userBean == null));
+        Debug.d("userBean.getUser()==null?" + (userBean.getUser() == null));
+        if (userBean == null || userBean.getUser() == null) {
+            return;
+        }
         if (userBean == null || userBean.getUser() == null) {
             return;
         }
@@ -93,7 +108,6 @@ public class TransmissionFragment extends BaseFragment<RefreshView, WisdomModel>
         if (v.srl == null) {
             return;
         }
-
         m.material(map, new BaseObserver<PageListBean<TransmissionBean>>(getContext(),
                 bindToLifecycle()) {
             @Override
@@ -104,6 +118,7 @@ public class TransmissionFragment extends BaseFragment<RefreshView, WisdomModel>
 
                 if (transmissionBeanPageListBean != null && transmissionBeanPageListBean.getList
                         () != null && transmissionBeanPageListBean.getList().size() > 0) {
+                    v.loadStatus(EmptyLayout.STATUS_HIDE);
                     List<TransmissionBean> transmissionBeans = transmissionBeanPageListBean
                             .getList();
                     PagingBean pagingBean = transmissionBeanPageListBean.getPage();
@@ -111,6 +126,7 @@ public class TransmissionFragment extends BaseFragment<RefreshView, WisdomModel>
                     if (page == 0) {
                         v.srl.finishRefresh();
                         if (transmissionBeans != null && transmissionBeans.size() > 0) {
+                            Debug.d("===>>>>>>");
                             adapter.addList(transmissionBeans);
                             page++;
                         } else {
@@ -160,4 +176,5 @@ public class TransmissionFragment extends BaseFragment<RefreshView, WisdomModel>
             }
         });
     }
+
 }

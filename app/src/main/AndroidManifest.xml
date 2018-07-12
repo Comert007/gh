@@ -10,11 +10,11 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
 
-    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-    <uses-permission android:name="android.permission.GET_TASKS" />
-    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="android.permission.GET_TASKS"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
@@ -30,39 +30,49 @@
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="zEGpisoeHWXlzcTuwwbcFlnUYWws4Cdb" />
+            android:value="zEGpisoeHWXlzcTuwwbcFlnUYWws4Cdb"/>
 
-        <service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote"> </service>
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote"></service>
 
-        <activity android:name=".activity.MainActivity"
-                  android:screenOrientation="portrait">
+        <activity
+            android:name=".activity.MainActivity"
+            android:screenOrientation="portrait">
         </activity>
 
         <!--搜索-->
-        <activity android:name=".activity.heart.SearchActivity"
-                  android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.heart.SearchActivity"
+            android:screenOrientation="portrait"/>
 
         <!--建言-->
-        <activity android:name=".activity.wisdom.AdviceActivity"
-                  android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.wisdom.AdviceActivity"
+            android:screenOrientation="portrait"/>
 
         <!--评论-->
-        <activity android:name=".activity.heart.CommentsActivity"
-                  android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.heart.CommentsActivity"
+            android:screenOrientation="portrait"/>
 
         <!--登录-->
-        <activity android:name=".activity.home.LoginActivity"
-                  android:screenOrientation="portrait">
+        <activity
+            android:name=".activity.home.LoginActivity"
+            android:screenOrientation="portrait">
 
         </activity>
 
         <!--提交成功-->
-        <activity android:name=".activity.home.CommitSuccessActivity"
-                  android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.home.CommitSuccessActivity"
+            android:screenOrientation="portrait"/>
 
         <!--launcher-->
-        <activity android:name=".activity.LauncherActivity"
-                  android:screenOrientation="portrait">
+        <activity
+            android:name=".activity.LauncherActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -72,29 +82,59 @@
         </activity>
 
         <!--显示建言-->
-        <activity android:name=".activity.wisdom.ShowAdviceActivity"
-                  android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.wisdom.ShowAdviceActivity"
+            android:screenOrientation="portrait"/>
 
         <!--资料发送详情-->
-        <activity android:name=".activity.wisdom.ShowTransmissionActivity"
-                  android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.wisdom.ShowTransmissionActivity"
+            android:screenOrientation="portrait"/>
 
         <!--用户位置-->
-        <activity android:name=".activity.home.UserLocationActivity"
-                  android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.home.UserLocationActivity"
+            android:screenOrientation="portrait"/>
         <!--内容详情-->
-        <activity android:name=".activity.base.ContentDetailActivity"
-                  android:screenOrientation="portrait"
-                  android:windowSoftInputMode="adjustPan"
+        <activity
+            android:name=".activity.base.ContentDetailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"
             />
 
         <!--web-->
-        <activity android:name=".activity.base.WebViewActivity"
-                  android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.base.WebViewActivity"
+            android:screenOrientation="portrait"/>
 
         <!--忘记密码-->
-        <activity android:name=".activity.home.ChangePassActivity"
+        <activity
+            android:name=".activity.home.ChangePassActivity"
+            android:screenOrientation="portrait"/>
+
+        <!--资料传输-->
+        <activity
+            android:name=".activity.wisdom.TransmissionActivity"
+            android:screenOrientation="portrait"/>
+
+        <!--提交成功-->
+        <activity
+            android:name=".activity.wisdom.CommitSuccessActivity"
+            android:screenOrientation="portrait"/>
+
+        <!--选择联系人-->
+        <activity
+            android:name=".activity.wisdom.ChooseContactActivity"
+            android:screenOrientation="portrait"/>
+
+        <!--统战成员-->
+        <activity android:name=".activity.home.MemberActivity"
                   android:screenOrientation="portrait"/>
+
+        <!--<activity-->
+            <!--android:name="com.vincent.filepicker.activity.NormalFilePickActivity"-->
+            <!--android:screenOrientation="portrait"-->
+            <!--android:theme="@style/AppOtherTheme"/>-->
 
         <!--7.0权限适配-->
         <provider
@@ -106,7 +146,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths"/>
         </provider>
-
 
 
     </application>

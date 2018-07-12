@@ -2,6 +2,7 @@ package com.ww.android.governmentheart.network.api;
 
 import com.ww.android.governmentheart.mvp.PageListBean;
 import com.ww.android.governmentheart.mvp.bean.ResponseBean;
+import com.ww.android.governmentheart.mvp.bean.wisdom.ContactBean;
 import com.ww.android.governmentheart.mvp.bean.wisdom.SuggestBean;
 import com.ww.android.governmentheart.mvp.bean.wisdom.SuggestDetailBean;
 import com.ww.android.governmentheart.mvp.bean.wisdom.TransmissionBean;
@@ -38,7 +39,7 @@ public interface WisdomApi {
      * @return
      */
     @POST("suggestDetail")
-    Observable<ResponseBean<SuggestDetailBean>> suggestDetail(@Body RequestBody body);
+    Observable<ResponseBean<PageListBean<SuggestDetailBean>>> suggestDetail(@Body RequestBody body);
 
 
     /**
@@ -86,6 +87,16 @@ public interface WisdomApi {
      */
     @POST("material")
     Observable<ResponseBean<PageListBean<TransmissionBean>>> material(@Body RequestBody body);
+
+
+    /**
+     * 资料保存
+     * @param body
+     * @return
+     */
+    @POST("materialSave")
+    Observable<ResponseBean<String>> saveMaterial(@Body RequestBody body);
+
     //materialDetail
 
     /**
@@ -95,4 +106,14 @@ public interface WisdomApi {
      */
     @POST("materialDetail")
     Observable<ResponseBean<TransmissionDetailBean>> materialDetail(@Body RequestBody body);
+
+
+    /**
+     * userpage?args={"pageNo":"0","name":"雷"} 查人员
+     * 联系人查询
+     * @param body
+     * @return
+     */
+    @POST("userpage")
+    Observable<ResponseBean<PageListBean<ContactBean>>> contacts(@Body RequestBody body);
 }

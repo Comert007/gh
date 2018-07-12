@@ -36,6 +36,7 @@ public class HomeFragment extends BaseFragment<RefreshView, CommonModel> {
     private int code = 0;
     private int page;
     private HomeAdapter adapter;
+    private String mainpic;
 
     @Override
     protected int getLayoutResId() {
@@ -49,8 +50,7 @@ public class HomeFragment extends BaseFragment<RefreshView, CommonModel> {
             return;
         }
         initRecycler();
-
-        v.srl.autoRefresh();
+        mainPic();
     }
 
 
@@ -84,7 +84,7 @@ public class HomeFragment extends BaseFragment<RefreshView, CommonModel> {
     }
 
     @OnClick({R.id.btn_title_left})
-    public void onClick(){
+    public void onClick() {
         UserLocationActivity.launch(getContext());
     }
 
@@ -105,13 +105,14 @@ public class HomeFragment extends BaseFragment<RefreshView, CommonModel> {
                                              PageBean<PageListBean<NewsBean>> pageBean) {
 
                 if (newsBeanPageListBean != null && newsBeanPageListBean.getList() != null
-                        && newsBeanPageListBean.getList().size()>0) {
+                        && newsBeanPageListBean.getList().size() > 0) {
                     v.loadStatus(EmptyLayout.STATUS_HIDE);
                     List<NewsBean> newsBeans = setType(newsBeanPageListBean.getList());
                     PagingBean pagingBean = newsBeanPageListBean.getPage();
                     int totalPage = pagingBean.getTotalPage();
                     if (page == 0) {
                         NewsBean newsBean = new NewsBean(NewsBean.MULTIPLE_HEADER);
+                        newsBean.mainpic = mainpic;
                         newsBean.totalNum = pagingBean.getTotalNum();
                         newsBeans.add(0, newsBean);
                         v.srl.finishRefresh();
@@ -131,7 +132,7 @@ public class HomeFragment extends BaseFragment<RefreshView, CommonModel> {
                             v.srl.setNoMoreData(true);
                         }
                     }
-                }else {
+                } else {
                     reload(EmptyLayout.STATUS_NO_DATA);
                 }
             }
@@ -151,10 +152,10 @@ public class HomeFragment extends BaseFragment<RefreshView, CommonModel> {
         return newsBeans;
     }
 
-    private void reload(int type){
-        if (type == EmptyLayout.STATUS_NO_NET){
+    private void reload(int type) {
+        if (type == EmptyLayout.STATUS_NO_NET) {
             v.loadStatus(EmptyLayout.STATUS_NO_NET);
-        }else {
+        } else {
             v.loadStatus(EmptyLayout.STATUS_NO_DATA);
         }
         v.mEmptyLayout.setRetryListener(new EmptyLayout.OnRetryListener() {
@@ -168,5 +169,16 @@ public class HomeFragment extends BaseFragment<RefreshView, CommonModel> {
         } else {
             v.srl.finishLoadMore();
         }
+    }
+
+    private void mainPic() {
+        m.mainPic(new BaseObserver<String>(getContext(),bindToLifecycle()) {
+            @Override
+            protected void onSuccess(@Nullable String s, @Nullable List<String> list, @Nullable
+                    PageBean<String> page) {
+                mainpic = s;
+                news();
+            }
+        });
     }
 }

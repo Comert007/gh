@@ -4,9 +4,12 @@ import com.ww.android.governmentheart.mvp.PageListBean;
 import com.ww.android.governmentheart.mvp.bean.ResponseBean;
 import com.ww.android.governmentheart.mvp.bean.heart.NewsBean;
 import com.ww.android.governmentheart.mvp.bean.home.CommentBean;
+import com.ww.android.governmentheart.mvp.bean.home.OrganizationBean;
+import com.ww.android.governmentheart.mvp.bean.home.OrganizationDetailBean;
 import com.ww.android.governmentheart.mvp.bean.login.NewsTypeBean;
 import com.ww.android.governmentheart.mvp.bean.login.PassBean;
 import com.ww.android.governmentheart.mvp.bean.login.UserBean;
+import com.ww.android.governmentheart.mvp.bean.together.OrganizationTypeBean;
 
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
@@ -62,10 +65,40 @@ public interface LoginApi {
 
     /**
      * 根据分类获取推荐位
+     *
      * @param body
      * @return
      */
     @POST("getRecommend")
     Observable<ResponseBean<PageListBean<NewsBean>>> recommend(@Body RequestBody body);
+
+    @POST("mainpic")
+    Observable<ResponseBean<String>> mainpic();
+
+
+    /**
+     * @return 获取统战分类
+     */
+    @POST("tztype")
+    Observable<ResponseBean<PageListBean<OrganizationTypeBean>>> organizationType();
+
+
+    /**
+     * 根据分类获取统战组织
+     *
+     * @return
+     */
+    @POST("gettzzz")
+    Observable<ResponseBean<PageListBean<OrganizationBean>>> organizations(@Body RequestBody body);
+
+
+    /**
+     * 2.21.	获取统战组织详情
+     *
+     * @return
+     */
+    @POST("gettzzzDetail")
+    Observable<ResponseBean<PageListBean<OrganizationDetailBean>>> organizationDetail(@Body RequestBody body);
+
 
 }
