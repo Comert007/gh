@@ -59,7 +59,7 @@ public class QuestionAdapter extends RvAdapter<QuestionBean> {
             ImageLoader.getInstance().displayImage(bean.getImage(), iv, BaseApplication
                     .getDisplayImageOptions(R.mipmap.ic_pic_default));
             tvTitleName.setText(bean.getTitle());
-            tvEyes.setText(bean.getViewNum());
+            tvEyes.setText(String.format("%d", bean.getViewNum()));
             tvTime.setText(TimeUtils.milliseconds2String(bean.getQuestionDate()));
             container.setOnClickListener(new View.OnClickListener() {
                 @Override

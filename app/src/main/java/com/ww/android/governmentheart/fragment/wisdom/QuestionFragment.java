@@ -7,6 +7,7 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.ww.android.governmentheart.R;
+import com.ww.android.governmentheart.activity.wisdom.QuestionActivity;
 import com.ww.android.governmentheart.adapter.wisdom.QuestionAdapter;
 import com.ww.android.governmentheart.fragment.BaseFragment;
 import com.ww.android.governmentheart.mvp.PageListBean;
@@ -22,6 +23,8 @@ import com.ww.android.governmentheart.widget.EmptyLayout;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import butterknife.OnClick;
 
 /**
  * @Author feng
@@ -75,6 +78,11 @@ public class QuestionFragment extends BaseFragment<RefreshView, WisdomModel> {
                 .defaultMoreDecoration(getContext()));
         adapter = new QuestionAdapter(getContext());
         v.crv.setAdapter(adapter);
+    }
+
+    @OnClick(R.id.btn_publish)
+    public void onClick(){
+        QuestionActivity.start(getContext());
     }
 
     private void questions() {
