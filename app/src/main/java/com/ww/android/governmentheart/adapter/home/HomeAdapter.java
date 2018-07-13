@@ -103,7 +103,7 @@ public class HomeAdapter extends RvAdapter<NewsBean> {
             tvTitleName.setText(bean.getTitle());
             tvEyes.setText(bean.getViewNum());
             tvComment.setText(bean.getCommentNum());
-            tvTime.setText(bean.getDate());
+            tvTime.setText(bean.getCreateDate());
             EasyRequestBean easyRequestBean = new EasyRequestBean.Builder()
                     .setId(bean.getId())
                     .setName(bean.getTitle())
@@ -112,17 +112,6 @@ public class HomeAdapter extends RvAdapter<NewsBean> {
                     .build();
             container.setOnClickListener(v -> ContentDetailActivity.start(getContext(),
                     easyRequestBean));
-        }
-    }
-
-    class EmptyViewHolder extends RvViewHolder<NewsBean> {
-        public EmptyViewHolder(View itemView) {
-            super(itemView);
-        }
-
-        @Override
-        public void onBindData(int position, NewsBean bean) {
-
         }
     }
 }

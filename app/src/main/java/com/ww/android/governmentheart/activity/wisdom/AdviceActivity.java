@@ -141,7 +141,7 @@ public class AdviceActivity extends BaseActivity<AdviceView, WisdomModel> {
     private void saveSuggest(@Nullable List<UploadBean> imgs) {
         Map map = new HashMap();
 
-        map.put("title", v.getContent());
+        map.put("title", v.getTitle());
         map.put("cont", v.getContent());
         if (imgs != null) {
             map.put("imgs", imgs);

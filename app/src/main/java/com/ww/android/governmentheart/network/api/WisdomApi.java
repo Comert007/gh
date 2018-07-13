@@ -3,6 +3,8 @@ package com.ww.android.governmentheart.network.api;
 import com.ww.android.governmentheart.mvp.PageListBean;
 import com.ww.android.governmentheart.mvp.bean.ResponseBean;
 import com.ww.android.governmentheart.mvp.bean.wisdom.ContactBean;
+import com.ww.android.governmentheart.mvp.bean.wisdom.QuestionBean;
+import com.ww.android.governmentheart.mvp.bean.wisdom.QuestionDetailBean;
 import com.ww.android.governmentheart.mvp.bean.wisdom.SuggestBean;
 import com.ww.android.governmentheart.mvp.bean.wisdom.SuggestDetailBean;
 import com.ww.android.governmentheart.mvp.bean.wisdom.TransmissionBean;
@@ -116,4 +118,31 @@ public interface WisdomApi {
      */
     @POST("userpage")
     Observable<ResponseBean<PageListBean<ContactBean>>> contacts(@Body RequestBody body);
+
+    /**
+     * 知识交流列表 page
+     * @param body
+     * @return
+     */
+    @POST("questionList")
+    Observable<ResponseBean<PageListBean<QuestionBean>>> questions(@Body RequestBody body);
+
+
+    /**
+     * con="问题" title="标题"
+     * 新增知识交流
+     * @param body
+     * @return
+     */
+    @POST("addQuestion")
+    Observable<ResponseBean<String>> addQuestion(@Body RequestBody body);
+
+
+    /**
+     * 获取知识交流详情 id="1"
+     * @param body
+     * @return
+     */
+    @POST("getQuestionById")
+    Observable<ResponseBean<PageListBean<QuestionDetailBean>>> questionDetail(@Body RequestBody body);
 }

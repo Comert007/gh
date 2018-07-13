@@ -2,6 +2,8 @@ package com.ww.android.governmentheart.mvp.model.wisdom;
 
 import com.ww.android.governmentheart.mvp.PageListBean;
 import com.ww.android.governmentheart.mvp.bean.wisdom.ContactBean;
+import com.ww.android.governmentheart.mvp.bean.wisdom.QuestionBean;
+import com.ww.android.governmentheart.mvp.bean.wisdom.QuestionDetailBean;
 import com.ww.android.governmentheart.mvp.bean.wisdom.RequestFileBean;
 import com.ww.android.governmentheart.mvp.bean.wisdom.SuggestBean;
 import com.ww.android.governmentheart.mvp.bean.wisdom.SuggestDetailBean;
@@ -111,6 +113,40 @@ public class WisdomModel extends BaseModel {
      */
     public void contacts(Map map, BaseObserver<PageListBean<ContactBean>> observer) {
         HttpRequest.wisdomApi().contacts(JsonParse.createArgs(map))
+                .compose(RxSchedulers.cutObservableMain())
+                .compose(observer.getTransformer())
+                .subscribe(observer);
+    }
+
+
+    /**
+     * 知识交流列表
+     * @param map
+     * @param observer
+     */
+    public void questions(Map map, BaseObserver<PageListBean<QuestionBean>> observer){
+        HttpRequest.wisdomApi().questions(JsonParse.createArgs(map))
+                .compose(RxSchedulers.cutObservableMain())
+                .compose(observer.getTransformer())
+                .subscribe(observer);
+    }
+
+
+    /**
+     * 新建知识交流
+     * @param map
+     * @param observer
+     */
+    public void addQuestion(Map map,BaseObserver<String> observer){
+        HttpRequest.wisdomApi().addQuestion(JsonParse.createArgs(map))
+                .compose(RxSchedulers.cutObservableMain())
+                .compose(observer.getTransformer())
+                .subscribe(observer);
+    }
+
+
+    public void questionDetail(Map map,BaseObserver<PageListBean<QuestionDetailBean>> observer){
+        HttpRequest.wisdomApi().questionDetail(JsonParse.createArgs(map))
                 .compose(RxSchedulers.cutObservableMain())
                 .compose(observer.getTransformer())
                 .subscribe(observer);

@@ -16,7 +16,7 @@
             style="@style/TitleBar"
             app:titleLeftIco="@mipmap/ic_back"
             android:background="@color/color_white"
-            app:titleText="建言献策"
+            app:titleText="知识交流"
             app:titleTextColor="@color/color_black"/>
 
         <View style="@style/ViewLineStyle"/>
@@ -26,61 +26,41 @@
             android:padding="@dimen/margin_15"
             android:text="标题"/>
 
-        <TextView
-            android:id="@+id/tv_title_name"
+        <com.ww.android.governmentheart.widget.ClearEditText
+            android:id="@+id/et_title"
             style="@style/ClearEditTextStyle"
             android:layout_marginLeft="@dimen/margin_15"
             android:layout_marginRight="@dimen/margin_15"
-            android:hint="标题"
-           />
+            android:hint="在这里输入标题"
+            app:delIcon="@mipmap/ic_close"
+            app:delIconHeight="@dimen/length_16"
+            app:delIconWidth="@dimen/length_16"/>
         <TextView
             style="@style/NormalTitleTextStyle"
             android:background="@color/color_white"
             android:padding="@dimen/margin_15"
             android:text="内容"/>
 
-        <TextView
-            android:id="@+id/tv_content"
+        <EditText
+            android:id="@+id/et_content"
             style="@style/ClearEditTextStyle"
             android:layout_height="130dp"
             android:layout_marginLeft="@dimen/margin_15"
             android:layout_marginRight="@dimen/margin_15"
             android:gravity="start"
-            android:hint="观点"/>
+            android:hint="在这里输入您的观点"/>
 
 
-        <TextView
-            style="@style/NormalTitleTextStyle"
-            android:paddingLeft="@dimen/margin_15"
-            android:paddingRight="@dimen/margin_15"
-            android:paddingTop="@dimen/margin_15"
-            android:text="图片"/>
-
-        <com.scwang.smartrefresh.layout.SmartRefreshLayout
-            android:id="@+id/srl"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/margin_10"
-            android:paddingRight="@dimen/margin_10"
-            app:srlEnableLoadMoreWhenContentNotFull="false">
-
-            <ww.com.core.widget.CustomRecyclerView
-                android:id="@+id/crv"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
     </LinearLayout>
 
 
     <Button
+        android:id="@+id/btn_commit"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:textColor="@color/color_white"
         android:text="提交"
-        android:visibility="gone"
         android:textSize="@dimen/text_15"
         android:background="@drawable/shape_blue_round_corner_2"
         android:layout_margin="@dimen/margin_15"

@@ -1,27 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<FrameLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.scwang.smartrefresh.layout.SmartRefreshLayout
-        android:id="@+id/srl"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:srlEnableLoadMoreWhenContentNotFull="false">
+        android:layout_height="match_parent">
 
-        <ww.com.core.widget.CustomRecyclerView
-            android:id="@+id/crv"
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/srl"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+            android:layout_height="wrap_content"
+            app:srlEnableLoadMoreWhenContentNotFull="false">
 
-    <com.ww.android.governmentheart.widget.EmptyLayout
-        android:id="@+id/ev"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:background_color="@color/color_divider"/>
-</FrameLayout>
+            <ww.com.core.widget.CustomRecyclerView
+                android:id="@+id/crv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
+        <com.ww.android.governmentheart.widget.EmptyLayout
+            android:id="@+id/ev"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:background_color="@color/color_divider"/>
+    </FrameLayout>
+
+
+
+    <Button
+        android:id="@+id/btn_suggestion"
+        android:layout_width="53dp"
+        android:layout_height="53dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/margin_20"
+        android:layout_marginRight="@dimen/margin_20"
+        android:background="@drawable/shape_blue_circle"
+        android:gravity="center"
+        android:padding="@dimen/margin_8"
+        android:text="我要发布"
+        android:textColor="@color/color_white"
+        android:textSize="@dimen/text_15"/>
+
+</RelativeLayout>

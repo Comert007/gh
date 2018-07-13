@@ -87,13 +87,13 @@ public class UserLocationActivity extends BaseActivity<VoidView, MainModel> {
                                 @Override
                                 public void onFinish() {
                                     super.onFinish();
-                                    onLocation();
-//                                    organizations();
+//                                    onLocation();
+                                    organizations();
                                 }
                             });
         } else {
-            onLocation();
-//            organizations();
+//            onLocation();
+            organizations();
         }
 
     }
@@ -121,24 +121,13 @@ public class UserLocationActivity extends BaseActivity<VoidView, MainModel> {
         baiduMap.setMapStatus(MapStatusUpdateFactory.newLatLng(point));
     }
 
-    private void showMap(double latitude, double longitude, boolean isCenter) {
+    private void showMap(double latitude, double longitude) {
         LatLng point = new LatLng(latitude, longitude);
         BitmapDescriptor bitmap = BitmapDescriptorFactory.fromResource(R.mipmap
                 .ic_location_circle);
         OverlayOptions option = new MarkerOptions().position(point).icon(bitmap);
         baiduMap.addOverlay(option);
-
-        if (isCenter){
-            LatLng point1 = new LatLng(latitude, longitude);
-            BitmapDescriptor bitmap1 = BitmapDescriptorFactory.fromResource(R.mipmap
-                    .ic_location_circle);
-            OverlayOptions option1 = new MarkerOptions().position(point1).icon(bitmap1);
-            baiduMap.addOverlay(option1);
-            baiduMap.setMapStatus(MapStatusUpdateFactory.newLatLng(point1));
-        }
-        // lng: 107.366666666667
-        //   lat: 22.4166666666667
-
+        baiduMap.setMapStatus(MapStatusUpdateFactory.newLatLng(point));
     }
 
     @OnClick({R.id.iv_back, R.id.container_members})
@@ -168,17 +157,13 @@ public class UserLocationActivity extends BaseActivity<VoidView, MainModel> {
                         && organizationBeanPageListBean.getList().size() > 0) {
                     List<OrganizationBean> organizationBeans = organizationBeanPageListBean
                             .getList();
-                    boolean isCenter = false;
                     for (int i = 0; i < organizationBeans.size(); i++) {
                         OrganizationBean organizationBean = organizationBeans.get(i);
-                        if (i == organizationBeans.size()-1){
-                            isCenter = true;
-                        }
                         if (!TextUtils.isEmpty(organizationBean.getLatitude()) && !TextUtils
                                 .isEmpty(organizationBean.getLongitude())) {
                             double latitude = Double.parseDouble(organizationBean.getLatitude());
                             double longitude = Double.parseDouble(organizationBean.getLongitude());
-                            showMap(latitude, longitude, isCenter);
+                            showMap(latitude, longitude);
                         }
                     }
                 }

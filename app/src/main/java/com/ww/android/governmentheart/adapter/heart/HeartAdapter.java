@@ -62,7 +62,7 @@ public class HeartAdapter extends RvAdapter<NewsBean> {
             tvTitleName.setText(bean.getTitle());
             tvEyes.setText(bean.getViewNum());
             tvComment.setText(bean.getCommentNum());
-            tvTime.setText(bean.getDate());
+            tvTime.setText(bean.getCreateDate());
 
 
             EasyRequestBean easyRequestBean = new EasyRequestBean.Builder()

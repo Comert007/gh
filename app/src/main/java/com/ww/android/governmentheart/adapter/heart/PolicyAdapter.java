@@ -51,13 +51,14 @@ public class PolicyAdapter extends RvAdapter<NewsBean> {
 
         @Override
         public void onBindData(int position, NewsBean bean) {
-            ImageLoader.getInstance().displayImage(bean.getImage(), iv, BaseApplication
-                    .getDisplayImageOptions(R.mipmap.img_policy));
+            ImageLoader.getInstance().displayImage(TextUtils.isEmpty(bean.getImage()) ? "" : bean
+                    .getImage(), iv, BaseApplication.getDisplayImageOptions(R.mipmap.img_policy));
 
             tvNum.setText("1");
 
             tvTitle.setText(bean.getTitle());
-            tvDes.setText(TextUtils.isEmpty(bean.getDescription())?"暂无介绍":bean.getDescription());
+            tvDes.setText(TextUtils.isEmpty(bean.getDescription()) ? "暂无介绍" : bean.getDescription
+                    ());
         }
     }
 }

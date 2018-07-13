@@ -131,6 +131,14 @@
         <activity android:name=".activity.home.MemberActivity"
                   android:screenOrientation="portrait"/>
 
+        <!--新增问题-->
+        <activity android:name=".activity.wisdom.QuestionActivity"
+                  android:screenOrientation="portrait"/>
+
+        <!--显示问题-->
+        <activity android:name=".activity.wisdom.ShowQuestionActivity"
+                  android:screenOrientation="portrait"/>
+
         <!--<activity-->
             <!--android:name="com.vincent.filepicker.activity.NormalFilePickActivity"-->
             <!--android:screenOrientation="portrait"-->
