@@ -139,6 +139,10 @@
         <activity android:name=".activity.wisdom.ShowQuestionActivity"
                   android:screenOrientation="portrait"/>
 
+        <!--在线阅读-->
+        <activity android:name=".activity.base.OnLineReadActivity"
+                  android:screenOrientation="portrait"/>
+
         <!--<activity-->
             <!--android:name="com.vincent.filepicker.activity.NormalFilePickActivity"-->
             <!--android:screenOrientation="portrait"-->

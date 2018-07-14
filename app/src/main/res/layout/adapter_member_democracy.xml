@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/color_white"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="@dimen/length_20"
+            android:layout_height="80dp">
+
+            <ImageView
+                android:id="@+id/iv"
+                android:layout_width="@dimen/length_20"
+                android:layout_height="@dimen/length_20"
+                android:layout_marginRight="@dimen/margin_12"
+                android:src="@mipmap/ic_peasant_party_negative"/>
+
+            <TextView
+                android:id="@+id/tv_name"
+                style="@style/NormalTitleTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_toRightOf="@id/iv"
+                android:text="农工党"/>
+
+            <TextView
+                android:id="@+id/tv_num"
+                style="@style/NormalTipTextStyle"
+                android:layout_marginLeft="@dimen/margin_5"
+                android:layout_toRightOf="@id/tv_name"
+                android:text="(12人)"/>
+
+
+            <TextView
+                android:id="@+id/tv_full_name"
+                style="@style/NormalTipTextStyle"
+                android:layout_below="@id/tv_name"
+                android:layout_toRightOf="@id/iv"
+                android:text="中国农工民主党"/>
+
+        </RelativeLayout>
+        <View
+            android:id="@+id/line"
+            style="@style/ViewLineVerticalStyle"/>
+
+    </LinearLayout>
+
+    <View style="@style/ViewLineStyle"/>
+
+</LinearLayout>

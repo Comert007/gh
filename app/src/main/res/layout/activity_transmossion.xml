@@ -3,6 +3,7 @@
 <LinearLayout
     style="@style/LLayStyle"
     android:background="@color/color_white"
+    android:fitsSystemWindows="true"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <com.ww.android.governmentheart.widget.TitleView

@@ -12,6 +12,16 @@
         android:layout_height="match_parent"
         android:clickable="true"/>
 
+
+   <!--<com.ww.android.governmentheart.widget.IconFontTextView-->
+       <!--android:id="@+id/tv_back"-->
+       <!--android:padding="@dimen/margin_15"-->
+       <!--android:layout_width="wrap_content"-->
+       <!--android:textColor="@color/color_tip_gray"-->
+       <!--android:textSize="25sp"-->
+       <!--android:text="\ue618"-->
+       <!--android:layout_height="wrap_content"/>-->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,44 +41,135 @@
             android:layout_height="20dp"
             android:src="@mipmap/ic_back"/>
 
-        <EditText
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginLeft="5dp"
             android:background="@android:color/transparent"
-            android:text="搜索成员"
+            android:gravity="center"
             android:textColor="@color/color_hint"
             android:textSize="@dimen/text_14"
             />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/container_members"
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="@dimen/margin_10"
-        android:background="@drawable/shape_white_round_2"
-        android:gravity="center_vertical"
-        android:paddingLeft="@dimen/margin_15"
-        android:paddingRight="@dimen/margin_15">
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
 
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:src="@mipmap/ic_members"/>
+        <LinearLayout
+            android:id="@+id/container_members"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="@dimen/margin_10"
+            android:background="@drawable/shape_white_round_2"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/margin_15"
+            android:paddingRight="@dimen/margin_15">
 
-        <TextView
-            style="@style/NormalTitleTextStyle"
-            android:layout_width="0dp"
-            android:layout_marginLeft="@dimen/margin_10"
-            android:layout_weight="1"
-            android:text="查看统战成员"/>
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@mipmap/ic_members"/>
 
-        <TextView
-            style="@style/NormalTipTextStyle"
-            android:text=""/>
+            <TextView
+                android:id="@+id/tv_organization_name"
+                style="@style/NormalTitleTextStyle"
+                android:layout_width="0dp"
+                android:layout_marginLeft="@dimen/margin_10"
+                android:layout_weight="1"
+                android:text="查看统战成员"/>
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/tv_member_num"
+                style="@style/NormalTipTextStyle"
+                android:text=""/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/container_user_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:background="@color/color_white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/margin_15"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <View
+                        android:layout_width="4dp"
+                        android:layout_height="15dp"
+                        android:background="@color/color_blue"/>
+
+
+                    <TextView
+                        android:id="@+id/tv_member_name"
+                        style="@style/NormalTitleTextStyle"
+                        android:layout_marginLeft="@dimen/margin_10"
+                        android:text="姓名"
+                        android:textSize="@dimen/text_18"
+                        />
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/tv_member_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:text="男，汉族，民主人士 长期从事量子力学、电动力学、量子光学等课程的教学活动，并在量子光学、量子信息学等领域进行深入研究。先后承担了国家重要科学基金..."
+                    android:textColor="@color/color_black"
+                    android:textSize="@dimen/text_11"/>
+
+            </LinearLayout>
+
+            <View style="@style/ViewLineStyle"/>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:padding="@dimen/margin_15"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/tv_member_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@mipmap/ic_user_detail"
+                    android:drawablePadding="@dimen/margin_5"
+                    android:layout_centerVertical="true"
+                    android:text="查看详情"
+                    android:textColor="@color/color_blue"
+                    android:textSize="@dimen/text_15"/>
+
+                <TextView
+                    android:id="@+id/tv_member_close"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="关闭"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/color_black"
+                    android:textSize="@dimen/text_12"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+
+    </FrameLayout>
+
 
 </RelativeLayout>

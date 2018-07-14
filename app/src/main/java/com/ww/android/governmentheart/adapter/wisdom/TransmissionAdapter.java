@@ -3,9 +3,11 @@ package com.ww.android.governmentheart.adapter.wisdom;
 import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ww.android.governmentheart.R;
+import com.ww.android.governmentheart.activity.wisdom.ShowTransmissionActivity;
 import com.ww.android.governmentheart.mvp.bean.wisdom.TransmissionBean;
 
 import butterknife.BindView;
@@ -40,6 +42,8 @@ public class TransmissionAdapter extends RvAdapter<TransmissionBean> {
         TextView tvTitle;
         @BindView(R.id.tv_time)
         TextView tvTime;
+        @BindView(R.id.container)
+        LinearLayout container;
 
 
         public TransmissionViewHolder(View itemView) {
@@ -50,6 +54,12 @@ public class TransmissionAdapter extends RvAdapter<TransmissionBean> {
         public void onBindData(int position, TransmissionBean bean) {
             tvTitle.setText(bean.getTitle());
             tvTime.setText(bean.getCreateDate());
+            container.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ShowTransmissionActivity.start(getContext(),bean.getId());
+                }
+            });
         }
     }
 }

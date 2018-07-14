@@ -1,48 +1,49 @@
 package com.ww.android.governmentheart.mvp.bean.home;
 
-import android.support.annotation.Nullable;
-
-import com.ww.android.governmentheart.mvp.bean.MultipleBean;
-
 import java.util.List;
 
 /**
  * @Author feng
- * @Date 2018/7/12
+ * @Date 2018/7/14
  */
-public class OrganizationBean extends MultipleBean{
-
-    public static int MULTIPLE_TITLE = 4;
+public class OfficesBean {
     /**
-     * id : 47f1e872f2c34a72806d192675c053ba
+     * id : 0c5384cc5697401db93adf9180f4051c
      * isNewRecord : false
-     * remarks :
-     * createDate : 2018-07-04 21:06:32
-     * updateDate : 2018-07-07 21:36:50
-     * parentIds : 0,1,95dfdabce6a64981a025eda734ec041a,
-     * name : 崇州市民族宗教事务局
+     * remarks : 祖灵寺乃古刹丛林，在莹华山距怀远镇西8里。始建于乾隆47年（1782
+     * 年）。地处川西盆沿，坐落于层峦叠嶂之九峰山麓，背负皑皑雪岭，岷山莽莽；西来面临锦绣天府川原，浩浩车驰；北继青城天下幽之灵脉；南接峨嵋天下秀之佛光，钟灵毓秀，孕贤启慧。林幽寺静，常有上人礼禅，晨钟暮鼓，诚为修行悟道之小天竺，慈航普渡之宝筏。党的十一届三中全会以后，佛事活动纳入正常。在各级政府关怀帮助下修复祖灵寺，使梵宇重辉，成一方净土。
+     * createDate : 2018-07-08 15:08:53
+     * updateDate : 2018-07-13 14:03:27
+     * parentIds : 0,1,95dfdabce6a64981a025eda734ec041a,47f1e872f2c34a72806d192675c053ba,
+     * name : 祖灵寺
      * sort : 30
      * area : {"id":"d96114e959d6405da4c9b04e3a5f24c8","isNewRecord":false,"parentIds":"0,1,
      * 9157dae280e14b3c9878fde4f7aa9cd1,5e786a5ff0d94d518a1b27369f29de5c,","name":"崇州市",
      * "sort":30,"parentId":"0"}
-     * code : 100000005005
+     * code : 100000005005014
      * type : 3
      * grade : 1
      * address :
      * zipCode :
-     * master :
      * phone :
      * fax :
      * email :
-     * longitude : 103.637329
-     * latitude : 30.584855
+     * longitude : 103.53487
+     * latitude : 30.73992
      * useable : 1
+     * nameImage : /userfiles/1/_thumbs/images/cms/article/2018/07/%E7%A5%96%E7%81%B5%E5%AF
+     * %BA.png
+     * persons : [{"id":"380","isNewRecord":false,"remarks":"","createDate":"2018-07-08
+     * 10:13:53","updateDate":"2018-07-08 10:13:53","loginName":"13666208061","no":"1280",
+     * "name":"释觉彦","email":"","phone":"13666208061","mobile":"13666208061","userType":"10",
+     * "loginIp":"","loginFlag":"","photo":"","oldLoginIp":"","nativeplace":"成都",
+     * "birthday":"1969.02","degree":"3","workplace":"祖灵寺常驻6年","homeaddress":"怀远镇华严村",
+     * "speciality":"书法、画画","sex":"1","nation":"1","roleNames":"","admin":false}]
+     * parentId : 47f1e872f2c34a72806d192675c053ba
+     * orgFlag :
+     * master :
      * primaryPerson : {"id":"","isNewRecord":true,"loginFlag":"1","roleNames":"","admin":false}
      * deputyPerson : {"id":"","isNewRecord":true,"loginFlag":"1","roleNames":"","admin":false}
-     * orgFlag : 220000
-     * orgFlagId : 9174ecdbe09e462da48ccd5400d59510
-     * orgFlagName : 民宗局
-     * parentId : 95dfdabce6a64981a025eda734ec041a
      */
 
     private String id;
@@ -59,38 +60,19 @@ public class OrganizationBean extends MultipleBean{
     private String grade;
     private String address;
     private String zipCode;
-    private String master;
     private String phone;
     private String fax;
     private String email;
     private String longitude;
     private String latitude;
     private String useable;
+    private String nameImage;
+    private String parentId;
+    private String orgFlag;
+    private String master;
     private PrimaryPersonBean primaryPerson;
     private DeputyPersonBean deputyPerson;
-    private String orgFlag;
-    private String orgFlagId;
-    private String orgFlagName;
-    private String parentId;
-    private String image;
-    private String userCount;
-
-    //custom param
-    @Nullable
-    private List<OrganizationBean> mOrganizationBeans;
-
-
-    public List<OrganizationBean> getOrganizationBeans() {
-        return mOrganizationBeans;
-    }
-
-    public void setOrganizationBeans(List<OrganizationBean> organizationBeans) {
-        mOrganizationBeans = organizationBeans;
-    }
-
-    public OrganizationBean(int itemType) {
-        super(itemType);
-    }
+    private List<PersonBean> persons;
 
     public String getId() {
         return id;
@@ -204,14 +186,6 @@ public class OrganizationBean extends MultipleBean{
         this.zipCode = zipCode;
     }
 
-    public String getMaster() {
-        return master;
-    }
-
-    public void setMaster(String master) {
-        this.master = master;
-    }
-
     public String getPhone() {
         return phone;
     }
@@ -260,6 +234,38 @@ public class OrganizationBean extends MultipleBean{
         this.useable = useable;
     }
 
+    public String getNameImage() {
+        return nameImage;
+    }
+
+    public void setNameImage(String nameImage) {
+        this.nameImage = nameImage;
+    }
+
+    public String getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
+    }
+
+    public String getOrgFlag() {
+        return orgFlag;
+    }
+
+    public void setOrgFlag(String orgFlag) {
+        this.orgFlag = orgFlag;
+    }
+
+    public String getMaster() {
+        return master;
+    }
+
+    public void setMaster(String master) {
+        this.master = master;
+    }
+
     public PrimaryPersonBean getPrimaryPerson() {
         return primaryPerson;
     }
@@ -276,52 +282,14 @@ public class OrganizationBean extends MultipleBean{
         this.deputyPerson = deputyPerson;
     }
 
-    public String getOrgFlag() {
-        return orgFlag;
+    public List<PersonBean> getPersons() {
+        return persons;
     }
 
-    public void setOrgFlag(String orgFlag) {
-        this.orgFlag = orgFlag;
-    }
-
-    public String getOrgFlagId() {
-        return orgFlagId;
-    }
-
-    public void setOrgFlagId(String orgFlagId) {
-        this.orgFlagId = orgFlagId;
-    }
-
-    public String getOrgFlagName() {
-        return orgFlagName;
-    }
-
-    public void setOrgFlagName(String orgFlagName) {
-        this.orgFlagName = orgFlagName;
-    }
-
-    public String getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(String parentId) {
-        this.parentId = parentId;
+    public void setPersons(List<PersonBean> persons) {
+        this.persons = persons;
     }
 
 
-    public String getImage() {
-        return image;
-    }
 
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public String getUserCount() {
-        return userCount;
-    }
-
-    public void setUserCount(String userCount) {
-        this.userCount = userCount;
-    }
 }

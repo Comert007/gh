@@ -1,10 +1,12 @@
 package com.ww.android.governmentheart.mvp.bean;
 
+import java.io.Serializable;
+
 /**
  * @Author feng
  * @Date 2018/6/16
  */
-public class MultipleBean {
+public class MultipleBean implements Serializable {
 
     public static int MULTIPLE_HEADER = 1;
     public static int MULTIPLE_BODY = 2;

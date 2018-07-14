@@ -15,7 +15,6 @@ import com.ww.android.governmentheart.mvp.bean.wisdom.QuestionBean;
 import butterknife.BindView;
 import ww.com.core.adapter.RvAdapter;
 import ww.com.core.adapter.RvViewHolder;
-import ww.com.core.utils.TimeUtils;
 
 /**
  * @Author feng
@@ -60,7 +59,7 @@ public class QuestionAdapter extends RvAdapter<QuestionBean> {
                     .getDisplayImageOptions(R.mipmap.ic_pic_default));
             tvTitleName.setText(bean.getTitle());
             tvEyes.setText(String.format("%d", bean.getViewNum()));
-            tvTime.setText(TimeUtils.milliseconds2String(bean.getQuestionDate()));
+            tvTime.setText(bean.getQuestionDate());
             container.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

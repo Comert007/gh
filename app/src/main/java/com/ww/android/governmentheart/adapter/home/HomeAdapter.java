@@ -11,6 +11,7 @@ import com.ww.android.governmentheart.BaseApplication;
 import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.activity.base.ContentDetailActivity;
 import com.ww.android.governmentheart.activity.heart.SearchActivity;
+import com.ww.android.governmentheart.activity.home.UserLocationActivity;
 import com.ww.android.governmentheart.config.type.CommentType;
 import com.ww.android.governmentheart.mvp.bean.MultipleBean;
 import com.ww.android.governmentheart.mvp.bean.heart.NewsBean;
@@ -72,6 +73,12 @@ public class HomeAdapter extends RvAdapter<NewsBean> {
                     .getDisplayImageOptions(R.mipmap.ic_pic_default));
             tvClear.setOnClickListener(v -> SearchActivity.start(getContext()));
             tvNum.setText("共" + bean.totalNum + "条");
+            iv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    UserLocationActivity.launch(getContext());
+                }
+            });
         }
     }
 

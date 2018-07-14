@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.activity.BaseActivity;
@@ -15,17 +14,20 @@ import com.ww.android.governmentheart.config.type.CodeType;
 import com.ww.android.governmentheart.config.type.ImmersionType;
 import com.ww.android.governmentheart.mvp.PageListBean;
 import com.ww.android.governmentheart.mvp.bean.PageBean;
-import com.ww.android.governmentheart.mvp.bean.PagingBean;
-import com.ww.android.governmentheart.mvp.bean.home.OrganizationBean;
+import com.ww.android.governmentheart.mvp.bean.together.OrganizationTypeBean;
 import com.ww.android.governmentheart.mvp.model.base.MainModel;
+import com.ww.android.governmentheart.mvp.utils.RefreshType;
 import com.ww.android.governmentheart.mvp.vu.RefreshView;
 import com.ww.android.governmentheart.network.BaseObserver;
 import com.ww.android.governmentheart.utils.RecyclerHelper;
 import com.ww.android.governmentheart.widget.EmptyLayout;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import ww.com.core.Debug;
 
 /**
  * @Author feng
@@ -34,7 +36,7 @@ import java.util.Map;
 public class MemberActivity extends BaseActivity<RefreshView, MainModel> {
 
     private MemberAdapter adapter;
-    private int page;
+    private OrganizationTypeBean mOrganizationTypeBean;
 
     @Override
     protected int getLayoutResId() {
@@ -63,65 +65,61 @@ public class MemberActivity extends BaseActivity<RefreshView, MainModel> {
         if (v.srl == null) {
             return;
         }
+        v.setRefreshType(RefreshType.REFRESH);
 
         v.srl.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                page = 0;
                 organizations();
+            }
+        });
+        adapter.setOnTypeListener(new MemberAdapter.OnTypeListener() {
+            @Override
+            public void onType(OrganizationTypeBean organizationTypeBean) {
+                resultFinish(organizationTypeBean);
             }
         });
 
-        v.srl.setOnLoadMoreListener(new OnLoadMoreListener() {
-            @Override
-            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                organizations();
-            }
-        });
     }
 
     private void initRecycler() {
-        //RecyclerHelper.gridManager(this, 2)
         v.initRecycler(RecyclerHelper.defaultManager(this));
         adapter = new MemberAdapter(this);
         v.crv.setAdapter(adapter);
     }
 
+    /**
+     * v.srl.finishRefresh();
+     * if (suggestBeanPageListBean != null && suggestBeanPageListBean.getList() != null
+     * && suggestBeanPageListBean.getList().size() > 0) {
+     * v.loadStatus(EmptyLayout.STATUS_HIDE);
+     * List<OrganizationBean> suggestBeans = setType(suggestBeanPageListBean.getList
+     * ());
+     * adapter.addList(suggestBeans);
+     * } else {
+     * v.loadStatus(EmptyLayout.STATUS_NO_DATA);
+     * }
+     */
+
 
     private void organizations() {
         Map map = new HashMap();
-        m.organizations(map, new BaseObserver<PageListBean<OrganizationBean>>(this, bindToLifecycle
-                ()) {
+        m.organizationType(new BaseObserver<PageListBean<OrganizationTypeBean>>(this,
+                bindToLifecycle()) {
             @Override
-            protected void onSuccess(@Nullable PageListBean<OrganizationBean>
-                                             suggestBeanPageListBean,
-                                     @Nullable List<PageListBean<OrganizationBean>> list, @Nullable
-                                             PageBean<PageListBean<OrganizationBean>> pageBean) {
-
-                if (suggestBeanPageListBean != null && suggestBeanPageListBean.getList() != null
-                        && suggestBeanPageListBean.getList().size() > 0) {
+            protected void onSuccess(@Nullable PageListBean<OrganizationTypeBean>
+                                             organizationTypeBeanPageListBean, @Nullable
+                                             List<PageListBean<OrganizationTypeBean>> list,
+                                     @Nullable PageBean<PageListBean<OrganizationTypeBean>> page) {
+                v.srl.finishRefresh();
+                if (organizationTypeBeanPageListBean != null && organizationTypeBeanPageListBean
+                        .getList() != null
+                        && organizationTypeBeanPageListBean.getList().size() > 0) {
                     v.loadStatus(EmptyLayout.STATUS_HIDE);
-                    List<OrganizationBean> suggestBeans = setType(suggestBeanPageListBean.getList());
-                    PagingBean pagingBean = suggestBeanPageListBean.getPage();
-                    int totalPage = pagingBean.getTotalPage();
-                    if (page == 0) {
-                        v.srl.finishRefresh();
-                        if (suggestBeans != null && suggestBeans.size() > 0) {
-                            adapter.addList(suggestBeans);
-                            page++;
-                        } else {
-                            v.srl.setNoMoreData(true);
-                        }
-                    } else {
-                        v.srl.finishLoadMore();
-                        if (page < totalPage) {
-                            adapter.appendList(suggestBeans);
-                            v.srl.setNoMoreData(false);
-                            page++;
-                        } else {
-                            v.srl.setNoMoreData(true);
-                        }
-                    }
+                    List<OrganizationTypeBean> organizationTypeBeans = setType
+                            (organizationTypeBeanPageListBean.getList
+                            ());
+                    adapter.addList(organizationTypeBeans);
                 } else {
                     v.loadStatus(EmptyLayout.STATUS_NO_DATA);
                 }
@@ -147,18 +145,47 @@ public class MemberActivity extends BaseActivity<RefreshView, MainModel> {
                 organizations();
             }
         });
-        if (page == 0) {
-            v.srl.finishRefresh();
-        } else {
-            v.srl.finishLoadMore();
-        }
+        v.srl.finishRefresh();
     }
 
 
-    private List<OrganizationBean> setType(List<OrganizationBean> organizationBeans) {
-        for (OrganizationBean organizationBean : organizationBeans) {
-            organizationBean.setItemType(OrganizationBean.MULTIPLE_BODY);
+    private List<OrganizationTypeBean> setType(List<OrganizationTypeBean> organizationTypeBeans) {
+        List<OrganizationTypeBean> organizationTypeBeanList = new ArrayList<>();
+        List<OrganizationTypeBean> headers = new ArrayList<>();
+        List<OrganizationTypeBean> bodies = new ArrayList<>();
+        for (OrganizationTypeBean organizationTypeBean : organizationTypeBeans) {
+            if (organizationTypeBean.getCode().startsWith("11")) {
+                organizationTypeBean.setItemType(OrganizationTypeBean.MULTIPLE_HEADER);
+                headers.add(organizationTypeBean);
+            } else {
+                organizationTypeBean.setItemType(OrganizationTypeBean.MULTIPLE_BODY);
+                bodies.add(organizationTypeBean);
+            }
         }
-        return organizationBeans;
+        Debug.d("headers size:" + headers.size() + "\n bodies size:" + bodies.size());
+
+        OrganizationTypeBean headerTitleName = new OrganizationTypeBean(OrganizationTypeBean
+                .MULTIPLE_TITLE);
+        headerTitleName.setName("民主党派");
+        OrganizationTypeBean header = new OrganizationTypeBean(OrganizationTypeBean
+                .MULTIPLE_HEADER);
+        header.setOrganizationTypeBeans(headers);
+        OrganizationTypeBean bodyTitleName = new OrganizationTypeBean(OrganizationTypeBean
+                .MULTIPLE_TITLE);
+        bodyTitleName.setName("其他组织");
+
+        organizationTypeBeanList.add(headerTitleName);
+        organizationTypeBeanList.add(header);
+        organizationTypeBeanList.add(bodyTitleName);
+        organizationTypeBeanList.addAll(bodies);
+        return organizationTypeBeanList;
+    }
+
+
+    private void resultFinish(OrganizationTypeBean typeBean) {
+        Intent intent = getIntent();
+        intent.putExtra("type",typeBean);
+        setResult(CodeType.RESULT_MEMBER,intent);
+        finish();
     }
 }

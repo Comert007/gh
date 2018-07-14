@@ -107,7 +107,7 @@ public interface WisdomApi {
      * @return
      */
     @POST("materialDetail")
-    Observable<ResponseBean<TransmissionDetailBean>> materialDetail(@Body RequestBody body);
+    Observable<ResponseBean<PageListBean<TransmissionDetailBean>>> materialDetail(@Body RequestBody body);
 
 
     /**

@@ -98,7 +98,7 @@ public class WisdomModel extends BaseModel {
      * @param map
      * @param observer
      */
-    public void materialDetail(Map map, BaseObserver<TransmissionDetailBean> observer) {
+    public void materialDetail(Map map, BaseObserver<PageListBean<TransmissionDetailBean>> observer) {
         HttpRequest.wisdomApi().materialDetail(JsonParse.createArgs(map))
                 .compose(RxSchedulers.cutObservableMain())
                 .compose(observer.getTransformer())
