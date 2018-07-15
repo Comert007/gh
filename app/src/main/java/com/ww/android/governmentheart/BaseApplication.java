@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.multidex.MultiDex;
+import android.util.Log;
 
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.DefaultConfigurationFactory;
@@ -21,6 +22,7 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
+import com.tencent.smtt.sdk.QbSdk;
 import com.ww.android.governmentheart.mvp.WWApplication;
 
 import ww.com.core.Debug;
@@ -68,6 +70,7 @@ public class BaseApplication extends WWApplication {
         Debug.setDebug(debug);
         Debug.setTag("Govern");
         initImageLoader(getApplicationContext());
+        initX5();
     }
 
 
@@ -103,5 +106,23 @@ public class BaseApplication extends WWApplication {
                 .showImageOnLoading(onLoading).showImageForEmptyUri(emptyUri)
                 .showImageOnFail(onFail).build();
         return builder;
+    }
+
+    /**
+     * 预加载x5文件
+     */
+    private void initX5(){
+        QbSdk.PreInitCallback callback = new QbSdk.PreInitCallback() {
+            @Override
+            public void onCoreInitFinished() {
+
+            }
+
+            @Override
+            public void onViewInitFinished(boolean b) {
+                Log.d("app", " onViewInitFinished is " + b);
+            }
+        };
+        QbSdk.initX5Environment(getApplicationContext(),callback);
     }
 }

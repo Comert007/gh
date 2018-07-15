@@ -8,11 +8,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
+import com.baidu.mapapi.map.InfoWindow;
 import com.baidu.mapapi.map.MapStatus;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
@@ -169,6 +172,18 @@ public class UserLocationActivity extends BaseActivity<UserLocationView, MainMod
 
     }
 
+    private void showText(double latitude,double longitude,String name){
+        LatLng point = new LatLng(latitude, longitude);
+        //创建InfoWindow展示的view
+        Button button = new Button(getApplicationContext());
+        button.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT));
+        button.setBackgroundResource(R.drawable.shape_gray_border_round_corner_3);
+        button.setText(name);
+
+        InfoWindow mInfoWindow = new InfoWindow(button, point, -47);
+        baiduMap.showInfoWindow(mInfoWindow);
+    }
 
     @OnClick({R.id.iv_back, R.id.container_members,R.id.tv_member_close})
     public void onClick(View view) {

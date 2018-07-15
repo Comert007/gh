@@ -61,8 +61,8 @@ public class WisdomModel extends BaseModel {
     }
 
     //下载
-    public void download(String fileId, Callback<ResponseBody> callback) {
-        HttpRequest.wisdomApi().download(fileId)
+    public void download(String fileUrl, Callback<ResponseBody> callback) {
+        HttpRequest.wisdomApi().download(fileUrl)
                 .enqueue(callback);
     }
 
