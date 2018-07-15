@@ -19,12 +19,14 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@color/color_white"
         android:layout_weight="1">
         <RelativeLayout
             style="@style/LLayStyle">
             <LinearLayout
+                android:layout_marginBottom="40dp"
                 style="@style/LLayStyle"
-                android:background="@color/color_white">
+                >
 
 
                 <TextView
@@ -35,6 +37,8 @@
                 <TextView
                     android:id="@+id/tv_title_name"
                     style="@style/ClearEditTextStyle"
+                    android:singleLine="true"
+                    android:ellipsize="end"
                     android:layout_marginLeft="@dimen/margin_15"
                     android:layout_marginRight="@dimen/margin_15"/>
 

@@ -36,7 +36,6 @@
                 android:paddingLeft="@dimen/margins"
                 android:paddingRight="@dimen/margins"
                 android:singleLine="true"
-                android:text="崇州拥有全四川范围内面积最大的油菜花欣赏"
                 android:textColor="@color/color_white"
                 android:textSize="@dimen/text_12"/>
 

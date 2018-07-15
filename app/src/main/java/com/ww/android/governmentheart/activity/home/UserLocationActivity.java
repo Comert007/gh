@@ -148,7 +148,7 @@ public class UserLocationActivity extends BaseActivity<UserLocationView, MainMod
                             m.setIcon(bitmap);
                         }
                         BitmapDescriptor bitmap = BitmapDescriptorFactory.fromResource(R.mipmap
-                                .ic_location_circle_ok);
+                                .ic_location_ok);
                         marker.setIcon(bitmap);
                         v.setBottomVisible(1);
                         v.showInfo(extraBean.name,extraBean.description);
@@ -294,7 +294,7 @@ public class UserLocationActivity extends BaseActivity<UserLocationView, MainMod
                         }
 
                         BitmapDescriptor bitmap = BitmapDescriptorFactory.fromResource(R.mipmap
-                                .ic_location_circle_ok);
+                                .ic_location_ok);
                         mMarkers.get(extraBean.position).setIcon(bitmap);
                         v.setBottomVisible(1);
                         v.showInfo(extraBean.name, extraBean.description);

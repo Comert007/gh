@@ -6,4 +6,6 @@ public class Constant {
 
     public static String TOKEN_INVALID = "99";
 
+    public static String INTRODUCE_URL = "";
+
 }

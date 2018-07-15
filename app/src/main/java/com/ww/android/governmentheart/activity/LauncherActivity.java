@@ -2,6 +2,7 @@ package com.ww.android.governmentheart.activity;
 
 import android.os.Handler;
 import android.text.TextUtils;
+import android.view.WindowManager;
 
 import com.ww.android.governmentheart.BaseApplication;
 import com.ww.android.governmentheart.R;
@@ -18,6 +19,15 @@ public class LauncherActivity extends BaseActivity<VoidView, VoidModel> {
     @Override
     protected int getLayoutResId() {
         return R.layout.activity_launcher;
+    }
+
+    @Override
+    protected void beforeOnCreate() {
+        super.beforeOnCreate();
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //去除状态栏
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     @Override

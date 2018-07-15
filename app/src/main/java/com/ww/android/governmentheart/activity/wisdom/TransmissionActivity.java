@@ -115,10 +115,14 @@ public class TransmissionActivity extends BaseActivity<TransmissionView, WisdomM
         } else if (data!=null && requestCode == Constant.REQUEST_CODE_PICK_FILE && resultCode == RESULT_OK) {
             mFiles = data.getParcelableArrayListExtra(Constant
                     .RESULT_PICK_FILE);
-            v.setFileName(mFiles.get(0).getName());
+            v.setFileName(mFiles.get(0).getName()+parseFormat(mFiles.get(0).getPath()));
         } else {
             adapter.onActivityResult(requestCode, requestCode, data);
         }
+    }
+
+    private String parseFormat(String fileName) {
+        return fileName.substring(fileName.lastIndexOf("."));
     }
 
 

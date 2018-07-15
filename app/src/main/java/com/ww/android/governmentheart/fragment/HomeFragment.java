@@ -9,6 +9,7 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.activity.home.UserLocationActivity;
 import com.ww.android.governmentheart.adapter.home.HomeAdapter;
+import com.ww.android.governmentheart.config.Constant;
 import com.ww.android.governmentheart.mvp.PageListBean;
 import com.ww.android.governmentheart.mvp.bean.PageBean;
 import com.ww.android.governmentheart.mvp.bean.PagingBean;
@@ -108,6 +109,9 @@ public class HomeFragment extends BaseFragment<RefreshView, CommonModel> {
                         && newsBeanPageListBean.getList().size() > 0) {
                     v.loadStatus(EmptyLayout.STATUS_HIDE);
                     List<NewsBean> newsBeans = setType(newsBeanPageListBean.getList());
+                    if (newsBeans!=null && newsBeans.size()>0){
+                        Constant.INTRODUCE_URL = newsBeans.get(0).getUrl();
+                    }
                     PagingBean pagingBean = newsBeanPageListBean.getPage();
                     int totalPage = pagingBean.getTotalPage();
                     if (page == 0) {
