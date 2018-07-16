@@ -167,6 +167,8 @@ public class TransmissionActivity extends BaseActivity<TransmissionView, WisdomM
             return;
         }
 
+        showLoading();
+
         m.uploadFiles(files, new BaseObserver<PageListBean<UploadBean>>(this, bindToLifecycle()) {
             @Override
             protected void onSuccess(@Nullable PageListBean<UploadBean> uploadBeanPageListBean,
@@ -177,6 +179,12 @@ public class TransmissionActivity extends BaseActivity<TransmissionView, WisdomM
                     saveTransmission(uploadBeanPageListBean.getList());
                 }
 
+            }
+
+            @Override
+            protected void onFailure() {
+                super.onFailure();
+                cancelLoading();
             }
         });
     }
@@ -196,8 +204,15 @@ public class TransmissionActivity extends BaseActivity<TransmissionView, WisdomM
             @Override
             protected void onSuccess(@Nullable String s, @Nullable List<String> list, @Nullable
                     PageBean<String> page) {
+                cancelLoading();
                 CommitSuccessActivity.start(TransmissionActivity.this);
                 finish();
+            }
+
+            @Override
+            protected void onFailure() {
+                super.onFailure();
+                cancelLoading();
             }
         });
     }

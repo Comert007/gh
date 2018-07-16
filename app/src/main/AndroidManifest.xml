@@ -143,6 +143,15 @@
         <activity android:name=".activity.base.OnLineReadActivity"
                   android:screenOrientation="portrait"/>
 
+        <!--政策库内容-->
+        <activity android:name=".activity.heart.PolicyContentActivity"
+                  android:screenOrientation="portrait"/>
+
+        <!--在线直播-->
+        <activity android:name=".activity.base.OnLineLivingActivity"
+                  android:windowSoftInputMode="stateHidden|adjustResize"
+                  android:configChanges="orientation|screenSize|keyboardHidden"/>
+
         <!--<activity-->
             <!--android:name="com.vincent.filepicker.activity.NormalFilePickActivity"-->
             <!--android:screenOrientation="portrait"-->

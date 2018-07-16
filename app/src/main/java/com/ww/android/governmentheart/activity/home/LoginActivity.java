@@ -21,6 +21,7 @@ import com.ww.android.governmentheart.utils.ToastUtils;
 import java.util.List;
 
 import butterknife.OnClick;
+import ww.com.core.Debug;
 
 public class LoginActivity extends BaseActivity<LoginView, LoginModel> {
 
@@ -40,9 +41,9 @@ public class LoginActivity extends BaseActivity<LoginView, LoginModel> {
 
     }
 
-    @OnClick({R.id.tv_gain_pass,R.id.btn_login})
-    public void onClick(View view){
-        switch (view.getId()){
+    @OnClick({R.id.tv_gain_pass, R.id.btn_login})
+    public void onClick(View view) {
+        switch (view.getId()) {
             case R.id.tv_gain_pass:
                 gainPass();
                 break;
@@ -52,49 +53,58 @@ public class LoginActivity extends BaseActivity<LoginView, LoginModel> {
         }
     }
 
-    private void gainPass(){
+    private void gainPass() {
         String phone = v.getPhone();
-        if (TextUtils.isEmpty(phone)|| phone.length()<11){
+        if (TextUtils.isEmpty(phone) || phone.length() < 11) {
             ToastUtils.showToast("请输入正确的手机号");
             return;
         }
-        if (v.checkParams(phone)){
+        if (v.checkParams(phone)) {
             m.initPass(phone, new BaseObserver<PassBean>(this,
                     bindToLifecycle()) {
                 @Override
                 protected void onSuccess(@Nullable PassBean passBean, @Nullable List<PassBean> list,
                                          @Nullable PageBean<PassBean> page) {
 
+                    ToastUtils.showToast("初始化密码成功");
 
                 }
             });
         }
     }
 
-    private void login(){
+    private void login() {
         String phone = v.getPhone();
         String pass = v.getPass();
-        if (TextUtils.isEmpty(phone)|| phone.length()<11){
+        if (TextUtils.isEmpty(phone) || phone.length() < 11) {
             ToastUtils.showToast("请输入正确的手机号");
             return;
         }
 
-        if (TextUtils.isEmpty(pass)){
+        if (TextUtils.isEmpty(pass)) {
             ToastUtils.showToast("请输入密码");
             return;
         }
 
-        if (v.checkParams(phone,pass)){
+        if (v.checkParams(phone, pass)) {
             showLoading();
-            m.login(phone, pass, new BaseObserver<UserBean>(this,bindToLifecycle()) {
+            Debug.d("mLoadingDialog.isShowing()?" + mLoadingDialog.isShowing());
+            m.login(phone, pass, new BaseObserver<UserBean>(this, bindToLifecycle()) {
                 @Override
-                protected void onSuccess(@Nullable UserBean userBean, @Nullable List<UserBean> list, @Nullable PageBean<UserBean> page) {
-                  if (userBean!= null && !TextUtils.isEmpty(userBean.getToken())){
+                protected void onSuccess(@Nullable UserBean userBean, @Nullable List<UserBean>
+                        list, @Nullable PageBean<UserBean> page) {
+                    if (userBean != null && !TextUtils.isEmpty(userBean.getToken())) {
 
-                      BaseApplication.getInstance().saveUserInfo(userBean);
-                      MainActivity.start(LoginActivity.this);
-                      cancelLoading();
-                  }
+                        BaseApplication.getInstance().saveUserInfo(userBean);
+                        MainActivity.start(LoginActivity.this);
+                        cancelLoading();
+                    }
+                }
+
+                @Override
+                protected void onFailure() {
+                    super.onFailure();
+                    cancelLoading();
                 }
             });
         }

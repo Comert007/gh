@@ -1,15 +1,17 @@
-package com.ww.android.governmentheart.fragment.heart;
+package com.ww.android.governmentheart.activity.heart;
 
-import android.os.Bundle;
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.Nullable;
 
 import com.ww.android.governmentheart.R;
-import com.ww.android.governmentheart.adapter.heart.PolicyAdapter;
-import com.ww.android.governmentheart.fragment.BaseFragment;
+import com.ww.android.governmentheart.activity.BaseActivity;
+import com.ww.android.governmentheart.adapter.heart.PolicyContentAdapter;
+import com.ww.android.governmentheart.config.type.ImmersionType;
 import com.ww.android.governmentheart.mvp.PageListBean;
 import com.ww.android.governmentheart.mvp.bean.PageBean;
 import com.ww.android.governmentheart.mvp.bean.PagingBean;
-import com.ww.android.governmentheart.mvp.bean.login.NewsChildTypeBean;
+import com.ww.android.governmentheart.mvp.bean.heart.NewsBean;
 import com.ww.android.governmentheart.mvp.model.CommonModel;
 import com.ww.android.governmentheart.mvp.vu.RefreshView;
 import com.ww.android.governmentheart.network.BaseObserver;
@@ -24,32 +26,30 @@ import java.util.Map;
 import ww.com.core.utils.TimeUtils;
 
 /**
- * @Author feng
- * @Date 2018/7/8
+ * @author feng
+ * @Date 2018/7/16.
  */
-public class PolicyCoreFragment extends BaseFragment<RefreshView, CommonModel> {
+public class PolicyContentActivity extends BaseActivity<RefreshView, CommonModel> {
 
-    private String id; // code:1 方针，2 统战知识，3 权威解读， 4 政策库 5 崇州特色 6 农副产品 7 电商介绍 8 人物访谈 9加入我（加入组织）
+    private PolicyContentAdapter adapter;
     private int page;
-    private PolicyAdapter adapter;
+    private String id;
 
 
-    public static PolicyCoreFragment newInstance(String id) {
-        PolicyCoreFragment fragment = new PolicyCoreFragment();
-        Bundle bundle = new Bundle();
-        bundle.putString("id", id);
-        fragment.setArguments(bundle);
-        return fragment;
+    public static void start(Context context, String id) {
+        Intent intent = new Intent(context, PolicyContentActivity.class);
+        intent.putExtra("id", id);
+        context.startActivity(intent);
     }
 
     @Override
     protected int getLayoutResId() {
-        return R.layout.fragment_policy_core;
+        return R.layout.activity_policy_content;
     }
 
     @Override
-    protected boolean isLazyLoad() {
-        return true;
+    protected int initDefaultImmersionType() {
+        return ImmersionType.WHITE;
     }
 
     @Override
@@ -64,7 +64,7 @@ public class PolicyCoreFragment extends BaseFragment<RefreshView, CommonModel> {
     }
 
     private void initData() {
-        id = getArguments().getString("id", "0");
+        id = getIntent().getStringExtra("id");
     }
 
     private void initListener() {
@@ -81,10 +81,9 @@ public class PolicyCoreFragment extends BaseFragment<RefreshView, CommonModel> {
     }
 
     private void initRecycler() {
-        v.initRecycler(RecyclerHelper.defaultManager(getContext()), RecyclerHelper
-                .defaultMoreDecoration(getContext()));
+        v.initRecycler(RecyclerHelper.defaultManager(this));
 
-        adapter = new PolicyAdapter(getContext());
+        adapter = new PolicyContentAdapter(this);
         v.crv.setAdapter(adapter);
     }
 
@@ -98,19 +97,17 @@ public class PolicyCoreFragment extends BaseFragment<RefreshView, CommonModel> {
         if (v.srl == null) {
             return;
         }
-        m.newsCategoryChild(map, new BaseObserver<PageListBean<NewsChildTypeBean>>(getContext(),bindToLifecycle()) {
+        m.news(map, new BaseObserver<PageListBean<NewsBean>>(this, bindToLifecycle()) {
             @Override
-            protected void onSuccess(@Nullable PageListBean<NewsChildTypeBean>
-                                             newsChildTypeBeanPageListBean, @Nullable
-                                             List<PageListBean<NewsChildTypeBean>> list, @Nullable
-                                             PageBean<PageListBean<NewsChildTypeBean>> pageBean) {
+            protected void onSuccess(@Nullable PageListBean<NewsBean> newsBeanPageListBean,
+                                     @Nullable List<PageListBean<NewsBean>> list, @Nullable
+                                             PageBean<PageListBean<NewsBean>> pageBean) {
 
-                if (newsChildTypeBeanPageListBean != null && newsChildTypeBeanPageListBean.getList() != null &&
-                        newsChildTypeBeanPageListBean.getList().size() > 0) {
+                if (newsBeanPageListBean != null && newsBeanPageListBean.getList() != null &&
+                        newsBeanPageListBean.getList().size() > 0) {
                     v.loadStatus(EmptyLayout.STATUS_HIDE);
-
-                    List<NewsChildTypeBean> newsBeans = newsChildTypeBeanPageListBean.getList();
-                    PagingBean pagingBean = newsChildTypeBeanPageListBean.getPage();
+                    List<NewsBean> newsBeans = newsBeanPageListBean.getList();
+                    PagingBean pagingBean = newsBeanPageListBean.getPage();
                     int totalPage = pagingBean.getTotalPage();
                     if (page == 0) {
                         v.srl.finishRefresh();
@@ -137,11 +134,9 @@ public class PolicyCoreFragment extends BaseFragment<RefreshView, CommonModel> {
 
             @Override
             protected void onFailure() {
-                super.onFailure();
                 reload(EmptyLayout.STATUS_NO_NET);
             }
         });
-
     }
 
 
@@ -162,5 +157,9 @@ public class PolicyCoreFragment extends BaseFragment<RefreshView, CommonModel> {
         } else {
             v.srl.finishLoadMore();
         }
+    }
+
+    private void loadNext(String id) {
+
     }
 }

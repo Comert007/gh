@@ -50,7 +50,7 @@ public class LauncherActivity extends BaseActivity<VoidView, VoidModel> {
     protected void initImmersionBar() {
         super.initImmersionBar();
         mImmersionBar.fitsSystemWindows(true).statusBarColor(R.color
-                .color_blue).init();
+                .color_red).init();
     }
 
     @Override

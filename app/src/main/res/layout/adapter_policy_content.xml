@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:paddingTop="@dimen/margin_15"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/color_white">
+
+    <LinearLayout
+        android:layout_marginLeft="@dimen/margin_15"
+        android:layout_marginRight="@dimen/margin_15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:id="@+id/iv_circle"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:background="@drawable/shape_yellow_circle"/>
+
+        <!--android:drawableRight="@mipmap/ic_right_gray"-->
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/margin_15"
+            android:layout_marginRight="@dimen/margin_15"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="社保须知"
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/text_15"/>
+
+            <TextView
+                android:id="@+id/tv_des"
+                style="@style/NormalTipTextStyle"
+                android:singleLine="true"
+                android:text="个人如何缴纳社保可以以自由职业者的身份..."/>
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/iv_right"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="@dimen/margin_15"
+            android:src="@mipmap/ic_right_gray"/>
+    </LinearLayout>
+
+
+
+    <View
+        style="@style/ViewLineStyle"/>
+
+</LinearLayout>

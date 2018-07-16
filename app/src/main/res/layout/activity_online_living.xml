@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    style="@style/LLayStyle"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.ww.android.governmentheart.widget.TitleView
+        android:id="@+id/title_view"
+        style="@style/TitleBar"
+        android:background="@color/color_white"
+        app:titleLeftIco="@mipmap/ic_back"
+        app:titleRightTextColor="@color/color_hint"
+        app:titleText="在线直播"
+        app:titleTextColor="@color/color_black"/>
+
+    <View style="@style/ViewLineStyle"/>
+
+
+    <com.tencent.smtt.sdk.WebView
+        android:id="@+id/web_view"
+        android:background="@color/color_black"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+        <!--<ImageView-->
+            <!--android:layout_width="100dp"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:src="@mipmap/ic_vedio_play"-->
+            <!--android:layout_height="100dp"/>-->
+    </com.tencent.smtt.sdk.WebView>
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.scwang.smartrefresh.layout.SmartRefreshLayout
+                android:id="@+id/srl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srlEnableLoadMoreWhenContentNotFull="false">
+
+                <ww.com.core.widget.CustomRecyclerView
+                    android:id="@+id/crv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+        </FrameLayout>
+
+        <View style="@style/ViewLineStyle"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="@color/color_white"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/ll_container"
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="@dimen/length_10"
+                android:layout_marginRight="@dimen/length_10"
+                android:layout_marginTop="@dimen/margin_10"
+                android:layout_marginBottom="@dimen/margin_10"
+                android:background="@drawable/shape_gray_round_corner_24"
+                android:layout_height="35dp">
+                <ImageView
+                    android:src="@mipmap/ic_pen"
+                    android:layout_width="@dimen/length_12"
+                    android:layout_marginRight="@dimen/length_10"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_height="@dimen/length_12"/>
+
+                <TextView
+                    android:id="@+id/tv_content"
+                    android:layout_width="match_parent"
+                    android:textColorHint="@color/color_hint"
+                    android:textSize="@dimen/text_15"
+                    android:hint="写评论"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/color_black"
+                    android:background="@android:color/transparent"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

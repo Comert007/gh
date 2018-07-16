@@ -6,6 +6,7 @@ import com.ww.android.governmentheart.mvp.bean.heart.NewsBean;
 import com.ww.android.governmentheart.mvp.bean.home.CommentBean;
 import com.ww.android.governmentheart.mvp.bean.home.OrganizationBean;
 import com.ww.android.governmentheart.mvp.bean.home.OrganizationDetailBean;
+import com.ww.android.governmentheart.mvp.bean.login.NewsChildTypeBean;
 import com.ww.android.governmentheart.mvp.bean.login.NewsTypeBean;
 import com.ww.android.governmentheart.mvp.bean.login.PassBean;
 import com.ww.android.governmentheart.mvp.bean.login.UserBean;
@@ -49,7 +50,7 @@ public interface LoginApi {
 
 
     @POST("news_category_child")
-    Observable<ResponseBean<PageListBean<NewsTypeBean>>> newsCategoryChild(@Body RequestBody body);
+    Observable<ResponseBean<PageListBean<NewsChildTypeBean>>> newsCategoryChild(@Body RequestBody body);
 
     /**
      * 评论列表

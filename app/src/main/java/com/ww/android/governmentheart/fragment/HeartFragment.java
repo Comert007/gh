@@ -88,7 +88,7 @@ public class HeartFragment extends BaseFragment<MagicIndicatorView, MainModel> {
         for (int i = 0; i < mTypeBeans.size(); i++) {
             NewsTypeBean typeBean = mTypeBeans.get(i);
             if (i == 3) {
-                fragments.add(PolicyCoreFragment.newInstance(typeBean.getCode()));
+                fragments.add(PolicyCoreFragment.newInstance(typeBean.getId()));
             } else {
                 fragments.add(HeartCoreFragment.newInstance(typeBean.getCode()));
             }

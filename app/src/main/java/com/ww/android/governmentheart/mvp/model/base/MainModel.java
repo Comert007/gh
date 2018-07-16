@@ -27,20 +27,6 @@ public class MainModel extends BaseModel {
     }
 
 
-    /**
-     * 新闻子类分类
-     *
-     * @param map
-     * @param observer
-     */
-    public void newsCategoryChild(Map map, BaseObserver<PageListBean<NewsTypeBean>> observer) {
-
-        HttpRequest.loginApi().newsCategoryChild(JsonParse.createArgs(map))
-                .compose(RxSchedulers.cutObservableMain())
-                .compose(observer.getTransformer())
-                .subscribe(observer);
-    }
-
 
     /**
      * 获取组织分类

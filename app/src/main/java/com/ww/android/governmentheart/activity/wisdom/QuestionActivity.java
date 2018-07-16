@@ -69,12 +69,20 @@ public class QuestionActivity extends BaseActivity<QuestionView,WisdomModel> {
         Map map = new HashMap();
         map.put("title", v.getTitle());
         map.put("con", v.getContent());
+        showLoading();
         m.addQuestion(map, new BaseObserver<String>(this, bindToLifecycle()) {
             @Override
             protected void onSuccess(@Nullable String s, @Nullable List<String> list, @Nullable
                     PageBean<String> page) {
+                cancelLoading();
                 CommitSuccessActivity.start(QuestionActivity.this);
                 finish();
+            }
+
+            @Override
+            protected void onFailure() {
+                super.onFailure();
+                cancelLoading();
             }
         });
     }

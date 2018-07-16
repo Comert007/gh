@@ -23,6 +23,7 @@ public class LoadingDialog extends Dialog {
 
         View loadingView = LayoutInflater.from(context).inflate(R.layout.layout_loading_view,
                 null);
+        setContentView(loadingView);
         ButterKnife.bind(this, loadingView);
     }
 

@@ -124,6 +124,7 @@ public class AdviceActivity extends BaseActivity<AdviceView, WisdomModel> {
             return;
         }
 
+        showLoading();
         m.uploadFiles(files, new BaseObserver<PageListBean<UploadBean>>(this, bindToLifecycle()) {
             @Override
             protected void onSuccess(@Nullable PageListBean<UploadBean> uploadBeanPageListBean,
@@ -134,6 +135,12 @@ public class AdviceActivity extends BaseActivity<AdviceView, WisdomModel> {
                     saveSuggest(uploadBeanPageListBean.getList());
                 }
 
+            }
+
+            @Override
+            protected void onFailure() {
+                super.onFailure();
+                cancelLoading();
             }
         });
     }
@@ -152,6 +159,13 @@ public class AdviceActivity extends BaseActivity<AdviceView, WisdomModel> {
                     PageBean<String> page) {
                 CommitSuccessActivity.start(AdviceActivity.this);
                 finish();
+                cancelLoading();
+            }
+
+            @Override
+            protected void onFailure() {
+                super.onFailure();
+                cancelLoading();
             }
         });
     }

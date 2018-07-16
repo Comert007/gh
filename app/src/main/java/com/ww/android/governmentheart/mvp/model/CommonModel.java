@@ -3,6 +3,7 @@ package com.ww.android.governmentheart.mvp.model;
 import com.ww.android.governmentheart.mvp.PageListBean;
 import com.ww.android.governmentheart.mvp.bean.heart.NewsBean;
 import com.ww.android.governmentheart.mvp.bean.home.CommentBean;
+import com.ww.android.governmentheart.mvp.bean.login.NewsChildTypeBean;
 import com.ww.android.governmentheart.mvp.model.base.BaseModel;
 import com.ww.android.governmentheart.network.BaseObserver;
 import com.ww.android.governmentheart.network.HttpRequest;
@@ -25,6 +26,21 @@ public class CommonModel extends BaseModel {
                 .compose(observer.getTransformer())
                 .subscribe(observer);
 
+    }
+
+
+    /**
+     * 新闻子类分类
+     *
+     * @param map
+     * @param observer
+     */
+    public void newsCategoryChild(Map map, BaseObserver<PageListBean<NewsChildTypeBean>> observer) {
+
+        HttpRequest.loginApi().newsCategoryChild(JsonParse.createArgs(map))
+                .compose(RxSchedulers.cutObservableMain())
+                .compose(observer.getTransformer())
+                .subscribe(observer);
     }
 
 
