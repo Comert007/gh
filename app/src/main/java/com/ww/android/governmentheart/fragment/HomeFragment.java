@@ -109,7 +109,7 @@ public class HomeFragment extends BaseFragment<RefreshView, CommonModel> {
                         && newsBeanPageListBean.getList().size() > 0) {
                     v.loadStatus(EmptyLayout.STATUS_HIDE);
                     List<NewsBean> newsBeans = setType(newsBeanPageListBean.getList());
-                    if (newsBeans!=null && newsBeans.size()>0){
+                    if (newsBeans != null && newsBeans.size() > 0) {
                         Constant.INTRODUCE_URL = newsBeans.get(0).getUrl();
                     }
                     PagingBean pagingBean = newsBeanPageListBean.getPage();
@@ -176,7 +176,7 @@ public class HomeFragment extends BaseFragment<RefreshView, CommonModel> {
     }
 
     private void mainPic() {
-        m.mainPic(new BaseObserver<String>(getContext(),bindToLifecycle()) {
+        m.mainPic(new BaseObserver<String>(getContext(), bindToLifecycle()) {
             @Override
             protected void onSuccess(@Nullable String s, @Nullable List<String> list, @Nullable
                     PageBean<String> page) {

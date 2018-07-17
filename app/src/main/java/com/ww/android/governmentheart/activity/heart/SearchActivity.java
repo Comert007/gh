@@ -13,6 +13,7 @@ import com.google.gson.reflect.TypeToken;
 import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.activity.BaseActivity;
 import com.ww.android.governmentheart.adapter.home.SearchAdapter;
+import com.ww.android.governmentheart.config.listener.OnAdapterItemListener;
 import com.ww.android.governmentheart.config.type.ImmersionType;
 import com.ww.android.governmentheart.mvp.model.VoidModel;
 import com.ww.android.governmentheart.mvp.utils.RefreshType;
@@ -60,6 +61,14 @@ public class SearchActivity extends BaseActivity<SearchView, VoidModel> {
     }
 
     private void initListener() {
+        adapter.setOnAdapterItemListener(new OnAdapterItemListener() {
+            @Override
+            public void onAdapterItem(View view, int position) {
+                String searchStr = adapter.getItem(position);
+                etSearch.setText(searchStr);
+                saveHistory(searchStr);
+            }
+        });
         if (v.srl == null) {
             return;
         }
@@ -140,9 +149,9 @@ public class SearchActivity extends BaseActivity<SearchView, VoidModel> {
         }
 
         String json = new Gson().toJson(history);
-        SharedPreferenceUtils.getInstance(this).setValue("history",json);
+        SharedPreferenceUtils.getInstance(this).setValue("history", json);
 
-        SearchResultActivity.start(this,searchStr);
+        SearchResultActivity.start(this, searchStr);
         adapter.addList(history);
     }
 

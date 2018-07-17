@@ -63,8 +63,8 @@ public class InterviewsAdapter extends RvAdapter<NewsBean> {
                     .getDisplayImageOptions(R.mipmap.ic_pic_default));
             tvTitle.setText(bean.getTitle());
             tvDes.setText(bean.getDescription());
-            tvTime.setText("时间：");
-            tvAddress.setText("地点：");
+            tvTime.setText(String.format("时间：%s", bean.getCreateDate()));
+            tvAddress.setText("地点：崇州");
 
             EasyRequestBean easyRequestBean = new EasyRequestBean.Builder()
                     .setId(bean.getId())

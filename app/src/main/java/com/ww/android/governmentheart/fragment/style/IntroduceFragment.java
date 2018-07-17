@@ -37,7 +37,6 @@ public class IntroduceFragment extends BaseFragment<WebKitView,VoidModel> {
 
     @Override
     protected void init() {
-        v.webView.loadUrl(Constant.INTRODUCE_URL);
         v.webView.setWebViewClient(new WebViewClient(){
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -45,5 +44,11 @@ public class IntroduceFragment extends BaseFragment<WebKitView,VoidModel> {
                 return true;
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        v.webView.loadUrl(Constant.INTRODUCE_URL);
     }
 }

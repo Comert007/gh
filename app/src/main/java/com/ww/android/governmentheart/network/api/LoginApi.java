@@ -66,7 +66,7 @@ public interface LoginApi {
 
     /**
      * 根据分类获取推荐位
-     *
+     * openapi/getRecommend?args={"code":"5"} 按分类码获取 推荐位
      * @param body
      * @return
      */
