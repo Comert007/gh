@@ -93,6 +93,8 @@ public class FeaturesAdapter extends RvAdapter<NewsTypeBean> {
                         .setName(newsBean.getTitle())
                         .setUrl(newsBean.getUrl())
                         .setType(CommentType.TYPE_NEWS)
+//                        .setNum(TextUtils.isEmpty(bean.getCommentNum()) ? 0 : Integer.valueOf
+//                                (bean.getCommentNum()))
                         .build();
                 container.setOnClickListener(v -> ContentDetailActivity.start(getContext(),
                         easyRequestBean));

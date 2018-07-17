@@ -14,7 +14,7 @@ public class SuggestDetailBean {
      */
 
     private String title;
-    private String cont;
+    private String content;
     private String status;
     private String statusName;
     private String viewNum;
@@ -34,12 +34,12 @@ public class SuggestDetailBean {
         this.title = title;
     }
 
-    public String getCont() {
-        return cont;
+    public String getContent() {
+        return content;
     }
 
-    public void setCont(String cont) {
-        this.cont = cont;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public String getStatus() {

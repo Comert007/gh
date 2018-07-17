@@ -106,7 +106,7 @@ public class ShowTransmissionActivity extends BaseActivity<ShowTransmissionView,
                     v.setTitle(transmissionDetailBean.getTitle());
                     v.setContent(transmissionDetailBean.getSummary());
                     if (transmissionDetailBean.getUsers()!=null && transmissionDetailBean.getUsers().size()>0){
-                        v.setFileName(transmissionDetailBean.getUsers().get(0).getName());
+                        v.setUserName(transmissionDetailBean.getUsers().get(0).getName());
                     }
                     List<ImagePickBean> imagePickBeans = transmissionDetailBean.getFiles();
                     if (imagePickBeans != null && imagePickBeans.size() > 0) {

@@ -22,9 +22,9 @@
         android:layout_height="0dp"
         android:layout_weight="1">
         <RelativeLayout
-            style="@style/LLayStyle">
+            style="@style/LLayWhiteStyle">
             <LinearLayout
-                style="@style/LLayStyle"
+                style="@style/LLayWhiteStyle"
                 android:background="@color/color_white">
 
 

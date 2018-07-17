@@ -17,4 +17,7 @@ public interface HeartApi {
 
     @POST("news")
     Observable<ResponseBean<PageListBean<NewsBean>>> news(@Body RequestBody body);
+
+    @POST("searchNews")
+    Observable<ResponseBean<PageListBean<NewsBean>>> search(@Body RequestBody body);
 }

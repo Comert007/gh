@@ -30,6 +30,22 @@ public class CommonModel extends BaseModel {
 
 
     /**
+     * 新闻列表
+     *
+     * @param map
+     * @param observer
+     */
+    public void search(Map map, BaseObserver<PageListBean<NewsBean>> observer) {
+        HttpRequest.heartApi().search(JsonParse.createArgs(map))
+                .compose(RxSchedulers.cutObservableMain())
+                .compose(observer.getTransformer())
+                .subscribe(observer);
+
+    }
+
+
+
+    /**
      * 新闻子类分类
      *
      * @param map

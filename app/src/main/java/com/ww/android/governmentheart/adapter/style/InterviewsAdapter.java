@@ -1,6 +1,7 @@
 package com.ww.android.governmentheart.adapter.style;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -70,6 +71,8 @@ public class InterviewsAdapter extends RvAdapter<NewsBean> {
                     .setName(bean.getTitle())
                     .setUrl(bean.getUrl())
                     .setType(CommentType.TYPE_NEWS)
+                    .setNum(TextUtils.isEmpty(bean.getCommentNum()) ? 0 : Integer.valueOf
+                            (bean.getCommentNum()))
                     .build();
             container.setOnClickListener(v -> ContentDetailActivity.start(getContext(),easyRequestBean));
         }

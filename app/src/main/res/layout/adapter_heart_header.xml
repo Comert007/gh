@@ -15,7 +15,6 @@
         android:background="@drawable/shape_search_border"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:visibility="gone"
         android:padding="@dimen/margin_5_right">
 
         <ImageView

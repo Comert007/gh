@@ -1,6 +1,7 @@
 package com.ww.android.governmentheart.adapter.heart;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -70,6 +71,8 @@ public class HeartAdapter extends RvAdapter<NewsBean> {
                     .setName(bean.getTitle())
                     .setUrl(bean.getUrl())
                     .setType(CommentType.TYPE_NEWS)
+                    .setNum(TextUtils.isEmpty(bean.getCommentNum()) ? 0 : Integer.valueOf
+                            (bean.getCommentNum()))
                     .build();
             container.setOnClickListener(v -> ContentDetailActivity.start(getContext(),easyRequestBean));
         }

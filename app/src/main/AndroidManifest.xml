@@ -152,6 +152,10 @@
                   android:windowSoftInputMode="stateHidden|adjustResize"
                   android:configChanges="orientation|screenSize|keyboardHidden"/>
 
+        <!--搜索结果-->
+        <activity android:name=".activity.heart.SearchResultActivity"
+                  android:screenOrientation="portrait"/>
+
         <!--<activity-->
             <!--android:name="com.vincent.filepicker.activity.NormalFilePickActivity"-->
             <!--android:screenOrientation="portrait"-->

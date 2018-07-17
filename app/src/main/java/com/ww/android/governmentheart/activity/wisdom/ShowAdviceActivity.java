@@ -88,7 +88,7 @@ public class ShowAdviceActivity extends BaseActivity<ShowAdviceView, WisdomModel
                SuggestDetailBean detailBean = suggestDetailBeanPageListBean.getData();
                if (detailBean!=null){
                    v.setTitle(detailBean.getTitle());
-                   v.setContent(detailBean.getCont());
+                   v.setContent(detailBean.getContent());
                    adapter.addList(detailBean.getImgs());
                }
             }
