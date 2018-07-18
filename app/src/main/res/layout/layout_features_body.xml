@@ -7,17 +7,20 @@
     android:layout_marginRight="@dimen/margins"
     android:layout_marginBottom="@dimen/length_15"
     android:background="@color/color_white"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
     <RelativeLayout android:layout_width="match_parent"
                     android:layout_height="100dp">
 
-        <ImageView
+        <ww.com.core.widget.RoundImageView
             android:id="@+id/iv"
             android:src="@mipmap/ic_pic_default"
             android:layout_width="match_parent"
             android:scaleType="fitXY"
+            app:type="type_round"
+            app:borderRadius="4dp"
             android:layout_height="match_parent"/>
 
         <include layout="@layout/layout_eyes"/>
@@ -29,7 +32,7 @@
         android:singleLine="true"
         android:text="白塔湖特色鲶鱼"
         android:textColor="@color/color_black"
-        android:paddingLeft="@dimen/margin_15"
+        android:paddingLeft="@dimen/margin_5"
         android:paddingBottom="@dimen/margin_5"
         android:textSize="@dimen/text_15"
         android:layout_marginTop="5dp"

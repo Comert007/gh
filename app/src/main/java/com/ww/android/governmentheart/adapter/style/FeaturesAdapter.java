@@ -12,11 +12,11 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.ww.android.governmentheart.BaseApplication;
 import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.activity.base.ContentDetailActivity;
+import com.ww.android.governmentheart.config.listener.OnActionListener;
 import com.ww.android.governmentheart.config.type.CommentType;
 import com.ww.android.governmentheart.mvp.bean.MultipleBean;
-import com.ww.android.governmentheart.mvp.bean.heart.NewsBean;
 import com.ww.android.governmentheart.mvp.bean.home.EasyRequestBean;
-import com.ww.android.governmentheart.mvp.bean.login.NewsTypeBean;
+import com.ww.android.governmentheart.mvp.bean.login.NewsChildTypeBean;
 import com.ww.android.governmentheart.utils.RecyclerHelper;
 
 import butterknife.BindView;
@@ -27,10 +27,16 @@ import ww.com.core.adapter.RvViewHolder;
  * @Author feng
  * @Date 2018/6/16
  */
-public class FeaturesAdapter extends RvAdapter<NewsTypeBean> {
+public class FeaturesAdapter extends RvAdapter<NewsChildTypeBean> {
+
+    private OnActionListener mOnActionListener;
 
     public FeaturesAdapter(Context context) {
         super(context);
+    }
+
+    public void setOnActionListener(OnActionListener onActionListener) {
+        mOnActionListener = onActionListener;
     }
 
     @Override
@@ -42,27 +48,22 @@ public class FeaturesAdapter extends RvAdapter<NewsTypeBean> {
     protected int getItemLayoutResId(int viewType) {
         if (MultipleBean.MULTIPLE_HEADER == viewType) {
             return R.layout.adapter_features_header;
-        } else if (MultipleBean.MULTIPLE_BODY == viewType) {
-            return R.layout.adapter_features_body;
         } else {
-            return R.layout.layout_empty;
+            return R.layout.adapter_features_body;
         }
-
     }
 
     @Override
-    protected RvViewHolder<NewsTypeBean> getViewHolder(int viewType, View view) {
+    protected RvViewHolder<NewsChildTypeBean> getViewHolder(int viewType, View view) {
         if (MultipleBean.MULTIPLE_HEADER == viewType) {
             return new FeaturesHeaderViewHolder(view);
-        } else if (MultipleBean.MULTIPLE_BODY == viewType) {
-            return new FeaturesBodyViewHolder(view);
         } else {
-            return new FailureViewHolder(view);
+            return new FeaturesBodyViewHolder(view);
         }
     }
 
 
-    class FeaturesHeaderViewHolder extends RvViewHolder<NewsTypeBean> {
+    class FeaturesHeaderViewHolder extends RvViewHolder<NewsChildTypeBean> {
         @BindView(R.id.iv)
         ImageView iv;
         @BindView(R.id.tv_view_num)
@@ -78,23 +79,22 @@ public class FeaturesAdapter extends RvAdapter<NewsTypeBean> {
         }
 
         @Override
-        public void onBindData(int position, NewsTypeBean bean) {
+        public void onBindData(int position, NewsChildTypeBean bean) {
 
-            if (bean != null && bean.getNews() != null && bean.getNews().size() > 0) {
-                NewsBean newsBean = bean.getNews().get(0);
-                ImageLoader.getInstance().displayImage(newsBean.getImage(), iv, BaseApplication
+            if (bean != null ) {
+                ImageLoader.getInstance().displayImage(bean.getImage(), iv, BaseApplication
                         .getDisplayImageOptions(R.mipmap.ic_pic_default));
-                tvDes.setText(newsBean.getDescription());
-                tvViewNum.setText(TextUtils.isEmpty(newsBean.getViewNum()) ? "0" : newsBean
+                tvDes.setText(bean.getName());
+                tvViewNum.setText(TextUtils.isEmpty(bean.getViewNum()) ? "0" : bean
                         .getViewNum());
 
                 EasyRequestBean easyRequestBean = new EasyRequestBean.Builder()
-                        .setId(newsBean.getId())
-                        .setName(newsBean.getTitle())
-                        .setUrl(newsBean.getUrl())
+                        .setId(bean.getId())
+                        .setName(bean.getName())
+                        .setUrl(bean.getUrl())
                         .setType(CommentType.TYPE_NEWS)
-//                        .setNum(TextUtils.isEmpty(bean.getCommentNum()) ? 0 : Integer.valueOf
-//                                (bean.getCommentNum()))
+                        .setNum(TextUtils.isEmpty(bean.getCommentNum()) ? 0 : Integer.valueOf
+                                (bean.getCommentNum()))
                         .build();
                 container.setOnClickListener(v -> ContentDetailActivity.start(getContext(),
                         easyRequestBean));
@@ -105,7 +105,7 @@ public class FeaturesAdapter extends RvAdapter<NewsTypeBean> {
     }
 
 
-    class FeaturesBodyViewHolder extends RvViewHolder<NewsTypeBean> {
+    class FeaturesBodyViewHolder extends RvViewHolder<NewsChildTypeBean> {
         @BindView(R.id.rv)
         RecyclerView rv;
 
@@ -114,24 +114,17 @@ public class FeaturesAdapter extends RvAdapter<NewsTypeBean> {
         }
 
         @Override
-        public void onBindData(int position, NewsTypeBean bean) {
-            FeaturesBodyAdapter adapter = new FeaturesBodyAdapter(getContext());
-            rv.setLayoutManager(RecyclerHelper.gridManager(getContext(), 2));
-            rv.setAdapter(adapter);
-            adapter.addList(bean.getNews());
+        public void onBindData(int position, NewsChildTypeBean bean) {
+            if (bean.getNewsBeans() == null){
+                if (mOnActionListener != null) {
+                    mOnActionListener.onAction(itemView,position);
+                }
+            }else {
+                FeaturesBodyAdapter adapter = new FeaturesBodyAdapter(getContext());
+                rv.setLayoutManager(RecyclerHelper.gridManager(getContext(), 2));
+                rv.setAdapter(adapter);
+                adapter.addList(bean.getNewsBeans());
+            }
         }
     }
-
-    class FailureViewHolder extends RvViewHolder<NewsTypeBean> {
-
-        public FailureViewHolder(View itemView) {
-            super(itemView);
-        }
-
-        @Override
-        public void onBindData(int position, NewsTypeBean bean) {
-
-        }
-    }
-
 }

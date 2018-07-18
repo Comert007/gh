@@ -3,25 +3,26 @@ package com.ww.android.governmentheart.fragment.style;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.view.View;
 
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.adapter.style.FeaturesAdapter;
+import com.ww.android.governmentheart.config.listener.OnActionListener;
 import com.ww.android.governmentheart.fragment.BaseFragment;
 import com.ww.android.governmentheart.mvp.PageListBean;
 import com.ww.android.governmentheart.mvp.bean.PageBean;
-import com.ww.android.governmentheart.mvp.bean.PagingBean;
 import com.ww.android.governmentheart.mvp.bean.heart.NewsBean;
+import com.ww.android.governmentheart.mvp.bean.login.NewsChildTypeBean;
 import com.ww.android.governmentheart.mvp.bean.login.NewsTypeBean;
 import com.ww.android.governmentheart.mvp.model.CommonModel;
 import com.ww.android.governmentheart.mvp.utils.RefreshType;
 import com.ww.android.governmentheart.mvp.vu.RefreshView;
 import com.ww.android.governmentheart.network.BaseObserver;
 import com.ww.android.governmentheart.utils.RecyclerHelper;
+import com.ww.android.governmentheart.widget.EmptyLayout;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -36,10 +37,9 @@ import ww.com.core.utils.TimeUtils;
 public class FeaturesFragment extends BaseFragment<RefreshView, CommonModel> {
 
     private FeaturesAdapter adapter;
-    private String code; // code:1 方针，2 统战知识，3 权威解读， 4 政策库 5 崇州特色 6 农副产品 7 电商介绍 8 人物访谈 9加入我（加入组织）
-    private int page;
+    private String id;
     private NewsTypeBean mTypeBean;
-    private List<NewsBean> headerNews;
+    private NewsChildTypeBean headerBean;
 
     @Override
     protected int getLayoutResId() {
@@ -63,15 +63,24 @@ public class FeaturesFragment extends BaseFragment<RefreshView, CommonModel> {
     protected void init() {
         mTypeBean = (NewsTypeBean) getArguments().getSerializable("type");
         if (mTypeBean != null) {
-            code = mTypeBean.getCode();
+            id = mTypeBean.getId();
         }
         v.setRefreshType(RefreshType.REFRESH);
-        initListener();
         initRecycler();
+        initListener();
         recommend();
     }
 
     private void initListener() {
+        adapter.setOnActionListener(new OnActionListener() {
+            @Override
+            public void onAction(View view, int position) {
+                NewsChildTypeBean childTypeBean = adapter.getItem(position);
+                news(position, childTypeBean);
+            }
+        });
+
+        v.setRefreshType(RefreshType.REFRESH);
         if (v.srl == null) {
             return;
         }
@@ -79,17 +88,10 @@ public class FeaturesFragment extends BaseFragment<RefreshView, CommonModel> {
         v.srl.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                page = 0;
-                news();
+                recommend();
             }
         });
 
-        v.srl.setOnLoadMoreListener(new OnLoadMoreListener() {
-            @Override
-            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-
-            }
-        });
     }
 
     private void initRecycler() {
@@ -100,18 +102,10 @@ public class FeaturesFragment extends BaseFragment<RefreshView, CommonModel> {
         v.crv.setAdapter(adapter);
     }
 
-
     //
-    private void news() {
+    private void news(int position, NewsChildTypeBean childTypeBean) {
         Map map = new HashMap();
-        map.put("code", code);
-        map.put("pageNo", page);
-        if (page == 0) {
-            map.put("date", TimeUtils.date2String(new Date()));
-        }
-        if (v.srl == null) {
-            return;
-        }
+        map.put("id", childTypeBean.getId());
         m.news(map, new BaseObserver<PageListBean<NewsBean>>(getContext(), bindToLifecycle()) {
             @Override
             protected void onSuccess(@Nullable PageListBean<NewsBean> newsBeanPageListBean,
@@ -120,65 +114,102 @@ public class FeaturesFragment extends BaseFragment<RefreshView, CommonModel> {
 
                 if (newsBeanPageListBean != null && newsBeanPageListBean.getList() != null) {
                     List<NewsBean> newsBeans = newsBeanPageListBean.getList();
-                    PagingBean pagingBean = newsBeanPageListBean.getPage();
-                    int totalPage = pagingBean.getTotalPage();
-
-                    if (page == 0) {
-                        v.srl.finishRefresh();
-                        if (newsBeans != null && newsBeans.size() > 0) {
-                            List<NewsTypeBean> newsTypeBeans = new ArrayList<>();
-                            NewsTypeBean header = new NewsTypeBean(NewsTypeBean.MULTIPLE_HEADER);
-                            header.setNews(headerNews);
-                            NewsTypeBean body = new NewsTypeBean(NewsTypeBean.MULTIPLE_BODY);
-                            newsBeans = setType(newsBeans);
-                            body.setNews(newsBeans);
-                            newsTypeBeans.add(header);
-                            newsTypeBeans.add(body);
-                            adapter.addList(newsTypeBeans);
-                            page++;
-                        } else {
-                            v.srl.setNoMoreData(true);
-                        }
+                    if (newsBeans != null && newsBeans.size() > 0) {
+                        childTypeBean.setNewsBeans(newsBeans);
+                        adapter.notifyItemChanged(position);
                     }
-//                    else {
-//                        v.srl.finishLoadMore();
-//                        if (page < totalPage) {
-//                            adapter.appendList(newsBeans);
-//                            v.srl.setNoMoreData(false);
-//                            page++;
-//                        } else {
-//                            v.srl.setNoMoreData(true);
-//                        }
-//                    }
                 }
             }
         });
     }
+
 
     /**
      * 获取推荐位
      */
     private void recommend() {
         Map map = new HashMap();
-        map.put("code", code);
+        map.put("id", id);
         m.recommend(map, new BaseObserver<PageListBean<NewsBean>>(getContext(), bindToLifecycle()) {
             @Override
             protected void onSuccess(@Nullable PageListBean<NewsBean> newsBeanPageListBean,
                                      @Nullable List<PageListBean<NewsBean>> list, @Nullable
                                              PageBean<PageListBean<NewsBean>> page) {
                 if (newsBeanPageListBean != null) {
-                    headerNews = newsBeanPageListBean.getList();
+                    NewsBean headerNewsBean = newsBeanPageListBean.getData();
+                    //String id, String name, String parentId, String image,
+                    //                             String count, String description
+                    headerBean = new NewsChildTypeBean(NewsTypeBean.MULTIPLE_HEADER,
+                            headerNewsBean.getId(),
+                            headerNewsBean.getTitle(), "", headerNewsBean.getImage(), "0",
+                            headerNewsBean.getDescription(), headerNewsBean.getUrl(),
+                            headerNewsBean.getViewNum(), headerNewsBean.getCommentNum());
                 }
-                news();
+                categoryChild();
             }
         });
     }
 
 
-    private List<NewsBean> setType(List<NewsBean> newsBeans) {
-        for (NewsBean newsBean : newsBeans) {
+    private void categoryChild() {
+        Map map = new HashMap();
+        map.put("id", id);
+        map.put("pageNo", 100);
+        map.put("date", TimeUtils.date2String(new Date()));
+
+        m.newsCategoryChild(map, new BaseObserver<PageListBean<NewsChildTypeBean>>(getContext(),
+                bindToLifecycle()) {
+            @Override
+            protected void onSuccess(@Nullable PageListBean<NewsChildTypeBean>
+                                             newsChildTypeBeanPageListBean, @Nullable
+                                             List<PageListBean<NewsChildTypeBean>> list, @Nullable
+                                             PageBean<PageListBean<NewsChildTypeBean>> pageBean) {
+
+                if (newsChildTypeBeanPageListBean != null && newsChildTypeBeanPageListBean
+                        .getList() != null &&
+                        newsChildTypeBeanPageListBean.getList().size() > 0) {
+                    v.loadStatus(EmptyLayout.STATUS_HIDE);
+                    List<NewsChildTypeBean> newsBeans = newsChildTypeBeanPageListBean.getList();
+                    newsBeans = setType(newsBeans);
+                    if (newsBeans != null && newsBeans.size() > 0) {
+                        newsBeans.add(0,headerBean);
+                        adapter.addList(newsBeans);
+                        v.srl.finishRefresh();
+                    } else {
+                        v.srl.setNoMoreData(true);
+                    }
+                } else {
+                    reload(EmptyLayout.STATUS_NO_DATA);
+                }
+            }
+
+            @Override
+            protected void onFailure() {
+                super.onFailure();
+                reload(EmptyLayout.STATUS_NO_NET);
+            }
+        });
+    }
+
+    private void reload(int type) {
+        if (type == EmptyLayout.STATUS_NO_NET) {
+            v.loadStatus(EmptyLayout.STATUS_NO_NET);
+        } else {
+            v.loadStatus(EmptyLayout.STATUS_NO_DATA);
+        }
+        v.mEmptyLayout.setRetryListener(new EmptyLayout.OnRetryListener() {
+            @Override
+            public void onRetry() {
+                recommend();
+            }
+        });
+        v.srl.finishRefresh();
+    }
+
+    private List<NewsChildTypeBean> setType(List<NewsChildTypeBean> typeBeans) {
+        for (NewsChildTypeBean newsBean : typeBeans) {
             newsBean.setItemType(NewsBean.MULTIPLE_BODY);
         }
-        return newsBeans;
+        return typeBeans;
     }
 }
