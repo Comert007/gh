@@ -68,7 +68,7 @@ public class FeaturesFragment extends BaseFragment<RefreshView, CommonModel> {
         v.setRefreshType(RefreshType.REFRESH);
         initRecycler();
         initListener();
-        recommend();
+        categoryChild();
     }
 
     private void initListener() {
@@ -88,7 +88,7 @@ public class FeaturesFragment extends BaseFragment<RefreshView, CommonModel> {
         v.srl.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                recommend();
+                categoryChild();
             }
         });
 
@@ -125,7 +125,7 @@ public class FeaturesFragment extends BaseFragment<RefreshView, CommonModel> {
     /**
      * 获取推荐位
      */
-    private void recommend() {
+    private void recommend(List<NewsChildTypeBean> typeBeans) {
         Map map = new HashMap();
         map.put("id", id);
         m.recommend(map, new BaseObserver<PageListBean<NewsBean>>(getContext(), bindToLifecycle()) {
@@ -142,8 +142,9 @@ public class FeaturesFragment extends BaseFragment<RefreshView, CommonModel> {
                             headerNewsBean.getTitle(), "", headerNewsBean.getImage(), "0",
                             headerNewsBean.getDescription(), headerNewsBean.getUrl(),
                             headerNewsBean.getViewNum(), headerNewsBean.getCommentNum());
+                    typeBeans.add(0,headerBean);
+                    adapter.addList(typeBeans);
                 }
-                categoryChild();
             }
         });
     }
@@ -170,8 +171,7 @@ public class FeaturesFragment extends BaseFragment<RefreshView, CommonModel> {
                     List<NewsChildTypeBean> newsBeans = newsChildTypeBeanPageListBean.getList();
                     newsBeans = setType(newsBeans);
                     if (newsBeans != null && newsBeans.size() > 0) {
-                        newsBeans.add(0,headerBean);
-                        adapter.addList(newsBeans);
+                        recommend(newsBeans);
                         v.srl.finishRefresh();
                     } else {
                         v.srl.setNoMoreData(true);
@@ -198,7 +198,7 @@ public class FeaturesFragment extends BaseFragment<RefreshView, CommonModel> {
         v.mEmptyLayout.setRetryListener(new EmptyLayout.OnRetryListener() {
             @Override
             public void onRetry() {
-                recommend();
+                categoryChild();
             }
         });
         v.srl.finishRefresh();

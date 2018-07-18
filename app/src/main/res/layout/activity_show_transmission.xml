@@ -22,10 +22,10 @@
         android:background="@color/color_white"
         android:layout_weight="1">
         <RelativeLayout
-            style="@style/LLayStyle">
+            style="@style/LLayWhiteStyle">
             <LinearLayout
                 android:layout_marginBottom="40dp"
-                style="@style/LLayStyle"
+                style="@style/LLayWhiteStyle"
                 >
 
 
