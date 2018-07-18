@@ -108,6 +108,8 @@ public class FeaturesAdapter extends RvAdapter<NewsChildTypeBean> {
     class FeaturesBodyViewHolder extends RvViewHolder<NewsChildTypeBean> {
         @BindView(R.id.rv)
         RecyclerView rv;
+        @BindView(R.id.tv_column)
+        TextView tvColumn;
 
         public FeaturesBodyViewHolder(View itemView) {
             super(itemView);
@@ -115,6 +117,7 @@ public class FeaturesAdapter extends RvAdapter<NewsChildTypeBean> {
 
         @Override
         public void onBindData(int position, NewsChildTypeBean bean) {
+            tvColumn.setText(bean.getName());
             if (bean.getNewsBeans() == null){
                 if (mOnActionListener != null) {
                     mOnActionListener.onAction(itemView,position);

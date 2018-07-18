@@ -24,6 +24,7 @@
         android:text="崇州市各市委部门联谊活动"/>
 
     <LinearLayout
+        android:id="@+id/ll_style"
         android:layout_width="match_parent"
         android:gravity="center"
         android:layout_marginTop="4dp"

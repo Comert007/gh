@@ -110,6 +110,9 @@ public class ActivityFragment extends BaseFragment<RefreshView, TogetherModel> {
                         actBeanPageListBean.getList().size()>0) {
                     v.loadStatus(EmptyLayout.STATUS_HIDE);
                     List<ActBean> actBeans = actBeanPageListBean.getList();
+                    for (ActBean actBean : actBeans) {
+                        actBean.setType(type);
+                    }
                     PagingBean pagingBean = actBeanPageListBean.getPage();
                     int totalPage = pagingBean.getTotalPage();
                     if (page == 0) {

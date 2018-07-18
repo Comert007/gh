@@ -20,6 +20,7 @@ public class ActBean {
     private String address;
     private String url;
     private String id;
+    private String type;
 
     public String getTitle() {
         return title;
@@ -107,5 +108,13 @@ public class ActBean {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

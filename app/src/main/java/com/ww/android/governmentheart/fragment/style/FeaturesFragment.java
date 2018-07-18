@@ -95,9 +95,7 @@ public class FeaturesFragment extends BaseFragment<RefreshView, CommonModel> {
     }
 
     private void initRecycler() {
-        v.initRecycler(RecyclerHelper.defaultManager(getContext()), RecyclerHelper
-                .defaultMoreDecoration(getContext()));
-
+        v.initRecycler(RecyclerHelper.defaultManager(getContext()));
         adapter = new FeaturesAdapter(getContext());
         v.crv.setAdapter(adapter);
     }

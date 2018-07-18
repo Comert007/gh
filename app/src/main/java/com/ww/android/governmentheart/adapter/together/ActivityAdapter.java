@@ -61,6 +61,8 @@ public class ActivityAdapter extends RvAdapter<ActBean> {
         TextView tvJoin;
         @BindView(R.id.container)
         LinearLayout container;
+        @BindView(R.id.ll_style)
+        LinearLayout llStyle;
 
         public PublishViewHolder(View itemView) {
             super(itemView);
@@ -75,6 +77,17 @@ public class ActivityAdapter extends RvAdapter<ActBean> {
 //            tvTimeDelay.setText("还有"+bean.getDate()+"天开始");
             tvTime.setText("时间："+bean.getDate());
 //            tvOriginName.setText(bean.get);
+            //t 1 即将开始 2 正在进行 3 结束
+            if (bean.getType().equals("1")){
+                tvTimeDelay.setText("即将开始");
+                tvJoin.setVisibility(View.INVISIBLE);
+            }else if (bean.getType().equals("2")){
+                tvTimeDelay.setText("还有"+bean.getDate()+"天开始");
+                tvJoin.setVisibility(View.VISIBLE);
+            }else {
+                tvTimeDelay.setText("已结束");
+                tvJoin.setVisibility(View.INVISIBLE);
+            }
 
             tvJoin.setOnClickListener(v -> {
                 if (mOnActionListener!=null){
