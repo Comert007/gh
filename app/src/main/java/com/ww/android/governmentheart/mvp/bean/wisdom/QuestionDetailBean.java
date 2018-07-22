@@ -38,7 +38,7 @@ public class QuestionDetailBean {
     private String questionId;
     private String title;
     private String content;
-    private long questionDate;
+    private String questionDate;
     private String questionUserId;
     private String phone;
     private String status;
@@ -87,11 +87,11 @@ public class QuestionDetailBean {
         this.content = content;
     }
 
-    public long getQuestionDate() {
+    public String getQuestionDate() {
         return questionDate;
     }
 
-    public void setQuestionDate(long questionDate) {
+    public void setQuestionDate(String questionDate) {
         this.questionDate = questionDate;
     }
 

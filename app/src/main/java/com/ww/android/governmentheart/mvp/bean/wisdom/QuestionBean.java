@@ -28,6 +28,7 @@ public class QuestionBean {
      * goodNum : 1
      */
 
+    private String id;
     private boolean isNewRecord;
     private String questionId;
     private String title;
@@ -198,5 +199,13 @@ public class QuestionBean {
 
     public void setGoodNum(int goodNum) {
         this.goodNum = goodNum;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

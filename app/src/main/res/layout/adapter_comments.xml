@@ -16,12 +16,14 @@
         app:type="type_circle"/>
 
     <TextView
+        android:id="@+id/tv_name"
         style="@style/NormalTitleTextStyle"
         android:layout_marginTop="@dimen/length_2"
         android:layout_toRightOf="@id/riv"
         android:text="周修富"
     />
     <TextView
+        android:id="@+id/tv_time"
         style="@style/NormalTipTextStyle"
         android:layout_alignBottom="@id/riv"
         android:layout_toRightOf="@id/riv"
@@ -30,6 +32,7 @@
     />
 
     <TextView
+        android:id="@+id/tv_des"
         style="@style/NormalTitleTextStyle"
         android:layout_marginTop="@dimen/length_7"
         android:textColor="@color/color_indicator"

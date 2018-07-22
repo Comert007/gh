@@ -15,10 +15,11 @@ public class ActBean {
     private String viewNum;
     private String commentNum;
     private String date;
-    private String startDate;
-    private String endDate;
+    private long startDate;
+    private long endDate;
     private String address;
     private String url;
+    private String sponsor;
     private String id;
     private String type;
 
@@ -70,19 +71,19 @@ public class ActBean {
         this.date = date;
     }
 
-    public String getStartDate() {
+    public long getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(long startDate) {
         this.startDate = startDate;
     }
 
-    public String getEndDate() {
+    public long getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(long endDate) {
         this.endDate = endDate;
     }
 
@@ -116,5 +117,13 @@ public class ActBean {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getSponsor() {
+        return sponsor;
+    }
+
+    public void setSponsor(String sponsor) {
+        this.sponsor = sponsor;
     }
 }

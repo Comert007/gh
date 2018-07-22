@@ -19,6 +19,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import ww.com.core.Debug;
+
 /**
  * @author feng
  * @Date 2018/6/23.
@@ -55,6 +57,7 @@ public class ShowQuestionActivity extends BaseActivity<ShowQuestionView, WisdomM
     private void questionDetail() {
         Map map = new HashMap();
         map.put("id", id);
+        Debug.d("id:"+id);
         m.questionDetail(map, new BaseObserver<PageListBean<QuestionDetailBean>>(this,
                 bindToLifecycle()) {
             @Override

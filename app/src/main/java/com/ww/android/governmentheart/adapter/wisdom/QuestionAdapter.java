@@ -63,7 +63,7 @@ public class QuestionAdapter extends RvAdapter<QuestionBean> {
             container.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ShowQuestionActivity.start(getContext(),bean.getQuestionId());
+                    ShowQuestionActivity.start(getContext(),bean.getId());
                 }
             });
         }

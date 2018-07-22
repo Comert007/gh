@@ -16,7 +16,7 @@
             style="@style/TitleBar"
             app:titleLeftIco="@mipmap/ic_back"
             android:background="@color/color_white"
-            app:titleText="知识交流"
+            app:titleText="民主监督"
             app:titleTextColor="@color/color_black"/>
 
         <View style="@style/ViewLineStyle"/>

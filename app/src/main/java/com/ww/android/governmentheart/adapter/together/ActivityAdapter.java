@@ -16,9 +16,12 @@ import com.ww.android.governmentheart.config.type.CommentType;
 import com.ww.android.governmentheart.mvp.bean.home.EasyRequestBean;
 import com.ww.android.governmentheart.mvp.bean.together.ActBean;
 
+import java.util.Date;
+
 import butterknife.BindView;
 import ww.com.core.adapter.RvAdapter;
 import ww.com.core.adapter.RvViewHolder;
+import ww.com.core.utils.TimeUtils;
 
 /**
  * @Author feng
@@ -75,15 +78,17 @@ public class ActivityAdapter extends RvAdapter<ActBean> {
 
             tvTitle.setText(bean.getTitle());
 //            tvTimeDelay.setText("还有"+bean.getDate()+"天开始");
-            tvTime.setText("时间："+bean.getDate());
-//            tvOriginName.setText(bean.get);
+            tvTime.setText(String.format("时间：%s", TimeUtils.milliseconds2String(bean.getStartDate
+                    ())));
+            tvOriginName.setText(bean.getSponsor());
             //t 1 即将开始 2 正在进行 3 结束
             if (bean.getType().equals("1")){
-                tvTimeDelay.setText("即将开始");
-                tvJoin.setVisibility(View.INVISIBLE);
-            }else if (bean.getType().equals("2")){
-                tvTimeDelay.setText("还有"+bean.getDate()+"天开始");
+                int dis = (int) ((bean.getStartDate()-(new Date().getTime()))/86400000);
+                tvTimeDelay.setText("还有"+dis+"天开始");
                 tvJoin.setVisibility(View.VISIBLE);
+            }else if (bean.getType().equals("2")){
+                tvTimeDelay.setText("已开始");
+                tvJoin.setVisibility(View.INVISIBLE);
             }else {
                 tvTimeDelay.setText("已结束");
                 tvJoin.setVisibility(View.INVISIBLE);

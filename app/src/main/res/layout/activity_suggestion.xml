@@ -15,7 +15,7 @@
             android:id="@+id/title_view"
             style="@style/TitleBar"
             app:titleLeftIco="@mipmap/ic_back"
-            app:titleText="建言献策"
+            app:titleText="参政议政"
             app:titleTextColor="@color/color_black"/>
 
         <View style="@style/ViewLineStyle"/>

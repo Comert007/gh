@@ -14,10 +14,10 @@
         <item>人物访谈</item>
     </string-array>
 
-    <!--建言献策 知识交流 资料发送-->
+    <!--参政议政 民主监督 资料发送-->
     <string-array name="wisdom_text">
-        <item>建言献策</item>
-        <item>知识交流</item>
+        <item>参政议政</item>
+        <item>民主监督</item>
         <item>资料发送</item>
     </string-array>
 </resources>
