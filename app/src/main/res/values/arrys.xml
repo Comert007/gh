@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="together_text">
-        <item>加入组织</item>
-        <item>活动信息</item>
+        <item>组织动态</item>
         <item>在线直播</item>
     </string-array>
 

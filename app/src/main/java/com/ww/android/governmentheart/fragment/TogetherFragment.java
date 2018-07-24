@@ -67,7 +67,7 @@ public class TogetherFragment extends BaseFragment<MagicIndicatorView, MainModel
         fragmentManager = getChildFragmentManager();
         pagerAdapter = new IndicatorPagerAdapter(fragmentManager, fragments);
         v.viewPager.setAdapter(pagerAdapter);
-        v.viewPager.setOffscreenPageLimit(3);
+        v.viewPager.setOffscreenPageLimit(2);
     }
 
     /**
@@ -77,7 +77,7 @@ public class TogetherFragment extends BaseFragment<MagicIndicatorView, MainModel
         if (fragments == null) {
             fragments = new ArrayList<>();
         }
-        fragments.add(JoinFragment.newInstance(this.mTypeBeans.get(0)));
+//        fragments.add(JoinFragment.newInstance(this.mTypeBeans.get(0)));
         fragments.add(new ActFragment());
         fragments.add(new OnlineFragment());
     }

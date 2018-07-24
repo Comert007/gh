@@ -8,9 +8,7 @@ import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.activity.home.UserLocationActivity;
 import com.ww.android.governmentheart.adapter.IndicatorPagerAdapter;
 import com.ww.android.governmentheart.fragment.style.FarmFragment;
-import com.ww.android.governmentheart.fragment.style.FeaturesFragment;
 import com.ww.android.governmentheart.fragment.style.InterviewsFragment;
-import com.ww.android.governmentheart.fragment.style.IntroduceFragment;
 import com.ww.android.governmentheart.mvp.PageListBean;
 import com.ww.android.governmentheart.mvp.bean.PageBean;
 import com.ww.android.governmentheart.mvp.bean.login.NewsTypeBean;
@@ -49,9 +47,11 @@ public class StyleFragment extends BaseFragment<MagicIndicatorView, MainModel> {
             this.newsTypeBeans = newsTypeBeans.subList(4,8);
 
             List<String> titles = new ArrayList<>();
-            for (NewsTypeBean newsTypeBean : this.newsTypeBeans) {
-                titles.add(newsTypeBean.getName());
-            }
+//            for (NewsTypeBean newsTypeBean : this.newsTypeBeans) {
+//                titles.add(newsTypeBean.getName());
+//            }
+            titles.add(this.newsTypeBeans.get(1).getName());
+            titles.add(this.newsTypeBeans.get(3).getName());
             addFragment();
             initViewPager();
 
@@ -72,7 +72,7 @@ public class StyleFragment extends BaseFragment<MagicIndicatorView, MainModel> {
         fragmentManager = getChildFragmentManager();
         pagerAdapter = new IndicatorPagerAdapter(fragmentManager, fragments);
         v.viewPager.setAdapter(pagerAdapter);
-        v.viewPager.setOffscreenPageLimit(4);
+        v.viewPager.setOffscreenPageLimit(2);
     }
 
     /**
@@ -82,9 +82,9 @@ public class StyleFragment extends BaseFragment<MagicIndicatorView, MainModel> {
         if (fragments == null) {
             fragments = new ArrayList<>();
         }
-        fragments.add(FeaturesFragment.newInstance(newsTypeBeans.get(0)));
+//        fragments.add(FeaturesFragment.newInstance(newsTypeBeans.get(0)));
         fragments.add(FarmFragment.newInstance(newsTypeBeans.get(1).getCode()));
-        fragments.add(IntroduceFragment.newInstance(newsTypeBeans.get(2).getCode()));
+//        fragments.add(IntroduceFragment.newInstance(newsTypeBeans.get(2).getCode()));
         fragments.add(InterviewsFragment.newInstance(newsTypeBeans.get(3).getCode()));
     }
 
