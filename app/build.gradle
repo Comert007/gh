@@ -37,12 +37,11 @@ android {
 
     buildTypes {
         release {
-            debuggable true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 //            buildConfigField('String', 'BASE_URL', '"http://172.20.10.10:8081/openapi/"')
             buildConfigField('String', 'BASE_URL', '"http://39.104.181.207:8081/openapi/"')
-            buildConfigField "boolean", "LOGGER", "true"
+            buildConfigField "boolean", "LOGGER", "false"
             signingConfig signingConfigs.releaseConfig
 
             //多渠道打包配置
