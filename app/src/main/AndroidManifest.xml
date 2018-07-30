@@ -156,6 +156,10 @@
         <activity android:name=".activity.heart.SearchResultActivity"
                   android:screenOrientation="portrait"/>
 
+        <!--个人中心-->
+        <activity android:name=".activity.base.UserActivity"
+                  android:screenOrientation="portrait"/>
+
         <!--<activity-->
             <!--android:name="com.vincent.filepicker.activity.NormalFilePickActivity"-->
             <!--android:screenOrientation="portrait"-->

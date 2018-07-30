@@ -135,8 +135,9 @@ public abstract class BaseActivity<V extends IView, M extends IModel> extends
             mImmersionBar.fitsSystemWindows(true).statusBarColor(R.color.color_white)
                     .statusBarDarkFont
                     (true, 0.2f).init();
+        }else if (ImmersionType.BLUE == type){
+            mImmersionBar.fitsSystemWindows(true).statusBarColor(R.color.color_blue).init();
         }
-
     }
 
 
