@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
 import com.ww.android.governmentheart.R;
+import com.ww.android.governmentheart.activity.base.UserActivity;
 import com.ww.android.governmentheart.activity.home.UserLocationActivity;
 import com.ww.android.governmentheart.adapter.IndicatorPagerAdapter;
 import com.ww.android.governmentheart.fragment.together.ActFragment;
@@ -43,6 +44,11 @@ public class TogetherFragment extends BaseFragment<MagicIndicatorView, MainModel
         newsCategory();
     }
 
+    @Override
+    public void onTitleRight() {
+        super.onTitleRight();
+        UserActivity.start(getActivity());
+    }
 
     public void initPager(List<NewsTypeBean> newsTypeBeans) {
         if (newsTypeBeans != null && newsTypeBeans.size() >= 9) {

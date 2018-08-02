@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
 import com.ww.android.governmentheart.R;
+import com.ww.android.governmentheart.activity.base.UserActivity;
 import com.ww.android.governmentheart.activity.home.UserLocationActivity;
 import com.ww.android.governmentheart.adapter.IndicatorPagerAdapter;
 import com.ww.android.governmentheart.fragment.wisdom.QuestionFragment;
@@ -41,6 +42,11 @@ public class WisdomFragment extends BaseFragment<MagicIndicatorView,VoidModel> {
         v.initMagicIndicator(true);
     }
 
+    @Override
+    public void onTitleRight() {
+        super.onTitleRight();
+        UserActivity.start(getActivity());
+    }
 
     @OnClick({R.id.btn_title_left})
     public void onClick(){

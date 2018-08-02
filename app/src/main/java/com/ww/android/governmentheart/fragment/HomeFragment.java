@@ -7,6 +7,7 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.ww.android.governmentheart.R;
+import com.ww.android.governmentheart.activity.base.UserActivity;
 import com.ww.android.governmentheart.activity.home.UserLocationActivity;
 import com.ww.android.governmentheart.adapter.home.HomeAdapter;
 import com.ww.android.governmentheart.config.Constant;
@@ -54,6 +55,12 @@ public class HomeFragment extends BaseFragment<RefreshView, CommonModel> {
         mainPic();
     }
 
+
+    @Override
+    public void onTitleRight() {
+        super.onTitleRight();
+        UserActivity.start(getActivity());
+    }
 
     private void initListener() {
         if (v.srl == null) {
