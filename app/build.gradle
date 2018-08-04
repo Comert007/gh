@@ -35,6 +35,14 @@ android {
         }
     }
 
+    //多渠道打包配置
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            outputFileName = "tongzhan_v${defaultConfig.versionName}_${releaseTime()}_${variant.productFlavors[0].name}.apk"
+        }
+    }
+
+
     buildTypes {
         release {
             minifyEnabled false
@@ -43,14 +51,6 @@ android {
             buildConfigField('String', 'BASE_URL', '"http://39.104.181.207:8081/openapi/"')
             buildConfigField "boolean", "LOGGER", "false"
             signingConfig signingConfigs.releaseConfig
-
-            //多渠道打包配置
-            android.applicationVariants.all { variant ->
-                variant.outputs.all {
-                    outputFileName = "tongzhan_v${defaultConfig.versionName}_${releaseTime()}_${variant.productFlavors[0].name}.apk"
-                    outputFileName = new File("", outputFileName)
-                }
-            }
         }
 
         debug {
