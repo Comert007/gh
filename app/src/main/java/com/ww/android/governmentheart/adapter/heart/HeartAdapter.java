@@ -61,7 +61,7 @@ public class HeartAdapter extends RvAdapter<NewsBean> {
             ImageLoader.getInstance().displayImage(bean.getImage(), iv, BaseApplication
                     .getDisplayImageOptions(R.mipmap.ic_pic_default));
             tvTitleName.setText(bean.getTitle());
-            tvEyes.setText(bean.getViewNum());
+            tvEyes.setText(bean.getHits());
             tvComment.setText(bean.getCommentNum());
             tvTime.setText(bean.getCreateDate());
 

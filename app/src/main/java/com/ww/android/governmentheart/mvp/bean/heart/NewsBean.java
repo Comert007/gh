@@ -25,7 +25,7 @@ public class NewsBean extends MultipleBean {
     private String keywords;
     private String description;
     private int weight;
-    private int hits;
+    private String hits;
     private String posid;
     private String customContentView;
     private String viewConfig;
@@ -194,11 +194,11 @@ public class NewsBean extends MultipleBean {
         this.weight = weight;
     }
 
-    public int getHits() {
+    public String getHits() {
         return hits;
     }
 
-    public void setHits(int hits) {
+    public void setHits(String hits) {
         this.hits = hits;
     }
 
