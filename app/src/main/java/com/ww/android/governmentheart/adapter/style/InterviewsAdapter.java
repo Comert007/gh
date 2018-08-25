@@ -71,8 +71,8 @@ public class InterviewsAdapter extends RvAdapter<NewsBean> {
                     .setName(bean.getTitle())
                     .setUrl(bean.getUrl())
                     .setType(CommentType.TYPE_NEWS)
-                    .setNum(TextUtils.isEmpty(bean.getCommentNum()) ? 0 : Integer.valueOf
-                            (bean.getCommentNum()))
+                    .setNum(TextUtils.isEmpty(bean.getCommentCount()) ? 0 : Integer.valueOf
+                            (bean.getCommentCount()))
                     .build();
             container.setOnClickListener(v -> ContentDetailActivity.start(getContext(),easyRequestBean));
         }

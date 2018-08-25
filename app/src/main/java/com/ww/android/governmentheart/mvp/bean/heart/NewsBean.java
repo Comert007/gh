@@ -9,6 +9,7 @@ public class NewsBean extends MultipleBean {
     private String imageUrl;
     private String viewNum;
     private String commentNum;
+    private String commentCount;
     private String date;
     private String code;
     private String id;
@@ -80,6 +81,14 @@ public class NewsBean extends MultipleBean {
 
     public void setCommentNum(String commentNum) {
         this.commentNum = commentNum;
+    }
+
+    public String getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(String commentCount) {
+        this.commentCount = commentCount;
     }
 
     public String getDate() {

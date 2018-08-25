@@ -26,6 +26,8 @@ public class SuggestBean {
     private String createDate;
     private String updateDate;
     private String title;
+    private String acceptUserName;
+    private long acceptDate;
     private long proposalDate;
     private String proposalUserId;
     private String status;
@@ -132,6 +134,22 @@ public class SuggestBean {
 
     public String getProposalUserName() {
         return proposalUserName;
+    }
+
+    public String getAcceptUserName() {
+        return acceptUserName;
+    }
+
+    public void setAcceptUserName(String acceptUserName) {
+        this.acceptUserName = acceptUserName;
+    }
+
+    public long getAcceptDate() {
+        return acceptDate;
+    }
+
+    public void setAcceptDate(long acceptDate) {
+        this.acceptDate = acceptDate;
     }
 
     public void setProposalUserName(String proposalUserName) {

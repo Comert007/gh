@@ -141,7 +141,7 @@ public class FeaturesFragment extends BaseFragment<RefreshView, CommonModel> {
                             headerNewsBean.getId(),
                             headerNewsBean.getTitle(), "", headerNewsBean.getImage(), "0",
                             headerNewsBean.getDescription(), headerNewsBean.getUrl(),
-                            headerNewsBean.getViewNum(), headerNewsBean.getCommentNum());
+                            headerNewsBean.getViewNum(), headerNewsBean.getCommentCount());
                     typeBeans.add(0,headerBean);
                     adapter.addList(typeBeans);
                 }

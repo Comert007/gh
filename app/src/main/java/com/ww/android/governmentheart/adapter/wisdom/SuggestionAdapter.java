@@ -76,8 +76,8 @@ public class SuggestionAdapter extends RvAdapter<SuggestBean> {
             tvTitle.setText(bean.getTitle());
             tvTime.setText(bean.getCreateDate());
             if ("0".equals(bean.getStatus())) {
-                tvUserName.setText(bean.getProposalUserName());
-                tvDealTime.setText(TimeUtils.milliseconds2String(bean.getProposalDate()));
+                tvUserName.setText(bean.getAcceptUserName());
+                tvDealTime.setText(TimeUtils.milliseconds2String(bean.getAcceptDate()));
             } else {
                 tvUserName.setText("");
                 tvDealTime.setText("");
