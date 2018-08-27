@@ -12,8 +12,9 @@
     <ww.com.core.widget.RoundImageView
         android:id="@+id/riv"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="150dp"
         android:src="@mipmap/ic_pic_default"
+        android:scaleType="centerCrop"
         app:borderRadius="@dimen/round_radius"
         app:type="type_round"/>
 
