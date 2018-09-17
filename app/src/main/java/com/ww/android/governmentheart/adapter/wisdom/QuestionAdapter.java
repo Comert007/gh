@@ -47,6 +47,8 @@ public class QuestionAdapter extends RvAdapter<QuestionBean> {
         TextView tvTime;
         @BindView(R.id.container)
         LinearLayout container;
+        @BindView(R.id.tv_status)
+        TextView tvStatusName;
 
 
         public KnowledgeViewHolder(View itemView) {
@@ -60,6 +62,7 @@ public class QuestionAdapter extends RvAdapter<QuestionBean> {
             tvTitleName.setText(bean.getTitle());
             tvEyes.setText(String.format("%d", bean.getViewNum()));
             tvTime.setText(bean.getQuestionDate());
+            tvStatusName.setText(bean.getStatus().equals("1")?"未办理":"已办理");
             container.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

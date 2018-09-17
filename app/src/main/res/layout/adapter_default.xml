@@ -12,56 +12,80 @@
         android:id="@+id/iv"
         android:src="@mipmap/ic_pic_default"
         android:layout_width="100dp"
+        android:visibility="gone"
         android:layout_marginRight="@dimen/margins"
-        android:layout_height="80dp"/>
+        android:layout_height="60dp"/>
 
     <LinearLayout android:layout_width="match_parent"
                   android:orientation="vertical"
-                  android:layout_height="80dp">
+                  android:layout_height="60dp">
 
-        <TextView
-            android:id="@+id/tv_title_name"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:textSize="@dimen/text_15"
-            android:textColor="@color/color_black"
-            android:text="高度评价马克思的一生深刻影响 人类发展进程高度评价马克思的一生深刻影响 人类发展进程"
-            android:lineSpacingExtra="3dp"
-            android:maxLines="2"
-            android:ellipsize="end"
+            android:gravity="center_vertical"
             android:layout_marginBottom="@dimen/margin_10"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_title_name"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textSize="@dimen/text_15"
+                android:textColor="@color/color_black"
+                android:lineSpacingExtra="3dp"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/tv_status"
+                android:layout_width="wrap_content"
+                android:textColor="@color/color_tip_red"
+                android:layout_marginLeft="@dimen/margin_10"
+                android:textSize="@dimen/text_15"
+                android:text="已办理"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
 
 
         <include layout="@layout/view_split_line"/>
 
-        <LinearLayout android:layout_width="match_parent"
-                      android:gravity="bottom|center_vertical"
-                      android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="bottom"
+            android:layout_height="match_parent">
+            <LinearLayout android:layout_width="match_parent"
+                          android:gravity="center_vertical"
+                          android:layout_height="wrap_content">
 
-            <ImageView
-                android:src="@mipmap/ic_eyes"
-                android:layout_width="16dp"
-                android:layout_marginRight="5dp"
-                android:layout_height="10dp"/>
+                <ImageView
+                    android:src="@mipmap/ic_eyes"
+                    android:layout_width="16dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_height="10dp"/>
 
-            <TextView
-                android:id="@+id/tv_eyes"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:textColor="@color/color_hint"
-                android:textSize="@dimen/text_12"
-                android:text="1234"
-                android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/tv_eyes"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/color_hint"
+                    android:textSize="@dimen/text_12"
+                    android:text="1234"
+                    android:layout_height="wrap_content"/>
 
-            <TextView
-                android:id="@+id/tv_time"
-                android:layout_width="wrap_content"
-                android:textColor="@color/color_hint"
-                android:textSize="@dimen/text_12"
-                android:text="2018-05-30"
-                android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/color_hint"
+                    android:textSize="@dimen/text_12"
+                    android:text="2018-05-30"
+                    android:layout_height="wrap_content"/>
 
+            </LinearLayout>
         </LinearLayout>
+
+
 
     </LinearLayout>
 </LinearLayout>

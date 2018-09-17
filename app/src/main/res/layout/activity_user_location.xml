@@ -93,7 +93,6 @@
             android:id="@+id/container_user_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
             android:background="@color/color_white"
             android:orientation="vertical">
 
@@ -141,8 +140,8 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:padding="@dimen/margin_15"
-                android:layout_height="wrap_content">
+                android:gravity="center_vertical"
+                android:layout_height="50dp">
 
                 <TextView
                     android:visibility="gone"
@@ -158,8 +157,9 @@
 
                 <TextView
                     android:id="@+id/tv_member_close"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:gravity="center"
+                    android:layout_height="match_parent"
                     android:text="关闭"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"

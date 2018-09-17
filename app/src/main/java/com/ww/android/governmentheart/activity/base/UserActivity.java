@@ -8,12 +8,15 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.ww.android.governmentheart.BaseApplication;
 import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.activity.BaseActivity;
+import com.ww.android.governmentheart.activity.home.LoginActivity;
 import com.ww.android.governmentheart.config.type.ImmersionType;
 import com.ww.android.governmentheart.mvp.bean.login.UserBean;
 import com.ww.android.governmentheart.mvp.model.VoidModel;
 import com.ww.android.governmentheart.mvp.vu.base.VoidView;
+import com.ww.android.governmentheart.utils.DialogUtils;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import ww.com.core.widget.RoundImageView;
 
 /**
@@ -51,6 +54,17 @@ public class UserActivity extends BaseActivity<VoidView, VoidModel> {
             ImageLoader.getInstance().displayImage(user.getUser().getPhoto(), riv,
                     BaseApplication.getDisplayImageOptions(R.mipmap.ic_header_default));
         }
+    }
+
+    @OnClick(R.id.btn_quit)
+    public void onClick() {
+        DialogUtils.showDialog(this, "提示", "你确定退出当前登录吗？", "退出", (dialogInterface, i) -> {
+            dialogInterface.dismiss();
+            BaseApplication.getInstance().saveUserInfo(null);
+            BaseApplication.getInstance().clearTopTask(UserActivity.this);
+            LoginActivity.launch(UserActivity.this);
+            finish();
+        });
     }
 
     @Override

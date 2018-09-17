@@ -38,8 +38,10 @@ public class LauncherActivity extends BaseActivity<VoidView, VoidModel> {
                 String token = BaseApplication.getInstance().getToken();
                 if (TextUtils.isEmpty(token)) {
                     LoginActivity.launch(LauncherActivity.this);
+                    finish();
                 }else {
                     MainActivity.start(LauncherActivity.this);
+                    finish();
                 }
             }
         }, 2000);

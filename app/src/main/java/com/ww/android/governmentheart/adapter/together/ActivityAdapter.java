@@ -73,7 +73,7 @@ public class ActivityAdapter extends RvAdapter<ActBean> {
 
         @Override
         public void onBindData(int position, ActBean bean) {
-            ImageLoader.getInstance().displayImage(bean.getUrl(), iv, BaseApplication
+            ImageLoader.getInstance().displayImage(bean.getLitimg(), iv, BaseApplication
                     .getDisplayImageOptions(R.mipmap.ic_pic_default));
 
             tvTitle.setText(bean.getTitle());

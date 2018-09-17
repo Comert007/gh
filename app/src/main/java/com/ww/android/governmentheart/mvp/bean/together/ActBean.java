@@ -22,6 +22,15 @@ public class ActBean {
     private String sponsor;
     private String id;
     private String type;
+    private String litimg;
+
+    public String getLitimg() {
+        return litimg;
+    }
+
+    public void setLitimg(String litimg) {
+        this.litimg = litimg;
+    }
 
     public String getTitle() {
         return title;

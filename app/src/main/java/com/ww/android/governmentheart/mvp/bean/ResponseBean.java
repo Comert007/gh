@@ -10,10 +10,6 @@ public class ResponseBean<T> {
     private String status;
     private String msg;
     @Nullable
-    private int totalNum;
-    @Nullable
-    private int totalPage;
-    @Nullable
     private T datas;
     @Nullable
     private PageBean<T> page;
