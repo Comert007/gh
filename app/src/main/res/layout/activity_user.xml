@@ -309,7 +309,7 @@
         android:layout_width="match_parent"
         android:paddingLeft="@dimen/margin_20"
         android:paddingRight="@dimen/margin_20"
-        android:paddingBottom="30dp"
+
         android:gravity="bottom"
         android:layout_height="match_parent">
         <Button
@@ -318,6 +318,7 @@
             android:background="@drawable/shape_blue_round_25"
             android:text="退出登录"
             android:textSize="@dimen/text_17"
+            android:layout_marginBottom="30dp"
             android:textColor="@color/color_white"
             android:layout_height="50dp"/>
     </LinearLayout>

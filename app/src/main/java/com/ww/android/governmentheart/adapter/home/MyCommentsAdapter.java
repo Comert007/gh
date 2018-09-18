@@ -42,7 +42,7 @@ public class MyCommentsAdapter extends RvAdapter<CommentBean> {
 
         @Override
         public void onBindData(int position, CommentBean bean) {
-            tvName.setText(bean.getUser().getName());
+            tvName.setText(bean.getTitle());
             tvTime.setText(bean.getCreateDate());
             tvDes.setText(bean.getContent());
         }
