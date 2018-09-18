@@ -11,6 +11,8 @@ import com.ww.android.governmentheart.mvp.bean.login.NewsTypeBean;
 import com.ww.android.governmentheart.mvp.bean.login.PassBean;
 import com.ww.android.governmentheart.mvp.bean.login.UserBean;
 import com.ww.android.governmentheart.mvp.bean.together.OrganizationTypeBean;
+import com.ww.android.governmentheart.mvp.model.home.MyCommentBean;
+import com.ww.android.governmentheart.mvp.model.home.UserMemberBean;
 
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
@@ -100,6 +102,13 @@ public interface LoginApi {
      */
     @POST("gettzzzDetail")
     Observable<ResponseBean<PageListBean<OrganizationDetailBean>>> organizationDetail(@Body RequestBody body);
+
+
+    @POST("userpage")
+    Observable<ResponseBean<PageListBean<UserMemberBean>>> userpage(@Body RequestBody body);
+
+
+    Observable<ResponseBean<PageListBean<MyCommentBean>>> myComments();
 
 
 }

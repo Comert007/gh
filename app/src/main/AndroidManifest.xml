@@ -160,6 +160,18 @@
         <activity android:name=".activity.base.UserActivity"
                   android:screenOrientation="portrait"/>
 
+        <!--组织成员-->
+        <activity android:name=".activity.home.OrgMembersActivity"
+                  android:screenOrientation="portrait"/>
+
+        <!--我的评论-->
+        <activity android:name=".activity.home.MyCommentsActivity"
+                  android:screenOrientation="portrait"/>
+
+        <!--我的建言-->
+        <activity android:name=".activity.home.MySuggestActivity"
+                  android:screenOrientation="portrait"/>
+
         <!--<activity-->
             <!--android:name="com.vincent.filepicker.activity.NormalFilePickActivity"-->
             <!--android:screenOrientation="portrait"-->

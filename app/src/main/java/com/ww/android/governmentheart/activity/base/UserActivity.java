@@ -2,6 +2,7 @@ package com.ww.android.governmentheart.activity.base;
 
 import android.content.Context;
 import android.content.Intent;
+import android.view.View;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -9,6 +10,8 @@ import com.ww.android.governmentheart.BaseApplication;
 import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.activity.BaseActivity;
 import com.ww.android.governmentheart.activity.home.LoginActivity;
+import com.ww.android.governmentheart.activity.home.MyCommentsActivity;
+import com.ww.android.governmentheart.activity.home.MySuggestActivity;
 import com.ww.android.governmentheart.config.type.ImmersionType;
 import com.ww.android.governmentheart.mvp.bean.login.UserBean;
 import com.ww.android.governmentheart.mvp.model.VoidModel;
@@ -56,15 +59,27 @@ public class UserActivity extends BaseActivity<VoidView, VoidModel> {
         }
     }
 
-    @OnClick(R.id.btn_quit)
-    public void onClick() {
-        DialogUtils.showDialog(this, "提示", "你确定退出当前登录吗？", "退出", (dialogInterface, i) -> {
-            dialogInterface.dismiss();
-            BaseApplication.getInstance().saveUserInfo(null);
-            BaseApplication.getInstance().clearTopTask(UserActivity.this);
-            LoginActivity.launch(UserActivity.this);
-            finish();
-        });
+    @OnClick({R.id.btn_quit,R.id.ll_comment_layout,R.id.ll_suggest_layout})
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.btn_quit:
+                DialogUtils.showDialog(this, "提示", "你确定退出当前登录吗？", "退出", (dialogInterface, i) -> {
+                    dialogInterface.dismiss();
+                    BaseApplication.getInstance().saveUserInfo(null);
+                    BaseApplication.getInstance().clearTopTask(UserActivity.this);
+                    LoginActivity.launch(UserActivity.this);
+                    finish();
+                });
+                break;
+            case R.id.ll_comment_layout:
+                MyCommentsActivity.start(this);
+                break;
+            case R.id.ll_suggest_layout:
+                MySuggestActivity.start(this);
+
+                break;
+        }
+
     }
 
     @Override

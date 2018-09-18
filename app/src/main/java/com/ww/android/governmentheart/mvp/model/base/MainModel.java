@@ -5,6 +5,7 @@ import com.ww.android.governmentheart.mvp.bean.home.OrganizationBean;
 import com.ww.android.governmentheart.mvp.bean.home.OrganizationDetailBean;
 import com.ww.android.governmentheart.mvp.bean.login.NewsTypeBean;
 import com.ww.android.governmentheart.mvp.bean.together.OrganizationTypeBean;
+import com.ww.android.governmentheart.mvp.model.home.UserMemberBean;
 import com.ww.android.governmentheart.network.BaseObserver;
 import com.ww.android.governmentheart.network.HttpRequest;
 import com.ww.android.governmentheart.network.JsonParse;
@@ -67,5 +68,22 @@ public class MainModel extends BaseModel {
     }
 
 
+    /**
+     * 获取组织成员
+     * @param map
+     * @param observer
+     */
+    public void userpage(Map map, BaseObserver<PageListBean<UserMemberBean>> observer){
+        HttpRequest.loginApi().userpage(JsonParse.createArgs(map))
+                .compose(RxSchedulers.cutObservableMain())
+                .compose(observer.getTransformer())
+                .safeSubscribe(observer);
+
+    }
+
+
+    public void myComments(Map map){
+
+    }
 
 }

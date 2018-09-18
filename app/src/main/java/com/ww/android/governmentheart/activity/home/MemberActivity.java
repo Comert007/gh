@@ -76,7 +76,8 @@ public class MemberActivity extends BaseActivity<RefreshView, MainModel> {
         adapter.setOnTypeListener(new MemberAdapter.OnTypeListener() {
             @Override
             public void onType(OrganizationTypeBean organizationTypeBean) {
-                resultFinish(organizationTypeBean);
+//                resultFinish(organizationTypeBean);
+                OrgMembersActivity.start(MemberActivity.this,organizationTypeBean.getCode());
             }
         });
 
