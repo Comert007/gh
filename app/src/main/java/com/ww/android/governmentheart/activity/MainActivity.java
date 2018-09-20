@@ -1,8 +1,12 @@
 package com.ww.android.governmentheart.activity;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Toast;
@@ -14,14 +18,24 @@ import com.ww.android.governmentheart.fragment.HomeFragment;
 import com.ww.android.governmentheart.fragment.StyleFragment;
 import com.ww.android.governmentheart.fragment.TogetherFragment;
 import com.ww.android.governmentheart.fragment.WisdomFragment;
+import com.ww.android.governmentheart.mvp.bean.PageBean;
+import com.ww.android.governmentheart.mvp.bean.login.VersionBean;
 import com.ww.android.governmentheart.mvp.model.base.MainModel;
+import com.ww.android.governmentheart.mvp.utils.DownloadUtils;
 import com.ww.android.governmentheart.mvp.vu.base.VoidView;
+import com.ww.android.governmentheart.network.BaseObserver;
+import com.ww.android.governmentheart.utils.DialogUtils;
+import com.ww.android.governmentheart.utils.permission.CustomPermissionCallback;
+import com.ww.android.governmentheart.utils.permission.PermissionHelper;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindViews;
+import me.weyye.hipermission.PermissionItem;
 import ww.com.core.adapter.MenuTabAdapter;
+import ww.com.core.utils.PhoneUtils;
 
 public class MainActivity extends BaseActivity<VoidView, MainModel> {
 
@@ -54,6 +68,7 @@ public class MainActivity extends BaseActivity<VoidView, MainModel> {
     @Override
     protected void init() {
         addFragments();
+        onUpdate();
     }
 
     private void addFragments() {
@@ -162,7 +177,56 @@ public class MainActivity extends BaseActivity<VoidView, MainModel> {
         return super.onKeyDown(keyCode, event);
     }
 
+    /**
+     * 判断是否有更新
+     */
+    private void onUpdate(){
+        m.onUpdate(new HashMap(), new BaseObserver<VersionBean>(this,bindToLifecycle()) {
+            @Override
+            protected void onSuccess(@Nullable VersionBean versionBean, @Nullable List<VersionBean> list, @Nullable PageBean<VersionBean> page) {
+                String ver =PhoneUtils.getAppVer(MainActivity.this);
+                String version = versionBean.getVersion();
+                if (version.compareTo(ver) >0){
+                    showDialog(versionBean.getDonwLoadUrl());
+                }
+            }
+        });
+    }
+
+    /**
+     * 显示更新提示
+     */
+    private void showDialog(String url){
+        DialogUtils.showDialog(MainActivity.this, "更新提示", "有最新版本，是否进行下载更新？",
+                "确定", (dialogInterface, i) -> {dialogInterface.dismiss();
+                update(url);
+        });
+    }
 
 
+    private void update(String url){
+        final String[] onUrl = {url};
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            PermissionHelper.startSinglePermission(this, new PermissionItem(Manifest.permission.WRITE_EXTERNAL_STORAGE, "存储", R
+                    .drawable.permission_ic_storage),new CustomPermissionCallback(){
+                @Override
+                public void onFinish() {
+                    super.onFinish();
+                    onUrl[0] = "https://alissl.ucdl.pp.uc.cn/fs01/union_pack/Wandoujia_363645_web_seo_google_homepage.apk";
+                    download(onUrl[0]);
+                }
+            });
+        }else {
+            download(url);
+        }
+
+    }
+
+    private void download(String downloadUrl){
+        DownloadUtils dialogUtils = new DownloadUtils(MainActivity.this);
+        String name = downloadUrl.substring(downloadUrl.lastIndexOf("/")+1,downloadUrl.length());
+        Log.e("DOWN",name);
+        dialogUtils.downloadAPK(downloadUrl,name);
+    }
 
 }

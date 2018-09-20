@@ -4,6 +4,7 @@ import com.ww.android.governmentheart.mvp.PageListBean;
 import com.ww.android.governmentheart.mvp.bean.home.OrganizationBean;
 import com.ww.android.governmentheart.mvp.bean.home.OrganizationDetailBean;
 import com.ww.android.governmentheart.mvp.bean.login.NewsTypeBean;
+import com.ww.android.governmentheart.mvp.bean.login.VersionBean;
 import com.ww.android.governmentheart.mvp.bean.together.OrganizationTypeBean;
 import com.ww.android.governmentheart.mvp.model.home.UserMemberBean;
 import com.ww.android.governmentheart.network.BaseObserver;
@@ -82,8 +83,14 @@ public class MainModel extends BaseModel {
     }
 
 
-    public void myComments(Map map){
-
+    /**
+     * 更新
+     */
+    public void onUpdate(Map map, BaseObserver<VersionBean> observer){
+        HttpRequest.loginApi().version(JsonParse.createArgs(map))
+                .compose(RxSchedulers.cutObservableMain())
+                .compose(observer.getTransformer())
+                .safeSubscribe(observer);
     }
 
 }

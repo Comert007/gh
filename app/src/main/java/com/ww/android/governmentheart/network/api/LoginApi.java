@@ -10,8 +10,8 @@ import com.ww.android.governmentheart.mvp.bean.login.NewsChildTypeBean;
 import com.ww.android.governmentheart.mvp.bean.login.NewsTypeBean;
 import com.ww.android.governmentheart.mvp.bean.login.PassBean;
 import com.ww.android.governmentheart.mvp.bean.login.UserBean;
+import com.ww.android.governmentheart.mvp.bean.login.VersionBean;
 import com.ww.android.governmentheart.mvp.bean.together.OrganizationTypeBean;
-import com.ww.android.governmentheart.mvp.model.home.MyCommentBean;
 import com.ww.android.governmentheart.mvp.model.home.UserMemberBean;
 
 import io.reactivex.Observable;
@@ -108,7 +108,12 @@ public interface LoginApi {
     Observable<ResponseBean<PageListBean<UserMemberBean>>> userpage(@Body RequestBody body);
 
 
-    Observable<ResponseBean<PageListBean<MyCommentBean>>> myComments();
-
+    /**
+     * 更新
+     * @param body
+     * @return
+     */
+    @POST("version")
+    Observable<ResponseBean<VersionBean>> version(@Body RequestBody body);
 
 }
