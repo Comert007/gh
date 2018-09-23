@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/color_white"
+    android:layout_height="match_parent">
+
+    <com.ww.android.governmentheart.widget.TitleView
+        android:id="@+id/title_view"
+        style="@style/TitleBar"
+        app:titleLeftIco="@mipmap/ic_back"
+        app:titleText="成员详情"
+        android:background="@color/color_white"
+        app:titleTextColor="@color/color_black"/>
+
+    <include layout="@layout/layout_divider"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:scrollbars="none"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:padding="@dimen/margin_15"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:src="@mipmap/ic_useravatar"
+                    android:layout_height="30dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="姓名"
+                    android:textSize="@dimen/text_15"
+                    android:textColor="@color/color_black"
+                    android:layout_marginLeft="@dimen/margin_15"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="match_parent"
+                    android:gravity="right"
+                    android:text="张三丰"
+                    android:textColor="@color/color_tip_gray"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <include layout="@layout/layout_divider"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:padding="@dimen/margin_15"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:src="@mipmap/ic_sex"
+                    android:layout_height="30dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="性别"
+                    android:textSize="@dimen/text_15"
+                    android:textColor="@color/color_black"
+                    android:layout_marginLeft="@dimen/margin_15"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tv_sex"
+                    android:layout_width="match_parent"
+                    android:gravity="right"
+                    android:textSize="@dimen/text_15"
+                    android:text="男"
+                    android:textColor="@color/color_tip_gray"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <include layout="@layout/layout_divider"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:padding="@dimen/margin_15"
+                android:visibility="gone"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:src="@mipmap/ic_mincun"
+                    android:layout_height="30dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="民族"
+                    android:textSize="@dimen/text_15"
+                    android:textColor="@color/color_black"
+                    android:layout_marginLeft="@dimen/margin_15"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tv_nation"
+                    android:layout_width="match_parent"
+                    android:gravity="right"
+                    android:textSize="@dimen/text_15"
+                    android:text="汉族"
+                    android:textColor="@color/color_tip_gray"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:padding="@dimen/margin_15"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:src="@mipmap/ic_email"
+                    android:layout_height="30dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="邮箱"
+                    android:textSize="@dimen/text_15"
+                    android:textColor="@color/color_black"
+                    android:layout_marginLeft="@dimen/margin_15"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tv_email"
+                    android:layout_width="match_parent"
+                    android:gravity="right"
+                    android:textSize="@dimen/text_15"
+                    android:text="1999@163.com"
+                    android:textColor="@color/color_tip_gray"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <include layout="@layout/layout_divider"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:padding="@dimen/margin_15"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:src="@mipmap/ic_phone"
+                    android:layout_height="30dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="电话"
+                    android:textSize="@dimen/text_15"
+                    android:textColor="@color/color_black"
+                    android:layout_marginLeft="@dimen/margin_15"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tv_phone"
+                    android:layout_width="match_parent"
+                    android:gravity="right"
+                    android:textSize="@dimen/text_15"
+                    android:text="18977777777"
+                    android:textColor="@color/color_tip_gray"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <include layout="@layout/layout_divider"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:padding="@dimen/margin_15"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:src="@mipmap/ic_mobile"
+                    android:layout_height="30dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="手机"
+                    android:textSize="@dimen/text_15"
+                    android:textColor="@color/color_black"
+                    android:layout_marginLeft="@dimen/margin_15"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tv_mobile"
+                    android:layout_width="match_parent"
+                    android:gravity="right"
+                    android:textSize="@dimen/text_15"
+                    android:text="1111"
+                    android:textColor="@color/color_tip_gray"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <include layout="@layout/layout_divider"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:padding="@dimen/margin_15"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:src="@mipmap/ic_birthday"
+                    android:layout_height="30dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="出生年月"
+                    android:textSize="@dimen/text_15"
+                    android:textColor="@color/color_black"
+                    android:layout_marginLeft="@dimen/margin_15"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tv_birthday"
+                    android:layout_width="match_parent"
+                    android:gravity="right"
+                    android:textSize="@dimen/text_15"
+                    android:text="汉族"
+                    android:textColor="@color/color_tip_gray"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <include layout="@layout/layout_divider"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:padding="@dimen/margin_15"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:src="@mipmap/ic_jiguan"
+                    android:layout_height="30dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="籍贯"
+                    android:textSize="@dimen/text_15"
+                    android:textColor="@color/color_black"
+                    android:layout_marginLeft="@dimen/margin_15"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tv_location"
+                    android:layout_width="match_parent"
+                    android:gravity="right"
+                    android:textSize="@dimen/text_15"
+                    android:text="汉族"
+                    android:textColor="@color/color_tip_gray"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <include layout="@layout/layout_divider"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:padding="@dimen/margin_15"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:src="@mipmap/ic_xueli"
+                    android:layout_height="30dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="学历"
+                    android:textSize="@dimen/text_15"
+                    android:textColor="@color/color_black"
+                    android:layout_marginLeft="@dimen/margin_15"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tv_education"
+                    android:layout_width="match_parent"
+                    android:gravity="right"
+                    android:textSize="@dimen/text_15"
+                    android:text="汉族"
+                    android:textColor="@color/color_tip_gray"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <include layout="@layout/layout_divider"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:padding="@dimen/margin_15"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:src="@mipmap/ic_zhiwu"
+                    android:layout_height="30dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="简介"
+                    android:textSize="@dimen/text_15"
+                    android:textColor="@color/color_black"
+                    android:layout_marginLeft="@dimen/margin_15"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tv_intro"
+                    android:layout_width="match_parent"
+                    android:gravity="right"
+                    android:textSize="@dimen/text_15"
+                    android:text="汉族"
+                    android:textColor="@color/color_tip_gray"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <include layout="@layout/layout_divider"/>
+        </LinearLayout>
+
+
+
+    </ScrollView>
+
+
+</LinearLayout>

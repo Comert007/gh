@@ -69,7 +69,8 @@ public class OnlineAdapter extends RvAdapter<OnlineBean> {
                 @Override
                 public void onClick(View v) {
                     //跳转视频直播页面
-                    OnLineLivingActivity.start(getContext(),bean.getVideoUrl());
+//                    TbsVideo.openVideo(getContext(),bean.getPullFlvUrl());
+                    OnLineLivingActivity.start(getContext(),bean.getPullFlvUrl());
                 }
             });
         }

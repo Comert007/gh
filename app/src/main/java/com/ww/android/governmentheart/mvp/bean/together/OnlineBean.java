@@ -8,17 +8,25 @@ public class OnlineBean {
 
 
     /**
-     * id : 2c53c1ca7b7d475f8676913d8d4b6794
+     * id : 12
      * isNewRecord : false
-     * createDate : 2018-07-10 16:10:58
-     * updateDate : 2018-07-10 16:13:28
-     * title : 习主席主旨演讲·携手推进“一带一路”建设 将“一带一路”建成繁荣之路
-     * videoUrl : http://tv.cctv.com/2017/05/14/VIDEDvKtJibpPAub3KI7xLvC170514.shtml
+     * createDate : 2018-09-22 20:14:13
+     * updateDate : 2018-09-22 20:14:16
+     * title : 测试直播
+     * videoUrl : 2112
      * status : 3
-     * activityId :
-     * viewNum : 0
-     * commentNum : 0
-     * goodNum : 0
+     * activityId : 34
+     * viewNum : 34
+     * commentNum : 34
+     * goodNum : 34
+     * image : 34
+     * pushUrl : rtmp://video-center-bj.alivecdn.com/abc/php?vhost=tv.yizykj
+     * .com&auth_key=1537625999-0-0-7bb91ba45e0f5fc2a607770cefa2c657
+     * pullRtmpUrl : rtmp://tv.yizykj
+     * .com/abc/php?auth_key=1537625999-0-0-7bb91ba45e0f5fc2a607770cefa2c657
+     * pullFlvUrl : http://tv.yizykj.com/abc/php
+     * .flv?auth_key=1537625999-0-0-5b175528d12bb99d46b8b179b2cdb023
+     * pullM3u8Url : http://tv.yizykj.com/abc/php.m3u8?auth_key=1537625999-0-0-babaf3b85f93e4c69ab559161bee9904
      */
 
     private String id;
@@ -29,10 +37,14 @@ public class OnlineBean {
     private String videoUrl;
     private String status;
     private String activityId;
-    private String image;
     private int viewNum;
     private int commentNum;
     private int goodNum;
+    private String image;
+    private String pushUrl;
+    private String pullRtmpUrl;
+    private String pullFlvUrl;
+    private String pullM3u8Url;
 
     public String getId() {
         return id;
@@ -130,11 +142,35 @@ public class OnlineBean {
         this.image = image;
     }
 
-    public boolean isNewRecord() {
-        return isNewRecord;
+    public String getPushUrl() {
+        return pushUrl;
     }
 
-    public void setNewRecord(boolean newRecord) {
-        isNewRecord = newRecord;
+    public void setPushUrl(String pushUrl) {
+        this.pushUrl = pushUrl;
+    }
+
+    public String getPullRtmpUrl() {
+        return pullRtmpUrl;
+    }
+
+    public void setPullRtmpUrl(String pullRtmpUrl) {
+        this.pullRtmpUrl = pullRtmpUrl;
+    }
+
+    public String getPullFlvUrl() {
+        return pullFlvUrl;
+    }
+
+    public void setPullFlvUrl(String pullFlvUrl) {
+        this.pullFlvUrl = pullFlvUrl;
+    }
+
+    public String getPullM3u8Url() {
+        return pullM3u8Url;
+    }
+
+    public void setPullM3u8Url(String pullM3u8Url) {
+        this.pullM3u8Url = pullM3u8Url;
     }
 }

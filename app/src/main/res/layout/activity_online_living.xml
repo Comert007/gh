@@ -16,26 +16,19 @@
     <View style="@style/ViewLineStyle"/>
 
 
-    <com.tencent.smtt.sdk.WebView
-        android:id="@+id/web_view"
-        android:background="@color/color_black"
+    <SurfaceView
+        android:id="@+id/surface_view"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-        <!--<ImageView-->
-            <!--android:layout_width="100dp"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:src="@mipmap/ic_vedio_play"-->
-            <!--android:layout_height="100dp"/>-->
-    </com.tencent.smtt.sdk.WebView>
+        android:layout_height="250dp"/>
+
 
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="match_parent"
-                  android:visibility="gone"
                   android:orientation="vertical">
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
             <com.scwang.smartrefresh.layout.SmartRefreshLayout
                 android:id="@+id/srl"

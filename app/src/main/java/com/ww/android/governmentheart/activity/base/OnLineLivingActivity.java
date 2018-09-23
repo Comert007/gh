@@ -2,9 +2,9 @@ package com.ww.android.governmentheart.activity.base;
 
 import android.content.Context;
 import android.content.Intent;
+import android.view.SurfaceView;
 
-import com.tencent.smtt.sdk.WebView;
-import com.tencent.smtt.sdk.WebViewClient;
+import com.alivc.player.AliVcMediaPlayer;
 import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.activity.BaseActivity;
 import com.ww.android.governmentheart.config.type.ImmersionType;
@@ -19,8 +19,10 @@ import butterknife.BindView;
  */
 public class OnLineLivingActivity extends BaseActivity<VoidView,VoidModel> {
 
-    @BindView(R.id.web_view)
-    WebView mWebView;
+    @BindView(R.id.surface_view)
+    SurfaceView mSurfaceView;
+
+    private AliVcMediaPlayer mPlayer;
 
     private String url;
 
@@ -38,17 +40,20 @@ public class OnLineLivingActivity extends BaseActivity<VoidView,VoidModel> {
     @Override
     protected void init() {
         url =getIntent().getStringExtra("url");
-        mWebView.loadUrl(url);
-        mWebView.setWebViewClient(new WebViewClient(){
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView webView, String s) {
-                return super.shouldOverrideUrlLoading(webView, s);
-            }
-        });
+        createPlayer();
+    }
+
+    private void createPlayer(){
+        //初始化播放器（只需调用一次即可，建议在application中初始化）
+        AliVcMediaPlayer.init(getApplicationContext());
+        //创建播放器的实例
+        mPlayer = new AliVcMediaPlayer(this, mSurfaceView);
+        mPlayer.prepareAndPlay(url);
     }
 
     @Override
     protected int initDefaultImmersionType() {
         return ImmersionType.WHITE;
     }
+
 }

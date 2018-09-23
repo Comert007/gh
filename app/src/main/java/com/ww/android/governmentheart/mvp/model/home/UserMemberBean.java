@@ -1,6 +1,8 @@
 package com.ww.android.governmentheart.mvp.model.home;
 
-public class UserMemberBean {
+import java.io.Serializable;
+
+public class UserMemberBean implements Serializable{
 
 
     /**

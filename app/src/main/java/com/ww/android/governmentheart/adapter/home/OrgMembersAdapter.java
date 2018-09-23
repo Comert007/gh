@@ -2,9 +2,11 @@ package com.ww.android.governmentheart.adapter.home;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ww.android.governmentheart.R;
+import com.ww.android.governmentheart.activity.home.MemberDetailActivity;
 import com.ww.android.governmentheart.mvp.model.home.UserMemberBean;
 
 import butterknife.BindView;
@@ -35,6 +37,8 @@ public class OrgMembersAdapter extends RvAdapter<UserMemberBean> {
         TextView tvPosition;
         @BindView(R.id.tv_attribution)
         TextView tvAttribution;
+        @BindView(R.id.ll_info_layout)
+        LinearLayout mInfoLayout;
 
         public OrgMembersViewHolder(View itemView) {
             super(itemView);
@@ -45,6 +49,13 @@ public class OrgMembersAdapter extends RvAdapter<UserMemberBean> {
             tvName.setText(bean.getName());
             tvPosition.setText(bean.getWorkplace());
             tvAttribution.setText(bean.getNativeplace());
+            mInfoLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MemberDetailActivity.start(getContext(),bean);
+                }
+            });
+
         }
     }
 }
