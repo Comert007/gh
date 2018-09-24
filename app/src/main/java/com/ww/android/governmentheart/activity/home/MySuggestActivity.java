@@ -129,7 +129,7 @@ public class MySuggestActivity extends BaseActivity<RefreshView,WisdomModel>{
                         }
                     }
                 } else {
-                    reload(EmptyLayout.STATUS_NO_NET);
+                    reload(EmptyLayout.STATUS_NO_DATA);
                 }
             }
 
