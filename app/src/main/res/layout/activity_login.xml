@@ -66,7 +66,7 @@
             android:id="@+id/iv_phone"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@mipmap/ic_mobile"/>
+            android:src="@mipmap/ic_login_mobile"/>
 
         <EditText
             android:id="@+id/et_phone"

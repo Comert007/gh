@@ -12,7 +12,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 26
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         ndk {
@@ -81,7 +81,9 @@ android {
     }
 
     sourceSets {
+
         main {
+            jni.srcDirs = []
             jniLibs.srcDir 'libs'
             //说明so的路径为该libs路径，关联所有地图SDK的so文件
         }
@@ -135,5 +137,6 @@ dependencies {
 
     implementation (name:'AlivcPlayer-3.4.7',ext:'aar')
     implementation (name:'AlivcReporter-1.2',ext:'aar')
+    implementation (name:'AliyunVodPlayer-3.4.7',ext:'aar')
 
 }

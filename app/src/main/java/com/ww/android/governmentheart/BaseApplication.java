@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.multidex.MultiDex;
 import android.util.Log;
 
+import com.alivc.player.AliVcMediaPlayer;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.DefaultConfigurationFactory;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -71,6 +72,7 @@ public class BaseApplication extends WWApplication {
         Debug.setTag("Govern");
         initImageLoader(getApplicationContext());
         initX5();
+        initPlayer();
     }
 
 
@@ -124,5 +126,10 @@ public class BaseApplication extends WWApplication {
             }
         };
         QbSdk.initX5Environment(getApplicationContext(),callback);
+    }
+
+    private void initPlayer(){
+        //初始化播放器（只需调用一次即可，建议在application中初始化）
+        AliVcMediaPlayer.init(getApplicationContext());
     }
 }

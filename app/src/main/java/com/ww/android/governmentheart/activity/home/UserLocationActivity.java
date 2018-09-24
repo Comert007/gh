@@ -7,15 +7,15 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
-import com.baidu.mapapi.map.InfoWindow;
 import com.baidu.mapapi.map.MapStatus;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
@@ -60,6 +60,7 @@ public class UserLocationActivity extends BaseActivity<UserLocationView, MainMod
 
     private BaiduMap baiduMap;
     private HashMap<Integer, Marker> mMarkers;
+    private HashMap<Integer,String> names;
     private int type = 1;
 
     public static void launch(Context context) {
@@ -82,10 +83,11 @@ public class UserLocationActivity extends BaseActivity<UserLocationView, MainMod
         baiduMap = mapView.getMap();
         baiduMap.setMyLocationEnabled(true);
         baiduMap.setMapStatus(MapStatusUpdateFactory.newMapStatus(new MapStatus.Builder().zoom
-                (14).build()));
+                (15).build()));
         //103.679459,30.636479
         LatLng point = new LatLng(30.636479, 103.679459);
         baiduMap.setMapStatus(MapStatusUpdateFactory.newLatLng(point));
+
         initListener();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
@@ -143,12 +145,10 @@ public class UserLocationActivity extends BaseActivity<UserLocationView, MainMod
                     } else {
                         for (Integer integer : mMarkers.keySet()) {
                             Marker m = mMarkers.get(integer);
-                            BitmapDescriptor bitmap = BitmapDescriptorFactory.fromResource(R.mipmap
-                                    .ic_location_circle);
+                            BitmapDescriptor bitmap = getBitmap(R.mipmap.ic_location_circle,names.get(integer));
                             m.setIcon(bitmap);
                         }
-                        BitmapDescriptor bitmap = BitmapDescriptorFactory.fromResource(R.mipmap
-                                .ic_location_ok);
+                        BitmapDescriptor bitmap = getBitmap(R.mipmap.ic_location_ok,extraBean.name);
                         marker.setIcon(bitmap);
                         v.setBottomVisible(1);
                         v.showInfo(extraBean.name,extraBean.description);
@@ -161,29 +161,20 @@ public class UserLocationActivity extends BaseActivity<UserLocationView, MainMod
 
     private void showMap(double latitude, double longitude, MapExtraBean extraBean) {
         LatLng point = new LatLng(latitude, longitude);
-        BitmapDescriptor bitmap = BitmapDescriptorFactory.fromResource(R.mipmap
-                .ic_location_circle);
-        OverlayOptions option = new MarkerOptions().position(point).icon(bitmap);
+        BitmapDescriptor bitmap = getBitmap(R.mipmap.ic_location_circle,extraBean.name);
+//        BitmapDescriptor bitmap = BitmapDescriptorFactory.fromResource(R.mipmap
+//                .ic_location_circle);
+        OverlayOptions option = new MarkerOptions().position(point).icon(bitmap).title(extraBean.name);
         Marker marker = (Marker) baiduMap.addOverlay(option);
         Bundle bundle = new Bundle();
         bundle.putSerializable("extra", extraBean);
         marker.setExtraInfo(bundle);
+        names.put(extraBean.position,extraBean.name);
         mMarkers.put(extraBean.position, marker);
 
     }
 
-    private void showText(double latitude,double longitude,String name){
-        LatLng point = new LatLng(latitude, longitude);
-        //创建InfoWindow展示的view
-        Button button = new Button(getApplicationContext());
-        button.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT));
-        button.setBackgroundResource(R.drawable.shape_gray_border_round_corner_3);
-        button.setText(name);
 
-        InfoWindow mInfoWindow = new InfoWindow(button, point, -47);
-        baiduMap.showInfoWindow(mInfoWindow);
-    }
 
     @OnClick({R.id.iv_back, R.id.container_members,R.id.tv_member_close})
     public void onClick(View view) {
@@ -223,6 +214,7 @@ public class UserLocationActivity extends BaseActivity<UserLocationView, MainMod
                     List<OrganizationBean> organizationBeans = organizationBeanPageListBean
                             .getList();
                     mMarkers = new HashMap<>();
+                    names = new HashMap<>();
                     for (int i = 0; i < organizationBeans.size(); i++) {
                         OrganizationBean organizationBean = organizationBeans.get(i);
                         if (!TextUtils.isEmpty(organizationBean.getLatitude()) && !TextUtils
@@ -269,6 +261,7 @@ public class UserLocationActivity extends BaseActivity<UserLocationView, MainMod
                         type = 2;
                         baiduMap.clear();
                         mMarkers = new HashMap<>();
+                        names = new HashMap<>();
                         v.showOrganizationName(detailBean.getName());
                         for (int i = 0; i < officesBeans.size(); i++) {
                             OfficesBean officesBean = officesBeans.get(i);
@@ -288,13 +281,12 @@ public class UserLocationActivity extends BaseActivity<UserLocationView, MainMod
                     } else {
                         for (Integer integer : mMarkers.keySet()) {
                             Marker m = mMarkers.get(integer);
-                            BitmapDescriptor bitmap = BitmapDescriptorFactory.fromResource(R.mipmap
-                                    .ic_location_circle);
-                            m.setIcon(bitmap);
+//                            BitmapDescriptor bitmap = BitmapDescriptorFactory.fromResource(R.mipmap
+////                                    .ic_location_circle);
+                            m.setIcon(getBitmap(R.mipmap.ic_location_circle,names.get(integer)));
                         }
 
-                        BitmapDescriptor bitmap = BitmapDescriptorFactory.fromResource(R.mipmap
-                                .ic_location_ok);
+                        BitmapDescriptor bitmap = getBitmap(R.mipmap.ic_location_ok,extraBean.name);
                         mMarkers.get(extraBean.position).setIcon(bitmap);
                         v.setBottomVisible(1);
                         v.showInfo(extraBean.name, extraBean.description);
@@ -303,6 +295,17 @@ public class UserLocationActivity extends BaseActivity<UserLocationView, MainMod
 
             }
         });
+    }
+
+    private BitmapDescriptor  getBitmap(int res,String name){
+        View view = LayoutInflater.from(this).inflate(R.layout.layout_map_name,null);
+        ImageView ivMap = view.findViewById(R.id.iv_map);
+        TextView tvName = view.findViewById(R.id.tv_map_name);
+        ivMap.setImageResource(res);
+        tvName.setText(name);
+        BitmapDescriptor bitmap = BitmapDescriptorFactory.fromView(view);
+
+        return bitmap;
     }
 
 
