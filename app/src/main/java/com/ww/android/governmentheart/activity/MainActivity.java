@@ -1,13 +1,17 @@
 package com.ww.android.governmentheart.activity;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.DownloadManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.FileProvider;
 import android.view.KeyEvent;
@@ -69,6 +73,9 @@ public class MainActivity extends BaseActivity<VoidView, MainModel> {
     private MenuTabAdapter adapter;
     private List<Fragment> fragments;
     private DownloadManager downloadManager;
+    private int REQUEST_CODE_APP_INSTALL = 0x22;
+
+    private File mFile;
 
     public static void start(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
@@ -203,21 +210,11 @@ public class MainActivity extends BaseActivity<VoidView, MainModel> {
                 String ver = PhoneUtils.getAppVer(MainActivity.this);
                 String version = versionBean.getVersion();
                 if (version.compareTo(ver) > 0) {
-                    showDialog(versionBean.getDonwLoadUrl());
+//                    showDialog(versionBean.getDonwLoadUrl());
+                    update(versionBean.getDonwLoadUrl());
                 }
             }
         });
-    }
-
-    /**
-     * 显示更新提示
-     */
-    private void showDialog(String url) {
-        DialogUtils.showDialog(MainActivity.this, "更新提示", "有最新版本，是否进行下载更新？",
-                "确定", (dialogInterface, i) -> {
-                    dialogInterface.dismiss();
-                    update(url);
-                });
     }
 
 
@@ -230,8 +227,6 @@ public class MainActivity extends BaseActivity<VoidView, MainModel> {
                 @Override
                 public void onFinish() {
                     super.onFinish();
-                    //http://ucdl.25pp.com/fs01/union_pack/Wandoujia_363553_wap_app_article_download.apk
-//                    onUrl[0] = "https://pro-bd.fir.im/1ee670a7497aa0ec3027a9ac2115625c1bddba41.apk?auth_key=1537804803-0-9b1583649b4a4026bdaa53857e31cd6e-72bc3ed0895e3fed45825117fd02e894";
                     download(onUrl[0]);
                 }
             });
@@ -241,21 +236,43 @@ public class MainActivity extends BaseActivity<VoidView, MainModel> {
 
     }
 
+    /**
+     * 显示更新提示
+     */
+    private void showDialog(File file) {
+        DialogUtils.showDialog(MainActivity.this, "更新提示", "有最新版，是否进行安装？",
+                "确定", (dialogInterface, i) -> {
+                    dialogInterface.dismiss();
+                    installPermission(file);
+                });
+    }
+
     private void download(String downloadUrl) {
         String name = downloadUrl.substring(downloadUrl.lastIndexOf("/") + 1, downloadUrl.length());
-//        File file = new File(getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS) + File.separator + name);
-//        if (file.exists()){
-//            file.delete();
+        File file = new File(getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS) + File
+                .separator + name);
+
+//        String path = file.getAbsolutePath();
+//        String ver = AppUtils.apkVersion(path, MainActivity.this);
+//        String version = PhoneUtils.getAppVer(MainActivity.this);
+//        if (file.exists() && ver.compareTo(version) > 0) {
+//            installAPK(MainActivity.this,file);
+//            return;
 //        }
+        if (file.exists()){
+            file.delete();
+        }
+
         HttpRequest.loginApi().downloadFileWithDynamicUrlSync(downloadUrl)
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody>
                             response) {
 
-                        File writtenToDisk = writeResponseBodyToDisk(response.body(),name);
-                        installAPK(MainActivity.this,writtenToDisk);
-                        Debug.d( "file download was a success? " + writtenToDisk.exists());
+                        File writtenToDisk = writeResponseBodyToDisk(response.body(), name);
+                        mFile = writtenToDisk;
+                        showDialog(mFile);
+                        Debug.d("file download was a success? " + writtenToDisk.exists());
                     }
 
                     @Override
@@ -275,7 +292,8 @@ public class MainActivity extends BaseActivity<VoidView, MainModel> {
 //        //设置漫游状态下是否可以下载
 //        request.setAllowedOverRoaming(false);
 //        //设置文件存放目录
-//        String name = downloadUrl.substring(downloadUrl.lastIndexOf("/") + 1, downloadUrl.length());
+//        String name = downloadUrl.substring(downloadUrl.lastIndexOf("/") + 1, downloadUrl
+// .length());
 //        request.setDestinationInExternalFilesDir(this, Environment.DIRECTORY_DOWNLOADS, name);
 //        //获取系统服务
 //        downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
@@ -285,12 +303,12 @@ public class MainActivity extends BaseActivity<VoidView, MainModel> {
     }
 
 
-
-    private File writeResponseBodyToDisk(ResponseBody body,String name) {
+    private File writeResponseBodyToDisk(ResponseBody body, String name) {
         try {
             // todo change the file location/name according to your needs
-            File futureStudioIconFile = new File(getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS) + File.separator + name);
-            Debug.d("file path:"+futureStudioIconFile.getPath());
+            File futureStudioIconFile = new File(getExternalFilesDir(Environment
+                    .DIRECTORY_DOWNLOADS) + File.separator + name);
+            Debug.d("file path:" + futureStudioIconFile.getPath());
             InputStream inputStream = null;
             OutputStream outputStream = null;
 
@@ -338,17 +356,70 @@ public class MainActivity extends BaseActivity<VoidView, MainModel> {
         }
     }
 
+    private void installPermission(File file) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            boolean hasInstallPermission = isHasInstallPermissionWithO(MainActivity.this);
+            if (!hasInstallPermission) {
+                startInstallPermissionSettingActivity(MainActivity.this);
+                return;
+            }
+            installAPK(MainActivity.this, file);
+        } else {
+            installAPK(MainActivity.this, file);
+        }
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private boolean isHasInstallPermissionWithO(Context context) {
+        if (context == null) {
+            return false;
+        }
+        return context.getPackageManager().canRequestPackageInstalls();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void startInstallPermissionSettingActivity(Context context) {
+        if (context == null) {
+            return;
+        }
+        DialogUtils.showDialog(MainActivity.this, "提示", "需打开未知来源安装权限,才能进行安装", "确定", new
+                DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES);
+                ((Activity) context).startActivityForResult(intent, REQUEST_CODE_APP_INSTALL);
+            }
+        }, "取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        }, false);
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE_APP_INSTALL) {
+            installAPK(MainActivity.this, mFile);
+        }
+    }
 
     private void installAPK(Context mContext, File file) {
 
         Intent var2 = new Intent();
         var2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         var2.setAction(Intent.ACTION_VIEW);
-        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.N){
-            Uri uriForFile = FileProvider.getUriForFile(MainActivity.this,  BuildConfig.APPLICATION_ID +".fileprovider", file);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            Uri uriForFile = FileProvider.getUriForFile(MainActivity.this, BuildConfig
+                    .APPLICATION_ID + ".fileprovider", file);
             var2.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            var2.setDataAndType(uriForFile,  "application/vnd.android.package-archive");
-        }else{
+            var2.setDataAndType(uriForFile, "application/vnd.android.package-archive");
+        } else {
             var2.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
         }
         try {
