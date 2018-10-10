@@ -2,7 +2,6 @@ package com.ww.android.governmentheart.activity;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.DownloadManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -27,14 +26,17 @@ import com.ww.android.governmentheart.fragment.StyleFragment;
 import com.ww.android.governmentheart.fragment.TogetherFragment;
 import com.ww.android.governmentheart.fragment.WisdomFragment;
 import com.ww.android.governmentheart.mvp.bean.PageBean;
+import com.ww.android.governmentheart.mvp.bean.event.UpdateAppEvent;
 import com.ww.android.governmentheart.mvp.bean.login.VersionBean;
 import com.ww.android.governmentheart.mvp.model.base.MainModel;
 import com.ww.android.governmentheart.mvp.vu.base.VoidView;
 import com.ww.android.governmentheart.network.BaseObserver;
 import com.ww.android.governmentheart.network.HttpRequest;
 import com.ww.android.governmentheart.utils.DialogUtils;
+import com.ww.android.governmentheart.utils.ToastUtils;
 import com.ww.android.governmentheart.utils.permission.CustomPermissionCallback;
 import com.ww.android.governmentheart.utils.permission.PermissionHelper;
+import com.ww.android.governmentheart.utils.rxbus.RxBusHelper;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -72,7 +74,6 @@ public class MainActivity extends BaseActivity<VoidView, MainModel> {
 
     private MenuTabAdapter adapter;
     private List<Fragment> fragments;
-    private DownloadManager downloadManager;
     private int REQUEST_CODE_APP_INSTALL = 0x22;
 
     private File mFile;
@@ -248,19 +249,18 @@ public class MainActivity extends BaseActivity<VoidView, MainModel> {
     }
 
     private void download(String downloadUrl) {
+        if (!downloadUrl.endsWith(".apk")){
+            ToastUtils.showToast("下载文件不是App应用，不能进行更新");
+            return;
+        }
+        RxBusHelper.post(new UpdateAppEvent(downloadUrl));
         String name = downloadUrl.substring(downloadUrl.lastIndexOf("/") + 1, downloadUrl.length());
         File file = new File(getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS) + File
                 .separator + name);
 
-//        String path = file.getAbsolutePath();
-//        String ver = AppUtils.apkVersion(path, MainActivity.this);
-//        String version = PhoneUtils.getAppVer(MainActivity.this);
-//        if (file.exists() && ver.compareTo(version) > 0) {
-//            installAPK(MainActivity.this,file);
-//            return;
-//        }
         if (file.exists()){
-            file.delete();
+           showDialog(file);
+           return;
         }
 
         HttpRequest.loginApi().downloadFileWithDynamicUrlSync(downloadUrl)
@@ -280,26 +280,6 @@ public class MainActivity extends BaseActivity<VoidView, MainModel> {
                         t.fillInStackTrace();
                     }
                 });
-
-        //创建request对象
-//        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(downloadUrl));
-//        //设置什么网络情况下可以下载
-////        request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI);
-//        //设置通知栏的标题
-//        request.setTitle("下载");
-//        //设置通知栏的message
-//        request.setDescription("心联汇正在下载.....");
-//        //设置漫游状态下是否可以下载
-//        request.setAllowedOverRoaming(false);
-//        //设置文件存放目录
-//        String name = downloadUrl.substring(downloadUrl.lastIndexOf("/") + 1, downloadUrl
-// .length());
-//        request.setDestinationInExternalFilesDir(this, Environment.DIRECTORY_DOWNLOADS, name);
-//        //获取系统服务
-//        downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
-//        //进行下载
-//        long id = downloadManager.enqueue(request);
-
     }
 
 
@@ -360,6 +340,7 @@ public class MainActivity extends BaseActivity<VoidView, MainModel> {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             boolean hasInstallPermission = isHasInstallPermissionWithO(MainActivity.this);
             if (!hasInstallPermission) {
+                mFile = file;
                 startInstallPermissionSettingActivity(MainActivity.this);
                 return;
             }

@@ -195,6 +195,8 @@
         <!--成员信息-->
         <activity android:name=".activity.home.MemberDetailActivity"
                   android:screenOrientation="portrait"/>
+
+
         <!--<activity-->
             <!--android:name="com.vincent.filepicker.activity.NormalFilePickActivity"-->
             <!--android:screenOrientation="portrait"-->

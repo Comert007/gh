@@ -120,7 +120,7 @@ public class QuestionFragment extends BaseFragment<RefreshView, WisdomModel> {
                         }
                     }
                 } else {
-                    reload(EmptyLayout.STATUS_NO_NET);
+                    reload(EmptyLayout.STATUS_NO_DATA);
                 }
             }
 
