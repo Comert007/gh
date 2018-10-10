@@ -49,7 +49,8 @@ public class OnLineLivingActivity extends BaseActivity<VoidView,VoidModel> {
         //创建播放器的实例
         mPlayer = new AliVcMediaPlayer(this, mSurfaceView);
         initListener();
-        mPlayer.prepareAndPlay(url);
+        mPlayer.prepareToPlay(url);
+        mPlayer.play();
     }
 
     private void initListener(){

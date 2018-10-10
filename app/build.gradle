@@ -81,14 +81,14 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    sourceSets {
-
-        main {
-            jni.srcDirs = []
-            jniLibs.srcDir 'libs'
-            //说明so的路径为该libs路径，关联所有地图SDK的so文件
-        }
-    }
+//    sourceSets {
+//
+//        main {
+//            jni.srcDirs = []
+//            jniLibs.srcDir 'libs'
+//            //说明so的路径为该libs路径，关联所有地图SDK的so文件
+//        }
+//    }
 }
 
 repositories {
@@ -136,8 +136,7 @@ dependencies {
     //视频播放器
     implementation 'cn.jzvd:jiaozivideoplayer:6.3.1'
 
-    implementation (name:'AlivcPlayer-3.4.7',ext:'aar')
-    implementation (name:'AlivcReporter-1.2',ext:'aar')
-    implementation (name:'AliyunVodPlayer-3.4.7',ext:'aar')
+    implementation (name: 'AlivcPlayer-3.4.7',ext: 'aar')
+    implementation (name: 'AlivcReporter-1.2',ext: 'aar')
 
 }
