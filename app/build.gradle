@@ -137,6 +137,5 @@ dependencies {
     implementation 'cn.jzvd:jiaozivideoplayer:6.3.1'
 
     implementation (name: 'AlivcPlayer-3.4.7',ext: 'aar')
-    implementation (name: 'AlivcReporter-1.2',ext: 'aar')
 
 }
