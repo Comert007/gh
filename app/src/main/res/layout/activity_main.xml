@@ -91,6 +91,19 @@
                 style="@style/TabText"/>
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/tab_work_layout"
+            style="@style/TabLayout">
+            <ImageView
+                android:id="@+id/tab_work_image"
+                android:background="@drawable/tab_work_selector"
+                style="@style/TabImage"/>
+            <TextView
+                android:id="@+id/tab_work_text"
+                android:text="办公"
+                style="@style/TabText"/>
+        </LinearLayout>
+
         <!--<LinearLayout-->
             <!--android:id="@+id/tab_join_layout"-->
             <!--style="@style/TabLayout">-->
