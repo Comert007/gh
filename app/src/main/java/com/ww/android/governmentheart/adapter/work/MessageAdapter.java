@@ -6,6 +6,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ww.android.governmentheart.R;
+import com.ww.android.governmentheart.activity.base.WebViewActivity;
+import com.ww.android.governmentheart.mvp.bean.home.EasyRequestBean;
 import com.ww.android.governmentheart.mvp.bean.work.MessageEntity;
 
 import butterknife.BindView;
@@ -20,7 +22,7 @@ public class MessageAdapter extends RvAdapter<MessageEntity>{
 
     @Override
     protected int getItemLayoutResId(int viewType) {
-        return R.layout.adapter_work;
+        return R.layout.adapter_message;
     }
 
     @Override
@@ -46,6 +48,17 @@ public class MessageAdapter extends RvAdapter<MessageEntity>{
             ivImage.setImageResource(position%2 ==0?R.mipmap.ic_img_message_blue:R.mipmap.ic_img_message_yellow);
             tvTitle.setText(bean.getTitle());
             tvContent.setText(bean.getCreateDate());
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    EasyRequestBean easyRequestBean = new EasyRequestBean.Builder()
+                            .setId(bean.getId())
+                            .setName(bean.getTitle())
+                            .setType(bean.getMenuCode()).build();
+                    WebViewActivity.start(getContext(),easyRequestBean);
+                }
+            });
         }
     }
 

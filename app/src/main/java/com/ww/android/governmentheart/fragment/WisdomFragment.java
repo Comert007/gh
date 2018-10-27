@@ -7,9 +7,9 @@ import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.activity.base.UserActivity;
 import com.ww.android.governmentheart.activity.home.UserLocationActivity;
 import com.ww.android.governmentheart.adapter.IndicatorPagerAdapter;
+import com.ww.android.governmentheart.adapter.work.ThemeFragment;
 import com.ww.android.governmentheart.fragment.wisdom.QuestionFragment;
 import com.ww.android.governmentheart.fragment.wisdom.SuggestionFragment;
-import com.ww.android.governmentheart.fragment.wisdom.TransmissionFragment;
 import com.ww.android.governmentheart.mvp.model.VoidModel;
 import com.ww.android.governmentheart.mvp.vu.MagicIndicatorView;
 
@@ -71,6 +71,6 @@ public class WisdomFragment extends BaseFragment<MagicIndicatorView,VoidModel> {
         }
         fragments.add(new SuggestionFragment());
         fragments.add(new QuestionFragment());
-        fragments.add(new TransmissionFragment());
+        fragments.add(new ThemeFragment());
     }
 }

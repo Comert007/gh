@@ -12,6 +12,7 @@ import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.activity.BaseActivity;
 import com.ww.android.governmentheart.adapter.work.NotifyContentAdapter;
 import com.ww.android.governmentheart.config.type.ImmersionType;
+import com.ww.android.governmentheart.mvp.PageListBean;
 import com.ww.android.governmentheart.mvp.bean.PageBean;
 import com.ww.android.governmentheart.mvp.bean.work.NotifyContentEntity;
 import com.ww.android.governmentheart.mvp.bean.work.NotifyEntity;
@@ -31,7 +32,7 @@ import java.util.Map;
 public class NotifyContentActivity extends BaseActivity<RefreshView,WorkModel> {
 
     private NotifyContentAdapter adapter;
-    private int page;
+    private int page=0;
     private String id;
 
     private NotifyContentHeaderHolder mHolder;
@@ -85,27 +86,36 @@ public class NotifyContentActivity extends BaseActivity<RefreshView,WorkModel> {
     private void initRecycler() {
         v.initRecycler(RecyclerHelper.defaultManager(this));
         adapter = new NotifyContentAdapter(this);
-        v.crv.addHeadView(mHolder.getView());
+
         v.crv.setAdapter(adapter);
+        v.crv.addHeadView(mHolder.getView());
     }
 
     private void messageList() {
         Map map = new HashMap();
         map.put("id", id);
-        m.notifyDetail(map, new BaseObserver<NotifyEntity>(this,bindToLifecycle()) {
+        m.notifyDetail(map, new BaseObserver<PageListBean<NotifyEntity>>(this,bindToLifecycle()) {
             @Override
-            protected void onSuccess(@Nullable NotifyEntity notifyEntity, @Nullable List<NotifyEntity> list, @Nullable PageBean<NotifyEntity> pageBean) {
-                if (notifyEntity!=null){
-                    v.loadStatus(EmptyLayout.STATUS_HIDE);
-                    mHolder.showInfo(notifyEntity);
-                    List<NotifyContentEntity> entities = notifyEntity.getOaNotifyRecordList();
-                    adapter.addList(entities);
-                    if (entities==null || entities.size() == 0){
+            protected void onSuccess(@Nullable PageListBean<NotifyEntity> notifyEntityPageListBean,
+                                     @Nullable List<PageListBean<NotifyEntity>> list,
+                                     @Nullable PageBean<PageListBean<NotifyEntity>> pageBean) {
+                if (notifyEntityPageListBean != null) {
+                    NotifyEntity  notifyEntity = notifyEntityPageListBean.getData();
+
+                    if (notifyEntity!=null){
+                        v.srl.finishRefresh();
+                        v.loadStatus(EmptyLayout.STATUS_HIDE);
+                        mHolder.showInfo(notifyEntity);
+                        List<NotifyContentEntity> entities = notifyEntity.getOaNotifyRecordList();
+                        adapter.addList(entities);
+
+                    }else {
                         reload(EmptyLayout.STATUS_NO_DATA);
                     }
                 }else {
                     reload(EmptyLayout.STATUS_NO_NET);
                 }
+
             }
         });
     }

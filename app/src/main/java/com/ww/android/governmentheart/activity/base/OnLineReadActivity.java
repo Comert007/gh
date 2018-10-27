@@ -56,7 +56,7 @@ public class OnLineReadActivity extends BaseActivity<VoidView, WisdomModel> impl
 
     @Override
     protected int getLayoutResId() {
-        return R.layout.activity_web_view;
+        return R.layout.activity_online_read;
     }
 
     @Override

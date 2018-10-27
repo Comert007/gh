@@ -9,6 +9,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
+import com.ww.android.governmentheart.BuildConfig;
 import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.activity.BaseActivity;
 import com.ww.android.governmentheart.config.type.ImmersionType;
@@ -16,7 +17,10 @@ import com.ww.android.governmentheart.mvp.bean.home.EasyRequestBean;
 import com.ww.android.governmentheart.mvp.model.VoidModel;
 import com.ww.android.governmentheart.mvp.vu.base.VoidView;
 
+import java.util.regex.Pattern;
+
 import butterknife.BindView;
+import ww.com.core.Debug;
 
 /**
  * @author feng
@@ -31,11 +35,12 @@ public class WebViewActivity extends BaseActivity<VoidView, VoidModel> {
 
     private String url;
     private String name;
+    private String type;
     private EasyRequestBean mEasyRequestBean;
 
 
     public static void start(Context context, EasyRequestBean easyRequestBean) {
-        Intent starter = new Intent(context, ContentDetailActivity.class);
+        Intent starter = new Intent(context, WebViewActivity.class);
         starter.putExtra("easyRequestBean", easyRequestBean);
         context.startActivity(starter);
     }
@@ -61,8 +66,25 @@ public class WebViewActivity extends BaseActivity<VoidView, VoidModel> {
     private void initData() {
         mEasyRequestBean = (EasyRequestBean) getIntent().getSerializableExtra("easyRequestBean");
         name = mEasyRequestBean.name;
-        url = mEasyRequestBean.url;
         setTitleText(name);
+        parseUrl();
+    }
+
+    private void parseUrl(){
+        type = mEasyRequestBean.type;
+        Debug.d("type:"+type);
+        if (isNumeric(type)){
+            url = String.format("%s%s?args={\"id\":\"%s\"}", BuildConfig.BASE_URL,"getNewById",mEasyRequestBean.id);
+        }else if (TextUtils.equals("NOTICE",type)){
+            url = String.format("%s%s?args={\"id\":\"%s\"}", BuildConfig.BASE_URL,"notifyDetail",mEasyRequestBean.id);
+        }else if (TextUtils.equals("MAT",type)){
+            url = String.format("%s%s?args={\"id\":\"%s\"}", BuildConfig.BASE_URL,"materialDetail",mEasyRequestBean.id);
+        }else if (TextUtils.equals("PROPOSAL",type)){
+            url = String.format("%s%s?args={\"id\":\"%s\"}", BuildConfig.BASE_URL,"suggestDetail",mEasyRequestBean.id);
+        }else if (TextUtils.equals("QUESTION",type)){
+            url = String.format("%s%s?args={\"id\":\"%s\"}", BuildConfig.BASE_URL,"getQuestionById",mEasyRequestBean.id);
+        }
+        Debug.d("url:"+url);
     }
 
     private void initWeb() {
@@ -89,4 +111,15 @@ public class WebViewActivity extends BaseActivity<VoidView, VoidModel> {
             }
         });
     }
+
+    /**
+     * 是否是数字
+     * @param str
+     * @return
+     */
+    private boolean isNumeric(String str) {
+        Pattern pattern = Pattern.compile("^[-\\+]?[\\d]*$");
+        return pattern.matcher(str).matches();
+    }
+
 }

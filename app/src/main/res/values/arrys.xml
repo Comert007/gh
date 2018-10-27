@@ -17,7 +17,7 @@
     <string-array name="wisdom_text">
         <item>参政议政</item>
         <item>建言献策</item>
-        <item>资料发送</item>
+        <item>主题讨论</item>
     </string-array>
 
     <string-array name="work_text">

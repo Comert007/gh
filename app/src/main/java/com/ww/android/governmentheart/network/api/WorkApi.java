@@ -4,6 +4,7 @@ import com.ww.android.governmentheart.mvp.PageListBean;
 import com.ww.android.governmentheart.mvp.bean.ResponseBean;
 import com.ww.android.governmentheart.mvp.bean.work.MessageEntity;
 import com.ww.android.governmentheart.mvp.bean.work.NotifyEntity;
+import com.ww.android.governmentheart.mvp.bean.work.ThemeEntity;
 
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
@@ -27,8 +28,11 @@ public interface WorkApi {
      * @return
      */
     @POST("notifyDetail")
-    Observable<ResponseBean<NotifyEntity>> notifyDetail(@Body RequestBody body);
+    Observable<ResponseBean<PageListBean<NotifyEntity>>> notifyDetail(@Body RequestBody body);
 
     @POST("msgList")
     Observable<ResponseBean<PageListBean<MessageEntity>>> messageList(@Body RequestBody body);
+
+    @POST("topicList")
+    Observable<ResponseBean<PageListBean<ThemeEntity>>> topicList(@Body RequestBody body);
 }

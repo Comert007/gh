@@ -3,6 +3,7 @@ package com.ww.android.governmentheart.mvp.model.work;
 import com.ww.android.governmentheart.mvp.PageListBean;
 import com.ww.android.governmentheart.mvp.bean.work.MessageEntity;
 import com.ww.android.governmentheart.mvp.bean.work.NotifyEntity;
+import com.ww.android.governmentheart.mvp.bean.work.ThemeEntity;
 import com.ww.android.governmentheart.mvp.model.base.BaseModel;
 import com.ww.android.governmentheart.network.BaseObserver;
 import com.ww.android.governmentheart.network.HttpRequest;
@@ -29,12 +30,18 @@ public class WorkModel extends BaseModel {
                 .subscribe(observer);
     }
 
-    public void notifyDetail(Map map, BaseObserver<NotifyEntity> observer){
+    public void notifyDetail(Map map, BaseObserver<PageListBean<NotifyEntity>> observer){
         HttpRequest.workApi().notifyDetail(JsonParse.createArgs(map))
                 .compose(RxSchedulers.cutObservableMain())
                 .compose(observer.getTransformer())
                 .subscribe(observer);
     }
 
+    public void topicList(Map map, BaseObserver<PageListBean<ThemeEntity>> observer){
+        HttpRequest.workApi().topicList(JsonParse.createArgs(map))
+                .compose(RxSchedulers.cutObservableMain())
+                .compose(observer.getTransformer())
+                .subscribe(observer);
+    }
 
 }
