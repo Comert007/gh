@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/margin_15"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:textSize="@dimen/text_20"
+        android:textColor="@color/color_black"
+        tools:text="请全体成员明天下午参加统战讨论会"
+        android:layout_height="wrap_content"/>
+
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:textSize="@dimen/text_12"
+        android:layout_width="wrap_content"
+        android:textColor="@color/color_tip_gray"
+        tools:text="2018-05-08 16:43"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:textSize="@dimen/text_15"
+        android:layout_marginTop="@dimen/margin_10"
+        android:textColor="@color/color_black"
+        android:lineSpacingExtra="@dimen/margin_5"
+        android:layout_width="match_parent"
+        tools:text="统战部组织贯彻执行央、省、市、县委关于统战线针、政策、指示、决议研究统战线理论；负责统战系统重统战进行协调并贯彻落实各项统战针、政策进行督促检查；在党委层面反映党政机关外的政策建议，帮助国家工会解决一些问题等工作。"
+        android:layout_height="wrap_content"/>
+
+
+    <LinearLayout
+        android:id="@+id/ll_file_layout"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/margin_10"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="@dimen/margin_15"
+            android:src="@mipmap/ic_work_file"
+            android:layout_height="@dimen/margin_15"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="附件下载"
+            android:textColor="#258ff8"
+            android:layout_marginLeft="@dimen/margin_5"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+</LinearLayout>

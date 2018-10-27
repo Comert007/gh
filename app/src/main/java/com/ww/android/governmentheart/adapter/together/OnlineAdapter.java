@@ -9,7 +9,6 @@ import android.widget.TextView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.ww.android.governmentheart.BaseApplication;
 import com.ww.android.governmentheart.R;
-import com.ww.android.governmentheart.activity.base.OnLineLivingActivity;
 import com.ww.android.governmentheart.mvp.bean.together.OnlineBean;
 
 import butterknife.BindView;
@@ -70,7 +69,7 @@ public class OnlineAdapter extends RvAdapter<OnlineBean> {
                 public void onClick(View v) {
                     //跳转视频直播页面
 //                    TbsVideo.openVideo(getContext(),bean.getPullFlvUrl());
-                    OnLineLivingActivity.start(getContext(),bean.getPullFlvUrl());
+//                    OnLineLivingActivity.start(getContext(),bean.getPullFlvUrl());
                 }
             });
         }

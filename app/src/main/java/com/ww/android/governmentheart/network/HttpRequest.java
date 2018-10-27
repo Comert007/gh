@@ -11,6 +11,7 @@ import com.ww.android.governmentheart.network.api.LoginApi;
 import com.ww.android.governmentheart.network.api.StyleApi;
 import com.ww.android.governmentheart.network.api.TogetherApi;
 import com.ww.android.governmentheart.network.api.WisdomApi;
+import com.ww.android.governmentheart.network.api.WorkApi;
 import com.ww.android.governmentheart.network.config.RequestConstants;
 import com.ww.android.governmentheart.network.utils.Utils;
 
@@ -47,6 +48,7 @@ public class HttpRequest {
     public static TogetherApi togetherApi;
     public static StyleApi styleApi;
     public static WisdomApi wisdomApi;
+    public static WorkApi workApi;
     public static boolean isLogging = true;
 
 
@@ -58,6 +60,13 @@ public class HttpRequest {
             wisdomApi = retrofit.create(WisdomApi.class);
         }
         return wisdomApi;
+    }
+
+    public static WorkApi workApi(){
+        if (workApi ==null){
+            workApi = retrofit.create(WorkApi.class);
+        }
+        return workApi;
     }
 
 

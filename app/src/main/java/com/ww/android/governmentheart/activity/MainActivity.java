@@ -25,6 +25,7 @@ import com.ww.android.governmentheart.fragment.HomeFragment;
 import com.ww.android.governmentheart.fragment.StyleFragment;
 import com.ww.android.governmentheart.fragment.TogetherFragment;
 import com.ww.android.governmentheart.fragment.WisdomFragment;
+import com.ww.android.governmentheart.fragment.work.WorkFragment;
 import com.ww.android.governmentheart.mvp.bean.PageBean;
 import com.ww.android.governmentheart.mvp.bean.event.UpdateAppEvent;
 import com.ww.android.governmentheart.mvp.bean.login.VersionBean;
@@ -60,16 +61,13 @@ import ww.com.core.utils.PhoneUtils;
 public class MainActivity extends BaseActivity<VoidView, MainModel> {
 
     @BindViews({R.id.tab_home_layout, R.id.tab_heart_layout, R.id.tab_together_layout, R.id
-            .tab_style_layout, R.id
-            .tab_wisdom_layout})
+            .tab_style_layout, R.id.tab_wisdom_layout,R.id.tab_work_layout})
     List<View> menus;
     @BindViews({R.id.tab_home_image, R.id.tab_heart_image, R.id.tab_together_image, R.id
-            .tab_style_image, R.id
-            .tab_wisdom_image})
+            .tab_style_image, R.id.tab_wisdom_image,R.id.tab_work_image})
     List<View> images;
     @BindViews({R.id.tab_home_text, R.id.tab_heart_text, R.id.tab_together_text, R.id
-            .tab_style_text, R.id
-            .tab_wisdom_text})
+            .tab_style_text, R.id.tab_wisdom_text,R.id.tab_work_text})
     List<View> texts;
 
     private MenuTabAdapter adapter;
@@ -101,6 +99,7 @@ public class MainActivity extends BaseActivity<VoidView, MainModel> {
         fragments.add(new TogetherFragment());
         fragments.add(new StyleFragment());
         fragments.add(new WisdomFragment());
+        fragments.add(new WorkFragment());
         addCheck();
 
         changeStatus(0);
@@ -140,6 +139,11 @@ public class MainActivity extends BaseActivity<VoidView, MainModel> {
                         break;
                     case R.id.tab_wisdom_layout:
                         changeStatus(4);
+                        mImmersionBar.fitsSystemWindows(true).statusBarColor(R.color
+                                .colorPrimary).init();
+                        break;
+                    case R.id.tab_work_layout:
+                        changeStatus(5);
                         mImmersionBar.fitsSystemWindows(true).statusBarColor(R.color
                                 .colorPrimary).init();
                         break;
