@@ -208,6 +208,10 @@
         <activity android:name=".activity.work.ThemeContentActivity"
                   android:screenOrientation="portrait"/>
 
+        <!--回帖-->
+        <activity android:name=".activity.work.ReplyForumActivity"
+                  android:screenOrientation="portrait"/>
+
 
         <!--<activity-->
             <!--android:name="com.vincent.filepicker.activity.NormalFilePickActivity"-->

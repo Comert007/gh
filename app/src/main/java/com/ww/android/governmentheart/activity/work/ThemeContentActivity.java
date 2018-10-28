@@ -1,5 +1,6 @@
 package com.ww.android.governmentheart.activity.work;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.Nullable;
@@ -8,6 +9,7 @@ import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.activity.BaseActivity;
 import com.ww.android.governmentheart.adapter.work.ThemeContentAdapter;
 import com.ww.android.governmentheart.config.type.ImmersionType;
+import com.ww.android.governmentheart.config.type.RequestType;
 import com.ww.android.governmentheart.mvp.PageListBean;
 import com.ww.android.governmentheart.mvp.bean.PageBean;
 import com.ww.android.governmentheart.mvp.bean.PagingBean;
@@ -154,6 +156,14 @@ public class ThemeContentActivity extends BaseActivity<RefreshView,WorkModel>{
             v.srl.finishRefresh();
         } else {
             v.srl.finishLoadMore();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK && requestCode == RequestType.REQUEST_REPLY_FORUM){
+            v.srl.autoRefresh();
         }
     }
 }

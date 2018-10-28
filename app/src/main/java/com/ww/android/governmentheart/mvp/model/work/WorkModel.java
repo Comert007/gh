@@ -61,4 +61,12 @@ public class WorkModel extends BaseModel {
                 .subscribe(observer);
     }
 
+
+    public void replayForum(Map map, BaseObserver<String> observer){
+        HttpRequest.workApi().replayForum(JsonParse.createArgs(map))
+                .compose(RxSchedulers.cutObservableMain())
+                .compose(observer.getTransformer())
+                .subscribe(observer);
+    }
+
 }

@@ -52,4 +52,13 @@ public interface WorkApi {
      */
     @POST("replyList")
     Observable<ResponseBean<PageListBean<ThemeReplyEntity>>> replyList(@Body RequestBody body);
+
+
+    /**
+     * 回帖
+     * @param body
+     * @return
+     */
+    @POST("reply")
+    Observable<ResponseBean<String>> replayForum(@Body RequestBody body);
 }

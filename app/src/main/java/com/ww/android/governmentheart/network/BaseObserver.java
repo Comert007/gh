@@ -77,13 +77,21 @@ public abstract class BaseObserver<T> implements Observer<ResponseBean<T>> {
         this.responseBean = responseBean;
         if (responseBean != null) {
             if (responseBean.getStatus().equals(Constant.STATUS_OK)) {
-                resultSuccess(responseBean);
+                if (isIntercept()){
+                    onResponse(responseBean);
+                }else {
+                    resultSuccess(responseBean);
+                }
             } else {
                 onError(new ApiException(responseBean.getStatus(), responseBean.getMsg()));
             }
         } else {
             onError(new ApiException(ApiException.UNKNOWN_HOST_CODE, UNKNOWN_HOST_EXCEPTION));
         }
+    }
+
+    protected void onResponse(ResponseBean<T> responseBean){
+
     }
 
     private void resultError(Throwable e) {
@@ -93,6 +101,10 @@ public abstract class BaseObserver<T> implements Observer<ResponseBean<T>> {
 
     private void resultSuccess(ResponseBean<T> responseBean) {
         onSuccess(responseBean.getDatas(),responseBean.getList(),responseBean.getPage());
+    }
+
+    protected boolean isIntercept(){
+        return false;
     }
 
     public ResponseBean<T> getResponseBean() {

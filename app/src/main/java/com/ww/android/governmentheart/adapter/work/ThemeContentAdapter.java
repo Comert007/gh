@@ -1,10 +1,12 @@
 package com.ww.android.governmentheart.adapter.work;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
 
 import com.ww.android.governmentheart.R;
+import com.ww.android.governmentheart.activity.work.ReplyForumActivity;
 import com.ww.android.governmentheart.mvp.bean.work.ThemeReplyEntity;
 
 import butterknife.BindView;
@@ -54,8 +56,15 @@ public class ThemeContentAdapter extends RvAdapter<ThemeReplyEntity>{
             tvTime.setText(TimeUtils.milliseconds2String(bean.getReplyDate()));
             tvContent.setText(bean.getContent());
             tvOrder.setText(String.format("%s楼",(position+1)));
-            tvDepartment.setVisibility(position ==0?View.VISIBLE:View.GONE);
+//            tvDepartment.setVisibility(position ==0?View.VISIBLE:View.GONE);
             tvDepartment.setText(bean.getOfficeName());
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ReplyForumActivity.start((Activity) getContext(),0,bean.getId());
+                }
+            });
         }
     }
 }
