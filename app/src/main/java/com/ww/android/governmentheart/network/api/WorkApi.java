@@ -4,7 +4,9 @@ import com.ww.android.governmentheart.mvp.PageListBean;
 import com.ww.android.governmentheart.mvp.bean.ResponseBean;
 import com.ww.android.governmentheart.mvp.bean.work.MessageEntity;
 import com.ww.android.governmentheart.mvp.bean.work.NotifyEntity;
+import com.ww.android.governmentheart.mvp.bean.work.ThemeDetailBean;
 import com.ww.android.governmentheart.mvp.bean.work.ThemeEntity;
+import com.ww.android.governmentheart.mvp.bean.work.ThemeReplyEntity;
 
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
@@ -35,4 +37,19 @@ public interface WorkApi {
 
     @POST("topicList")
     Observable<ResponseBean<PageListBean<ThemeEntity>>> topicList(@Body RequestBody body);
+
+    /**
+     * 主题详情
+     * @return
+     */
+    @POST("topicDetail")
+    Observable<ResponseBean<PageListBean<ThemeDetailBean>>> topicDetail(@Body RequestBody body);
+
+    /**
+     * 主题回复列表
+     * @param body
+     * @return
+     */
+    @POST("replyList")
+    Observable<ResponseBean<PageListBean<ThemeReplyEntity>>> replyList(@Body RequestBody body);
 }

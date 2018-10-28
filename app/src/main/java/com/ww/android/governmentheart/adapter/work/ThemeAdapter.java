@@ -6,6 +6,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ww.android.governmentheart.R;
+import com.ww.android.governmentheart.activity.work.ThemeContentActivity;
 import com.ww.android.governmentheart.mvp.bean.work.ThemeEntity;
 
 import butterknife.BindView;
@@ -54,6 +55,8 @@ public class ThemeAdapter extends RvAdapter<ThemeEntity>{
             tvTime.setText(TimeUtils.milliseconds2String(bean.getCreateTime()));
             tvComment.setText(String.format("%s", bean.getCommentCount()));
             tvEyes.setText(String.format("%s", bean.getSeeCount()));
+
+            itemView.setOnClickListener(v -> ThemeContentActivity.start(getContext(),bean.getId()));
         }
     }
 }

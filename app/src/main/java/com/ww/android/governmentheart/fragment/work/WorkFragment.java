@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentManager;
 
 import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.activity.base.UserActivity;
-import com.ww.android.governmentheart.activity.home.UserLocationActivity;
+import com.ww.android.governmentheart.activity.work.PortraitActivity;
 import com.ww.android.governmentheart.adapter.IndicatorPagerAdapter;
 import com.ww.android.governmentheart.fragment.BaseFragment;
 import com.ww.android.governmentheart.fragment.wisdom.TransmissionFragment;
@@ -46,7 +46,7 @@ public class WorkFragment extends BaseFragment<MagicIndicatorView, WorkModel> {
 
     @OnClick({R.id.btn_title_left})
     public void onClick(){
-        UserLocationActivity.launch(getContext());
+        PortraitActivity.start(getContext());
     }
 
     @Override

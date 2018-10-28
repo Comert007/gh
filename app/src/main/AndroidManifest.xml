@@ -200,6 +200,14 @@
         <activity android:name=".activity.work.NotifyContentActivity"
                   android:screenOrientation="portrait"/>
 
+        <!--数据画像-->
+        <activity android:name=".activity.work.PortraitActivity"
+            android:screenOrientation="portrait"/>
+
+        <!--主题详情-->
+        <activity android:name=".activity.work.ThemeContentActivity"
+                  android:screenOrientation="portrait"/>
+
 
         <!--<activity-->
             <!--android:name="com.vincent.filepicker.activity.NormalFilePickActivity"-->

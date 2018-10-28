@@ -8,7 +8,7 @@ import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.activity.base.UserActivity;
-import com.ww.android.governmentheart.activity.home.UserLocationActivity;
+import com.ww.android.governmentheart.activity.work.PortraitActivity;
 import com.ww.android.governmentheart.adapter.home.HomeAdapter;
 import com.ww.android.governmentheart.config.Constant;
 import com.ww.android.governmentheart.mvp.PageListBean;
@@ -93,7 +93,7 @@ public class HomeFragment extends BaseFragment<RefreshView, CommonModel> {
 
     @OnClick({R.id.btn_title_left})
     public void onClick() {
-        UserLocationActivity.launch(getContext());
+        PortraitActivity.start(getContext());
     }
 
     private void news() {

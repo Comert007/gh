@@ -34,6 +34,11 @@ public class ThemeFragment extends BaseFragment<RefreshView,WorkModel>{
         v.srl.autoRefresh();
     }
 
+    @Override
+    protected boolean isLazyLoad() {
+        return true;
+    }
+
     private void initListener() {
         if (v.srl == null) {
             return;
