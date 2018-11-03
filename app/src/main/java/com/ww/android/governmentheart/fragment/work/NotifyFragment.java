@@ -13,6 +13,7 @@ import com.ww.android.governmentheart.mvp.PageListBean;
 import com.ww.android.governmentheart.mvp.bean.PageBean;
 import com.ww.android.governmentheart.mvp.bean.PagingBean;
 import com.ww.android.governmentheart.mvp.bean.work.NotifyEntity;
+import com.ww.android.governmentheart.mvp.bean.work.ReceptionEntity;
 import com.ww.android.governmentheart.mvp.model.work.WorkModel;
 import com.ww.android.governmentheart.mvp.vu.RefreshView;
 import com.ww.android.governmentheart.network.BaseObserver;
@@ -77,17 +78,17 @@ public class NotifyFragment extends BaseFragment<RefreshView, WorkModel> {
     private void notifyList() {
         Map map = new HashMap();
         map.put("pageNo", page);
-        m.workList(map, new BaseObserver<PageListBean<NotifyEntity>>(getContext(),
+        m.receiveMaterial(map, new BaseObserver<PageListBean<ReceptionEntity>>(getContext(),
                 bindToLifecycle()) {
             @Override
-            protected void onSuccess(@Nullable PageListBean<NotifyEntity>
+            protected void onSuccess(@Nullable PageListBean<ReceptionEntity>
                                              questionBeanPageListBean, @Nullable
-                                             List<PageListBean<NotifyEntity>> list, @Nullable
-                                             PageBean<PageListBean<NotifyEntity>> pageBean) {
+                                             List<PageListBean<ReceptionEntity>> list, @Nullable
+                                             PageBean<PageListBean<ReceptionEntity>> pageBean) {
                 if (questionBeanPageListBean != null && questionBeanPageListBean.getList() != null
                         && questionBeanPageListBean.getList().size() >0) {
                     v.loadStatus(EmptyLayout.STATUS_HIDE);
-                    List<NotifyEntity> commentBeans = questionBeanPageListBean.getList();
+                    List<ReceptionEntity> commentBeans = questionBeanPageListBean.getList();
                     PagingBean pagingBean = questionBeanPageListBean.getPage();
                     int totalPage = pagingBean.getTotalPage();
                     if (page == 0) {

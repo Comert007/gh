@@ -214,6 +214,7 @@ public class MainActivity extends BaseActivity<VoidView, MainModel> {
                     List<VersionBean> list, @Nullable PageBean<VersionBean> page) {
                 String ver = PhoneUtils.getAppVer(MainActivity.this);
                 String version = versionBean.getVersion();
+                Debug.e("version:"+version+", ver:"+ver+",version.compareTo(ver):"+version.compareTo(ver));
                 if (version.compareTo(ver) > 0) {
 //                    showDialog(versionBean.getDonwLoadUrl());
                     update(versionBean.getDonwLoadUrl());

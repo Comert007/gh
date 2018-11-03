@@ -4,6 +4,7 @@ import com.ww.android.governmentheart.mvp.PageListBean;
 import com.ww.android.governmentheart.mvp.bean.ResponseBean;
 import com.ww.android.governmentheart.mvp.bean.work.MessageEntity;
 import com.ww.android.governmentheart.mvp.bean.work.NotifyEntity;
+import com.ww.android.governmentheart.mvp.bean.work.ReceptionEntity;
 import com.ww.android.governmentheart.mvp.bean.work.ThemeDetailBean;
 import com.ww.android.governmentheart.mvp.bean.work.ThemeEntity;
 import com.ww.android.governmentheart.mvp.bean.work.ThemeReplyEntity;
@@ -61,4 +62,16 @@ public interface WorkApi {
      */
     @POST("reply")
     Observable<ResponseBean<String>> replayForum(@Body RequestBody body);
+
+    /**
+     * 资料接收
+     * @param body
+     * @return
+     */
+    @POST("receiveMaterial")
+    Observable<ResponseBean<PageListBean<ReceptionEntity>>> receiveMaterial(@Body RequestBody body);
+
+    @POST("readMsg")
+    Observable<ResponseBean<String>> readMsg(@Body RequestBody body);
+
 }

@@ -1,6 +1,7 @@
 package com.ww.android.governmentheart.adapter.wisdom;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -62,13 +63,26 @@ public class QuestionAdapter extends RvAdapter<QuestionBean> {
             tvTitleName.setText(bean.getTitle());
             tvEyes.setText(String.format("%d", bean.getViewNum()));
             tvTime.setText(bean.getQuestionDate());
-            tvStatusName.setText(bean.getStatus().equals("1")?"未办理":"已办理");
+
+            tvStatusName.setText(getStatusName(bean.getStatus()));
             container.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     ShowQuestionActivity.start(getContext(),bean.getId());
                 }
             });
+        }
+
+        private String getStatusName(String status){
+            String str= "未办理";
+            if (TextUtils.equals(status,"1")){
+                str = "未办理";
+            }else if (TextUtils.equals(status,"2")){
+                str ="已办理";
+            }else if (TextUtils.equals(status,"3")){
+                str ="已回复";
+            }
+            return str;
         }
     }
 }

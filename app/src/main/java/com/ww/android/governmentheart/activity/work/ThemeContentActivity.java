@@ -109,8 +109,7 @@ public class ThemeContentActivity extends BaseActivity<RefreshView,WorkModel>{
                                              questionBeanPageListBean, @Nullable
                                              List<PageListBean<ThemeReplyEntity>> list, @Nullable
                                              PageBean<PageListBean<ThemeReplyEntity>> pageBean) {
-                if (questionBeanPageListBean != null && questionBeanPageListBean.getList() != null
-                        && questionBeanPageListBean.getList().size() >0) {
+                if (questionBeanPageListBean != null && questionBeanPageListBean.getList() != null) {
                     v.loadStatus(EmptyLayout.STATUS_HIDE);
                     List<ThemeReplyEntity> commentBeans = questionBeanPageListBean.getList();
                     PagingBean pagingBean = questionBeanPageListBean.getPage();

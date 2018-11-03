@@ -3,6 +3,7 @@ package com.ww.android.governmentheart.mvp.model.work;
 import com.ww.android.governmentheart.mvp.PageListBean;
 import com.ww.android.governmentheart.mvp.bean.work.MessageEntity;
 import com.ww.android.governmentheart.mvp.bean.work.NotifyEntity;
+import com.ww.android.governmentheart.mvp.bean.work.ReceptionEntity;
 import com.ww.android.governmentheart.mvp.bean.work.ThemeDetailBean;
 import com.ww.android.governmentheart.mvp.bean.work.ThemeEntity;
 import com.ww.android.governmentheart.mvp.bean.work.ThemeReplyEntity;
@@ -64,6 +65,21 @@ public class WorkModel extends BaseModel {
 
     public void replayForum(Map map, BaseObserver<String> observer){
         HttpRequest.workApi().replayForum(JsonParse.createArgs(map))
+                .compose(RxSchedulers.cutObservableMain())
+                .compose(observer.getTransformer())
+                .subscribe(observer);
+    }
+
+    public void receiveMaterial(Map map, BaseObserver<PageListBean<ReceptionEntity>> observer){
+        HttpRequest.workApi().receiveMaterial(JsonParse.createArgs(map))
+                .compose(RxSchedulers.cutObservableMain())
+                .compose(observer.getTransformer())
+                .subscribe(observer);
+    }
+
+
+    public void readMsg(Map map, BaseObserver<String> observer){
+        HttpRequest.workApi().readMsg(JsonParse.createArgs(map))
                 .compose(RxSchedulers.cutObservableMain())
                 .compose(observer.getTransformer())
                 .subscribe(observer);

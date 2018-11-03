@@ -3,11 +3,12 @@ package com.ww.android.governmentheart.activity.work;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
-import android.webkit.WebChromeClient;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
+import com.tencent.smtt.sdk.WebChromeClient;
+import com.tencent.smtt.sdk.WebSettings;
+import com.tencent.smtt.sdk.WebView;
+import com.tencent.smtt.sdk.WebViewClient;
 import com.ww.android.governmentheart.BuildConfig;
 import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.activity.BaseActivity;
@@ -44,11 +45,25 @@ public class PortraitActivity extends BaseActivity<VoidView,VoidModel>{
     @Override
     protected void init() {
         url = String.format("%s%s", BuildConfig.BASE_URL,"biDataMain");
+        initSetting();
         initWeb();
+    }
+
+    private void initSetting(){
+        WebSettings settings = webView.getSettings();
+        settings.setDomStorageEnabled(true);
     }
 
     private void initWeb() {
         webView.loadUrl(url);
+
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+        });
         webView.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
@@ -64,11 +79,5 @@ public class PortraitActivity extends BaseActivity<VoidView,VoidModel>{
             }
         });
 
-        webView.setWebViewClient(new WebViewClient() {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                return super.shouldOverrideUrlLoading(view, url);
-            }
-        });
     }
 }

@@ -9,6 +9,7 @@ import com.ww.android.governmentheart.mvp.bean.wisdom.SuggestBean;
 import com.ww.android.governmentheart.mvp.bean.wisdom.SuggestDetailBean;
 import com.ww.android.governmentheart.mvp.bean.wisdom.TransmissionBean;
 import com.ww.android.governmentheart.mvp.bean.wisdom.TransmissionDetailBean;
+import com.ww.android.governmentheart.mvp.bean.wisdom.TransmissionUserBean;
 import com.ww.android.governmentheart.mvp.bean.wisdom.UploadBean;
 import com.ww.android.governmentheart.mvp.model.base.BaseModel;
 import com.ww.android.governmentheart.network.BaseObserver;
@@ -147,6 +148,13 @@ public class WisdomModel extends BaseModel {
 
     public void questionDetail(Map map,BaseObserver<PageListBean<QuestionDetailBean>> observer){
         HttpRequest.wisdomApi().questionDetail(JsonParse.createArgs(map))
+                .compose(RxSchedulers.cutObservableMain())
+                .compose(observer.getTransformer())
+                .subscribe(observer);
+    }
+
+    public void matUsers (Map map,BaseObserver<PageListBean<TransmissionUserBean>> observer){
+        HttpRequest.wisdomApi().matUsers(JsonParse.createArgs(map))
                 .compose(RxSchedulers.cutObservableMain())
                 .compose(observer.getTransformer())
                 .subscribe(observer);

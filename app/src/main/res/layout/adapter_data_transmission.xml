@@ -36,6 +36,18 @@
         android:layout_height="wrap_content"/>
 
 
+
+    <TextView
+        android:id="@+id/tv_images"
+        style="@style/NormalTitleTextStyle"
+        android:paddingTop="@dimen/margin_15"
+        android:text="图片"/>
+
+    <ww.com.core.widget.CustomRecyclerView
+        android:id="@+id/crv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <LinearLayout
         android:id="@+id/ll_file_layout"
         android:layout_width="match_parent"

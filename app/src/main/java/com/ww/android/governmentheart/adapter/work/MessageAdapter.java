@@ -53,7 +53,7 @@ public class MessageAdapter extends RvAdapter<MessageEntity>{
                 @Override
                 public void onClick(View v) {
                     EasyRequestBean easyRequestBean = new EasyRequestBean.Builder()
-                            .setId(bean.getId())
+                            .setId(bean.getDataId())
                             .setName(bean.getTitle())
                             .setType(bean.getMenuCode()).build();
                     WebViewActivity.start(getContext(),easyRequestBean);

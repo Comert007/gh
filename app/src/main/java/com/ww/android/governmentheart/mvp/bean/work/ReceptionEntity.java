@@ -1,23 +1,22 @@
-package com.ww.android.governmentheart.mvp.bean.wisdom;
+package com.ww.android.governmentheart.mvp.bean.work;
 
-/**
- * @Author feng
- * @Date 2018/7/8
- */
-public class TransmissionBean {
+public class ReceptionEntity {
 
 
     /**
-     * id : 19704eab2915410cb1e475c6e748fc24
+     * id : abfb33d77bef4617a10ffad38dab01e3
      * isNewRecord : false
-     * createDate : 2018-07-12 17:28:01
-     * updateDate : 2018-07-12 17:28:01
-     * title : 资料发送资料发生
-     * summary : 资料发送资料发生
+     * createDate : 2018-10-28 14:44:01
+     * updateDate : 2018-10-28 14:44:01
+     * title : 测试附件上传
+     * summary : 测试附件上传
      * status : 1
-     * createUser : {"id":"361","isNewRecord":false,"loginName":"13880819901","name":"陈红霞",
-     * "phone":"13880819901","mobile":"13880819901","userType":"20","loginFlag":"1","photo":"",
-     * "roleNames":"","admin":false}
+     * createUser : {"id":"1","isNewRecord":false,"mobile":"8675","loginName":"system",
+     * "name":"系统管理员","phone":"8675","userType":"20","loginFlag":"1",
+     * "photo":"/userfiles/1/images/photo/2018/07/682c0d4d18c6d03648d20631d8aa16e6.jpg",
+     * "admin":true,"roleNames":""}
+     * readNum : 1
+     * unReadNum : 4
      */
 
     private String id;
@@ -28,14 +27,8 @@ public class TransmissionBean {
     private String summary;
     private String status;
     private CreateUserBean createUser;
-    /**
-     * readNum : 2
-     * unReadNum : 11
-     */
-
     private String readNum;
     private String unReadNum;
-
 
     public String getId() {
         return id;
@@ -119,30 +112,30 @@ public class TransmissionBean {
 
     public static class CreateUserBean {
         /**
-         * id : 361
+         * id : 1
          * isNewRecord : false
-         * loginName : 13880819901
-         * name : 陈红霞
-         * phone : 13880819901
-         * mobile : 13880819901
+         * mobile : 8675
+         * loginName : system
+         * name : 系统管理员
+         * phone : 8675
          * userType : 20
          * loginFlag : 1
-         * photo :
+         * photo : /userfiles/1/images/photo/2018/07/682c0d4d18c6d03648d20631d8aa16e6.jpg
+         * admin : true
          * roleNames :
-         * admin : false
          */
 
         private String id;
         private boolean isNewRecord;
+        private String mobile;
         private String loginName;
         private String name;
         private String phone;
-        private String mobile;
         private String userType;
         private String loginFlag;
         private String photo;
-        private String roleNames;
         private boolean admin;
+        private String roleNames;
 
         public String getId() {
             return id;
@@ -158,6 +151,14 @@ public class TransmissionBean {
 
         public void setIsNewRecord(boolean isNewRecord) {
             this.isNewRecord = isNewRecord;
+        }
+
+        public String getMobile() {
+            return mobile;
+        }
+
+        public void setMobile(String mobile) {
+            this.mobile = mobile;
         }
 
         public String getLoginName() {
@@ -184,14 +185,6 @@ public class TransmissionBean {
             this.phone = phone;
         }
 
-        public String getMobile() {
-            return mobile;
-        }
-
-        public void setMobile(String mobile) {
-            this.mobile = mobile;
-        }
-
         public String getUserType() {
             return userType;
         }
@@ -216,20 +209,20 @@ public class TransmissionBean {
             this.photo = photo;
         }
 
-        public String getRoleNames() {
-            return roleNames;
-        }
-
-        public void setRoleNames(String roleNames) {
-            this.roleNames = roleNames;
-        }
-
         public boolean isAdmin() {
             return admin;
         }
 
         public void setAdmin(boolean admin) {
             this.admin = admin;
+        }
+
+        public String getRoleNames() {
+            return roleNames;
+        }
+
+        public void setRoleNames(String roleNames) {
+            this.roleNames = roleNames;
         }
     }
 }

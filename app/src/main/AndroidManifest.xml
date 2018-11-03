@@ -212,6 +212,14 @@
         <activity android:name=".activity.work.ReplyForumActivity"
                   android:screenOrientation="portrait"/>
 
+        <!--资料接收-->
+        <activity android:name=".activity.work.ReceptionActivity"
+                  android:screenOrientation="portrait"/>
+
+        <!--资料发送-->
+        <activity android:name=".activity.wisdom.DataTransmissionActivity"
+                  android:screenOrientation="portrait"/>
+
 
         <!--<activity-->
             <!--android:name="com.vincent.filepicker.activity.NormalFilePickActivity"-->

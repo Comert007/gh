@@ -2,6 +2,7 @@ package com.ww.android.governmentheart.activity.base;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
 import android.webkit.WebChromeClient;
@@ -13,10 +14,16 @@ import com.ww.android.governmentheart.BuildConfig;
 import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.activity.BaseActivity;
 import com.ww.android.governmentheart.config.type.ImmersionType;
+import com.ww.android.governmentheart.mvp.bean.PageBean;
+import com.ww.android.governmentheart.mvp.bean.ResponseBean;
 import com.ww.android.governmentheart.mvp.bean.home.EasyRequestBean;
-import com.ww.android.governmentheart.mvp.model.VoidModel;
+import com.ww.android.governmentheart.mvp.model.work.WorkModel;
 import com.ww.android.governmentheart.mvp.vu.base.VoidView;
+import com.ww.android.governmentheart.network.BaseObserver;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 import butterknife.BindView;
@@ -26,7 +33,7 @@ import ww.com.core.Debug;
  * @author feng
  * @Date 2018/7/10.
  */
-public class WebViewActivity extends BaseActivity<VoidView, VoidModel> {
+public class WebViewActivity extends BaseActivity<VoidView, WorkModel> {
 
     @BindView(R.id.progressBar)
     ProgressBar bar;
@@ -68,6 +75,7 @@ public class WebViewActivity extends BaseActivity<VoidView, VoidModel> {
         name = mEasyRequestBean.name;
         setTitleText(name);
         parseUrl();
+        readMsg();
     }
 
     private void parseUrl(){
@@ -108,6 +116,28 @@ public class WebViewActivity extends BaseActivity<VoidView, VoidModel> {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 return super.shouldOverrideUrlLoading(view, url);
+            }
+        });
+    }
+
+
+    private void readMsg(){
+        Map map = new HashMap();
+        map.put("id",mEasyRequestBean.id);
+        m.readMsg(map, new BaseObserver<String>(this,bindToLifecycle()) {
+            @Override
+            protected void onSuccess(@Nullable String s, @Nullable List<String> list, @Nullable PageBean<String> page) {
+
+            }
+
+            @Override
+            protected void onResponse(ResponseBean<String> responseBean) {
+                super.onResponse(responseBean);
+            }
+
+            @Override
+            protected boolean isIntercept() {
+                return true;
             }
         });
     }

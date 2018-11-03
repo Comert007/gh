@@ -9,6 +9,7 @@ import com.ww.android.governmentheart.mvp.bean.wisdom.SuggestBean;
 import com.ww.android.governmentheart.mvp.bean.wisdom.SuggestDetailBean;
 import com.ww.android.governmentheart.mvp.bean.wisdom.TransmissionBean;
 import com.ww.android.governmentheart.mvp.bean.wisdom.TransmissionDetailBean;
+import com.ww.android.governmentheart.mvp.bean.wisdom.TransmissionUserBean;
 import com.ww.android.governmentheart.mvp.bean.wisdom.UploadBean;
 
 import java.util.List;
@@ -145,4 +146,7 @@ public interface WisdomApi {
      */
     @POST("getQuestionById")
     Observable<ResponseBean<PageListBean<QuestionDetailBean>>> questionDetail(@Body RequestBody body);
+
+    @POST("matUsers")
+    Observable<ResponseBean<PageListBean<TransmissionUserBean>>> matUsers(@Body RequestBody body);
 }

@@ -23,6 +23,6 @@
     <string-array name="work_text">
         <item>消息</item>
         <item>资料发送</item>
-        <item>通知管理</item>
+        <item>资料接收</item>
     </string-array>
 </resources>

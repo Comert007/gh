@@ -73,6 +73,8 @@ public class ShowQuestionActivity extends BaseActivity<ShowQuestionView, WisdomM
                        String reply = detailBean.getComment().get(0).getContent();
                        v.setTitle(TextUtils.isEmpty(reply)?"暂无回复":reply);
                    }
+
+                   v.setReply(detailBean.getReplyResult());
                }
             }
         });

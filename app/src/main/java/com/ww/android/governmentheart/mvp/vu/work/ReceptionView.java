@@ -1,4 +1,4 @@
-package com.ww.android.governmentheart.mvp.vu.wisdom;
+package com.ww.android.governmentheart.mvp.vu.work;
 
 import android.widget.TextView;
 
@@ -7,21 +7,17 @@ import com.ww.android.governmentheart.mvp.vu.RefreshView;
 
 import butterknife.BindView;
 
-/**
- * @author feng
- * @Date 2018/6/23.
- */
-public class ShowQuestionView extends RefreshView {
+public class ReceptionView extends RefreshView {
 
     @BindView(R.id.tv_title_name)
     TextView tvTitle;
     @BindView(R.id.tv_content)
     TextView tvContent;
-    @BindView(R.id.tv_reply)
-    TextView tvReply;
+    @BindView(R.id.tv_file_picker)
+    TextView tvFileName;
+    @BindView(R.id.tv_username)
+    TextView tvUserName;
 
-    public ShowQuestionView() {
-    }
 
     public void setTitle(String title) {
         this.tvTitle.setText(title);
@@ -31,7 +27,12 @@ public class ShowQuestionView extends RefreshView {
         this.tvContent.setText(content);
     }
 
-    public void setReply(String reply) {
-        this.tvReply.setText(reply);
+    public void setFileName(String name) {
+        this.tvFileName.setText(name);
     }
+
+    public void setUserName(String username) {
+        this.tvUserName.setText(username);
+    }
+
 }
