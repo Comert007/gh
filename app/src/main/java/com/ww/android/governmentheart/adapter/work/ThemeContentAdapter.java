@@ -2,6 +2,8 @@ package com.ww.android.governmentheart.adapter.work;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
@@ -44,6 +46,10 @@ public class ThemeContentAdapter extends RvAdapter<ThemeReplyEntity>{
         TextView tvOrder;
         @BindView(R.id.tv_department)
         TextView tvDepartment;
+        @BindView(R.id.rv)
+        RecyclerView mRecyclerView;
+        @BindView(R.id.tv_reply)
+        TextView tvReply;
 
 
         public ThemeContentViewHolder(View itemView) {
@@ -57,14 +63,15 @@ public class ThemeContentAdapter extends RvAdapter<ThemeReplyEntity>{
             tvContent.setText(bean.getContent());
             tvOrder.setText(String.format("%s楼",(position+1)));
 //            tvDepartment.setVisibility(position ==0?View.VISIBLE:View.GONE);
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+            ThemeContentReplyAdapter adapter = new ThemeContentReplyAdapter(getContext());
+            mRecyclerView.setAdapter(adapter);
+            adapter.addList(bean.getReplyList());
             tvDepartment.setText(bean.getOfficeName());
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ReplyForumActivity.start((Activity) getContext(),0,bean.getId());
-                }
-            });
+            tvReply.setOnClickListener(v -> ReplyForumActivity.start((Activity) getContext(),
+                    0,bean.getId()));
+
         }
     }
 }

@@ -57,6 +57,7 @@ public class ReplyForumActivity extends BaseActivity<VoidView,WorkModel>{
 
     @Override
     protected void init() {
+        type = getIntent().getIntExtra("type",1);
         id = getIntent().getStringExtra("id");
     }
 
