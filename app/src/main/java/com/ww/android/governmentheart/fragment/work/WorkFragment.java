@@ -3,12 +3,14 @@ package com.ww.android.governmentheart.fragment.work;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
+import com.ww.android.governmentheart.BaseApplication;
 import com.ww.android.governmentheart.R;
 import com.ww.android.governmentheart.activity.base.UserActivity;
 import com.ww.android.governmentheart.activity.work.PortraitActivity;
 import com.ww.android.governmentheart.adapter.IndicatorPagerAdapter;
 import com.ww.android.governmentheart.fragment.BaseFragment;
 import com.ww.android.governmentheart.fragment.wisdom.TransmissionFragment;
+import com.ww.android.governmentheart.mvp.bean.login.UserBean;
 import com.ww.android.governmentheart.mvp.model.work.WorkModel;
 import com.ww.android.governmentheart.mvp.vu.MagicIndicatorView;
 
@@ -24,7 +26,7 @@ public class WorkFragment extends BaseFragment<MagicIndicatorView, WorkModel> {
     private IndicatorPagerAdapter pagerAdapter;
     private List<Fragment> fragments;
     private FragmentManager fragmentManager;
-
+    private boolean isOffice = true;
 
 
     @Override
@@ -51,9 +53,12 @@ public class WorkFragment extends BaseFragment<MagicIndicatorView, WorkModel> {
 
     @Override
     protected void init() {
+        UserBean userBean = (UserBean) BaseApplication.getInstance().getUserInfo();
+        isOffice = userBean.getUser().isOffice();
         addFragment();
         initViewPager();
-        v.setTitles(Arrays.asList(getResources().getStringArray(R.array.work_text)));
+
+        v.setTitles(Arrays.asList(getResources().getStringArray(isOffice?R.array.work_text:R.array.work_text_short)));
         v.initMagicIndicator(true);
     }
 
@@ -76,7 +81,9 @@ public class WorkFragment extends BaseFragment<MagicIndicatorView, WorkModel> {
             fragments = new ArrayList<>();
         }
         fragments.add(new MessageFragment());
-        fragments.add(new TransmissionFragment());
+        if (isOffice){
+            fragments.add(new TransmissionFragment());
+        }
         fragments.add(new NotifyFragment());
     }
 

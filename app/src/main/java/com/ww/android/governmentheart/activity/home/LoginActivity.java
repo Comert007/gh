@@ -55,8 +55,8 @@ public class LoginActivity extends BaseActivity<LoginView, LoginModel> {
 
     private void gainPass() {
         String phone = v.getPhone();
-        if (TextUtils.isEmpty(phone) || phone.length() < 11) {
-            ToastUtils.showToast("请输入正确的手机号");
+        if (TextUtils.isEmpty(phone)) {
+            ToastUtils.showToast("请输入账号");
             return;
         }
         if (v.checkParams(phone)) {

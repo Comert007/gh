@@ -193,7 +193,7 @@ public class TransmissionActivity extends BaseActivity<TransmissionView, WisdomM
     private void saveTransmission(@Nullable List<UploadBean> files) {
         Map map = new HashMap();
 
-        map.put("title", v.getContent());
+        map.put("title", v.getTitle());
         map.put("cont", v.getContent());
         map.put("users", Arrays.asList(new RequestUserBean(contactBean.getId(), contactBean
                 .getName(), contactBean.getUserType())));

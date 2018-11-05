@@ -1,6 +1,7 @@
 package com.ww.android.governmentheart.mvp.model.work;
 
 import com.ww.android.governmentheart.mvp.PageListBean;
+import com.ww.android.governmentheart.mvp.bean.wisdom.TransmissionDetailBean;
 import com.ww.android.governmentheart.mvp.bean.work.MessageEntity;
 import com.ww.android.governmentheart.mvp.bean.work.NotifyEntity;
 import com.ww.android.governmentheart.mvp.bean.work.ReceptionEntity;
@@ -84,5 +85,20 @@ public class WorkModel extends BaseModel {
                 .compose(observer.getTransformer())
                 .subscribe(observer);
     }
+
+    /**
+     * 资料发送详情
+     * @param map
+     * @param observer
+     */
+    public void materialDetail(Map map, BaseObserver<PageListBean<TransmissionDetailBean>> observer) {
+        HttpRequest.wisdomApi().materialDetail(JsonParse.createArgs(map))
+                .compose(RxSchedulers.cutObservableMain())
+                .compose(observer.getTransformer())
+                .subscribe(observer);
+    }
+
+
+
 
 }

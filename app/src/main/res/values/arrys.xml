@@ -25,4 +25,9 @@
         <item>资料发送</item>
         <item>资料接收</item>
     </string-array>
+
+    <string-array name="work_text_short">
+        <item>消息</item>
+        <item>资料接收</item>
+    </string-array>
 </resources>

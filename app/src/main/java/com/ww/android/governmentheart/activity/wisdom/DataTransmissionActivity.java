@@ -35,13 +35,15 @@ public class DataTransmissionActivity extends BaseActivity<RefreshView,WisdomMod
     private DataTransmissionAdapter adapter;
     private int page=0;
     private String id;
+    private int type;
 
     private DataTransmissionHeaderHolder mHolder;
 
 
-    public static void start(Context context, String id) {
+    public static void start(Context context, String id,int type) {
         Intent starter = new Intent(context, DataTransmissionActivity.class);
         starter.putExtra("id",id);
+        starter.putExtra("type",type);
         context.startActivity(starter);
     }
 
@@ -58,11 +60,14 @@ public class DataTransmissionActivity extends BaseActivity<RefreshView,WisdomMod
     @Override
     protected void init() {
         id = getIntent().getStringExtra("id");
+        type = getIntent().getIntExtra("type",0);
         mHolder = new DataTransmissionHeaderHolder(this);
         initData();
     }
 
     private void initData(){
+
+
 
         initListener();
         initRecycler();
@@ -80,7 +85,9 @@ public class DataTransmissionActivity extends BaseActivity<RefreshView,WisdomMod
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                 materialDetail();
-                matUsers();
+                if (type == 1){
+                    matUsers();
+                }
             }
         });
 

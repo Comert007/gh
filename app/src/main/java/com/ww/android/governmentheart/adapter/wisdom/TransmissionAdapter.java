@@ -60,7 +60,7 @@ public class TransmissionAdapter extends RvAdapter<TransmissionBean> {
             container.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    DataTransmissionActivity.start(getContext(),bean.getId());
+                    DataTransmissionActivity.start(getContext(),bean.getId(),1);
                 }
             });
         }

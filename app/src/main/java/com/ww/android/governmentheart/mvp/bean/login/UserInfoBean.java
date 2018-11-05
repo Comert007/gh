@@ -30,6 +30,8 @@ public class UserInfoBean implements Serializable{
     private String loginIp;
     private String photo;
     private String id;
+    private String imPwd;
+    private boolean office;
 
     public String getLoginName() {
         return loginName;
@@ -101,5 +103,21 @@ public class UserInfoBean implements Serializable{
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getImPwd() {
+        return imPwd;
+    }
+
+    public void setImPwd(String imPwd) {
+        this.imPwd = imPwd;
+    }
+
+    public boolean isOffice() {
+        return office;
+    }
+
+    public void setOffice(boolean office) {
+        this.office = office;
     }
 }

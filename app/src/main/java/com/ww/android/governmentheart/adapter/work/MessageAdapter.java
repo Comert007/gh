@@ -6,8 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ww.android.governmentheart.R;
-import com.ww.android.governmentheart.activity.base.WebViewActivity;
-import com.ww.android.governmentheart.mvp.bean.home.EasyRequestBean;
+import com.ww.android.governmentheart.activity.wisdom.DataTransmissionActivity;
 import com.ww.android.governmentheart.mvp.bean.work.MessageEntity;
 
 import butterknife.BindView;
@@ -52,11 +51,12 @@ public class MessageAdapter extends RvAdapter<MessageEntity>{
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    EasyRequestBean easyRequestBean = new EasyRequestBean.Builder()
-                            .setId(bean.getDataId())
-                            .setName(bean.getTitle())
-                            .setType(bean.getMenuCode()).build();
-                    WebViewActivity.start(getContext(),easyRequestBean);
+                    DataTransmissionActivity.start(getContext(),bean.getDataId(),0);
+//                    EasyRequestBean easyRequestBean = new EasyRequestBean.Builder()
+//                            .setId(bean.getDataId())
+//                            .setName(bean.getTitle())
+//                            .setType(bean.getMenuCode()).build();
+//                    WebViewActivity.start(getContext(),easyRequestBean);
                 }
             });
         }

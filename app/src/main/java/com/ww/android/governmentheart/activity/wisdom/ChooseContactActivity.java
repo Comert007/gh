@@ -65,7 +65,7 @@ public class ChooseContactActivity extends BaseActivity<RefreshView, WisdomModel
 
     private void initListener() {
         etSearch.setOnEditorActionListener((v, actionId, event) -> {
-            if (event.getAction() == EditorInfo.IME_ACTION_SEARCH) {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 String name = etSearch.getText().toString().replaceAll(" ", "");
                 if (!TextUtils.isEmpty(name)) {
                     ChooseContactActivity.this.name = name;

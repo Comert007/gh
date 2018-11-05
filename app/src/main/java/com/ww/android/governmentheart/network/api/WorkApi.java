@@ -2,6 +2,7 @@ package com.ww.android.governmentheart.network.api;
 
 import com.ww.android.governmentheart.mvp.PageListBean;
 import com.ww.android.governmentheart.mvp.bean.ResponseBean;
+import com.ww.android.governmentheart.mvp.bean.wisdom.TransmissionDetailBean;
 import com.ww.android.governmentheart.mvp.bean.work.MessageEntity;
 import com.ww.android.governmentheart.mvp.bean.work.NotifyEntity;
 import com.ww.android.governmentheart.mvp.bean.work.ReceptionEntity;
@@ -73,5 +74,15 @@ public interface WorkApi {
 
     @POST("readMsg")
     Observable<ResponseBean<String>> readMsg(@Body RequestBody body);
+
+    /**
+     * 资料发送详情
+     * @param body
+     * @return
+     */
+    @POST("materialDetail")
+    Observable<ResponseBean<PageListBean<TransmissionDetailBean>>> materialDetail(@Body RequestBody body);
+
+
 
 }
