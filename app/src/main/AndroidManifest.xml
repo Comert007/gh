@@ -202,6 +202,7 @@
 
         <!--数据画像-->
         <activity android:name=".activity.work.PortraitActivity"
+                  android:hardwareAccelerated="true"
             android:screenOrientation="portrait"/>
 
         <!--主题详情-->
