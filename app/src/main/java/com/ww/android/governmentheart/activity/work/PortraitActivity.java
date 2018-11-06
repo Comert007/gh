@@ -1,5 +1,6 @@
 package com.ww.android.governmentheart.activity.work;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
@@ -45,13 +46,17 @@ public class PortraitActivity extends BaseActivity<VoidView,VoidModel>{
     @Override
     protected void init() {
         url = String.format("%s%s", BuildConfig.BASE_URL,"biDataMain");
+//        url = "file:///android_asset/h5/数据总览.html";
         initSetting();
         initWeb();
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     private void initSetting(){
         WebSettings settings = webView.getSettings();
         settings.setDomStorageEnabled(true);
+        settings.setUseWideViewPort(true);
+        settings.setJavaScriptEnabled(true);
     }
 
     private void initWeb() {
